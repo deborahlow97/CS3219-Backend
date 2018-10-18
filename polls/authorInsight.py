@@ -2,7 +2,7 @@ import csv
 import codecs
 from collections import Counter
 
-from utils import parseCSVFile, testCSVFileFormatMatching, isNumber, parseSubmissionTime
+from utils import parseCSVFile, parseCSVFileInverted, testCSVFileFormatMatching, isNumber, parseSubmissionTime
 
 def getAuthorInfo(inputFile, dummyArray):
 	"""
@@ -21,10 +21,15 @@ def getAuthorInfo(inputFile, dummyArray):
 		lines = parseCSVFile(inputFile)
 		lines = [ele for ele in lines if ele]
 
-    #debug
+    #debugging purpose
+	invertedLines = parseCSVFileInverted(lines)
 	for x in lines:
 		print (x)
-    
+
+	for y in invertedLines:
+		print (y)
+	
+
 	authorList = []
 	for authorInfo in lines:
 		# authorInfo = line.replace("\"", "").split(",")
@@ -43,5 +48,6 @@ def getAuthorInfo(inputFile, dummyArray):
 	affiliations = [ele['affiliation'] for ele in authorList if ele]
 	topAffiliations = Counter(affiliations).most_common(10)
 	parsedResult['topAffiliations'] = {'labels': [ele[0] for ele in topAffiliations], 'data': [ele[1] for ele in topAffiliations]}
+
 
 	return {'infoType': 'author', 'infoData': parsedResult}

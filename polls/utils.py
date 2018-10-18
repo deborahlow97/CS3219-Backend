@@ -28,6 +28,10 @@ def parseCSVFile(inputFile):
 
 	return rowResults
 
+def parseCSVFileInverted(input2DArr):
+	#returns inverted table
+	return zip(*input2DArr)
+
 def testCSVFileFormatMatching(inputFile, selectedType, noOfHeaders):
 	"""
 	Test whether the upload CSV file matches with the selected type (author, submission, review)
