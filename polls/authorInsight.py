@@ -4,17 +4,26 @@ from collections import Counter
 
 from utils import parseCSVFile, testCSVFileFormatMatching, isNumber, parseSubmissionTime
 
-def getAuthorInfo(inputFile):
+def getAuthorInfo(inputFile, dummyArray):
 	"""
 	author.csv: header row, author names with affiliations, countries, emails
 	data format:
 	submission ID | f name | s name | email | country | affiliation | page | person ID | corresponding?
 	"""
+
 	parsedResult = {}
+    #Case 1: Header given in CSV File - array is empty
+	if not dummyArray:
+	    lines = parseCSVFile(inputFile)[1:]
+	    lines = [ele for ele in lines if ele]
+	else:
+		lines = parseCSVFile(inputFile)
+		lines = [ele for ele in lines if ele]
 
-	lines = parseCSVFile(inputFile)[1:]
-	lines = [ele for ele in lines if ele]
-
+    #debug
+	for x in lines:
+		print x
+    
 	authorList = []
 	for authorInfo in lines:
 		# authorInfo = line.replace("\"", "").split(",")

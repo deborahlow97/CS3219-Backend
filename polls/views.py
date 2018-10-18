@@ -30,11 +30,16 @@ def uploadCSV(request):
 	print ("Inside the upload function!!")
 	if request.FILES :
 		csvFile = request.FILES['file']
+		# TODO: Get header data here! store it in a array, currently using a dummy arr
+
+		dummyArray = ["Submission ID", "Fist Name", "Last Name",
+		"Email", "Country", "Organization", "Webpage",
+		"Person #", "Corresponding"];
 		fileName = str(csvFile.name)
 		rowContent = ""
 
 		if "author.csv" in fileName:
-			rowContent = getAuthorInfo(csvFile)
+			rowContent = getAuthorInfo(csvFile, dummyArray)
 			print ("yaya")
 		elif "score.csv" in fileName:
 			rowContent = getReviewScoreInfo(csvFile)
@@ -57,7 +62,7 @@ def uploadCSV(request):
 			print ("Now we got the csv file =)")
 
 
-		return HttpResponse("json.dumps(rowContent)")
+		return HttpResponse(json.dumps(rowContent))
 		# return HttpResponse("Got the CSV file.")
 	else:
 		print ("Not found the file! =(")
