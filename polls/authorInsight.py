@@ -16,13 +16,14 @@ def getAuthorInfo(inputFile, dummyArray):
 	if not dummyArray:
 	    lines = parseCSVFile(inputFile)[1:]
 	    lines = [ele for ele in lines if ele]
+    #Case 2: Header not given in CSV file 
 	else:
 		lines = parseCSVFile(inputFile)
 		lines = [ele for ele in lines if ele]
 
     #debug
 	for x in lines:
-		print x
+		print (x)
     
 	authorList = []
 	for authorInfo in lines:
