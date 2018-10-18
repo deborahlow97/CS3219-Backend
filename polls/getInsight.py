@@ -7,6 +7,9 @@ from utils import parseCSVFile, testCSVFileFormatMatching, isNumber, parseSubmis
 def parseAuthorCSVFile(inputFile):
 
 	csvFile = inputFile
+	## Analyze the given sample and return a Dialect subclass reflecting the parameters found. 
+	## If the optional delimiters parameter is given, it is interpreted as a string containing
+	##  possible valid delimiter characters.
 	dialect = csv.Sniffer().sniff(codecs.EncodedFile(csvFile, "utf-8").read(1024))
 	csvFile.open()
 	# reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect=dialect)

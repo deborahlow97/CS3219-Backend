@@ -9,46 +9,56 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData
-from getInsight import parseAuthorCSVFile, getReviewScoreInfo, getAuthorInfo, getReviewInfo, getSubmissionInfo
+from getInsight import parseAuthorCSVFile
+from reviewScoreInsight import getReviewScoreInfo
+from authorInsight import getAuthorInfo
+from reviewInsight import getReviewInfo
+from submissionInsight import getSubmissionInfo
 
 # Create your views here.
 # Note: a view is a func taking the HTTP request and returns sth accordingly
 
 def index(request):
-	return HttpResponse("Hello, world. You're at the polls index.")
+	return HttpResponse("goodbye, world. You're at the polls index. =)")
 
 def test(request):
-	return HttpResponse("<h1>This is the very first HTTP request!</h1>")
+	return HttpResponse("<h1>This is the very first HTTP request! =)</h1>")
 
 # Note: csr: cross site request, adding this to enable request from localhost
 @csrf_exempt
 def uploadCSV(request):
-	print ("Inside the upload function")
-	if request.FILES:
+	print ("Inside the upload function!!")
+	if request.FILES :
 		csvFile = request.FILES['file']
 		fileName = str(csvFile.name)
 		rowContent = ""
 
 		if "author.csv" in fileName:
 			rowContent = getAuthorInfo(csvFile)
+			print ("yaya")
 		elif "score.csv" in fileName:
 			rowContent = getReviewScoreInfo(csvFile)
+			print ("yayb")
 		elif "review.csv" in fileName:
 			rowContent = getReviewInfo(csvFile)
+			print ("yayc")
 		elif "submission.csv" in fileName:
 			rowContent = getSubmissionInfo(csvFile)
+			print ("yayd")
 		else:
 			rowContent = returnTestChartData(csvFile)
 
+		print ("yay")
 		print (type(csvFile.name))
 
 		if request.POST:
 	# current problem: request from axios not recognized as POST
 			# csvFile = request.FILES['file']
-			print ("Now we got the csv file")
+			print ("Now we got the csv file =)")
 
-		return HttpResponse(json.dumps(rowContent))
+
+		return HttpResponse("json.dumps(rowContent)")
 		# return HttpResponse("Got the CSV file.")
 	else:
-		print ("Not found the file!")
-		return HttpResponseNotFound('Page not found for CSV')
+		print ("Not found the file! =(")
+		return HttpResponseNotFound('Page not found for CSV =(')

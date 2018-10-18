@@ -28,7 +28,7 @@ def parseCSVFile(inputFile):
 
 	return rowResults
 
-def testCSVFileFormatMatching(inputFile, selectedType):
+def testCSVFileFormatMatching(inputFile, selectedType, noOfHeaders):
 	"""
 	Test whether the upload CSV file matches with the selected type (author, submission, review)
 	assuming that the uploaded file sticks to the correct format strictly
