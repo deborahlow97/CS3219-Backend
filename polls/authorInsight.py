@@ -10,6 +10,8 @@ def getAuthorInfo(inputFile, dummyArray):
 	data format:
 	submission ID | f name | s name | email | country | affiliation | page | person ID | corresponding?
 	"""
+	#dummyArray = ["SubmissionID", "FirstName", "LastName",
+		#"Email", "Country", "Organization", "Webpage", "PersonID", "Corresponding"];
 
 	parsedResult = {}
     #Case 1: Header given in CSV File - array is empty
@@ -23,18 +25,22 @@ def getAuthorInfo(inputFile, dummyArray):
 
     #debugging purpose
 	invertedLines = parseCSVFileInverted(lines)
-	for x in lines:
-		print (x)
+	#for x in lines:
+	#	print (x)
 
-	for y in invertedLines:
-		print (y)
+    #debugging purpose
+	#for y in invertedLines:
+	#	print (y)
 	
 
 	authorList = []
 	for authorInfo in lines:
 		# authorInfo = line.replace("\"", "").split(",")
 		# print authorInfo
-		authorList.append({'name': authorInfo[1] + " " + authorInfo[2], 'country': authorInfo[4], 'affiliation': authorInfo[5]})
+		authorList.append(
+            {'name': authorInfo[dummyArray.index("FirstName")] + " " + authorInfo[dummyArray.index("LastName")],
+            'country': authorInfo[dummyArray.index("Country")],
+            'affiliation': authorInfo[dummyArray.index("Organisation")]})
 	
 
 	authors = [ele['name'] for ele in authorList if ele] # adding in the if ele in case of empty strings; same applies below

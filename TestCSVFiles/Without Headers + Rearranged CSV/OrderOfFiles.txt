@@ -1,0 +1,53 @@
+AUTHOR FILE:
+Col 1 : webpage
+Col 2:first Name
+Col 3: country
+Col 4: submission#
+Col 5: corresponding (is the author corresponding author for the paper)
+Col 6: email
+Col 7 : organisation
+Col 8: last name
+Col 9 : person# (author's unique id in this file; everyone who registers to conference system has
+a unique id)
+
+REVIEW FILE:
+Col 1-A "overall evaluation - score" (ignore)
+Col 2-B 10-J subreviewer info (ignore )
+Col 3-C 15-O - recommendation for best paper
+Col 4-D Date of review submission
+
+Col 5-e review_comments
+Col 6-F review#
+Col 7-G submission#
+Col 8-H review_assignment# (Each reviewer is given a number for each track he/she is
+reviewing. For example Animesh reviewed 2 different tracks but 3 papers in total- one from
+Track 1 and two papers from Track 2. He therefore has 2 uniques numbers assigned.)
+
+
+Col 9-I field# . (Reviewer selects a field 1-5 to indicate expertise while submitting the review. For
+example 5: expert, 1: passing knowledge)
+
+
+Col 10-J overall evaluation score
+Col 11-K subreviewer info (ignore )
+
+Col 12-L subreviewer info (ignore )
+Col 13-M subreviewer info (ignore )
+Col 14-N reviewer name
+Col 14-O time of review submission
+
+SUBMISSION FILE:
+Col1A: time last updated
+Col2B: keywords associated with submissions as put by the authors
+Col3C: review sent in the mails or not?
+Col4D: Submission #
+Col5E: Track the submission is submitted to like a full paper or just a poster (Track #)
+Col6F: Title of the submission
+Col7G: authors of the associated submission
+Col8H: abstract of the submission.
+Col9I: time submitted
+Col10J: form fields (ignore)
+Col11K: accept/reject decision
+Col12L: acceptance/rejection mail sent to authors or not?
+Col13M: Name for the track referred (poster/demos/paper etc) (string)
+
