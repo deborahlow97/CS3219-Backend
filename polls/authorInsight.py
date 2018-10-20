@@ -18,7 +18,9 @@ def getAuthorInfo(inputFile, dummyArray):
 		lines = [ele for ele in lines if ele]
 	#Case 2: Header not given in CSV file 
 	else:
+		print("sad")
 		lines = parseCSVFile(inputFile)
+		print("sad1")
 		lines = [ele for ele in lines if ele]
 
 	#debugging purpose
@@ -27,7 +29,7 @@ def getAuthorInfo(inputFile, dummyArray):
 	authorList = []
 	# for x in lines:
 	# 	print(x)
-
+	print len(lines)
 	#debugging purpose
 	#for y in invertedLines:
 	#	print (y)
@@ -40,14 +42,13 @@ def getAuthorInfo(inputFile, dummyArray):
 			'affiliation': str(authorInfo[int(dummyArray.index("Organization"))])})
 		
 
-	print(str(len(authorList)))
-	for x in authorList:
-		print(str(x['name']) + str(x["country"]))
+	# print(str(len(authorList)))
+	# for x in authorList:
+	# 	print(str(x['name']) + str(x["country"]))
 	
 	# if not dummyArray:
 	authors = [ele['name'] for ele in authorList if ele] # adding in the if ele in case of empty strings; same applies below
 	topAuthors = Counter(authors).most_common(10)
-	print (topAuthors)
 	parsedResult['topAuthors'] = {'labels': [ele[0] for ele in topAuthors], 'data': [ele[1] for ele in topAuthors]}
 
 	# for x in parsedResult:
@@ -56,12 +57,10 @@ def getAuthorInfo(inputFile, dummyArray):
 
 	countries = [ele['country'] for ele in authorList if ele]
 	topCountries = Counter(countries).most_common(10)
-	print (topCountries)
 	parsedResult['topCountries'] = {'labels': [ele[0] for ele in topCountries], 'data': [ele[1] for ele in topCountries]}
 
 	affiliations = [ele['affiliation'] for ele in authorList if ele]
 	topAffiliations = Counter(affiliations).most_common(10)
-	print(topAffiliations)
 	parsedResult['topAffiliations'] = {'labels': [ele[0] for ele in topAffiliations], 'data': [ele[1] for ele in topAffiliations]}
 
 	# else 

@@ -4,11 +4,12 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseNotFound
+from django.http import QueryDict
 from django.views.decorators.csrf import csrf_exempt
 
 import json
 
-from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData
+from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData, getAuthorOrder
 from getInsight import parseAuthorCSVFile
 from reviewScoreInsight import getReviewScoreInfo
 from authorInsight import getAuthorInfo
@@ -28,21 +29,36 @@ def test(request):
 @csrf_exempt
 def uploadCSV(request):
 	print ("Inside the upload function!!")
-	if request.FILES :
+	if request.FILES and request.method == 'POST':
+
 		csvFile = request.FILES['file']
+		print (len(csvFile))
+
+		#data here
+		qDict = request.POST
+		#copy of data
+		dataDictionary = {}
+		dataDictionary = dict((qDict).iterlists())
+		#print(qDict.items())
+
+		#TODO: remove unicode from qDict & fill the array below
+		authorArray = [];
+		reviewArray = [];
+		submissionArray = [];
 		# csvFile = []
 		# fileName = []
 		# for f in request.FILES['file']:
 		# 	fileName.append(str(f.name))
 		# #request.FILES['file']
-		# # TODO: Get header data here! store it in a array, currently using a dummy arr
 
-		# #Contents of dummy array
+
 		dummyArray = ["SubmissionID", "FirstName", "LastName", "Email", "Country", "Organization", "Webpage", "PersonID", "Corresponding"];
 		fileName = [str(csvFile.name)]
 		rowContent = ""
 
 		if "author.csv" in fileName:
+			print ("sad")
+			#getAuthorOrder(dataDictionary, qDict)
 			rowContent = getAuthorInfo(csvFile, dummyArray)
 			print ("yaya")
 		elif "score.csv" in fileName:

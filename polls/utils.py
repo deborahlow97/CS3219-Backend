@@ -1,5 +1,6 @@
 import csv
 import codecs
+from django.http import QueryDict
 
 def isNumber(inputStr):
 	try:
@@ -19,13 +20,14 @@ def parseCSVFile(inputFile):
 	"""
 
 	csvFile = inputFile
+	print ("startSniffing")
 	dialect = csv.Sniffer().sniff(codecs.EncodedFile(csvFile, "utf-8").read(1024))
+	print ("endSniffing")
 	csvFile.open()
 	# reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect=dialect)
 	reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect='excel')
-
 	rowResults = [row for row in reader]
-
+	print (len(rowResults))
 	return rowResults
 
 def parseCSVFileInverted(input2DArr):
@@ -99,5 +101,10 @@ def parseCSVFileFromDjangoFile(inputFile):
 
 	return parsedResult
 
+def getAuthorOrder(dataDictionary, qDict):
+	authorArray = []
+	authorArray.insert(qDict.__getItem__('author.Email', "Email"))
+	print authorArray
+	return 1
 if __name__ == "__main__":
 	parseCSVFile("review.csv")
