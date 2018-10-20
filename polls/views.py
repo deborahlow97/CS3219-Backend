@@ -30,12 +30,21 @@ def uploadCSV(request):
 	print ("Inside the upload function!!")
 	if request.FILES :
 		csvFile = request.FILES['file']
-		# TODO: Get header data here! store it in a array, currently using a dummy arr
+		print csvFile
+		# csvFile = []
+		# fileName = []
+		# for f in request.FILES['file']:
+		# 	fileName.append(str(f.name))
+		# #request.FILES['file']
+		# # TODO: Get header data here! store it in a array, currently using a dummy arr
 
-		dummyArray = ["Submission ID", "Fist Name", "Last Name",
-		"Email", "Country", "Organization", "Webpage",
-		"Person #", "Corresponding"];
-		fileName = str(csvFile.name)
+		# #Contents of dummy array
+		dummyArray = ["SubmissionID", "FirstName", "LastName",
+		"Email", "Country", "Organization", "Webpage", "PersonID", "Corresponding"];
+		# #fileName = []
+		# #for fn in csvFile:
+		# #	fileName.append(str(fn.name))
+		fileName = [str(csvFile.name)]
 		rowContent = ""
 
 		if "author.csv" in fileName:
@@ -54,7 +63,7 @@ def uploadCSV(request):
 			rowContent = returnTestChartData(csvFile)
 
 		print ("yay")
-		print (type(csvFile.name))
+		#print (type(csvFile.name))
 
 		if request.POST:
 	# current problem: request from axios not recognized as POST
