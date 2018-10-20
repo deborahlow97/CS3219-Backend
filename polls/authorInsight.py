@@ -10,8 +10,6 @@ def getAuthorInfo(inputFile, dummyArray):
 	data format:
 	submission ID | f name | s name | email | country | affiliation | page | person ID | corresponding?
 	"""
-	#dummyArray = ["SubmissionID", "FirstName", "LastName",
-		#"Email", "Country", "Organization", "Webpage", "PersonID", "Corresponding"];
 
 	parsedResult = {}
 	#Case 1: Header given in CSV File - array is empty
@@ -49,6 +47,7 @@ def getAuthorInfo(inputFile, dummyArray):
 	# if not dummyArray:
 	authors = [ele['name'] for ele in authorList if ele] # adding in the if ele in case of empty strings; same applies below
 	topAuthors = Counter(authors).most_common(10)
+	print (topAuthors)
 	parsedResult['topAuthors'] = {'labels': [ele[0] for ele in topAuthors], 'data': [ele[1] for ele in topAuthors]}
 
 	# for x in parsedResult:
@@ -57,10 +56,12 @@ def getAuthorInfo(inputFile, dummyArray):
 
 	countries = [ele['country'] for ele in authorList if ele]
 	topCountries = Counter(countries).most_common(10)
+	print (topCountries)
 	parsedResult['topCountries'] = {'labels': [ele[0] for ele in topCountries], 'data': [ele[1] for ele in topCountries]}
 
 	affiliations = [ele['affiliation'] for ele in authorList if ele]
 	topAffiliations = Counter(affiliations).most_common(10)
+	print(topAffiliations)
 	parsedResult['topAffiliations'] = {'labels': [ele[0] for ele in topAffiliations], 'data': [ele[1] for ele in topAffiliations]}
 
 	# else 

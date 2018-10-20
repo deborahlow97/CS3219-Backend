@@ -30,7 +30,6 @@ def uploadCSV(request):
 	print ("Inside the upload function!!")
 	if request.FILES :
 		csvFile = request.FILES['file']
-		print csvFile
 		# csvFile = []
 		# fileName = []
 		# for f in request.FILES['file']:
@@ -39,11 +38,7 @@ def uploadCSV(request):
 		# # TODO: Get header data here! store it in a array, currently using a dummy arr
 
 		# #Contents of dummy array
-		dummyArray = ["SubmissionID", "FirstName", "LastName",
-		"Email", "Country", "Organization", "Webpage", "PersonID", "Corresponding"];
-		# #fileName = []
-		# #for fn in csvFile:
-		# #	fileName.append(str(fn.name))
+		dummyArray = ["SubmissionID", "FirstName", "LastName", "Email", "Country", "Organization", "Webpage", "PersonID", "Corresponding"];
 		fileName = [str(csvFile.name)]
 		rowContent = ""
 
@@ -62,8 +57,7 @@ def uploadCSV(request):
 		else:
 			rowContent = returnTestChartData(csvFile)
 
-		print ("yay")
-		#print (type(csvFile.name))
+		print (type(csvFile.name))
 
 		if request.POST:
 	# current problem: request from axios not recognized as POST
