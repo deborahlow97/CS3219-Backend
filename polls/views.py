@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import json
 
-from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData, getAuthorOrder, getSubmissionOrder, getReviewOrder
+from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData
 from getInsight import parseAuthorCSVFile
 
 from be.models.CsvData import CsvData
