@@ -4,13 +4,17 @@ from collections import Counter
 
 from utils import parseCSVFile, testCSVFileFormatMatching, isNumber, parseSubmissionTime
 
-def getSubmissionInfo(inputFile):
+def getSubmissionInfo(inputFile, submissionArray):
 	"""
 	submission.csv
 	data format: 
 	submission ID | track ID | track name | title | authors | submit time | last update time | form fields | keywords | decision | notified | reviews sent | abstract
 	File has header
 	"""
+
+    #['SubmissionIDS', 'TrackID', 'TrackName', 'Title', 'Author', 'TimeSubmitted', 
+	# 'TimeLastUpdated', 'FormFields', 'Keywords', 'Decision', 'Notified', 'ReviewSent'
+	# 'Abstract']
 	parsedResult = {}
 	lines = parseCSVFile(inputFile)[1:]
 	lines = [ele for ele in lines if ele]

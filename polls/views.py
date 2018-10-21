@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import json
 
-from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData, getAuthorOrder
+from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData, getAuthorOrder, getSubmissionOrder, getReviewOrder
 from getInsight import parseAuthorCSVFile
 from reviewScoreInsight import getReviewScoreInfo
 from authorInsight import getAuthorInfo
@@ -35,40 +35,36 @@ def uploadCSV(request):
 		print (len(csvFile))
 
 		#data here
-		qDict = request.POST
-		#copy of data
 		dataDictionary = {}
-		dataDictionary = dict((qDict).iterlists())
-		#print(qDict.items())
+		dataDictionary = (request.POST).dict()
+		print (dataDictionary)
 
-		#TODO: remove unicode from qDict & fill the array below
-		authorArray = [];
-		reviewArray = [];
-		submissionArray = [];
+		authorArray = []
+		reviewArray = []
+		submissionArray = []
 		# csvFile = []
 		# fileName = []
 		# for f in request.FILES['file']:
 		# 	fileName.append(str(f.name))
 		# #request.FILES['file']
 
-
-		dummyArray = ["SubmissionID", "FirstName", "LastName", "Email", "Country", "Organization", "Webpage", "PersonID", "Corresponding"];
 		fileName = [str(csvFile.name)]
 		rowContent = ""
 
 		if "author.csv" in fileName:
-			print ("sad")
-			#getAuthorOrder(dataDictionary, qDict)
-			rowContent = getAuthorInfo(csvFile, dummyArray)
+			authorArray = getAuthorOrder(dataDictionary)
+			rowContent = getAuthorInfo(csvFile, authorArray)
 			print ("yaya")
 		elif "score.csv" in fileName:
 			rowContent = getReviewScoreInfo(csvFile)
 			print ("yayb")
 		elif "review.csv" in fileName:
-			rowContent = getReviewInfo(csvFile)
+			reviewArray = getReviewOrder(dataDictionary)
+			rowContent = getReviewInfo(csvFile, reviewArray)
 			print ("yayc")
 		elif "submission.csv" in fileName:
-			rowContent = getSubmissionInfo(csvFile)
+			submissionArray = getSubmissionOrder(dataDictionary)
+			rowContent = getSubmissionInfo(csvFile, submissionArray)
 			print ("yayd")
 		else:
 			rowContent = returnTestChartData(csvFile)

@@ -4,7 +4,7 @@ from collections import Counter
 
 from utils import parseCSVFile, testCSVFileFormatMatching, isNumber, parseSubmissionTime
 
-def getReviewInfo(inputFile):
+def getReviewInfo(inputFile, reviewArray):
 	"""
 	review.csv
 	data format: 

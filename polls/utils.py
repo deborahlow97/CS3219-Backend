@@ -101,10 +101,72 @@ def parseCSVFileFromDjangoFile(inputFile):
 
 	return parsedResult
 
-def getAuthorOrder(dataDictionary, qDict):
+def getAuthorOrder(dataDictionary):
+	#["SubmissionID", "FirstName", "LastName", "Email", "Country", "Organization", "Webpage", "PersonID", "Corresponding"];
 	authorArray = []
-	authorArray.insert(qDict.__getItem__('author.Email', "Email"))
-	print authorArray
-	return 1
+	authorArray.insert(int(dataDictionary.get('author.Email')), "Email")
+	authorArray.insert(int(dataDictionary.get('author.Last Name')), "LastName")
+	authorArray.insert(int(dataDictionary.get('author.Submission #')), "SubmissionID")
+	authorArray.insert(int(dataDictionary.get('author.First Name')), "FirstName")
+	authorArray.insert(int(dataDictionary.get('author.Organization')), "Organization")
+	authorArray.insert(int(dataDictionary.get('author.Webpage')), "Webpage")	
+	authorArray.insert(int(dataDictionary.get('author.Person #')), "PersonID")
+	authorArray.insert(int(dataDictionary.get('author.Corresponding')), "Corresponding")
+	authorArray.insert(int(dataDictionary.get('author.Country')), "Country")
+
+	# for x in authorArray:
+	# 	print (x)
+	return authorArray
+
+def getReviewOrder(dataDictionary):
+	reviewArray = []
+	#['ReviewID', 'SubmissionIDR', 'ReviewAssignmentID', 'ReviewerName', 'FieldID'
+	# 'Comments', 'OverallEvalScoreExtra', 'OverallEvalScore', 'SubreviewerInfo1'
+	# 'SubreviewerInfo2','SubreviewerInfo3','SubreviewerInfo4', 'Date', 'Time'
+	# 'RecommendationForBestPaper' ]
+	reviewArray.insert(int(dataDictionary.get('review.Overall Evaluation Score (ignore)')), "OverallEvalScoreExtra")
+	reviewArray.insert(int(dataDictionary.get('review.Field #')), "FieldID")
+	reviewArray.insert(int(dataDictionary.get('review.Subreviewer Info 4 (ignore)')), "SubreviewerInfo4")
+	reviewArray.insert(int(dataDictionary.get('review.Date')), "Date")
+	reviewArray.insert(int(dataDictionary.get('review.Subreviewer Info 2 (ignore)')), "SubreviewerInfo2")
+	reviewArray.insert(int(dataDictionary.get('review.Overall Evaluation Score')), "OverallEvalScore")
+	reviewArray.insert(int(dataDictionary.get('review.Submission #')), "SubmissionIDR")
+	reviewArray.insert(int(dataDictionary.get('review.Recommendation for Best Paper')), "RecommendationForBestPaper")
+	reviewArray.insert(int(dataDictionary.get('review.Review Assignment #')), "ReviewAssignmentID")
+	reviewArray.insert(int(dataDictionary.get('review.Subreviewer Info 3 (ignore)')), "SubreviewerInfo3")
+	reviewArray.insert(int(dataDictionary.get('review.Time')), "Time")
+	reviewArray.insert(int(dataDictionary.get('review.Comments')), "Comments")
+	reviewArray.insert(int(dataDictionary.get('review.Reviewer Name')), "ReviewerName")
+	reviewArray.insert(int(dataDictionary.get('review.Review #')), "ReviewID")
+	reviewArray.insert(int(dataDictionary.get('review.Subreviewer Info 1 (ignore)')), "SubreviewerInfo1")
+	# for x in reviewArray:
+	# 	print (x)
+	return reviewArray
+
+def getSubmissionOrder(dataDictionary):
+	#['SubmissionIDS', 'TrackID', 'TrackName', 'Title', 'Author', 'TimeSubmitted', 
+	# 'TimeLastUpdated', 'FormFields', 'Keywords', 'Decision', 'Notified', 'ReviewSent'
+	# 'Abstract']
+	submissionArray = []
+	submissionArray.insert(int(dataDictionary.get('submission.Form Fields')), "FormFields")
+	submissionArray.insert(int(dataDictionary.get('submission.Time Last Updated')), "TimeLastUpdated")
+	submissionArray.insert(int(dataDictionary.get('submission.Time Submitted')), "TimeSubmitted")
+	submissionArray.insert(int(dataDictionary.get('submission.Track #')), "TrackID")
+	submissionArray.insert(int(dataDictionary.get('submission.Title')), "Title")
+	submissionArray.insert(int(dataDictionary.get('submission.Submission #')), "SubmissionIDS")
+	submissionArray.insert(int(dataDictionary.get('submission.Author(s)')), "Author")
+	submissionArray.insert(int(dataDictionary.get('submission.Keyword(s)')), "Keywords")
+	submissionArray.insert(int(dataDictionary.get('submission.Review Sent')), "ReviewSent")
+	submissionArray.insert(int(dataDictionary.get('submission.Track Name')), "TrackName")
+	submissionArray.insert(int(dataDictionary.get('submission.Decision')), "Decision")
+	submissionArray.insert(int(dataDictionary.get('submission.Notified')), "Notified")
+	submissionArray.insert(int(dataDictionary.get('submission.Abstract')), "Abstract")
+
+	# for x in submissionArray:
+	# 	print (x)
+	return submissionArray
+
+
+
 if __name__ == "__main__":
 	parseCSVFile("review.csv")
