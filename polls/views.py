@@ -30,23 +30,23 @@ def test(request):
 def uploadCSV(request):
 	print ("Inside the upload function!!")
 	if request.FILES and request.method == 'POST':
+		
+		fileName = []
+		authorArray = []
+		reviewArray = []
+		submissionArray = []
 
-		csvFile = request.FILES['file']
+		csvFile = request.FILES.getlist('file')
+		for files in csvFile:
+			fileName.append(str(files.name))
+
+		print (fileName)
 		print (len(csvFile))
 
 		#data here
 		dataDictionary = {}
 		dataDictionary = (request.POST).dict()
 		print (dataDictionary)
-
-		authorArray = []
-		reviewArray = []
-		submissionArray = []
-		# csvFile = []
-		# fileName = []
-		# for f in request.FILES['file']:
-		# 	fileName.append(str(f.name))
-		# #request.FILES['file']
 
 		fileName = [str(csvFile.name)]
 		rowContent = ""
@@ -56,7 +56,7 @@ def uploadCSV(request):
 			rowContent = getAuthorInfo(csvFile, authorArray)
 			print ("yaya")
 		elif "score.csv" in fileName:
-			rowContent = getReviewScoreInfo(csvFile)
+			rowContent = rgetReviewScoreInfo(csvFile)
 			print ("yayb")
 		elif "review.csv" in fileName:
 			reviewArray = getReviewOrder(dataDictionary)
