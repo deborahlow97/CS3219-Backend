@@ -31,24 +31,27 @@ def uploadCSV(request):
 	print ("Inside the upload function!!")
 	if request.FILES and request.method == 'POST':
 		
-		fileName = []
+		#fileName = []
 		authorArray = []
 		reviewArray = []
 		submissionArray = []
 
-		csvFile = request.FILES.getlist('file')
-		for files in csvFile:
-			fileName.append(str(files.name))
+		# csvFile = request.FILES.getlist('file')
+		# for files in csvFile:
+		# 	fileName.append(str(files.name))
 
-		print (fileName)
+		# print (fileName)
+
+		#nid to fix bug
+		csvFile = request.FILES['file']
 		print (len(csvFile))
 
+		fileName = [str(csvFile.name)]
 		#data here
 		dataDictionary = {}
 		dataDictionary = (request.POST).dict()
 		print (dataDictionary)
 
-		fileName = [str(csvFile.name)]
 		rowContent = ""
 
 		if "author.csv" in fileName:
