@@ -11,10 +11,11 @@ import json
 
 from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData, getAuthorOrder, getSubmissionOrder, getReviewOrder
 from getInsight import parseAuthorCSVFile
-from reviewScoreInsight import getReviewScoreInfo
-from authorInsight import getAuthorInfo
-from reviewInsight import getReviewInfo
-from submissionInsight import getSubmissionInfo
+
+from be.models.CsvData import CsvData
+from be.models.Author import Author
+from be.models.Review import Review
+from be.models.Submission import Submission
 
 # Create your views here.
 # Note: a view is a func taking the HTTP request and returns sth accordingly
@@ -45,7 +46,7 @@ def uploadCSV(request):
 		#nid to fix bug
 		csvFile = request.FILES['file']
 		print (len(csvFile))
-
+		
 		fileName = [str(csvFile.name)]
 		#data here
 		dataDictionary = {}
@@ -54,28 +55,32 @@ def uploadCSV(request):
 
 		rowContent = ""
 
-		if "author.csv" in fileName:
-			authorArray = getAuthorOrder(dataDictionary)
-			rowContent = getAuthorInfo(csvFile, authorArray)
-			print ("yaya")
+		if ("author.csv" in fileName) or ("submission.csv" in fileName) or ("review.csv" in fileName):
+			if "author.csv" in fileName:
+				csvData = Author((request.POST).dict(), csvFile)
+				print ("yaya")
+			elif "submission.csv" in fileName:
+				csvData = Submission((request.POST).dict(), csvFile)
+				print ("yayb")
+			elif "review.csv" in fileName:
+				csvData = Review((request.POST).dict(), csvFile)
+				print ("yayc")
+			else:
+				print ("ERROR: file should have been rejected by frontend already")
+
+			csvData.getOrder()
+			rowContent = csvData.getInfo()
+
 		elif "score.csv" in fileName:
 			rowContent = getReviewScoreInfo(csvFile)
 			print ("yayb")
-		elif "review.csv" in fileName:
-			reviewArray = getReviewOrder(dataDictionary)
-			rowContent = getReviewInfo(csvFile, reviewArray)
-			print ("yayc")
-		elif "submission.csv" in fileName:
-			submissionArray = getSubmissionOrder(dataDictionary)
-			rowContent = getSubmissionInfo(csvFile, submissionArray)
-			print ("yayd")
 		else:
 			rowContent = returnTestChartData(csvFile)
 
 		print (type(csvFile.name))
 
 		if request.POST:
-	# current problem: request from axios not recognized as POST
+			# current problem: request from axios not recognized as POST
 			# csvFile = request.FILES['file']
 			print ("Now we got the csv file =)")
 
