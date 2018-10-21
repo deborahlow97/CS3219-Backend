@@ -56,7 +56,7 @@ def uploadCSV(request):
 			rowContent = getAuthorInfo(csvFile, authorArray)
 			print ("yaya")
 		elif "score.csv" in fileName:
-			rowContent = rgetReviewScoreInfo(csvFile)
+			rowContent = getReviewScoreInfo(csvFile)
 			print ("yayb")
 		elif "review.csv" in fileName:
 			reviewArray = getReviewOrder(dataDictionary)
