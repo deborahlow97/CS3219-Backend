@@ -56,31 +56,23 @@ def uploadCSV(request):
 
 			rowContent = ""
 
-			if ("author.csv" in fileName) or ("submission.csv" in fileName) or ("review.csv" in fileName):
-				if "author.csv" in fileName:
-					csvData = Author(dataDictionary, csvFile)
-					hasFiles[0] = True
-					print ("yaya")
-				elif "review.csv" in fileName:
-					csvData = Review(dataDictionary, csvFile)
-					hasFiles[1] = True
-					print ("yayb")
-				elif "submission.csv" in fileName:
-					csvData = Submission(dataDictionary, csvFile)
-					hasFiles[2] = True
-					print ("yayc")
-				else:
-					print ("ERROR: file should have been rejected by frontend already")
-
-				csvData.getOrder()
-				rowContent = csvData.getInfo()
-			elif "score.csv" in fileName:
-				rowContent = getReviewScoreInfo(csvFile)
-				print ("yayd")
+			if "author.csv" in fileName:
+				csvData = Author(dataDictionary, csvFile)
+				hasFiles[0] = True
+				print ("yaya")
+			elif "review.csv" in fileName:
+				csvData = Review(dataDictionary, csvFile)
+				hasFiles[1] = True
+				print ("yayb")
+			elif "submission.csv" in fileName:
+				csvData = Submission(dataDictionary, csvFile)
+				hasFiles[2] = True
+				print ("yayc")
 			else:
-				rowContent = returnTestChartData(csvFile)
-		
-		print rowContent
+				print ("ERROR: file should have been rejected by frontend already")
+
+			csvData.getOrder()
+			rowContent = csvData.getInfo()
 		
 		# TODO: find the combined visualisations
 		if (hasFiles[0] and hasFiles[1]): # author + review
