@@ -15,6 +15,8 @@ class Submission(CsvData):
 
     def getOrder(self):
         dataDictionary = self.data
+        for x in dataDictionary:
+            print x
         submissionArray = []
 
         #['SubmissionIDS', 'TrackID', 'TrackName', 'Title', 'Author', 'TimeSubmitted', 
