@@ -15,32 +15,16 @@ class Submission(CsvData):
 
     def getOrder(self):
         dataDictionary = self.data
-        for x in dataDictionary:
-            print x
         submissionArray = []
 
-        #['SubmissionIDS', 'TrackID', 'TrackName', 'Title', 'Author', 'TimeSubmitted', 
-        # 'TimeLastUpdated', 'FormFields', 'Keywords', 'Decision', 'Notified', 'ReviewSent'
-        # 'Abstract']
-        submissionArray.insert(int(dataDictionary.get('submission.Form Fields')), "FormFields")
-        submissionArray.insert(int(dataDictionary.get('submission.Time Last Updated')), "TimeLastUpdated")
-        submissionArray.insert(int(dataDictionary.get('submission.Time Submitted')), "TimeSubmitted")
-        submissionArray.insert(int(dataDictionary.get('submission.Track #')), "TrackID")
-        submissionArray.insert(int(dataDictionary.get('submission.Title')), "Title")
-        submissionArray.insert(int(dataDictionary.get('submission.Submission #')), "SubmissionIDS")
-        submissionArray.insert(int(dataDictionary.get('submission.Author(s)')), "Author")
-        submissionArray.insert(int(dataDictionary.get('submission.Keyword(s)')), "Keywords")
-        submissionArray.insert(int(dataDictionary.get('submission.Review Sent')), "ReviewSent")
-        submissionArray.insert(int(dataDictionary.get('submission.Track Name')), "TrackName")
-        submissionArray.insert(int(dataDictionary.get('submission.Decision')), "Decision")
-        submissionArray.insert(int(dataDictionary.get('submission.Notified')), "Notified")
-        submissionArray.insert(int(dataDictionary.get('submission.Abstract')), "Abstract")
+        for key, value in dataDictionary.iteritems():
+            if "submission." in key:
+                submissionArray.insert(int(value), str(key))
 
-        # for x in submissionArray:
-        # 	print (x)
+        for x in submissionArray[:]:
+        	print (x)
         
         self.array = submissionArray
-
         return submissionArray
 
     def getInfo(self):
@@ -54,10 +38,6 @@ class Submission(CsvData):
         File has header
         """
 
-        #['SubmissionIDS', 'TrackID', 'TrackName', 'Title', 'Author', 'TimeSubmitted', 
-        # 'TimeLastUpdated', 'FormFields', 'Keywords', 'Decision', 'Notified', 'ReviewSent'
-        # 'Abstract']
-
         parsedResult = {}
         #Case 1: Header given in CSV File - array is empty
         if not submissionArray:
@@ -66,9 +46,17 @@ class Submission(CsvData):
         else:
             lines = parseCSVFile(inputFile)
 
+        #change list of list to -> remove empty rows
         lines = [ele for ele in lines if ele]
-        acceptedSubmission = [line for line in lines if str(line[9]) == 'accept']
-        rejectedSubmission = [line for line in lines if str(line[9]) == 'reject']
+    
+        """
+            lines = []
+            for ele in lines:
+                if ele
+                    lines.append(ele)
+        """
+        acceptedSubmission = [line for line in lines if str(line[int(submissionArray.index("submission.Decision"))]) == 'accept']
+        rejectedSubmission = [line for line in lines if str(line[int(submissionArray.index("submission.Decision"))]) == 'reject']
 
         acceptanceRate = float(len(acceptedSubmission)) / len(lines)
 
@@ -117,7 +105,7 @@ class Submission(CsvData):
         allKeywordList = [[ele[0], ele[1]] for ele in Counter(allKeywords).most_common(20)]
 
         tracks = set([str(ele[2]) for ele in lines])
-        paperGroupsByTrack = {track : [line for line in lines if str(line[2]) == track] for track in tracks}
+        paperGroupsByTrack = {track : [line for line in lines if str(line[int(submissionArray.index("submission.Track Name"))]) == track] for track in tracks}
         keywordsGroupByTrack = {}
         acceptanceRateByTrack = {}
         comparableAcceptanceRate = {}

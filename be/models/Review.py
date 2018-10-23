@@ -17,27 +17,9 @@ class Review(CsvData):
         dataDictionary = self.data
         reviewArray = []
 
-        #['ReviewID', 'SubmissionIDR', 'ReviewAssignmentID', 'ReviewerName', 'FieldID'
-        # 'Comments', 'OverallEvalScoreExtra', 'OverallEvalScore', 'SubreviewerInfo1'
-        # 'SubreviewerInfo2','SubreviewerInfo3','SubreviewerInfo4', 'Date', 'Time'
-        # 'RecommendationForBestPaper' ]
-        
-        reviewArray.insert(int(dataDictionary.get('review.Overall Evaluation Score (ignore)')), "OverallEvalScoreExtra")
-        reviewArray.insert(int(dataDictionary.get('review.Field #')), "FieldID")
-        reviewArray.insert(int(dataDictionary.get('review.Subreviewer Info 4 (ignore)')), "SubreviewerInfo4")
-        reviewArray.insert(int(dataDictionary.get('review.Date')), "Date")
-        reviewArray.insert(int(dataDictionary.get('review.Subreviewer Info 2 (ignore)')), "SubreviewerInfo2")
-        reviewArray.insert(int(dataDictionary.get('review.Overall Evaluation Score')), "OverallEvalScore")
-        reviewArray.insert(int(dataDictionary.get('review.Submission #')), "SubmissionIDR")
-        reviewArray.insert(int(dataDictionary.get('review.Recommendation for Best Paper')), "RecommendationForBestPaper")
-        reviewArray.insert(int(dataDictionary.get('review.Review Assignment #')), "ReviewAssignmentID")
-        reviewArray.insert(int(dataDictionary.get('review.Subreviewer Info 3 (ignore)')), "SubreviewerInfo3")
-        reviewArray.insert(int(dataDictionary.get('review.Time')), "Time")
-        reviewArray.insert(int(dataDictionary.get('review.Comments')), "Comments")
-        reviewArray.insert(int(dataDictionary.get('review.Reviewer Name')), "ReviewerName")
-        reviewArray.insert(int(dataDictionary.get('review.Review #')), "ReviewID")
-        reviewArray.insert(int(dataDictionary.get('review.Subreviewer Info 1 (ignore)')), "SubreviewerInfo1")
-        
+        for key, value in dataDictionary.iteritems():
+            if "review." in key:
+                reviewArray.insert(int(value), str(key))
         # for x in reviewArray:
         # 	print (x)
 
@@ -71,8 +53,8 @@ class Review(CsvData):
             lines = parseCSVFile(inputFile)
 
         lines = [ele for ele in lines if ele]
-        evaluation = [str(line[6]).replace("\r", "") for line in lines]
-        submissionIDs = set([str(line[1]) for line in lines])
+        evaluation = [str(line[int(reviewArray.index("review.Overall Evaluation Score"))]).replace("\r", "") for line in lines]
+        submissionIDs = set([str(line[int(reviewArray.index("review.Submission #"))]) for line in lines])
 
         scoreList = []
         recommendList = []
@@ -94,7 +76,7 @@ class Review(CsvData):
             recommendDistributionLabels[index] = str(0 + 0.1 * index) + " ~ " + str(0 + 0.1 * index + 0.1)
 
         for submissionID in submissionIDs:
-            reviews = [str(line[6]).replace("\r", "") for line in lines if str(line[1]) == submissionID]
+            reviews = [str(line[int(reviewArray.index("review.Overall Evaluation Score"))]).replace("\r", "") for line in lines if str(line[int(reviewArray.index("review.Submission #"))]) == submissionID]
             # print reviews
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]

@@ -52,8 +52,7 @@ def uploadCSV(request):
 			#datadict for column mapping
 			dataDictionary = {}
 			dataDictionary = (request.POST).dict()
-			for x in dataDictionary:
-				print x
+			print dataDictionary
 
 			rowContent = ""
 

@@ -16,21 +16,10 @@ class Author(CsvData):
     def getOrder(self):
         dataDictionary = self.data
         authorArray = []
-        
-        #["SubmissionID", "FirstName", "LastName", "Email", "Country", "Organization", "Webpage", "PersonID", "Corresponding"];
-        
-        authorArray.insert(int(dataDictionary.get('author.Email')), "Email")
-        authorArray.insert(int(dataDictionary.get('author.Last Name')), "LastName")
-        authorArray.insert(int(dataDictionary.get('author.Submission #')), "SubmissionID")
-        authorArray.insert(int(dataDictionary.get('author.First Name')), "FirstName")
-        authorArray.insert(int(dataDictionary.get('author.Organization')), "Organization")
-        authorArray.insert(int(dataDictionary.get('author.Webpage')), "Webpage")	
-        authorArray.insert(int(dataDictionary.get('author.Person #')), "PersonID")
-        authorArray.insert(int(dataDictionary.get('author.Corresponding')), "Corresponding")
-        authorArray.insert(int(dataDictionary.get('author.Country')), "Country")
 
-        # for x in authorArray:
-        # 	print (x)
+        for key, value in dataDictionary.iteritems():
+            if "author." in key:
+                authorArray.insert(int(value), str(key))
 
         self.array = authorArray
 
@@ -56,23 +45,19 @@ class Author(CsvData):
         
         lines = [ele for ele in lines if ele]
 
-        #debugging purpose
         #invertedLines = parseCSVFileInverted(lines)
 
         authorList = []
         # for x in lines:
         # 	print(x)
         print len(lines)
-        #debugging purpose
-        #for y in invertedLines:
-        #	print (y)
 
         for authorInfo in lines:
             #authorInfo = line.replace("\"", "").split(",")
             authorList.append(
-                {'name': str(authorInfo[int(authorArray.index("FirstName"))]) + " " + str(authorInfo[int(authorArray.index("LastName"))]),
-                'country': str(authorInfo[int(authorArray.index("Country"))]),
-                'affiliation': str(authorInfo[int(authorArray.index("Organization"))])})
+                {'name': str(authorInfo[int(authorArray.index("author.First Name"))]) + " " + str(authorInfo[int(authorArray.index("author.Last Name"))]),
+                'country': str(authorInfo[int(authorArray.index("author.Country"))]),
+                'affiliation': str(authorInfo[int(authorArray.index("author.Organization"))])})
         
         # if not authorArray:
         authors = [ele['name'] for ele in authorList if ele] # adding in the if ele in case of empty strings; same applies below
