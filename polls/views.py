@@ -21,7 +21,7 @@ from be.models.Submission import Submission
 # Note: a view is a func taking the HTTP request and returns sth accordingly
 
 def index(request):
-	return HttpResponse("goodbye, world. You're at the polls index. =)")
+	return HttpResponse("Hello, world. You're at the polls index. =)")
 
 def test(request):
 	return HttpResponse("<h1>This is the very first HTTP request! =)</h1>")
@@ -36,53 +36,66 @@ def uploadCSV(request):
 		reviewArray = []
 		submissionArray = []
 
+		# TODO: create config file to remove magic numbers
+		# file is present ? True : False
+		# author - 0 | review - 1 | submission - 2 
+		hasFiles = [False] * 3 
+
 		csvFileList = request.FILES.getlist('file')
 		print (csvFileList)
-		for f in csvFileList:
-			print (f.name)
+		for csvFile in csvFileList:
+			print (len(csvFile))
+			
+			fileName = csvFile.name
+			print fileName
+			
+			#datadict for column mapping
+			dataDictionary = {}
+			dataDictionary = (request.POST).dict()
+			print (dataDictionary)
 
-		# TODO: loop through each file in csvFileList
-		csvFile = csvFileList[0]
+			rowContent = ""
 
-		print (len(csvFile))
-		
-		fileName = csvFile.name
-		print fileName
-		#data here
-		dataDictionary = {}
-		dataDictionary = (request.POST).dict()
-		print (dataDictionary)
+			if ("author.csv" in fileName) or ("submission.csv" in fileName) or ("review.csv" in fileName):
+				if "author.csv" in fileName:
+					csvData = Author(dataDictionary, csvFile)
+					hasFiles[0] = True
+					print ("yaya")
+				elif "review.csv" in fileName:
+					csvData = Review(dataDictionary, csvFile)
+					hasFiles[1] = True
+					print ("yayb")
+				elif "submission.csv" in fileName:
+					csvData = Submission(dataDictionary, csvFile)
+					hasFiles[2] = True
+					print ("yayc")
+				else:
+					print ("ERROR: file should have been rejected by frontend already")
 
-		rowContent = ""
-
-		if ("author.csv" in fileName) or ("submission.csv" in fileName) or ("review.csv" in fileName):
-			if "author.csv" in fileName:
-				csvData = Author((request.POST).dict(), csvFile)
-				print ("yaya")
-			elif "submission.csv" in fileName:
-				csvData = Submission((request.POST).dict(), csvFile)
-				print ("yayb")
-			elif "review.csv" in fileName:
-				csvData = Review((request.POST).dict(), csvFile)
-				print ("yayc")
+				csvData.getOrder()
+				rowContent = csvData.getInfo()
+			elif "score.csv" in fileName:
+				rowContent = getReviewScoreInfo(csvFile)
+				print ("yayd")
 			else:
-				print ("ERROR: file should have been rejected by frontend already")
-
-			csvData.getOrder()
-			rowContent = csvData.getInfo()
-		elif "score.csv" in fileName:
-			rowContent = getReviewScoreInfo(csvFile)
-			print ("yayd")
-		else:
-			rowContent = returnTestChartData(csvFile)
-
-		print (type(csvFile.name))
-
+				rowContent = returnTestChartData(csvFile)
+		
+		print rowContent
+		
+		# TODO: find the combined visualisations
+		if (hasFiles[0] and hasFiles[1]): # author + review
+			print ("author + review")
+		if (hasFiles[0] and hasFiles[2]): # author + submission
+			print ("author + submission")
+		if (hasFiles[1] and hasFiles[2]): # review + submission
+			print ("review + submission")
+		if (hasFiles[0] and hasFiles[1] and hasFiles[2]): # author + review + submission
+			print ("author + review + submission")
+			
 		if request.POST:
 			# current problem: request from axios not recognized as POST
 			# csvFile = request.FILES['file']
 			print ("Now we got the csv file =)")
-
 
 		return HttpResponse(json.dumps(rowContent))
 		# return HttpResponse("Got the CSV file.")
