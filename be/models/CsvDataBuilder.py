@@ -183,14 +183,11 @@ class CsvDataBuilder:
         parsedResult['topAffiliations'] = {'labels': [ele[0] for ele in topAffiliations], 'data': [ele[1] for ele in topAffiliations]}
 
         return parsedResult
-        # return {'infoType': 'author', 'infoData': parsedResult}
 
     def getReviewInfo(self, index):
-        #TODO: STILL BUGGY
         reviewDict = self.csvDataList[index].order
         inputFile = self.csvDataList[index].csvFile
-        print ("INSIDE REVIEW INFO")
-        print reviewDict
+        # print reviewDict
 
         """
         review.csv
@@ -235,14 +232,11 @@ class CsvDataBuilder:
 
         for index, col in enumerate(recommendDistributionCounts):
             recommendDistributionLabels[index] = str(0 + 0.1 * index) + " ~ " + str(0 + 0.1 * index + 0.1)
-        print "adfsgbhtf"
 
         for submissionID in submissionIDs:
             reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
-            print (reviews)
             # print reviews
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
-            print (confidences)
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
             confidenceList.append(sum(confidences) / len(confidences))
@@ -261,7 +255,6 @@ class CsvDataBuilder:
             submissionIDReviewMap[submissionID] = {'score': weightedScore, 'recommend': weightedRecommend}
             scoreList.append(weightedScore)
             recommendList.append(weightedRecommend)
-        print "hello"
 
         parsedResult['IDReviewMap'] = submissionIDReviewMap
         parsedResult['scoreList'] = scoreList
@@ -272,11 +265,7 @@ class CsvDataBuilder:
         parsedResult['scoreDistribution'] = {'labels': scoreDistributionLabels, 'counts': scoreDistributionCounts}
         parsedResult['recommendDistribution'] = {'labels': recommendDistributionLabels, 'counts': recommendDistributionCounts}
 
-        print ("-----------------")
-        print parsedResult
-        print ("-----------------")
         return parsedResult
-        # return {'infoType': 'review', 'infoData': parsedResult}
         
     def getSubmissionInfo(self, index):
         submissionDict = self.csvDataList[index].order
@@ -407,4 +396,3 @@ class CsvDataBuilder:
         parsedResult['comparableAcceptanceRate'] = comparableAcceptanceRate
 
         return parsedResult
-        # return {'infoType': 'submission', 'infoData': parsedResult}
