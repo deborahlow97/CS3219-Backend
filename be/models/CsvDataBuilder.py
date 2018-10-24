@@ -51,9 +51,7 @@ class CsvDataBuilder:
         return order
 
     def setInfo(self, index):
-        print ("IN SET INFO")
         info = self.getInfo(index)
-        print info
         self.csvDataList[index].setInfo(info)
 
     def getInfo(self, index):
@@ -133,6 +131,9 @@ class CsvDataBuilder:
             elif "submission." in key:
                 submissionDict.update({str(key): int(value)})
 
+        # for key, value in submissionDict.iteritems():
+        #     print key
+        #     print value
         return submissionDict
 
     '''
@@ -181,15 +182,7 @@ class CsvDataBuilder:
 
     def getReviewInfo(self, index):
         reviewDict = self.csvDataList[index].order
-<<<<<<< HEAD
-<<<<<<< HEAD
         inputFile = self.csvDataList[index].csvFiles.get('review')
-=======
-        inputFile = self.csvDataList[index].csvFile
->>>>>>> clean up print statements
-=======
-        inputFile = self.csvDataList[index].csvFiles.get('review')
->>>>>>> temp
         # print reviewDict
 
         """
@@ -246,7 +239,6 @@ class CsvDataBuilder:
             reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
             # print reviews
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
-            print ("YAY")
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
             confidenceList.append(sum(confidences) / len(confidences))

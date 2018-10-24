@@ -9,9 +9,15 @@ def isNumber(inputStr):
 	except ValueError:
 		return False
 
+<<<<<<< HEAD
 def getLinesFromInputFile(inputFile, hasHeader):
 	#Case 1: Header given. hasHeader == true
 	if hasHeader:
+=======
+def getLinesFromInputFile(inputFile, dict):
+	#Case 1: Header given in CSV File - array is empty
+	if not dict:
+>>>>>>> add base code for multiple file processing
 		lines = parseCSVFile(inputFile)[1:]
 	#Case 2: Header not given in CSV file 
 	else:
@@ -44,7 +50,11 @@ def parseCSVFile(inputFile):
 	csvFile = inputFile
 	print inputFile
 	print ("startSniffing")
+<<<<<<< HEAD
 	#dialect = csv.Sniffer().sniff(codecs.EncodedFile(csvFile, "utf-8").read(1024))
+=======
+	# dialect = csv.Sniffer().sniff(codecs.EncodedFile(csvFile, "utf-8").read(1024))
+>>>>>>> add base code for multiple file processing
 	print ("endSniffing")
 	csvFile.open()
 	# reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect=dialect)
