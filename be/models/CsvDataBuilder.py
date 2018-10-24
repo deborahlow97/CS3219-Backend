@@ -45,14 +45,19 @@ class CsvDataBuilder:
             order = dict(self.getReviewOrder(index))
             order.update(self.getSubmissionOrder(index))
         elif type == "author.review.submission":
+<<<<<<< HEAD
             # TODO: Not doing
+=======
+>>>>>>> temp
             print ("author + review + submission")
         else:
             print ("ERROR: No such type")
         return order
 
     def setInfo(self, index):
+        print ("IN SET INFO")
         info = self.getInfo(index)
+        print info
         self.csvDataList[index].setInfo(info)
 
     def getInfo(self, index):
@@ -240,6 +245,7 @@ class CsvDataBuilder:
             reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
             # print reviews
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
+            print ("YAY")
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
             confidenceList.append(sum(confidences) / len(confidences))
