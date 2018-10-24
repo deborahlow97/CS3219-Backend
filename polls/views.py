@@ -29,11 +29,6 @@ def test(request):
 def uploadCSV(request):
 	print ("Inside the upload function!!")
 	if request.FILES and request.method == 'POST':
-		
-		authorArray = []
-		reviewArray = []
-		submissionArray = []
-
 		# TODO: create config file to remove magic numbers
 		# file is present ? True : False
 		# author - 0 | review - 1 | submission - 2 
