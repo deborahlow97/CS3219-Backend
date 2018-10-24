@@ -71,8 +71,8 @@ def uploadCSV(request):
 				print ("ERROR: file should have been rejected by frontend already")
 		
 		# Combined visualisations
-		#TODO: combine csvFile
 		if (hasFiles[0] and hasFiles[1]): # author + review
+			print("author and review")
 			csvDataBuilder.addCsvData("author.review", dataDictionary, csvFiles)
 		if (hasFiles[0] and hasFiles[2]): # author + submission
 			csvDataBuilder.addCsvData("author.submission", dataDictionary, csvFiles)
@@ -84,8 +84,6 @@ def uploadCSV(request):
 		for i in range(csvDataBuilder.size):
 			csvDataBuilder.setOrder(i)
 			csvDataBuilder.setInfo(i)
-			print ("HELLLOO")
-
 			# print csvDataBuilder.csvDataList[i].order
 			# print csvDataBuilder.csvDataList[i].info
 		
