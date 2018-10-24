@@ -35,7 +35,7 @@ def uploadCSV(request):
 		hasFiles = [False] * 3 
 
 		csvFileList = request.FILES.getlist('file')
-		print (csvFileList)
+		csvFiles = {}
 
 		csvDataBuilder = CsvDataBuilder()
 
@@ -53,15 +53,18 @@ def uploadCSV(request):
 			rowContent = ""
 
 			if "author.csv" in fileName:
-				csvDataBuilder.addCsvData("author", dataDictionary, csvFile)
+				csvFiles['author'] = csvFile
+				csvDataBuilder.addCsvData("author", dataDictionary, {'author': csvFile})
 				hasFiles[0] = True
 				print ("yaya")
 			elif "review.csv" in fileName:
-				csvDataBuilder.addCsvData("review", dataDictionary, csvFile)
+				csvFiles['review'] = csvFile
+				csvDataBuilder.addCsvData("review", dataDictionary, {'review': csvFile})
 				hasFiles[1] = True
 				print ("yayb")
 			elif "submission.csv" in fileName:
-				csvDataBuilder.addCsvData("submission", dataDictionary, csvFile)
+				csvFiles['submission'] = csvFile
+				csvDataBuilder.addCsvData("submission", dataDictionary, {'submission': csvFile})
 				hasFiles[2] = True
 				print ("yayc")
 			else:
@@ -70,17 +73,19 @@ def uploadCSV(request):
 		# Combined visualisations
 		#TODO: combine csvFile
 		if (hasFiles[0] and hasFiles[1]): # author + review
-			csvDataBuilder.addCsvData("author.review", dataDictionary, csvFile)
+			csvDataBuilder.addCsvData("author.review", dataDictionary, csvFiles)
 		if (hasFiles[0] and hasFiles[2]): # author + submission
-			csvDataBuilder.addCsvData("author.submission", dataDictionary, csvFile)
+			csvDataBuilder.addCsvData("author.submission", dataDictionary, csvFiles)
 		if (hasFiles[1] and hasFiles[2]): # review + submission
-			csvDataBuilder.addCsvData("review.submission", dataDictionary, csvFile)
+			csvDataBuilder.addCsvData("review.submission", dataDictionary, csvFiles)
 		if (hasFiles[0] and hasFiles[1] and hasFiles[2]): # author + review + submission
-			csvDataBuilder.addCsvData("author.review.submission", dataDictionary, csvFile)
+			csvDataBuilder.addCsvData("author.review.submission", dataDictionary, csvFiles)
 			
 		for i in range(csvDataBuilder.size):
 			csvDataBuilder.setOrder(i)
 			csvDataBuilder.setInfo(i)
+			print ("HELLLOO")
+
 			# print csvDataBuilder.csvDataList[i].order
 			# print csvDataBuilder.csvDataList[i].info
 		

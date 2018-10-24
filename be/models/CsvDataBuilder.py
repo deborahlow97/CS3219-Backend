@@ -14,8 +14,8 @@ class CsvDataBuilder:
         self.csvDataList = []
         self.size = 0
 
-    def addCsvData(self, infoType, dataDictionary, inputFile):
-        csvData = CsvData(infoType, dataDictionary, inputFile)
+    def addCsvData(self, infoType, dataDictionary, inputFiles):
+        csvData = CsvData(infoType, dataDictionary, inputFiles)
         self.csvDataList.append(csvData)
         self.size += 1
 
@@ -34,23 +34,21 @@ class CsvDataBuilder:
             order = self.getSubmissionOrder(index)
         elif type == "author.review":
             #TODO: remove placeholder code and add implementation
-            order = self.getAuthorOrder(index)
             print ("author + review")
         elif type == "author.submission":
-            order = self.getAuthorOrder(index)
             print ("author + submission")
         elif type == "review.submission":
-            order = self.getAuthorOrder(index)
             print ("submission + review")
         elif type == "author.review.submission":
-            order = self.getAuthorOrder(index)
             print ("author + review + submission")
         else:
             print ("ERROR: No such type")
         return order
 
     def setInfo(self, index):
+        print ("IN SET INFO")
         info = self.getInfo(index)
+        print info
         self.csvDataList[index].setInfo(info)
 
     def getInfo(self, index):
@@ -133,7 +131,7 @@ class CsvDataBuilder:
     '''
     def getAuthorInfo(self, index):
         authorDict = self.csvDataList[index].order
-        inputFile = self.csvDataList[index].csvFile
+        inputFile = self.csvDataList[index].csvFiles.get('author')
 
         """
         author.csv: header row, author names with affiliations, countries, emails
@@ -186,7 +184,7 @@ class CsvDataBuilder:
 
     def getReviewInfo(self, index):
         reviewDict = self.csvDataList[index].order
-        inputFile = self.csvDataList[index].csvFile
+        inputFile = self.csvDataList[index].csvFiles.get('review')
         # print reviewDict
 
         """
@@ -237,6 +235,7 @@ class CsvDataBuilder:
             reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
             # print reviews
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
+            print ("YAY")
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
             confidenceList.append(sum(confidences) / len(confidences))
@@ -264,12 +263,11 @@ class CsvDataBuilder:
         parsedResult['recommendList'] = recommendList
         parsedResult['scoreDistribution'] = {'labels': scoreDistributionLabels, 'counts': scoreDistributionCounts}
         parsedResult['recommendDistribution'] = {'labels': recommendDistributionLabels, 'counts': recommendDistributionCounts}
-
         return parsedResult
         
     def getSubmissionInfo(self, index):
         submissionDict = self.csvDataList[index].order
-        inputFile = self.csvDataList[index].csvFile
+        inputFile = self.csvDataList[index].csvFiles.get('submission')
 
         """
         submission.csv
