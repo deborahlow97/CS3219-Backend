@@ -3,7 +3,7 @@ from CsvData import CsvData
 import csv
 import codecs
 from collections import Counter
-from polls.utils import combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime
+from polls.utils import combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime, populateDictionary
 
 '''
 Represents a builder class to build csv data from an uploaded csv file
@@ -102,9 +102,20 @@ class CsvDataBuilder:
         dataDictionary = self.csvDataList[index].data
         authorDict = {}
 
+        #Case: No Headers
         for key, value in dataDictionary.iteritems():
             if "author." in key:
                 authorDict.update({str(key): int(value)})
+            #Case: With Headers
+            if "author." == key:
+                authorDict = {}
+                break;
+        
+        # #Case: With Headers
+        # for key, value in authorDict.iteritems():
+        #     if "author." == key:
+        #         authorDict = {}
+        #         break
 
         return authorDict
 
@@ -147,6 +158,8 @@ class CsvDataBuilder:
         parsedResult = {}
         #Case 1: Header given in CSV File - array is empty
         if not authorDict:
+            authorDict = populateDictionary(parseCSVFile(inputFile)[0], inputFile)
+            #if authorDict is empty -> wrong headers provided
             lines = parseCSVFile(inputFile)[1:]
         #Case 2: Header not given in CSV file 
         else:
@@ -157,8 +170,6 @@ class CsvDataBuilder:
         #invertedLines = parseCSVFileInverted(lines)
 
         authorList = []
-        # for x in lines:
-        # 	print(x)
         print len(lines)
 
         for authorInfo in lines:
@@ -238,7 +249,7 @@ class CsvDataBuilder:
 
         for submissionID in submissionIDs:
             reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
-            # print reviews
+
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
@@ -330,11 +341,7 @@ class CsvDataBuilder:
 
         # timeSeries = {'time': timeStamps, 'number': submittedNumber}
         # lastEditSeries = {'time': lastEditStamps, 'number': lastEditNumber}
-        for x in timeSeries:
-            print x
 
-        for x in lastEditSeries:
-            print x
         acceptedKeywords = [str(ele[int(submissionDict.get("submission.Keyword(s)"))]).lower().replace("\r", "").split("\n") for ele in acceptedSubmission]
         acceptedKeywords = [ele for item in acceptedKeywords for ele in item]
         acceptedKeywordMap = {k : v for k, v in Counter(acceptedKeywords).iteritems()}
