@@ -60,7 +60,6 @@ class CsvDataBuilder:
             info = self.getAuthorInfo(index)
         elif type == "review":
             info = self.getReviewInfo(index)
-            print info
         elif type == "submission":
             info = self.getSubmissionInfo(index)
         elif type == "author.review":
@@ -78,7 +77,6 @@ class CsvDataBuilder:
             print ("author + review + submission")            
         else:
             print ("ERROR: No such info")
-        print info
         return info
             
     def formatRowContent(self):
@@ -241,7 +239,7 @@ class CsvDataBuilder:
             print (reviews)
             # print reviews
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
-            print (confidenceList)
+            print (confidences)
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
             confidenceList.append(sum(confidences) / len(confidences))
