@@ -240,10 +240,6 @@ class CsvDataBuilder:
             reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
             # print reviews
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
-<<<<<<< HEAD
-=======
-            print (confidences)
->>>>>>> clean up print statements
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
             confidenceList.append(sum(confidences) / len(confidences))
