@@ -69,7 +69,10 @@ def uploadCSV(request):
 		
 		# Combined visualisations
 		if (hasFiles[0] and hasFiles[1]): # author + review
+<<<<<<< HEAD
 			print("author and review")
+=======
+>>>>>>> temp
 			csvDataBuilder.addCsvData("author.review", dataDictionary, csvFiles)
 		if (hasFiles[0] and hasFiles[2]): # author + submission
 			csvDataBuilder.addCsvData("author.submission", dataDictionary, csvFiles)
@@ -81,6 +84,8 @@ def uploadCSV(request):
 		for i in range(csvDataBuilder.size):
 			csvDataBuilder.setOrder(i)
 			csvDataBuilder.setInfo(i)
+			print ("HELLLOO")
+
 			# print csvDataBuilder.csvDataList[i].order
 			# print csvDataBuilder.csvDataList[i].info
 		
