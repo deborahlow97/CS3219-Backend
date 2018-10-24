@@ -41,7 +41,7 @@ Col1A: time last updated
 Col2B: keywords associated with submissions as put by the authors
 Col3C: review sent in the mails or not?
 Col4D: Submission #
-Col5E: Track the submission is submitted to like a full paper or just a poster (Track #)
+Col5E: Track #)
 Col6F: Title of the submission
 Col7G: authors of the associated submission
 Col8H: abstract of the submission.

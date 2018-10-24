@@ -281,7 +281,7 @@ class CsvDataBuilder:
         parsedResult = {}
         #Case 1: Header given in CSV File - array is empty
         if not submissionDict:
-            lines = parseCSVFile(inputFile)
+            lines = parseCSVFile(inputFile)[1:]
         #Case 2: Header not given in CSV file 
         else:
             lines = parseCSVFile(inputFile)
