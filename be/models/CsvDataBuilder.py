@@ -4,7 +4,7 @@ import csv
 import codecs
 from collections import Counter
 
-from polls.utils import parseCSVFile, parseCSVFileInverted, testCSVFileFormatMatching, isNumber, parseSubmissionTime
+from polls.utils import parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime
 
 '''
 Represents a builder class to build csv data from an uploaded csv file
@@ -281,7 +281,7 @@ class CsvDataBuilder:
         parsedResult = {}
         #Case 1: Header given in CSV File - array is empty
         if not submissionDict:
-            lines = parseCSVFile(inputFile)[1:]
+            lines = parseCSVFile(inputFile)
         #Case 2: Header not given in CSV file 
         else:
             lines = parseCSVFile(inputFile)
@@ -328,7 +328,11 @@ class CsvDataBuilder:
 
         # timeSeries = {'time': timeStamps, 'number': submittedNumber}
         # lastEditSeries = {'time': lastEditStamps, 'number': lastEditNumber}
+        for x in timeSeries:
+            print x
 
+        for x in lastEditSeries:
+            print x
         acceptedKeywords = [str(ele[int(submissionDict.get("submission.Keyword(s)"))]).lower().replace("\r", "").split("\n") for ele in acceptedSubmission]
         acceptedKeywords = [ele for item in acceptedKeywords for ele in item]
         acceptedKeywordMap = {k : v for k, v in Counter(acceptedKeywords).iteritems()}
