@@ -90,9 +90,9 @@ def uploadCSV(request):
 			# print csvDataBuilder.csvDataList[i].info
 		
 		rowContent = csvDataBuilder.formatRowContent()
-		print "---"
-		print rowContent
-		print "---"
+		# print "---"
+		# print rowContent
+		# print "---"
 
 		if request.POST:
 			# current problem: request from axios not recognized as POST
