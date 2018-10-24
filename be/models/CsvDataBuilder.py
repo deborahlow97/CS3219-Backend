@@ -10,8 +10,9 @@ from polls.utils import parseCSVFile, parseCSVFileInverted, testCSVFileFormatMat
 Represents a builder class to build csv data from an uploaded csv file
 '''
 class CsvDataBuilder:
-    csvDataList = []
-    size = 0
+    def __init__(self):
+        self.csvDataList = []
+        self.size = 0
 
     def addCsvData(self, infoType, dataDictionary, inputFile):
         csvData = CsvData(infoType, dataDictionary, inputFile)
@@ -46,6 +47,7 @@ class CsvDataBuilder:
             info = self.getAuthorInfo(index)
         elif type == "review":
             info = self.getReviewInfo(index)
+            print info
         elif type == "submission":
             info = self.getSubmissionInfo(index)
         elif type == "author.review":
@@ -68,25 +70,18 @@ class CsvDataBuilder:
             csvData = self.csvDataList[i]
             rowContent += "'" + csvData.infoType + "', "
         rowContent += "'" + self.csvDataList[-1].infoType + "'], "
-        print "=="
+        print "="
         print rowContent
-        print "=="
-
-        rowContent += "'infoData' : "
-        print rowContent
+        print "="
 
         for i in range(self.size - 1):
             csvData = self.csvDataList[i]
             rowContent += csvData.info + ", "
-        print ("HELLO")
+        print ("===")
         print(self.csvDataList[-1].info)
-        print ("HELLO")
+        print ("===")
 
         rowContent += repr(self.csvDataList[-1].info) + "}"
-
-        print "=="
-        print rowContent
-        print "=="
 
         return rowContent
 
@@ -178,8 +173,10 @@ class CsvDataBuilder:
         # return {'infoType': 'author', 'infoData': parsedResult}
 
     def getReviewInfo(self, index):
-        reviewArray = self.csvDataList[index].array
+        reviewArray = self.csvDataList[index].order
         inputFile = self.csvDataList[index].csvFile
+        print ("INSIDE REVIEW INFO")
+        print reviewArray
 
         """
         review.csv
@@ -224,11 +221,14 @@ class CsvDataBuilder:
 
         for index, col in enumerate(recommendDistributionCounts):
             recommendDistributionLabels[index] = str(0 + 0.1 * index) + " ~ " + str(0 + 0.1 * index + 0.1)
+        print "adfsgbhtf"
 
         for submissionID in submissionIDs:
-            reviews = [str(line[int(reviewArray.index("review.Overall Evaluation Score"))]).replace("\r", "") for line in lines if str(line[int(reviewArray.index("review.Submission #"))]) == submissionID]
+            reviews = [str(line[int(reviewArray.index("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewArray.index("review.Submission #"))]) == submissionID]
+            print (reviews)
             # print reviews
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
+            print ('2')
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
             confidenceList.append(sum(confidences) / len(confidences))
@@ -247,7 +247,7 @@ class CsvDataBuilder:
             submissionIDReviewMap[submissionID] = {'score': weightedScore, 'recommend': weightedRecommend}
             scoreList.append(weightedScore)
             recommendList.append(weightedRecommend)
-
+        print "hello"
 
         parsedResult['IDReviewMap'] = submissionIDReviewMap
         parsedResult['scoreList'] = scoreList
@@ -258,11 +258,14 @@ class CsvDataBuilder:
         parsedResult['scoreDistribution'] = {'labels': scoreDistributionLabels, 'counts': scoreDistributionCounts}
         parsedResult['recommendDistribution'] = {'labels': recommendDistributionLabels, 'counts': recommendDistributionCounts}
 
+        print ("-----------------")
+        print parsedResult
+        print ("-----------------")
         return parsedResult
         # return {'infoType': 'review', 'infoData': parsedResult}
         
     def getSubmissionInfo(self, index):
-        submissionArray = self.csvDataList[index].array
+        submissionArray = self.csvDataList[index].order
         inputFile = self.csvDataList[index].csvFile
 
         """
