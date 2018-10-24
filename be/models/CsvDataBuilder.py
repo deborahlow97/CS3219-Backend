@@ -3,8 +3,7 @@ from CsvData import CsvData
 import csv
 import codecs
 from collections import Counter
-
-from polls.utils import parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime
+from polls.utils import combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime
 
 '''
 Represents a builder class to build csv data from an uploaded csv file
@@ -14,8 +13,8 @@ class CsvDataBuilder:
         self.csvDataList = []
         self.size = 0
 
-    def addCsvData(self, infoType, dataDictionary, inputFile):
-        csvData = CsvData(infoType, dataDictionary, inputFile)
+    def addCsvData(self, infoType, dataDictionary, inputFiles):
+        csvData = CsvData(infoType, dataDictionary, inputFiles)
         self.csvDataList.append(csvData)
         self.size += 1
 
@@ -33,16 +32,19 @@ class CsvDataBuilder:
         elif type == "submission":
             order = self.getSubmissionOrder(index)
         elif type == "author.review":
-            #TODO: remove placeholder code and add implementation
-            order = self.getAuthorOrder(index)
             print ("author + review")
+            order = dict(self.getAuthorOrder(index))
+            order.update(self.getReviewOrder(index))
         elif type == "author.submission":
-            order = self.getAuthorOrder(index)
             print ("author + submission")
+            order = dict(self.getAuthorOrder(index))
+            order.update(self.getSubmissionOrder(index))
         elif type == "review.submission":
-            order = self.getAuthorOrder(index)
             print ("submission + review")
+            order = dict(self.getReviewOrder(index))
+            order.update(self.getSubmissionOrder(index))
         elif type == "author.review.submission":
+            # TODO: Update 3 files code
             order = self.getAuthorOrder(index)
             print ("author + review + submission")
         else:
@@ -63,16 +65,17 @@ class CsvDataBuilder:
         elif type == "submission":
             info = self.getSubmissionInfo(index)
         elif type == "author.review":
-            #TODO: remove placeholder code and add implementation
-            info = self.getAuthorInfo(index)
+            print("HDFJLKGRFRDEFGBNHFMJYUHGTRFE")
+            info = self.getAuthorReviewInfo(index)
             print ("author + review")
         elif type == "author.submission":
-            info = self.getAuthorInfo(index)
+            info = self.getAuthorSubmissionInfo(index)
             print ("author + submission")
         elif type == "review.submission":
-            info = self.getAuthorInfo(index)
+            info = self.getReviewSubmissionInfo(index)
             print ("submission + review")
         elif type == "author.review.submission":
+            # TODO: Update 3 files code
             info = self.getAuthorInfo(index)
             print ("author + review + submission")            
         else:
@@ -123,9 +126,9 @@ class CsvDataBuilder:
             if "submission." in key:
                 submissionDict.update({str(key): int(value)})
 
-        for key, value in submissionDict.iteritems():
-            print key
-            print value
+        # for key, value in submissionDict.iteritems():
+        #     print key
+        #     print value
         return submissionDict
 
     '''
@@ -133,7 +136,7 @@ class CsvDataBuilder:
     '''
     def getAuthorInfo(self, index):
         authorDict = self.csvDataList[index].order
-        inputFile = self.csvDataList[index].csvFile
+        inputFile = self.csvDataList[index].csvFiles.get('author')
 
         """
         author.csv: header row, author names with affiliations, countries, emails
@@ -186,7 +189,7 @@ class CsvDataBuilder:
 
     def getReviewInfo(self, index):
         reviewDict = self.csvDataList[index].order
-        inputFile = self.csvDataList[index].csvFile
+        inputFile = self.csvDataList[index].csvFiles.get('review')
         # print reviewDict
 
         """
@@ -264,12 +267,11 @@ class CsvDataBuilder:
         parsedResult['recommendList'] = recommendList
         parsedResult['scoreDistribution'] = {'labels': scoreDistributionLabels, 'counts': scoreDistributionCounts}
         parsedResult['recommendDistribution'] = {'labels': recommendDistributionLabels, 'counts': recommendDistributionCounts}
-
         return parsedResult
         
     def getSubmissionInfo(self, index):
         submissionDict = self.csvDataList[index].order
-        inputFile = self.csvDataList[index].csvFile
+        inputFile = self.csvDataList[index].csvFiles.get('submission')
 
         """
         submission.csv
@@ -399,4 +401,76 @@ class CsvDataBuilder:
         parsedResult['lastEditSeries'] = lastEditSeries
         parsedResult['comparableAcceptanceRate'] = comparableAcceptanceRate
 
+        return parsedResult
+
+    def getAuthorReviewInfo(self, index):
+        dict = self.csvDataList[index].order
+        inputFile1 = self.csvDataList[index].csvFiles.get('author')
+        inputFile2 = self.csvDataList[index].csvFiles.get('review')
+
+        parsedResult = {}
+        #Case 1: Header given in CSV File - array is empty
+        if not dict:
+            lines1 = parseCSVFile(inputFile1)[1:]
+            lines2 = parseCSVFile(inputFile2)[1:]
+        #Case 2: Header not given in CSV file 
+        else:
+            lines1 = parseCSVFile(inputFile1)
+            lines2 = parseCSVFile(inputFile2)
+
+        lines1 = [ele for ele in lines1 if ele]
+        lines2 = [ele for ele in lines2 if ele]
+
+        combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", dict)
+        
+        # TODO: implement parameters and put into parsedResult
+
+        return parsedResult
+
+    def getAuthorSubmissionInfo(self, index):
+        dict = self.csvDataList[index].order
+        inputFile1 = self.csvDataList[index].csvFiles.get('author')
+        inputFile2 = self.csvDataList[index].csvFiles.get('submission')
+
+        parsedResult = {}
+        #Case 1: Header given in CSV File - array is empty
+        if not dict:
+            lines1 = parseCSVFile(inputFile1)[1:]
+            lines2 = parseCSVFile(inputFile2)[1:]
+        #Case 2: Header not given in CSV file 
+        else:
+            lines1 = parseCSVFile(inputFile1)
+            lines2 = parseCSVFile(inputFile2)
+
+        lines1 = [ele for ele in lines1 if ele]
+        lines2 = [ele for ele in lines2 if ele]
+
+        combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "submission.Submission #", dict)
+        
+        # TODO: implement parameters and put into parsedResult
+
+        return parsedResult
+
+    def getReviewSubmissionInfo(self, index):
+        dict = self.csvDataList[index].order
+        inputFile1 = self.csvDataList[index].csvFiles.get('review')
+        inputFile2 = self.csvDataList[index].csvFiles.get('submission')
+
+        parsedResult = {}
+        #Case 1: Header given in CSV File - array is empty
+        if not dict:
+            lines1 = parseCSVFile(inputFile1)[1:]
+            lines2 = parseCSVFile(inputFile2)[1:]
+        #Case 2: Header not given in CSV file 
+        else:
+            lines1 = parseCSVFile(inputFile1)
+            lines2 = parseCSVFile(inputFile2)
+
+        lines1 = [ele for ele in lines1 if ele]
+        lines2 = [ele for ele in lines2 if ele]
+
+        combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", dict)
+        
+        # TODO: implement parameters and put into parsedResult
+        
         return parsedResult
