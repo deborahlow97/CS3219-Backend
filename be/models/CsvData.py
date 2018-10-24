@@ -2,10 +2,10 @@
 Represents data from an uploaded csv file
 '''
 class CsvData:
-    def __init__(self, type, dataDictionary, inputFile):
+    def __init__(self, type, dataDictionary, inputFiles):
         self.infoType = type
         self.data = dataDictionary
-        self.csvFile = inputFile
+        self.csvFiles = inputFiles
 
     def setOrder(self, order):
         self.order = order
