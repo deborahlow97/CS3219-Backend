@@ -80,8 +80,6 @@ def uploadCSV(request):
 		for i in range(csvDataBuilder.size):
 			csvDataBuilder.setOrder(i)
 			csvDataBuilder.setInfo(i)
-			print ("HELLLOO")
-
 			# print csvDataBuilder.csvDataList[i].order
 			# print csvDataBuilder.csvDataList[i].info
 		

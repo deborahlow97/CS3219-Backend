@@ -45,10 +45,7 @@ class CsvDataBuilder:
             order = dict(self.getReviewOrder(index))
             order.update(self.getSubmissionOrder(index))
         elif type == "author.review.submission":
-<<<<<<< HEAD
             # TODO: Not doing
-=======
->>>>>>> temp
             print ("author + review + submission")
         else:
             print ("ERROR: No such type")
