@@ -105,39 +105,42 @@ class CsvDataBuilder:
 
     def getAuthorOrder(self, index):
         dataDictionary = self.csvDataList[index].data
-        authorArray = []
+        authorDict = {}
 
         for key, value in dataDictionary.iteritems():
             if "author." in key:
-                authorArray.insert(int(value), str(key))
+                authorDict.update({str(key): int(value)})
 
-        return authorArray
+        return authorDict
 
     def getReviewOrder(self, index):
         dataDictionary = self.csvDataList[index].data
-        reviewArray = []
+        reviewDict = {}
 
         for key, value in dataDictionary.iteritems():
             if "review." in key:
-                reviewArray.insert(int(value), str(key))
+                reviewDict.update({str(key): int(value)})
 
-        return reviewArray
+        return reviewDict
 
     def getSubmissionOrder(self, index):
         dataDictionary = self.csvDataList[index].data
-        submissionArray = []
+        submissionDict = {}
 
         for key, value in dataDictionary.iteritems():
             if "submission." in key:
-                submissionArray.insert(int(value), str(key))
+                submissionDict.update({str(key): int(value)})
 
-        return submissionArray
+        for key, value in submissionDict.iteritems():
+            print key
+            print value
+        return submissionDict
 
     '''
     ==================================== GET INFO METHODS =====================================
     '''
     def getAuthorInfo(self, index):
-        authorArray = self.csvDataList[index].order
+        authorDict = self.csvDataList[index].order
         inputFile = self.csvDataList[index].csvFile
 
         """
@@ -148,7 +151,7 @@ class CsvDataBuilder:
 
         parsedResult = {}
         #Case 1: Header given in CSV File - array is empty
-        if not authorArray:
+        if not authorDict:
             lines = parseCSVFile(inputFile)[1:]
         #Case 2: Header not given in CSV file 
         else:
@@ -166,11 +169,11 @@ class CsvDataBuilder:
         for authorInfo in lines:
             #authorInfo = line.replace("\"", "").split(",")
             authorList.append(
-                {'name': str(authorInfo[int(authorArray.index("author.First Name"))]) + " " + str(authorInfo[int(authorArray.index("author.Last Name"))]),
-                'country': str(authorInfo[int(authorArray.index("author.Country"))]),
-                'affiliation': str(authorInfo[int(authorArray.index("author.Organization"))])})
+                {'name': str(authorInfo[int(authorDict.get("author.First Name"))]) + " " + str(authorInfo[int(authorDict.get("author.Last Name"))]),
+                'country': str(authorInfo[int(authorDict.get("author.Country"))]),
+                'affiliation': str(authorInfo[int(authorDict.get("author.Organization"))])})
         
-        # if not authorArray:
+        # if not authorDict:
         authors = [ele['name'] for ele in authorList if ele] # adding in the if ele in case of empty strings; same applies below
         topAuthors = Counter(authors).most_common(10)
         parsedResult['topAuthors'] = {'labels': [ele[0] for ele in topAuthors], 'data': [ele[1] for ele in topAuthors]}
@@ -192,10 +195,10 @@ class CsvDataBuilder:
 
     def getReviewInfo(self, index):
         #TODO: STILL BUGGY
-        reviewArray = self.csvDataList[index].order
+        reviewDict = self.csvDataList[index].order
         inputFile = self.csvDataList[index].csvFile
         print ("INSIDE REVIEW INFO")
-        print reviewArray
+        print reviewDict
 
         """
         review.csv
@@ -212,15 +215,15 @@ class CsvDataBuilder:
 
         parsedResult = {}
         #Case 1: Header given in CSV File - array is empty
-        if not reviewArray:
+        if not reviewDict:
             lines = parseCSVFile(inputFile)[1:]
         #Case 2: Header not given in CSV file 
         else:
             lines = parseCSVFile(inputFile)
 
         lines = [ele for ele in lines if ele]
-        evaluation = [str(line[int(reviewArray.index("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines]
-        submissionIDs = set([str(line[int(reviewArray.index("review.Submission #"))]) for line in lines])
+        evaluation = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines]
+        submissionIDs = set([str(line[int(reviewDict.get("review.Submission #"))]) for line in lines])
 
         scoreList = []
         recommendList = []
@@ -243,7 +246,7 @@ class CsvDataBuilder:
         print "adfsgbhtf"
 
         for submissionID in submissionIDs:
-            reviews = [str(line[int(reviewArray.index("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewArray.index("review.Submission #"))]) == submissionID]
+            reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
             print (reviews)
             # print reviews
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
@@ -284,7 +287,7 @@ class CsvDataBuilder:
         # return {'infoType': 'review', 'infoData': parsedResult}
         
     def getSubmissionInfo(self, index):
-        submissionArray = self.csvDataList[index].order
+        submissionDict = self.csvDataList[index].order
         inputFile = self.csvDataList[index].csvFile
 
         """
@@ -296,7 +299,7 @@ class CsvDataBuilder:
 
         parsedResult = {}
         #Case 1: Header given in CSV File - array is empty
-        if not submissionArray:
+        if not submissionDict:
             lines = parseCSVFile(inputFile)[1:]
         #Case 2: Header not given in CSV file 
         else:
@@ -311,13 +314,13 @@ class CsvDataBuilder:
                 if ele
                     lines.append(ele)
         """
-        acceptedSubmission = [line for line in lines if str(line[int(submissionArray.index("submission.Decision"))]) == 'accept']
-        rejectedSubmission = [line for line in lines if str(line[int(submissionArray.index("submission.Decision"))]) == 'reject']
+        acceptedSubmission = [line for line in lines if str(line[int(submissionDict.get("submission.Decision"))]) == 'accept']
+        rejectedSubmission = [line for line in lines if str(line[int(submissionDict.get("submission.Decision"))]) == 'reject']
 
         acceptanceRate = float(len(acceptedSubmission)) / len(lines)
 
-        submissionTimes = [parseSubmissionTime(str(ele[5])) for ele in lines]
-        lastEditTimes = [parseSubmissionTime(str(ele[6])) for ele in lines]
+        submissionTimes = [parseSubmissionTime(str(ele[int(submissionDict.get("submission.Time Submitted"))])) for ele in lines]
+        lastEditTimes = [parseSubmissionTime(str(ele[int(submissionDict.get("submission.Time Last Updated"))])) for ele in lines]
         submissionTimes = Counter(submissionTimes)
         lastEditTimes = Counter(lastEditTimes)
         timeStamps = sorted([k for k in submissionTimes])
@@ -345,23 +348,23 @@ class CsvDataBuilder:
         # timeSeries = {'time': timeStamps, 'number': submittedNumber}
         # lastEditSeries = {'time': lastEditStamps, 'number': lastEditNumber}
 
-        acceptedKeywords = [str(ele[8]).lower().replace("\r", "").split("\n") for ele in acceptedSubmission]
+        acceptedKeywords = [str(ele[int(submissionDict.get("submission.Keyword(s)"))]).lower().replace("\r", "").split("\n") for ele in acceptedSubmission]
         acceptedKeywords = [ele for item in acceptedKeywords for ele in item]
         acceptedKeywordMap = {k : v for k, v in Counter(acceptedKeywords).iteritems()}
         acceptedKeywordList = [[ele[0], ele[1]] for ele in Counter(acceptedKeywords).most_common(20)]
 
-        rejectedKeywords = [str(ele[8]).lower().replace("\r", "").split("\n") for ele in rejectedSubmission]
+        rejectedKeywords = [str(ele[int(submissionDict.get("submission.Keyword(s)"))]).lower().replace("\r", "").split("\n") for ele in rejectedSubmission]
         rejectedKeywords = [ele for item in rejectedKeywords for ele in item]
         rejectedKeywordMap = {k : v for k, v in Counter(rejectedKeywords).iteritems()}
         rejectedKeywordList = [[ele[0], ele[1]] for ele in Counter(rejectedKeywords).most_common(20)]
 
-        allKeywords = [str(ele[8]).lower().replace("\r", "").split("\n") for ele in lines]
+        allKeywords = [str(ele[int(submissionDict.get("submission.Keyword(s)"))]).lower().replace("\r", "").split("\n") for ele in lines]
         allKeywords = [ele for item in allKeywords for ele in item]
         allKeywordMap = {k : v for k, v in Counter(allKeywords).iteritems()}
         allKeywordList = [[ele[0], ele[1]] for ele in Counter(allKeywords).most_common(20)]
 
-        tracks = set([str(ele[2]) for ele in lines])
-        paperGroupsByTrack = {track : [line for line in lines if str(line[int(submissionArray.index("submission.Track Name"))]) == track] for track in tracks}
+        tracks = set([str(ele[int(submissionDict.get("submission.Track Name"))]) for ele in lines])
+        paperGroupsByTrack = {track : [line for line in lines if str(line[int(submissionDict.get("submission.Track Name"))]) == track] for track in tracks}
         keywordsGroupByTrack = {}
         acceptanceRateByTrack = {}
         comparableAcceptanceRate = {}
@@ -372,17 +375,17 @@ class CsvDataBuilder:
         comparableAcceptanceRate['Full Papers'] = [0.29, 0.28, 0.27, 0.29, 0.29, 0.30, 0.29, 0.30]
         comparableAcceptanceRate['Short Papers'] = [0.29, 0.37, 0.31, 0.31, 0.32, 0.50, 0.35, 0.32]
         for track, papers in paperGroupsByTrack.iteritems():
-            keywords = [str(ele[8]).lower().replace("\r", "").split("\n") for ele in papers]
+            keywords = [str(ele[int(submissionDict.get("submission.Keyword(s)"))]).lower().replace("\r", "").split("\n") for ele in papers]
             keywords = [ele for item in keywords for ele in item]
             # keywordMap = {k : v for k, v in Counter(keywords).iteritems()}
             keywordMap = [[ele[0], ele[1]] for ele in Counter(keywords).most_common(20)]
             keywordsGroupByTrack[track] = keywordMap
 
-            acceptedPapersPerTrack = [ele for ele in papers if str(ele[9]) == 'accept']
+            acceptedPapersPerTrack = [ele for ele in papers if str(ele[int(submissionDict.get("submission.Decision"))]) == 'accept']
             acceptanceRateByTrack[track] = float(len(acceptedPapersPerTrack)) / len(papers)
 
-            acceptedPapersThisTrack = [paper for paper in papers if str(paper[9]) == 'accept']
-            acceptedAuthorsThisTrack = [str(ele[4]).replace(" and ", ", ").split(", ") for ele in acceptedPapersThisTrack]
+            acceptedPapersThisTrack = [paper for paper in papers if str(paper[int(submissionDict.get("submission.Decision"))]) == 'accept']
+            acceptedAuthorsThisTrack = [str(ele[int(submissionDict.get("submission.Author(s)"))]).replace(" and ", ", ").split(", ") for ele in acceptedPapersThisTrack]
             acceptedAuthorsThisTrack = [ele for item in acceptedAuthorsThisTrack for ele in item]
             topAcceptedAuthorsThisTrack = Counter(acceptedAuthorsThisTrack).most_common(10)
             topAuthorsByTrack[track] = {'names': [ele[0] for ele in topAcceptedAuthorsThisTrack], 'counts': [ele[1] for ele in topAcceptedAuthorsThisTrack]}
@@ -390,7 +393,7 @@ class CsvDataBuilder:
             if track == "Full Papers" or track == "Short Papers":
                 comparableAcceptanceRate[track].append(float(len(acceptedPapersPerTrack)) / len(papers))
 
-        acceptedAuthors = [str(ele[4]).replace(" and ", ", ").split(", ") for ele in acceptedSubmission]
+        acceptedAuthors = [str(ele[int(submissionDict.get("submission.Author(s)"))]).replace(" and ", ", ").split(", ") for ele in acceptedSubmission]
         acceptedAuthors = [ele for item in acceptedAuthors for ele in item]
         topAcceptedAuthors = Counter(acceptedAuthors).most_common(10)
         topAcceptedAuthorsMap = {'names': [ele[0] for ele in topAcceptedAuthors], 'counts': [ele[1] for ele in topAcceptedAuthors]}
