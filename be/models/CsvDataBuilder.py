@@ -82,21 +82,30 @@ class CsvDataBuilder:
         return info
             
     def formatRowContent(self):
-        rowContent = "{'infoType': ["
-        for i in range(self.size - 1):
+        rowContent = {}
+
+        infoType = []
+        for i in range(self.size):
             csvData = self.csvDataList[i]
-            rowContent += "'" + csvData.infoType + "', "
-        rowContent += "'" + self.csvDataList[-1].infoType + "'], "
+            print csvData.infoType
+            infoType.append(csvData.infoType)
+
+        rowContent['infoType'] = infoType
+
         # print "="
         # print rowContent
         # print "="
 
         print (self.size)
+        infoData = ""
         for i in range(self.size - 1):
             print i
             csvData = self.csvDataList[i]
-            rowContent += csvData.info + ", "
-        rowContent += repr(self.csvDataList[-1].info) + "}"
+            infoData += csvData.info + ", "
+        infoData += repr(self.csvDataList[-1].info)
+        
+        rowContent['infoData'] = infoData
+
         # print ("===")
         # print(self.csvDataList[-1].info)
         # print ("===")
