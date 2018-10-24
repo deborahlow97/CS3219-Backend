@@ -180,7 +180,11 @@ class CsvDataBuilder:
 
     def getReviewInfo(self, index):
         reviewDict = self.csvDataList[index].order
+<<<<<<< HEAD
         inputFile = self.csvDataList[index].csvFiles.get('review')
+=======
+        inputFile = self.csvDataList[index].csvFile
+>>>>>>> clean up print statements
         # print reviewDict
 
         """
@@ -235,7 +239,7 @@ class CsvDataBuilder:
 
         for submissionID in submissionIDs:
             reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
-
+            # print reviews
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
@@ -264,7 +268,11 @@ class CsvDataBuilder:
         parsedResult['recommendList'] = recommendList
         parsedResult['scoreDistribution'] = {'labels': scoreDistributionLabels, 'counts': scoreDistributionCounts}
         parsedResult['recommendDistribution'] = {'labels': recommendDistributionLabels, 'counts': recommendDistributionCounts}
+<<<<<<< HEAD
         parsedResult['reviewTimeSeries'] = reviewTimeSeries
+=======
+
+>>>>>>> clean up print statements
         return parsedResult
         
     def getSubmissionInfo(self, index):
@@ -384,6 +392,7 @@ class CsvDataBuilder:
         parsedResult['lastEditSeries'] = lastEditSeries
         parsedResult['comparableAcceptanceRate'] = comparableAcceptanceRate
 
+<<<<<<< HEAD
         return parsedResult
 
     def getAuthorReviewInfo(self, index):
@@ -428,4 +437,6 @@ class CsvDataBuilder:
         
         # TODO: implement parameters and put into parsedResult
         parsedResult = {}
+=======
+>>>>>>> clean up print statements
         return parsedResult
