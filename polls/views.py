@@ -12,10 +12,8 @@ import json
 from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData
 from getInsight import parseAuthorCSVFile
 
+from be.models.CsvDataBuilder import CsvDataBuilder
 from be.models.CsvData import CsvData
-from be.models.Author import Author
-from be.models.Review import Review
-from be.models.Submission import Submission
 
 # Create your views here.
 # Note: a view is a func taking the HTTP request and returns sth accordingly
@@ -43,6 +41,9 @@ def uploadCSV(request):
 
 		csvFileList = request.FILES.getlist('file')
 		print (csvFileList)
+
+		csvDataBuilder = CsvDataBuilder()
+
 		for csvFile in csvFileList:
 			print (len(csvFile))
 			
@@ -57,33 +58,43 @@ def uploadCSV(request):
 			rowContent = ""
 
 			if "author.csv" in fileName:
-				csvData = Author(dataDictionary, csvFile)
+				csvDataBuilder.addCsvData("author", dataDictionary, csvFile)
 				hasFiles[0] = True
 				print ("yaya")
 			elif "review.csv" in fileName:
-				csvData = Review(dataDictionary, csvFile)
+				csvDataBuilder.addCsvData("review", dataDictionary, csvFile)
 				hasFiles[1] = True
 				print ("yayb")
 			elif "submission.csv" in fileName:
-				csvData = Submission(dataDictionary, csvFile)
+				csvDataBuilder.addCsvData("submission", dataDictionary, csvFile)
 				hasFiles[2] = True
 				print ("yayc")
 			else:
 				print ("ERROR: file should have been rejected by frontend already")
-
-			csvData.getOrder()
-			rowContent = csvData.getInfo()
 		
-		# TODO: find the combined visualisations
+		# Combined visualisations
 		if (hasFiles[0] and hasFiles[1]): # author + review
+			csvDataBuilder.addCsvData("author.review", dataDictionary, csvFile)
 			print ("author + review")
 		if (hasFiles[0] and hasFiles[2]): # author + submission
+			csvDataBuilder.addCsvData("author.submission", dataDictionary, csvFile)
 			print ("author + submission")
 		if (hasFiles[1] and hasFiles[2]): # review + submission
+			csvDataBuilder.addCsvData("review.submission", dataDictionary, csvFile)
 			print ("review + submission")
 		if (hasFiles[0] and hasFiles[1] and hasFiles[2]): # author + review + submission
+			csvDataBuilder.addCsvData("author.review.submission", dataDictionary, csvFile)
 			print ("author + review + submission")
 			
+		for i in range(csvDataBuilder.size):
+			csvDataBuilder.setOrder(i)
+			csvDataBuilder.setInfo(i)
+			# print csvDataBuilder.csvDataList[i].order
+			# print csvDataBuilder.csvDataList[i].info
+		
+		rowContent = csvDataBuilder.formatRowContent()
+		print rowContent
+
 		if request.POST:
 			# current problem: request from axios not recognized as POST
 			# csvFile = request.FILES['file']
