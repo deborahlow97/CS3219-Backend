@@ -85,30 +85,15 @@ class CsvDataBuilder:
         rowContent = {}
 
         infoType = []
+        infoData = {}
         for i in range(self.size):
             csvData = self.csvDataList[i]
             print csvData.infoType
             infoType.append(csvData.infoType)
+            infoData.update(csvData.info)
 
         rowContent['infoType'] = infoType
-
-        # print "="
-        # print rowContent
-        # print "="
-
-        print (self.size)
-        infoData = ""
-        for i in range(self.size - 1):
-            print i
-            csvData = self.csvDataList[i]
-            infoData += csvData.info + ", "
-        infoData += repr(self.csvDataList[-1].info)
-        
         rowContent['infoData'] = infoData
-
-        # print ("===")
-        # print(self.csvDataList[-1].info)
-        # print ("===")
 
         return rowContent
 
