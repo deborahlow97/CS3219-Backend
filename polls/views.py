@@ -53,7 +53,7 @@ def uploadCSV(request):
 			#datadict for column mapping
 			dataDictionary = {}
 			dataDictionary = (request.POST).dict()
-			print dataDictionary
+			# print dataDictionary
 
 			rowContent = ""
 
@@ -73,27 +73,26 @@ def uploadCSV(request):
 				print ("ERROR: file should have been rejected by frontend already")
 		
 		# Combined visualisations
+		#TODO: combine csvFile
 		if (hasFiles[0] and hasFiles[1]): # author + review
 			csvDataBuilder.addCsvData("author.review", dataDictionary, csvFile)
-			print ("author + review")
 		if (hasFiles[0] and hasFiles[2]): # author + submission
 			csvDataBuilder.addCsvData("author.submission", dataDictionary, csvFile)
-			print ("author + submission")
 		if (hasFiles[1] and hasFiles[2]): # review + submission
 			csvDataBuilder.addCsvData("review.submission", dataDictionary, csvFile)
-			print ("review + submission")
 		if (hasFiles[0] and hasFiles[1] and hasFiles[2]): # author + review + submission
 			csvDataBuilder.addCsvData("author.review.submission", dataDictionary, csvFile)
-			print ("author + review + submission")
 			
 		for i in range(csvDataBuilder.size):
 			csvDataBuilder.setOrder(i)
 			csvDataBuilder.setInfo(i)
-			print csvDataBuilder.csvDataList[i].order
-			print csvDataBuilder.csvDataList[i].info
+			# print csvDataBuilder.csvDataList[i].order
+			# print csvDataBuilder.csvDataList[i].info
 		
 		rowContent = csvDataBuilder.formatRowContent()
+		print "---"
 		print rowContent
+		print "---"
 
 		if request.POST:
 			# current problem: request from axios not recognized as POST

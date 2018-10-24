@@ -32,8 +32,21 @@ class CsvDataBuilder:
             order = self.getReviewOrder(index)
         elif type == "submission":
             order = self.getSubmissionOrder(index)
+        elif type == "author.review":
+            #TODO: remove placeholder code and add implementation
+            order = self.getAuthorOrder(index)
+            print ("author + review")
+        elif type == "author.submission":
+            order = self.getAuthorOrder(index)
+            print ("author + submission")
+        elif type == "review.submission":
+            order = self.getAuthorOrder(index)
+            print ("submission + review")
+        elif type == "author.review.submission":
+            order = self.getAuthorOrder(index)
+            print ("author + review + submission")
         else:
-            print ("ERROR: file should have been rejected by frontend already")
+            print ("ERROR: No such type")
         return order
 
     def setInfo(self, index):
@@ -52,16 +65,20 @@ class CsvDataBuilder:
             info = self.getSubmissionInfo(index)
         elif type == "author.review":
             #TODO: remove placeholder code and add implementation
+            info = self.getAuthorInfo(index)
             print ("author + review")
         elif type == "author.submission":
+            info = self.getAuthorInfo(index)
             print ("author + submission")
         elif type == "review.submission":
+            info = self.getAuthorInfo(index)
             print ("submission + review")
         elif type == "author.review.submission":
+            info = self.getAuthorInfo(index)
             print ("author + review + submission")            
         else:
-            print ("ERROR: file should have been rejected by frontend already")
-
+            print ("ERROR: No such info")
+        print info
         return info
             
     def formatRowContent(self):
@@ -70,18 +87,19 @@ class CsvDataBuilder:
             csvData = self.csvDataList[i]
             rowContent += "'" + csvData.infoType + "', "
         rowContent += "'" + self.csvDataList[-1].infoType + "'], "
-        print "="
-        print rowContent
-        print "="
+        # print "="
+        # print rowContent
+        # print "="
 
+        print (self.size)
         for i in range(self.size - 1):
+            print i
             csvData = self.csvDataList[i]
             rowContent += csvData.info + ", "
-        print ("===")
-        print(self.csvDataList[-1].info)
-        print ("===")
-
         rowContent += repr(self.csvDataList[-1].info) + "}"
+        # print ("===")
+        # print(self.csvDataList[-1].info)
+        # print ("===")
 
         return rowContent
 
@@ -173,6 +191,7 @@ class CsvDataBuilder:
         # return {'infoType': 'author', 'infoData': parsedResult}
 
     def getReviewInfo(self, index):
+        #TODO: STILL BUGGY
         reviewArray = self.csvDataList[index].order
         inputFile = self.csvDataList[index].csvFile
         print ("INSIDE REVIEW INFO")
@@ -200,7 +219,7 @@ class CsvDataBuilder:
             lines = parseCSVFile(inputFile)
 
         lines = [ele for ele in lines if ele]
-        evaluation = [str(line[int(reviewArray.index("review.Overall Evaluation Score"))]).replace("\r", "") for line in lines]
+        evaluation = [str(line[int(reviewArray.index("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines]
         submissionIDs = set([str(line[int(reviewArray.index("review.Submission #"))]) for line in lines])
 
         scoreList = []
@@ -228,7 +247,7 @@ class CsvDataBuilder:
             print (reviews)
             # print reviews
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
-            print ('2')
+            print (confidenceList)
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
             confidenceList.append(sum(confidences) / len(confidences))
