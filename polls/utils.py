@@ -108,19 +108,5 @@ def setOfValidHeaders(typeOfFile):
 	else:
 		return {}
 
-def populateDictionary(headerDict, fileName):
-	fileName = fileName.replace('.csv', "")
-	validHeaders = setOfValidHeaders(fileName)
-	index = 0
-	for headers in headerDict:
-		if headers in validHeaders:
-			headerDict.update({fileName + "." + headers : index })
-			index = index + 1
-		else:
-			headerDict = {}
-			break
-			
-	return headerDict
-
 if __name__ == "__main__":
 	parseCSVFile("review.csv")

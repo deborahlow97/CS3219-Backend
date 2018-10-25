@@ -3,7 +3,7 @@ from CsvData import CsvData
 import csv
 import codecs
 from collections import Counter
-from polls.utils import combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime, populateDictionary
+from polls.utils import combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime
 
 '''
 Represents a builder class to build csv data from an uploaded csv file
@@ -102,20 +102,9 @@ class CsvDataBuilder:
         dataDictionary = self.csvDataList[index].data
         authorDict = {}
 
-        #Case: No Headers
         for key, value in dataDictionary.iteritems():
             if "author." in key:
                 authorDict.update({str(key): int(value)})
-            #Case: With Headers
-            if "author." == key:
-                authorDict = {}
-                break;
-        
-        # #Case: With Headers
-        # for key, value in authorDict.iteritems():
-        #     if "author." == key:
-        #         authorDict = {}
-        #         break
 
         return authorDict
 
@@ -158,7 +147,6 @@ class CsvDataBuilder:
         parsedResult = {}
         #Case 1: Header given in CSV File - array is empty
         if not authorDict:
-            authorDict = populateDictionary(parseCSVFile(inputFile)[0], inputFile)
             #if authorDict is empty -> wrong headers provided
             lines = parseCSVFile(inputFile)[1:]
         #Case 2: Header not given in CSV file 
