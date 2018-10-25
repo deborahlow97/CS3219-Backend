@@ -178,8 +178,7 @@ class CsvDataBuilder:
                 {'name': str(authorInfo[int(authorDict.get("author.First Name"))]) + " " + str(authorInfo[int(authorDict.get("author.Last Name"))]),
                 'country': str(authorInfo[int(authorDict.get("author.Country"))]),
                 'affiliation': str(authorInfo[int(authorDict.get("author.Organization"))])})
-        
-        # if not authorDict:
+
         authors = [ele['name'] for ele in authorList if ele] # adding in the if ele in case of empty strings; same applies below
         topAuthors = Counter(authors).most_common(10)
         parsedResult['topAuthors'] = {'labels': [ele[0] for ele in topAuthors], 'data': [ele[1] for ele in topAuthors]}
@@ -191,11 +190,11 @@ class CsvDataBuilder:
         countries = [ele['country'] for ele in authorList if ele]
         topCountries = Counter(countries).most_common(10)
         parsedResult['topCountries'] = {'labels': [ele[0] for ele in topCountries], 'data': [ele[1] for ele in topCountries]}
-
+        #print (parsedResult['topCountries'])
         affiliations = [ele['affiliation'] for ele in authorList if ele]
         topAffiliations = Counter(affiliations).most_common(10)
         parsedResult['topAffiliations'] = {'labels': [ele[0] for ele in topAffiliations], 'data': [ele[1] for ele in topAffiliations]}
-
+        #print (parsedResult['topAffiliations'])
         return parsedResult
 
     def getReviewInfo(self, index):
@@ -227,7 +226,22 @@ class CsvDataBuilder:
         lines = [ele for ele in lines if ele]
         evaluation = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines]
         submissionIDs = set([str(line[int(reviewDict.get("review.Submission #"))]) for line in lines])
+        reviewTime = [str(ele[int(reviewDict.get("review.Time"))]) for ele in lines]
+        reviewDate = [str(ele[int(reviewDict.get("review.Date"))]) for ele in lines]
+        reviewDate = Counter(reviewDate)
+        lastReviewStamps = sorted([k for k in reviewDate])
+        reviewedNumber = [0 for n in range(len(lastReviewStamps))]
+        #lastEditNumber = [0 for n in range(len(lastEditStamps))]
+        reviewTimeSeries = []
+        for index, lastReviewStamps in enumerate(lastReviewStamps):
+            if index == 0:
+                reviewedNumber[index] = reviewDate[lastReviewStamps]
+            else:
+                reviewedNumber[index] = reviewDate[lastReviewStamps] + reviewedNumber[index - 1]
 
+            reviewTimeSeries.append({'x': lastReviewStamps, 'y': reviewedNumber[index]})
+
+        print reviewTimeSeries
         scoreList = []
         recommendList = []
         confidenceList = []
@@ -278,6 +292,7 @@ class CsvDataBuilder:
         parsedResult['recommendList'] = recommendList
         parsedResult['scoreDistribution'] = {'labels': scoreDistributionLabels, 'counts': scoreDistributionCounts}
         parsedResult['recommendDistribution'] = {'labels': recommendDistributionLabels, 'counts': recommendDistributionCounts}
+        parsedResult['reviewTimeSeries'] = reviewTimeSeries
         return parsedResult
         
     def getSubmissionInfo(self, index):
