@@ -19,29 +19,27 @@ Col 4-D Date of review submission
 Col 5-e review_comments
 Col 6-F review#
 Col 7-G submission#
+
 Col 8-H review_assignment# (Each reviewer is given a number for each track he/she is
 reviewing. For example Animesh reviewed 2 different tracks but 3 papers in total- one from
 Track 1 and two papers from Track 2. He therefore has 2 uniques numbers assigned.)
 
-
 Col 9-I field# . (Reviewer selects a field 1-5 to indicate expertise while submitting the review. For
 example 5: expert, 1: passing knowledge)
 
-
 Col 10-J overall evaluation score
 Col 11-K subreviewer info (ignore )
-
 Col 12-L subreviewer info (ignore )
 Col 13-M subreviewer info (ignore )
 Col 14-N reviewer name
-Col 14-O time of review submission
+Col 15-O time of review submission
 
 SUBMISSION FILE:
 Col1A: time last updated
 Col2B: keywords associated with submissions as put by the authors
 Col3C: review sent in the mails or not?
 Col4D: Submission #
-Col5E: Track #)
+Col5E: (Track #)
 Col6F: Title of the submission
 Col7G: authors of the associated submission
 Col8H: abstract of the submission.

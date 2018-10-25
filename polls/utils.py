@@ -44,7 +44,7 @@ def parseCSVFile(inputFile):
 	csvFile = inputFile
 	print inputFile
 	print ("startSniffing")
-	# dialect = csv.Sniffer().sniff(codecs.EncodedFile(csvFile, "utf-8").read(1024))
+	#dialect = csv.Sniffer().sniff(codecs.EncodedFile(csvFile, "utf-8").read(1024))
 	print ("endSniffing")
 	csvFile.open()
 	# reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect=dialect)
@@ -93,6 +93,20 @@ def parseCSVFileFromDjangoFile(inputFile):
 		parsedResult["entry" + str(index + 1)] = ele
 
 	return parsedResult
+
+def setOfValidHeaders(typeOfFile):
+	AuthorHeaders = {"Last Name", "First Name", "Webpage", "Email", "Submission #", "Country", "Corresponding", "Person #", "Organization"}
+	ReviewHeaders = {"Overall Evaluation Score (ignore)", "Subreviewer Info 2 (ignore)", "Review #", "Comments", "Date", "Submission #",
+	"Overall Evaluation Score", "Subreviewer Info 3 (ignore)", "Subreviewer Info 1 (ignore)", "Subreviewer Info 4 (ignore)", "Field #", "Time", "Reviewer Name", "Recommendation for Best Paper", "Review Assignment #"}
+	SubmissionHeaders = {"Review Sent", "Title", "Abstract", "Author(s)", "Keyword(s)", "Time Submitted", "Form Fields", "Time Last Updated", "Notified", "Submission #", "Track #", "Track Name", "Decision"}
+	if "author" in typeOfFile:
+		return AuthorHeaders
+	elif "review" in typeOfFile:
+		return ReviewHeaders
+	elif "submission" in typeOfFile:
+		return SubmissionHeaders
+	else:
+		return {}
 
 if __name__ == "__main__":
 	parseCSVFile("review.csv")

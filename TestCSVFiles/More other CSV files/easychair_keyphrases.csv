@@ -1,0 +1,3831 @@
+"submission #",keyphrase,confidence
+2,"coffee rust",180
+2,"coffee future",60
+2,"future price",60
+2,"coffee berry borer",47
+2,"coffee supply chain",47
+2,"script sci arttext",47
+2,"coffea arabica",40
+3,"digital library",80
+3,"data infrastructure",70
+3,"human centered community",63
+3,"smart digital library",63
+3,"smart infrastructure",60
+3,"infrastructure data",50
+3,"complex adaptive system",47
+3,"intelligent infrastructure",40
+4,"random forest",260
+4,"machine learning",137
+4,"deep learning",110
+4,"deep learning model",110
+4,"citation context",100
+4,"scholarly big data",95
+4,"cited article",80
+4,"cue word",80
+4,"fold cross",80
+4,"extra tree classifier",79
+4,"citing article",75
+4,"citation classification",70
+4,"computational linguistic",70
+4,"learning model",70
+4,"naive baye",70
+4,"random forest classifier",63
+4,"short term memory",63
+4,"cited work",60
+4,"cross validation",60
+4,"decision tree",60
+4,"neural network",60
+4,"scientific article",60
+4,"traditional machine learning model",60
+4,"unimportant citation",60
+4,"closest verb",50
+4,"digital library",50
+4,"impact factor",50
+4,"scientific literature",50
+4,"supervised classification",50
+4,"supervised classification technique",47
+5,"cloud service",717
+5,"cloud computing",310
+5,"cloud service provider",126
+5,"library staff",100
+5,"academic library",80
+5,"deploying cloud service",79
+5,"integrated library system",79
+5,"maintaining cloud service",79
+5,"next generation il",63
+5,"library administrator",50
+5,"patron data",50
+5,"project management",50
+5,"serving patron",50
+5,"cloud based service",47
+5,"implementing cloud service",47
+5,"cloud provider",40
+5,"data center",40
+5,"data issue",40
+5,"data loss",40
+5,"data management",40
+5,"inadequate physical security procedure",40
+5,"international digital library perspective",40
+6,"topic space",225
+6,"topic space module",158
+6,"digital library",110
+6,"information science",70
+6,"library collection",70
+6,"library book stack",63
+6,"location based recommendation",63
+6,"jim hahn",50
+6,"mobile app",50
+6,"space recommendation model",47
+6,"topic space recommendation",47
+6,"book stack",40
+6,"library barcode",40
+6,"power law",40
+6,"server log",40
+6,"subject area",40
+6,"subject recommendation",40
+6,"topic area",40
+7,"wikipedia article",280
+7,"contextual vector",240
+7,"query expansion",160
+7,"serge eric tremblay",126
+7,"news article",120
+7,"social signature",120
+7,"pseudo relevance feedback",110
+7,"social medium",110
+7,"discovering and archiving",95
+7,"omar alonso",80
+7,"similar hashtag",80
+7,"social data",80
+7,"social pseudo relevance feedback",80
+7,"document link",76
+7,"vasileio kandyla",70
+7,"harvey weinstein scandal",63
+7,"defect rate",60
+7,"hashtag index",60
+7,"relevance feedback",60
+7,"social signal",60
+7,"related hashtag",50
+7,"automatic query expansion",47
+7,"michigan recount jill",47
+7,"real time information",47
+7,"recount jill stein",47
+7,"relevant document link",47
+7,"sexual abuse allegation",47
+7,"simhash based technique",47
+7,"social anchor text",47
+7,"social query expansion",47
+8,"digital library",470
+8,"cultural heritage digital library",200
+8,"cultural heritage",130
+8,"environmental scanning",120
+8,"community member",80
+8,"methodological framework",70
+8,"inuvialuit settlement region",63
+8,"inuvialuit cultural resource centre",60
+8,"isr region",50
+8,"research project",50
+8,"cultural heritage information",47
+8,"information system",40
+8,"inuit community",40
+9,"relevance feedback",110
+9,"annotation propagation",100
+9,"visual representation",70
+9,"jean marc ogier",63
+9,"adaptive document recognition system",60
+9,"visual pattern",60
+9,"zipf law",60
+9,"historical document image",47
+9,"historical document",45
+9,"grey level",40
+9,"historian scholar",40
+9,"incremental learning",40
+9,"irrelevant image",40
+9,"lettrine image",40
+9,"long term relevance feedback",40
+9,"mickael coustaty",40
+9,"user interaction",40
+10,"street name",963
+10,"temporal street",790
+10,"temporal expression",390
+10,"jannik str otgen",142
+10,"date expression",120
+10,"frequent date",120
+10,"analyzing street name",110
+10,"date mention",100
+10,"important event",100
+10,"harvesting and analyzing",95
+10,"temporal tagging",90
+10,"collective memory",80
+10,"date reference",80
+10,"explanation harvesting",80
+10,"normalized value",80
+10,"rosita andrade",80
+10,"street element",80
+10,"martin luther king",63
+10,"natural language processing",63
+10,"world wide web",63
+10,"auto language",60
+10,"data set",60
+10,"jun jul aug sep",60
+10,"potential explanation",60
+10,"putting date",60
+10,"context information",50
+10,"large scale",50
+10,"local semantic",50
+10,"official language",50
+10,"street referring",50
+12,"n gram corpus",570
+12,"word embedding model",459
+12,"embedding model",440
+12,"full text corpus",364
+12,"minimum count parameter",348
+12,"minimum count",320
+12,"google n gram",253
+12,"test set",242
+12,"text corpus",233
+12,"match count",170
+12,"n gram data",158
+12,"raw text",150
+12,"count parameter",130
+12,"full text",120
+12,"rare simlex mturk man",120
+12,"ws353 rare simlex mturk",120
+12,"fragmented corpus",110
+12,"google book dataset",110
+12,"wikipedia corpus",110
+12,"window size",110
+12,"gram corpus",100
+12,"training data",100
+12,"word vector",100
+12,"martin sch aler",95
+12,"model google msr",95
+12,"quality loss",90
+12,"word embedding",90
+12,"analogy test set",79
+12,"window size parameter",79
+12,"analogical reasoning",75
+13,"data extraction",170
+13,"web data extraction",158
+13,"base model",140
+13,"extraction task",122
+13,"structural feature",110
+13,"information extraction",103
+13,"world wide web",95
+13,"wrapper induction method",95
+13,"web page",90
+13,"name extraction",86
+13,"base model feature",79
+13,"conditional token probability",79
+13,"domain agnostic method",63
+13,"domain specific method",63
+13,"information extraction task",63
+13,"named entity recognition",63
+13,"application domain",60
+13,"common word",60
+13,"researcher name",60
+13,"tag transition",60
+13,"dom tree",50
+13,"next token",50
+13,"textual feature",50
+13,"conditional random field",47
+13,"name extraction task",47
+13,"non name token",47
+13,"secondary estimate strategy",47
+13,"statistical significant improvement",47
+13,"token conditional probability",47
+13,"dom element",40
+15,"ontology fusion",180
+15,"similarity calculation",73
+15,"relationship adjustment",70
+15,"binary similarity calculation",63
+15,"semantic similarity calculation",63
+15,"massive similarity calculation",47
+15,"china normal university china",40
+15,"lower recall",40
+15,"node adjustment",40
+15,"parent class",40
+15,"semantic similarity",40
+15,"suppose ontology",40
+16,"author name disambiguation",237
+16,"feature type",230
+16,"author disambiguation",120
+16,"effective unsupervised author disambiguation",120
+16,"clustering process",110
+16,"feature type weight",95
+16,"feature type weighting",95
+16,"prob variant",90
+16,"max variant",80
+16,"system clustering",70
+16,"clustering size",65
+16,"author mention",60
+16,"digital library",60
+16,"relative frequency",60
+16,"evaluation measure",50
+16,"information science",50
+16,"name name",50
+16,"quality limit",50
+16,"trained weight",50
+16,"alberto hf laender",47
+16,"marco andre Goncalve",47
+16,"neil r smalheiser",47
+16,"texa anonymous author",47
+16,"very good result",47
+16,"agglomerative clustering",40
+16,"anonymous author",40
+16,"compare figure",40
+16,"naive baye mixture model",40
+16,"referenced author",40
+16,"reuter essential science indicator",40
+17,"conformance checker",650
+17,"long term preservation",285
+17,"memory institution",180
+17,"digital preservation",170
+17,"medium type",150
+17,"domain expert",140
+17,"ground truth",100
+17,"compliant document",90
+17,"file format",90
+17,"term preservation",90
+17,"texa usa",90
+17,"evaluation framework",80
+17,"focus group",80
+17,"text conformance checker",79
+17,"conformance checking",70
+17,"technical expert",70
+17,"user study",70
+17,"multimedia document jcdl18",63
+17,"text medium type",63
+17,"video medium type",63
+17,"digital library",60
+17,"electronic document file format",60
+17,"management electronic document file",60
+17,"open source",60
+17,"reference implementation",50
+17,"source code",50
+17,"ground truth creation",47
+17,"image conformance checker",47
+17,"tested conformance checker",47
+17,"preforma project",40
+18,"word sense",334
+18,"novel sense",320
+18,"time point",320
+18,"sense cluster",256
+18,"birth cluster",236
+18,"random sample",210
+18,"target word",155
+18,"network property",150
+18,"manual evaluation",140
+18,"average path length",126
+18,"sense change",125
+18,"induced subgraph",120
+18,"reliable novel word sense",120
+18,"sense detection",116
+18,"candidate birth word",110
+18,"novel sense detection",110
+18,"true positive",100
+18,"technology related sense",95
+18,"word sense disambiguation",95
+18,"candidate word",90
+18,"semantic change",90
+18,"novel word sense",87
+18,"complex network",80
+18,"google book",80
+18,"structural similarity",80
+18,"fractional change",70
+18,"network centric",70
+18,"true birth",70
+18,"n gram corpus",63
+18,"word sense induction",63
+20,"digital library",170
+20,"knowledge discovery",100
+21,"incoming citation",250
+21,"boston scienti",220
+21,"bristol myer",160
+21,"start year",160
+21,"next ve year",142
+21,"di erent start year",120
+21,"market value",120
+21,"texa instrument",110
+21,"patent citation",100
+21,"patenting activity",100
+21,"ibm patent",80
+21,"microsoft patent",80
+21,"temporal rank shi",79
+21,"patent dataset",70
+21,"temporal rank",70
+21,"company name",60
+21,"deep diving",60
+21,"foundation year",60
+21,"higher correlation",60
+21,"rank list",60
+21,"temporal bucket",60
+21,"citation count",50
+21,"correlation study",50
+21,"correlation value",50
+21,"largest component",50
+21,"rank shift",50
+21,"representative company",50
+21,"co citation network",47
+21,"company future revenue",47
+21,"patent grant count",47
+22,"online health rumor",412
+22,"online health",307
+22,"online rumor",250
+22,"health rumor",220
+22,"trusting belief",210
+22,"user trust",180
+22,"rumor presentation",150
+22,"user trusting belief",110
+22,"health information",90
+22,"information quality",90
+22,"online information",90
+22,"online health information",79
+22,"verified user",60
+22,"research design",50
+22,"social medium",50
+22,"important factor influencing",47
+22,"medium effect size",47
+22,"additional information",40
+22,"american society",40
+22,"real online health rumor",40
+22,"significant impact",40
+22,"sina weibo",40
+23,"object aggregate",90
+23,"water dropper",90
+23,"independent continuant",80
+23,"material entity",80
+23,"social structure",80
+23,"direct representation",50
+23,"thick object",50
+23,"basic formal ontology",47
+23,"dependent continuant",40
+23,"korean ceramic water dropper",40
+23,"state change",40
+24,"image collection",120
+24,"image processing",80
+24,"image annotation",70
+24,"information science",70
+24,"image classification",60
+24,"image dataset",60
+24,"image retrieval",60
+24,"medical image",60
+24,"visual image metric",47
+24,"automatic image dataset construction",40
+24,"image resource",40
+24,"large scale image dataset",40
+25,"entity relationship",250
+25,"visualization scheme",210
+25,"main entity",180
+25,"entity relation diagram",174
+25,"child entity",160
+25,"visualization system",140
+25,"chinese herbal medicine data",120
+25,"similarity threshold",120
+25,"entity set",113
+25,"secondary entity",100
+25,"force oriented layout",95
+25,"main entity set",95
+25,"multi dimensional information",95
+25,"multi entity relationship",95
+25,"visual query system",95
+25,"data model",80
+25,"visual graphic rendering module",80
+25,"chinese herbal medicine",79
+25,"computer science zhejiang",79
+25,"entity relationship diagram",79
+25,"entity relationship model",79
+25,"multi view association",79
+25,"texa usa figure",79
+25,"traditional chinese medicine",79
+25,"category axis",70
+25,"chinese herbal",70
+25,"entity relation",70
+25,"entity relationship jcdl2018",63
+25,"query sample diagram",63
+25,"secondary entity set",63
+26,"digital scholarship",310
+26,"university library",220
+26,"literature analysis",110
+26,"digital humanity",90
+26,"literature review",80
+26,"formulating research idea",79
+26,"academic library",70
+26,"research process",70
+26,"locating research partner",63
+26,"proposal writing",60
+26,"research library",60
+26,"bibliometric service",50
+26,"research finding",50
+26,"supporting service",50
+26,"digital scholarship centre",47
+26,"digital scholarship service",47
+26,"digital scholarship support profile",40
+26,"embedded service",40
+26,"national social science fund",40
+26,"research lifecycle",40
+27,"collection specific",817
+27,"collection specific word",626
+27,"topic model",550
+27,"collection independent",425
+27,"collection independent word",348
+27,"word distribution",325
+27,"cross collection",223
+27,"cross collection topic",221
+27,"entropy based model",221
+27,"document classification accuracy",206
+27,"collection specific word distribution",180
+27,"topic coherence",175
+27,"collection topic model",174
+27,"topic modeling",165
+27,"entropy based topic modeling",160
+27,"multi word phrase",142
+27,"independent word",135
+27,"domain specific",134
+27,"topic representation",130
+27,"collection independent word distribution",120
+27,"hapax legomena",120
+27,"collection topic modeling",110
+27,"entropy threshold",110
+27,"document collection",100
+27,"latent dirichlet allocation",95
+27,"data mining",90
+27,"traveler forum",90
+27,"automatic domain term extraction",80
+27,"frequency distribution",80
+27,"entropy based topic",79
+28,"ranked list",140
+28,"ranking index",140
+28,"citation network",130
+28,"computational linguistic",130
+28,"scientific paper",120
+28,"citation sentence",110
+28,"sentiment analysis",110
+28,"cited paper",100
+28,"citing paper",90
+28,"directed edge",70
+28,"research paper",70
+28,"scientific literature",70
+28,"sentiment score",70
+28,"natural language processing",63
+28,"overlap score",60
+28,"sentiment word",60
+28,"research area",50
+28,"index r3 index",47
+28,"kendall rank correlation",47
+28,"rank correlation coefficient",47
+28,"ranking scientific paper",47
+28,"set based measure",47
+28,"small world network",47
+28,"awais athar",40
+28,"citation sentiment",40
+28,"information science",40
+28,"link structure",40
+28,"research question",40
+28,"sentiment classifier",40
+28,"sentiment detection",40
+29,"full text",1246
+29,"text classification",427
+29,"neural network",342
+29,"deep learning",320
+29,"title based method",253
+29,"label text classification",158
+29,"training data",153
+29,"training sample",130
+29,"deep learning model",126
+29,"full text method",126
+29,"digital library",120
+29,"multi label",120
+29,"multi label text",110
+29,"full text performance",95
+29,"multi label classification",95
+29,"recurrent neural network",95
+29,"subject indexing",90
+29,"many title",80
+29,"title based subject indexing",80
+29,"convolutional neural network",79
+29,"deep learning method",79
+29,"full text counterpart",79
+29,"hidden layer",70
+29,"non linear",70
+29,"open access",70
+29,"pubmed dataset",70
+29,"sample size",70
+29,"natural language processing",63
+29,"neural network architecture",63
+29,"luka galke",60
+31,"neural network",274
+31,"bounding box",273
+31,"computer vision",140
+31,"digital library",130
+31,"scientific document",130
+31,"induced label",110
+31,"research paper",110
+31,"supervised neural network",95
+31,"scientific figure",80
+31,"convolutional neural network",79
+31,"high quality label",79
+31,"caption text",70
+31,"bounding box regression",63
+31,"computer science paper",63
+31,"deep neural network",63
+31,"manually labeled dataset",63
+31,"neural network architecture",63
+31,"auxiliary data",60
+31,"labeled data",60
+31,"labeled dataset",60
+31,"computer science",50
+31,"cur dist",50
+31,"latex source",50
+31,"template matching",50
+31,"fully connected layer",47
+31,"large web collection",47
+31,"spatial feature grid",47
+31,"large scale academic search engine",46
+31,"object detection",40
+31,"pattern recognition",40
+32,"formula citation graph",237
+32,"learning to rank",142
+32,"word embedding model",126
+32,"formula ranking",110
+32,"semantic relevance",90
+32,"gamma function",80
+32,"formula based feature",79
+32,"article feature",70
+32,"inner article feature",63
+32,"inter article feature",63
+32,"information retrieval",60
+32,"inner article",50
+32,"textual description",50
+32,"euler reflection formula",47
+32,"inner article based feature",40
+32,"inter article",40
+32,"rank model",40
+32,"texa usa",40
+33,"packet scheduler",270
+33,"software defined network",126
+33,"sdn controller communication",95
+33,"response time",90
+33,"software defined networking",63
+33,"various sdn domain",63
+33,"beacon controller",60
+33,"controller communication",60
+33,"heterogeneous traffic",60
+33,"inter controller",60
+33,"performance enhancement",60
+33,"openflow controller",50
+33,"scheduling algorithm",50
+33,"bgp update message",47
+33,"multiple sdn domain",47
+33,"data plane",40
+33,"openflow switch",40
+33,"simulation based performance analysis",40
+33,"target controller",40
+34,"energy consumption",691
+34,"era algorithm",170
+34,"software defined network",95
+34,"energy optimization",90
+34,"link state",86
+34,"energy efficiency",80
+34,"sleep mode",80
+34,"software defined networking",79
+34,"network device",70
+34,"routing algorithm",70
+34,"energy consumption calculation",63
+34,"network energy consumption",63
+34,"active link energy consumption",60
+34,"active mode",60
+34,"beacon message",60
+34,"efficient routing algorithm selection",60
+34,"route selection",60
+34,"routing protocol",60
+34,"backbone network",50
+34,"energy efficient",50
+34,"energy saving",50
+34,"neighbor node",50
+34,"traffic management",50
+34,"data center network",47
+34,"energy consumption optimization",47
+34,"energy consumption pc",47
+34,"energy optimization model",47
+34,"link state ls",47
+34,"new energy optimization framework",40
+34,"optimized energy consumption framework",40
+35,"academic social networking site",160
+35,"information science",140
+35,"response time",100
+35,"interaction process analysis",95
+35,"online interaction",80
+35,"academic social",75
+35,"question asking",70
+35,"academic social network",63
+35,"bale interaction process",63
+35,"socio emotional reaction",63
+35,"interaction pattern",50
+35,"opinion question",50
+35,"research question",50
+35,"significant difference",50
+35,"online information review",47
+36,"health information literacy",285
+36,"information seeking",251
+36,"biased information seeking process",180
+36,"cognitive dissonance reduction",158
+36,"information seeking behavior",142
+36,"health information",135
+36,"selective exposure",110
+36,"cognitive dissonance",100
+36,"information seeking task",95
+36,"health information seeking",79
+36,"information search",70
+36,"significant difference",70
+36,"biased information",65
+36,"biased information search",63
+36,"confirmation bias",60
+36,"individual difference",50
+36,"opposing information",50
+36,"eye tracker machine",47
+36,"conceptual framework",40
+36,"controversial issue",40
+36,"employ pattern",40
+36,"online travel information search",40
+36,"personality trait",40
+37,"micro archives",390
+37,"related resource",310
+37,"micro archive",265
+37,"web archives",240
+37,"blog article",200
+37,"research data",140
+37,"web archive",140
+37,"digital library",100
+37,"rich digital object representation",100
+37,"authority page",80
+37,"included resource",70
+37,"linked resource",70
+37,"meta information",70
+37,"search engine",70
+37,"world wide web",63
+37,"archived resource",60
+37,"avishek anand",60
+37,"crawl specification",60
+37,"digital object",56
+37,"archived snapshot",50
+37,"archiving service",50
+37,"persistence provider",50
+37,"software website",50
+37,"use case",50
+37,"internet archives wayback",47
+37,"micro archive specification",47
+37,"scientific publication",40
+37,"social medium",40
+37,"wayback machine",40
+37,"web content",40
+38,"kendall tau",895
+38,"tau top",600
+38,"target graph",580
+38,"ranking deviation",330
+38,"hak measure",310
+38,"block fraction",245
+38,"real world graph",237
+38,"ghost vertices",210
+38,"web graph",200
+38,"real world",146
+38,"hak kendall tau",142
+38,"high fidelity component selection",140
+38,"synthetic graph",120
+38,"social network",105
+38,"crawling strategy",100
+38,"random walk",100
+38,"world wide web",95
+38,"high fidelity",90
+38,"rank correlation",90
+38,"high fidelity component",79
+38,"social network graph",79
+38,"crawled vertices",70
+38,"digital library",70
+38,"incomplete graph",70
+38,"rank deviation",70
+38,"connected component",60
+38,"pagerank computation",60
+38,"pagerank value",60
+38,"random graph",50
+38,"relative ordering",50
+39,"information science",165
+39,"location based recommendation",142
+39,"book stack",110
+39,"long tail",100
+39,"library book stack",95
+39,"short head",90
+39,"information system",80
+39,"recommender system",75
+39,"digital library",70
+39,"iot technology",70
+39,"mobile device",70
+39,"texa usa",70
+39,"iot powered recommender system jcdl18",69
+39,"american society",60
+39,"iot powered recommender system",60
+39,"mobile app",60
+39,"collaborative filtering",50
+39,"english literature",50
+39,"information search",50
+39,"iot hardware",50
+39,"library building",50
+39,"library collection",50
+39,"request recommendation",50
+39,"subject distribution",50
+39,"content based filtering",47
+39,"information science field",47
+39,"iot powered recommendation",47
+39,"short head distribution",47
+39,"short head preference",47
+39,"information design",40
+40,"performance quality",481
+40,"mixed behavior user",174
+40,"user performance quality",174
+40,"knowledge seeker",160
+40,"zhihu user",160
+40,"assessment indicator system",142
+40,"knowledge contributor",140
+40,"performance quality score",126
+40,"user comprehensive performance quality",120
+40,"behavior user",95
+40,"performance quality assessment",95
+40,"comprehensive performance quality score",80
+40,"user performance",80
+40,"comprehensive performance quality",79
+40,"quality assessment indicator",79
+40,"behavior data",70
+40,"user behavior",70
+40,"hosted live count",63
+40,"overall performance quality",63
+40,"content contribution",60
+40,"question count",60
+40,"sqa platform",60
+40,"answer count",50
+40,"entropy method",50
+40,"sqa user",50
+40,"zhihu platform",50
+40,"long tail distribution",47
+40,"participated live count",47
+40,"zhihu user performance",47
+40,"comprehensive performance quality assessment",40
+41,"digital information management tool",140
+41,"personal digital information management",100
+41,"management tool",85
+41,"research consultation",80
+41,"advancing student productivity",63
+41,"digital information",55
+41,"digital information management",47
+41,"library user experience",47
+42,"digital library",90
+42,"deep learning",70
+42,"image collection",50
+42,"image retrieval",50
+42,"printed material",50
+42,"advanced image discovery development",40
+42,"iconographic resource",40
+42,"image database",40
+42,"soldier class",40
+42,"visual recognition",40
+43,"linked data",410
+43,"semantic web",140
+43,"information professional",120
+43,"lam domain",90
+43,"cataloguing tool",80
+43,"ld interlinking tool",79
+43,"ld project experience",79
+43,"controlled vocabulary",60
+43,"experience working",60
+43,"library domain",60
+43,"library metadata",60
+43,"authority control",50
+43,"improved data",50
+43,"noldexp group",50
+43,"moderate usability issue",47
+43,"publishing lam metadata",47
+43,"resource description framework",47
+43,"semi structured interview",47
+43,"trinity college dublin",47
+43,"benefit lam",40
+43,"cataloguing workflow",40
+43,"difficulty integrating and interlinking",40
+43,"improved search engine optimisation",40
+43,"lam publishing and consuming",40
+43,"ldexp noldexp",40
+43,"main barrier",40
+43,"noldexp overall",40
+43,"prior knowledge",40
+43,"technical person",40
+44,"data entry",230
+44,"quill platform",140
+44,"constitutional convention",130
+44,"alfie abdul rahman",95
+44,"negotiated text network",79
+44,"texa usa",75
+44,"diff match patch",63
+44,"utah valley university",63
+44,"formal negotiation",60
+44,"Nichola cole",50
+44,"parliamentary process",50
+44,"plain text document",47
+44,"presented last year",47
+44,"quick jump code",47
+44,"texa usa figure",47
+44,"commentary collection",40
+44,"decision making",40
+44,"federal convention",40
+44,"formal record",40
+44,"third party",40
+44,"various committee",40
+45,"book recommendation",130
+45,"authorship identification",110
+45,"neural network",100
+45,"literary book recommendation",95
+45,"recommender system",80
+45,"relevant book",80
+45,"author identification model",79
+45,"convolutional neural network",79
+45,"subject heading",70
+45,"target user",70
+45,"writing style",70
+45,"authid book representation",63
+45,"author writing style",63
+45,"author identification",60
+45,"character bigram",60
+45,"diana inkpen",60
+45,"texa usa",60
+45,"top k recommendation scenario",60
+45,"unread book",60
+45,"authorship attribution",50
+45,"computational linguistic",50
+45,"information retrieval",50
+45,"stan szpakowicz",50
+45,"book recommender system",47
+45,"el evant book",47
+45,"latent dirichlet allocation",47
+45,"mare soledad pera",47
+45,"paula cristina vaz",47
+45,"yiu kai ng",47
+45,"irrelevant book",40
+46,"cs sub community",253
+46,"computer science",220
+46,"sub community",152
+46,"acceptance rate",150
+46,"sub field",150
+46,"scientific event",140
+46,"accepted paper",120
+46,"research field",110
+46,"field productivity",100
+46,"scientific event characteristic",95
+46,"christoph lange",90
+46,"research community",90
+46,"data analysis",80
+46,"largest number",80
+46,"said fathalla",80
+46,"scholarly communication",80
+46,"exploratory data analysis",79
+46,"event series",70
+46,"geographical distribution",70
+46,"ice tam",70
+46,"top event",70
+46,"progress ratio",60
+46,"time distribution",60
+46,"eng event",50
+46,"meta analysis",50
+46,"prestigious event",50
+46,"scientific community",50
+46,"computer science community",47
+46,"smart data analytic",47
+46,"sub community popularity",47
+47,"rejected paper",270
+47,"accept ratio",220
+47,"reviewer group",220
+47,"peer review system",206
+47,"peer review",193
+47,"accepted paper",180
+47,"multi refereed paper",158
+47,"multiple referee",150
+47,"multiple reviewer",140
+47,"refereed paper",125
+47,"genetic algorithm",120
+47,"last assignment",120
+47,"crossover rate",110
+47,"mean citation",110
+47,"cited paper",100
+47,"long term citation",95
+47,"fitness score",90
+47,"jstat dataset",90
+47,"jhep dataset",80
+47,"average citation",70
+47,"performing reviewer",70
+47,"social network",70
+47,"true positive",70
+47,"high energy physic",63
+47,"technology kharagpur kharagpur",63
+47,"assigned reviewer",60
+47,"reviewer history",50
+47,"submitted paper",50
+47,"Multi refereed paper",47
+47,"generation level fitness",47
+48,"named entity",460
+48,"temporal expression",390
+48,"time interval",290
+48,"pseudo relevant document",237
+48,"annotation type",210
+48,"semantic annotation",210
+48,"xfactor algorithm",190
+48,"semantic aspect",180
+48,"document collection",170
+48,"jannik str otgen",126
+48,"pseudo relevant set",126
+48,"news archives",120
+48,"uncertainty aware time model",120
+48,"web archives",120
+48,"pseudo relevant",115
+48,"search result",115
+48,"knowledge graph",110
+48,"usain bolt",110
+48,"geographic location",100
+48,"michael phelp",100
+48,"demetrio zeinalipour yazti",95
+48,"search result diversification",95
+48,"annotated archives",80
+48,"structured representation",80
+48,"york time",80
+48,"aspect generation",70
+48,"semantic model",70
+48,"named entity recognition",63
+48,"factor function",60
+48,"ground truth",60
+49,"digital library",190
+49,"web archiving",160
+49,"martin klein",60
+49,"special issue",50
+49,"computer science",40
+49,"international internet preservation consortium",40
+49,"technical committee",40
+49,"virginia tech",40
+52,"alexandru ioan cuza",79
+52,"ioan cuza university",79
+52,"huazhong agricultural university",47
+52,"natural language processing",47
+52,"universite paris saclay",47
+52,"biomedical natural language processing",40
+53,"saudi digital library",190
+53,"digital library",123
+53,"saudi university",50
+53,"arabic e resource",47
+53,"digital library questionnaire survey",40
+53,"oxford digital library questionnaire",40
+54,"link prediction",362
+54,"co authorship network",301
+54,"social network",190
+54,"graph embedding",130
+54,"link prediction problem",126
+54,"data mining",120
+54,"recommender system",110
+54,"research interest",110
+54,"machine learning",100
+54,"network embedding",100
+54,"knowledge discovery",90
+54,"similarity score",90
+54,"link prediction task",79
+54,"national research university",79
+54,"coauthorship network",70
+54,"research paper",70
+54,"scopus subject category",63
+54,"feature engineering",60
+54,"higher school",60
+54,"network analysis",60
+54,"subject category",60
+54,"common neighbor",50
+54,"digital library",50
+54,"feature learning",50
+54,"research community",50
+54,"hse author",40
+54,"hyper parameter",40
+54,"neural information processing system",40
+54,"preferential attachment",40
+54,"topic modelling",40
+56,"perceptual hashing",280
+56,"plagiarism detection",195
+56,"image based plagiarism detection",180
+56,"sub image",160
+56,"bar chart",150
+56,"image similarity",145
+56,"adaptive image based plagiarism",140
+56,"ratio hashing",130
+56,"position aware text matching",120
+56,"academic plagiarism",110
+56,"compound image",110
+56,"feature point method",110
+56,"reference database",110
+56,"detection method",100
+56,"real world",100
+56,"disguised image",95
+56,"image analysis",90
+56,"image plagiarism",90
+56,"text matching",85
+56,"feature descriptor",80
+56,"disguised image reuse",79
+56,"image based pd",79
+56,"k gram descriptor",79
+56,"k gram matching",79
+56,"adaptive image",70
+56,"detection process",70
+56,"disguised form",70
+56,"outlier detection",70
+56,"illustration illustration illustration",63
+56,"optical character recognition",63
+57,"topic model",680
+57,"word embedding",637
+57,"embedding space",410
+57,"word embedding model",190
+57,"topic distribution",175
+57,"topic coherence",160
+57,"word embedding space",142
+57,"top word",120
+57,"background topic",110
+57,"embedded topic distribution",110
+57,"corpus specific stop word",100
+57,"gaussian distribution",100
+57,"news corpus",100
+57,"enhancing topic model",95
+57,"learned probability distribution",95
+57,"computational linguistic",90
+57,"gaussian lda",90
+57,"topic modeling",90
+57,"gibbs sampling",80
+57,"neural information processing system",80
+57,"nip corpus",80
+57,"latent dirichlet allocation",79
+57,"mise fisher distribution",79
+57,"p ear son",79
+57,"von mise fisher",79
+57,"embedding model",70
+57,"topic word",70
+57,"corpus specific embedding",63
+57,"dedicated background topic",63
+57,"topic coherence measure",63
+58,"north miami",110
+58,"digital collection center",95
+58,"miami historical society",63
+58,"historical society",40
+58,"society collection",40
+58,"team member",40
+59,"query language",523
+59,"information type",410
+59,"conceptual history",400
+59,"time series",380
+59,"concept type",230
+59,"time series value",190
+59,"data characteristic",180
+59,"null null",180
+59,"target word",150
+59,"context word",120
+59,"usage frequency",120
+59,"temporal text corpus",110
+59,"parallel concept",100
+59,"sentiment operator",100
+59,"operator tree",90
+59,"text corpus",85
+59,"sentiment value",80
+59,"time series based selection",80
+59,"category operator",70
+59,"conceptual design",70
+59,"reinhart koselleck",70
+59,"peace war po",63
+59,"text search operator",63
+59,"word usage frequency",63
+59,"counter concept",60
+59,"grammatical structure",60
+59,"hypothesis testing",60
+59,"relational algebra",60
+59,"sumup operator",60
+59,"surrounding word",60
+60,"digital library",240
+60,"search behavior",230
+60,"metadata cluster",190
+60,"clicked document",170
+60,"interaction cluster",170
+60,"search interface",130
+60,"session graph",130
+60,"average silhouette width",126
+60,"digital library collection",126
+60,"metadata feature",110
+60,"facet search",100
+60,"national library",100
+60,"search interaction",100
+60,"time facet",100
+60,"clustering search log",95
+60,"distribution zone click",95
+60,"clustering technique",90
+60,"feature set",90
+60,"search log",90
+60,"usage pattern",90
+60,"distribution zone",80
+60,"multiple facet",80
+60,"recent national page click",80
+60,"texa usa",80
+60,"world wide web",79
+60,"log analysis",70
+60,"metadata record",70
+60,"november cluster",70
+60,"october cluster",70
+60,"user behavior",70
+62,"information theory",270
+62,"shannon information theory",158
+62,"tweet trail",130
+62,"hashtag trail",110
+62,"social entropy",90
+62,"structural analysis",90
+62,"flu trail",80
+62,"social system",80
+62,"social entropy theory",79
+62,"entropic method",70
+62,"entropic value",70
+62,"non medical",70
+62,"twitter data stream",63
+62,"influenza trail",60
+62,"profile analysis",60
+62,"social medium",60
+62,"real world",50
+62,"scatter graph",50
+62,"social interaction",50
+62,"claude shannon information",47
+62,"bell system",40
+62,"blue color",40
+62,"image component",40
+62,"natural science",40
+62,"radar graph",40
+62,"retweet activity",40
+62,"semantic meaning",40
+62,"social science",40
+62,"system technical",40
+62,"twitter platform",40
+63,"cryptocurrency market",80
+63,"digital library",70
+63,"sentiment analysis",70
+63,"goel formula",50
+63,"machine learning",50
+63,"news title",50
+63,"do medium sentiment",47
+63,"stock market price",47
+63,"data collection",40
+63,"get value",40
+63,"random forest",40
+63,"stock market",40
+64,"analytic hierarchy process",126
+64,"institutional repository",120
+64,"alternative decision",110
+64,"digital library",80
+64,"repository staff",70
+64,"faculty participation",60
+64,"ahp model",50
+64,"sub criterion",50
+64,"decision making process",47
+64,"north texa denton",47
+64,"open access repository",47
+64,"repository management staff",47
+64,"decision making",40
+64,"item type",40
+65,"ask metafilter",220
+65,"power law distribution",158
+65,"organization tag",150
+65,"data set",110
+65,"social tagging",110
+65,"retroactive taggers",100
+65,"organic ask metafilter",95
+65,"retroactive ask metafilter",95
+65,"controlled vocabulary",80
+65,"professionally designed indexing language",80
+65,"retroactive tagging",80
+65,"identification tag",70
+65,"indexing language",70
+65,"retroactive folksonomy",70
+65,"organic metafilter",60
+65,"professional indexer",60
+65,"retroactive tag",60
+65,"metafilter tag",50
+65,"narrow folksonomy",50
+65,"organic tagging",50
+65,"retroactive metafilter",50
+65,"standard deviation",50
+65,"tag distribution",50
+65,"co occurring synonym",47
+65,"collaborative tagging system",47
+65,"organic tag",40
+66,"device transition",396
+66,"cross device",341
+66,"cross device transition",332
+66,"library opac",202
+66,"next device",170
+66,"feature group",80
+66,"cross device search",79
+66,"feature importance",70
+66,"next activity",70
+66,"pre transition",70
+66,"library opac user",63
+66,"user next activity",63
+66,"user online activity",63
+66,"prediction model",60
+66,"first device",50
+66,"post transition",50
+66,"time interval",50
+66,"cross device setting",47
+66,"library opac system",47
+66,"digital library",40
+66,"general web",40
+66,"mobile phone",40
+66,"multiple device",40
+66,"online activity",40
+66,"opac user",40
+66,"operation system",40
+66,"personal account",40
+66,"prediction performance",40
+66,"search task",40
+66,"user behavior",40
+67,"pre existing highlight",126
+67,"digital library",90
+67,"reader text interaction",79
+67,"reading comprehension",70
+67,"term definition matching",63
+67,"cognitive style",60
+67,"luanne freund",60
+67,"rick kopak",60
+67,"inapp condition",50
+67,"social reading system",47
+67,"app condition",40
+67,"comprehension score",40
+67,"conceptual understanding",40
+67,"deep reading",40
+67,"eye tracking",40
+67,"interview data",40
+67,"pre existing",40
+67,"samuel dodson",40
+67,"surface level",40
+67,"text comprehension",40
+68,"digital library",80
+68,"open genealogy data",79
+68,"census database",70
+68,"census record",70
+68,"automatic handwriting recognition",63
+68,"census data",60
+68,"computer assisted crowd transcription",60
+68,"enumeration district",60
+68,"transcription assignment",60
+68,"handwriting recognition",50
+68,"brigham young university",47
+68,"document analysis",40
+68,"personalized assignment",40
+68,"search portal",40
+68,"sheet number",40
+69,"econstor author",90
+69,"open access repository",79
+69,"linked data",70
+69,"author profile page",63
+69,"authority data",60
+69,"authority control",50
+69,"authority file",50
+69,"biographical information",50
+69,"external identifier",50
+69,"author related information",47
+69,"external data source",47
+69,"leibniz information center",47
+69,"zbw leibniz information",47
+69,"econstor publication",40
+69,"handle url",40
+69,"identifier system",40
+70,"european research information service",120
+70,"publication type",120
+70,"social science",110
+70,"research information",70
+70,"information system",65
+70,"publication title publication",63
+70,"virta enressh pilot",63
+70,"european level",60
+70,"research evaluation",60
+70,"data collection",50
+70,"data content",50
+70,"publication metadata",50
+70,"working group",50
+70,"publication data collection",47
+70,"publication type classification",47
+70,"research information system",47
+70,"title publication type",47
+70,"understanding ssh research",47
+70,"university based research",47
+70,"information service",45
+70,"digital library",40
+70,"local crisis",40
+70,"national research information system",40
+70,"ontology based data management",40
+70,"research organization",40
+70,"science policy",40
+70,"virta publication information service",40
+71,"query suggestion",510
+71,"aware diversified query suggestion",140
+71,"time aware",100
+71,"time aware query suggestion",100
+71,"information retrieval",90
+71,"time point",90
+71,"candidate query",80
+71,"aol query log",79
+71,"diversifying query suggestion",79
+71,"query suggestion diversification",63
+71,"url bipartite graph",63
+71,"probabilistic query suggestion framework",60
+71,"aware query suggestion",55
+71,"diverse time",50
+71,"suggested query",50
+71,"temporally ambiguous query",47
+71,"context aware query suggestion",40
+71,"hitting time",40
+71,"query aspect",40
+71,"query url",40
+71,"search engine",40
+71,"texa usa",40
+73,"web archives",667
+73,"public web archives",475
+73,"private web archives",269
+73,"private web",183
+73,"memento aggregator",180
+73,"public web",180
+73,"personal web archives",158
+73,"web archive",144
+73,"live web",120
+73,"mat kelly",120
+73,"personal web",113
+73,"additional attribute",100
+73,"web archiving",100
+73,"content negotiation",80
+73,"login page",80
+73,"short circuiting",80
+73,"content based attribute",79
+73,"conventional memento aggregator",79
+73,"memento meta aggregator",79
+73,"private web archive",79
+73,"internet archive",70
+73,"private capture",70
+73,"snowden archive",70
+73,"status code",70
+73,"personal web archiving",63
+73,"derived attribute",60
+73,"old dominion university norfolk",60
+73,"web page",60
+73,"access attribute",50
+73,"sawood alam",50
+74,"ocr error",300
+74,"document collection",160
+74,"retrievability bias",160
+74,"character error rate",142
+74,"ocr quality",120
+74,"query term",120
+74,"gini coefficient",110
+74,"error rate",95
+74,"digital library",90
+74,"retrievability score",90
+74,"crowdsourcing ocr improvement",79
+74,"jacco van ossenbruggen",79
+74,"information retrieval",70
+74,"multi term query",63
+74,"direct impact",60
+74,"manually corrected ground truth",60
+74,"texa usa",60
+74,"corrected document",50
+74,"corrected version",50
+74,"lynda hardman",50
+74,"retrieval model",50
+74,"total wealth",50
+74,"ground truth",45
+74,"cutoff value",40
+74,"digitized document",40
+74,"historic newspaper",40
+74,"informatica amsterdam",40
+74,"leif azzopardi",40
+74,"retrieval bias",40
+74,"sub collection",40
+75,"tf idf value",190
+75,"gold standard keyphras",158
+75,"keyphrase extraction",150
+75,"natural language processing",126
+75,"descending utility property",110
+75,"gold standard",103
+75,"automatic keyphrase extraction",79
+75,"computational linguistic",70
+75,"keyphrase scoring",70
+75,"method agnostic keyphrase scoring",60
+75,"ranked list",60
+75,"empirical method",50
+75,"automatic keyword extraction",47
+75,"extraction method",40
+75,"high tf idf value",40
+75,"information retrieval",40
+75,"nil witt",40
+75,"texa usa",40
+76,"question answering",333
+76,"candidate answer",245
+76,"retrieved paragraph",210
+76,"answer extraction",200
+76,"question answering system",174
+76,"asked question",170
+76,"natural language",142
+76,"named entity",140
+76,"open domain factoid question",140
+76,"textual entailment",130
+76,"similarity score",120
+76,"semantic similarity",100
+76,"open domain",96
+76,"question term",90
+76,"similarity scorer",90
+76,"information retrieval",80
+76,"knowledge base",80
+76,"paragraph validation",80
+76,"expected answer type",79
+76,"natural language question",79
+76,"passage retrieval",70
+76,"word order",70
+76,"computational linguistic",60
+76,"cosine similarity",60
+76,"open domain factoid",55
+76,"factoid question",50
+76,"hot term",50
+76,"restricted domain",50
+76,"world cup",50
+76,"candidate answer set",47
+77,"answer extraction",195
+77,"question answering",168
+77,"question category",140
+77,"forum thread",110
+77,"query likelihood model",110
+77,"kl divergence score",95
+77,"community question answering",79
+77,"discussion board",70
+77,"finding answer",70
+77,"divergence language model",63
+77,"kl divergence language",63
+77,"text quality score",63
+77,"answer detection",60
+77,"answer type",60
+77,"computer science",60
+77,"expected answer",60
+77,"information retrieval",60
+77,"online forum",60
+77,"pattern based answer extraction",60
+77,"quality answer",60
+77,"query based answer extraction",60
+77,"question core",60
+77,"stop word",60
+77,"language model",50
+77,"question query",50
+77,"score value",50
+77,"text quality",50
+77,"wrong answer",50
+77,"graph query likelihood",47
+77,"question answering system",47
+78,"blockchain network",100
+78,"author contribution",80
+78,"contribution rate",80
+78,"author contribution rate",63
+78,"author contribution verification",63
+78,"contribution verification model",63
+78,"data transaction",60
+78,"private blockchain network",47
+78,"state transition function",47
+78,"blockchain technology",40
+78,"edit distance",40
+79,"meta path",560
+79,"tag recommendation",362
+79,"stack overflow",250
+79,"heterogeneous information network",237
+79,"tagcombine seedtag meta path",180
+79,"seed tag",170
+79,"question text",160
+79,"view count",140
+79,"seed tag extraction",126
+79,"tag recommendation framework",126
+79,"tag recommendation system",126
+79,"answer count",120
+79,"efficient question tag recommendation",120
+79,"network based efficient question",120
+79,"chandra bhanu jha",110
+79,"exact k accuracy",110
+79,"seedtag meta path",110
+79,"suman kalyan maity",110
+79,"tagcombine seedtag meta",110
+79,"comment count",100
+79,"information network",100
+79,"random walk with restart",100
+79,"texa prithwish usa mukherjee",100
+79,"top k accuracy",95
+79,"yizhou sun",90
+79,"heterogeneous network",85
+79,"question score",80
+79,"social tagging",80
+79,"top k tag",79
+79,"lower range",70
+80,"institutional archive",170
+80,"web resource",153
+80,"multi page storey",142
+80,"institutional archives",130
+80,"personal archives",120
+80,"personal archiving",110
+80,"web page",110
+80,"personal archiving scenario",95
+80,"personal archive",90
+80,"primary page",80
+80,"institutional archiving scenario",79
+80,"linked page",70
+80,"page resource",70
+80,"institutional archiving",65
+80,"web resource boundary",63
+80,"multi page",60
+80,"archiving scenario",55
+80,"linked content",50
+80,"multi page story",47
+80,"page story resource",47
+80,"image collection",40
+80,"institutional archive comparison agreement",40
+80,"later image",40
+81,"twitter account",245
+81,"adjusted reputation rank",206
+81,"twitter follower",190
+81,"social medium",180
+81,"ranking list",150
+81,"ranking system",150
+81,"money magazine",130
+81,"ute score",110
+81,"official twitter account",95
+81,"secondary twitter account",95
+81,"higher education",80
+81,"university university",80
+81,"university twitter engagement",79
+81,"secondary twitter",76
+81,"secondary account",70
+81,"undergraduate enrollment",70
+81,"university home page",63
+81,"ncaa power",60
+81,"old dominion university computer",60
+81,"ute rank",60
+81,"academic ranking",50
+81,"composite ranking",50
+81,"data collection",50
+81,"full dataset",50
+81,"home page",50
+81,"secondary domain",50
+81,"strong correlation",50
+81,"twitter following",50
+81,"twitter friend",50
+81,"mining official twitter",47
+82,"role mention",270
+82,"object cluster",100
+82,"natural language",80
+82,"author contribution",75
+82,"author role",70
+82,"contribution section",70
+82,"action keyword",60
+82,"object keyword",60
+82,"subject role",60
+82,"action cluster",50
+82,"final manuscript",50
+82,"individual role",50
+82,"information extraction",50
+82,"openie tool",50
+82,"role cluster",50
+82,"study design",50
+82,"adapt centre trinity",47
+82,"author contribution section",47
+82,"centre trinity college",47
+82,"college dublin ireland",47
+82,"distinct action object",47
+82,"open information extraction",47
+82,"paper drafting paper",47
+82,"paper review paper",47
+82,"review paper revision",47
+82,"trinity college dublin",47
+82,"pubmed central open access subset",46
+82,"individual author",40
+82,"object concept",40
+82,"paper writing",40
+83,"entity aspect",320
+83,"entity aspect linking",285
+83,"simone paolo ponzetto",221
+83,"entity linking",175
+83,"aspect linking",150
+83,"federico nanni",150
+83,"aspect representation",110
+83,"laura dietz",110
+83,"entity link",100
+83,"fine grained semantic",95
+83,"hillary clinton",90
+83,"digital library",85
+83,"digital humanity",80
+83,"knowledge base",80
+83,"entity mention",70
+83,"presidential campaign",70
+83,"semantic feature",70
+83,"aspect linking task",63
+83,"entity aspect link",63
+83,"long tail entity",63
+83,"sub topic",60
+83,"content feature",50
+83,"digital librarian",50
+83,"entity embedding",50
+83,"entity ranking",50
+83,"named entity",50
+83,"relevant aspect",50
+83,"relevant entity",50
+83,"user query",50
+83,"word embedding",50
+84,"reference parsing",324
+84,"reference string",250
+84,"regular expression",230
+84,"metadata field",220
+84,"machine learning",196
+84,"metadata field type",126
+84,"non ml based tool",120
+84,"anystyle parser",110
+84,"citation parser",110
+84,"learning based tool",110
+84,"ml based tool",110
+84,"supervised machine learning",95
+84,"bibliographic reference",90
+84,"reference tagger",80
+84,"reference parsing task",79
+84,"reference parsing tool",79
+84,"reference parser",70
+84,"retrained version",70
+84,"adapt centre trinity",63
+84,"bibliographic reference parsing",63
+84,"centre trinity college",63
+84,"college dublin ireland",63
+84,"conditional random field",63
+84,"trinity college dublin",63
+84,"box tool",60
+84,"digital library",60
+84,"ground truth",60
+84,"knowledge base",60
+84,"open source reference parser",60
+84,"training data",60
+85,"query entity",870
+85,"semantic layer",260
+85,"probabilistic model",150
+85,"sparql query",120
+85,"stochastic model",120
+85,"multiple entity",110
+85,"ranking archived document",110
+85,"important time",100
+85,"nelson mandela",100
+85,"structured query",100
+85,"archived document",90
+85,"evaluation dataset",80
+85,"ranking model",80
+85,"related entity",80
+85,"texa usa",80
+85,"ground truth dataset",79
+85,"information retrieval",70
+85,"vaibhav kasturia",70
+85,"wolfgang nejdl",70
+85,"entity linking system",63
+85,"query requesting article",63
+85,"world wide web",63
+85,"document mentioning",60
+85,"information need",60
+85,"knowledge graph",60
+85,"web archives",60
+85,"category query",50
+85,"knowledge base",50
+85,"query type",50
+85,"relevance score",50
+86,"search performance",872
+86,"cross device search",871
+86,"post switch session",824
+86,"pre switch session",523
+86,"user search performance",507
+86,"cross device",482
+86,"post switch",480
+86,"pre switch",470
+86,"switch session",455
+86,"device search",454
+86,"valid click",360
+86,"effective search time",332
+86,"search task",230
+86,"search behavior",210
+86,"mobile switch",200
+86,"desktop switch",180
+86,"device transition",180
+86,"device search process",142
+86,"mobile search",140
+86,"desktop search",130
+86,"dynamic change",130
+86,"level likert scale",110
+86,"search process",110
+86,"relevant result",105
+86,"device switching",100
+86,"search session",100
+86,"device switching direction",95
+86,"spot search performance",95
+86,"effective query",90
+86,"search system",90
+89,"citation data",233
+89,"linked open citation database",200
+89,"editorial system",170
+89,"bibliographic resource",160
+89,"reference extraction",153
+89,"automatic reference extraction",142
+89,"mannheim university library",126
+89,"external source",100
+89,"external suggestion",100
+89,"reference list",100
+89,"social science",100
+89,"open citation",90
+89,"automatic reference",80
+89,"image based reference extraction",80
+89,"reference string",80
+89,"scanned document",80
+89,"zbw leibniz information centre",80
+89,"automatic reference extractor",79
+89,"linked open data",79
+89,"loc db system",79
+89,"text based extraction",79
+89,"reference linking",70
+89,"uni mannheim",70
+89,"open citation data",63
+89,"reference linking time",63
+89,"citation link",60
+89,"data model",60
+89,"dfki german research center",60
+89,"front end",60
+89,"project linked open citation",60
+90,"data source",70
+90,"metadata harvesting",70
+90,"weighting factor",60
+90,"digital library",50
+90,"literature database",50
+90,"pseudo relevance",50
+90,"christopher michel",40
+90,"information quality",40
+90,"quality metric",40
+90,"ralf schenkel",40
+90,"ranking factor",40
+90,"web page",40
+91,"book review",225
+91,"aspect extraction",130
+91,"annotation schema",100
+91,"recommender system",90
+91,"aspect based sentiment analysis",80
+91,"digital library",70
+91,"non expert review",63
+91,"milagros fernandez gavilane",47
+91,"scholarly book review",47
+91,"amazon review",40
+91,"expert review",40
+91,"non expert",40
+91,"recommendation system",40
+91,"texa usa",40
+92,"social network",203
+92,"social medium",170
+92,"social medium platform",126
+92,"marriage record",110
+92,"special collection",110
+92,"social security death index",80
+92,"factual biography",70
+92,"mexico city",70
+92,"student newspaper",60
+92,"candid photo",50
+92,"formal record",50
+92,"local newspaper",50
+92,"permanent material",50
+92,"primary material",50
+92,"allen ginsberg paper",47
+92,"social network connection",47
+92,"subject social network",47
+92,"biographical collection",40
+92,"census sheet",40
+92,"columbia university",40
+92,"death record",40
+92,"jack kerouac",40
+92,"joan burrough",40
+92,"public librarys berg collection",40
+92,"social connection",40
+92,"social security",40
+92,"subject life",40
+92,"william burrough",40
+92,"york time",40
+93,"digital library",90
+93,"large scale data",47
+93,"texa advanced computing center",40
+94,"data deduplication",453
+94,"indexing attribute",327
+94,"best attribute",310
+94,"duplicate record",300
+94,"sorted neighborhood algorithm",221
+94,"standard blocking",210
+94,"data deduplication process",206
+94,"address2 suburb culture state",200
+94,"relevant attribute",200
+94,"data deduplication result",184
+94,"culture state title",158
+94,"efficiency standard blocking",158
+94,"schema based configuration",158
+94,"standard blocking algorithm",158
+94,"sorted neighborhood",140
+94,"record comparison",130
+94,"best data deduplication result",120
+94,"real dataset",120
+94,"de souza silva",110
+94,"schema agnostic",110
+94,"effective attribute",90
+94,"record linkage",90
+94,"block key",80
+94,"synthetic dataset",80
+94,"machine learning algorithm",79
+94,"automatic identification",70
+94,"large dataset",70
+94,"texa usa",70
+94,"best indexing attribute",63
+94,"f measure value",63
+95,"debutant topic",400
+95,"evolutionary network",280
+95,"research topic",190
+95,"gold standard",180
+95,"research area",160
+95,"advanced clique percolation method",140
+95,"topic network",110
+95,"semantic enhanced topic network",100
+95,"topic topic topic",95
+95,"ego network",90
+95,"related topic",80
+95,"super area",80
+95,"clique adjacency graph",79
+95,"k clique adjacency",79
+95,"computer science",70
+95,"clique percolation method",63
+95,"community detection algorithm",63
+95,"semantic search",60
+95,"semantic web",60
+95,"embryonic stage",50
+95,"emerging topic",50
+95,"influential author",50
+95,"information retrieval",50
+95,"information system",50
+95,"research community",50
+95,"research trend",50
+95,"similarity threshold",50
+95,"latent dirichlet allocation",47
+95,"very large cluster",47
+95,"world wide web",47
+96,"eye tracking",80
+96,"eye tracking tool",63
+96,"eye tracker",50
+96,"user experience",50
+96,"user experience study",47
+97,"interdisciplinary collaboration",210
+97,"major area",210
+97,"coauthorship network",123
+97,"biological science",110
+97,"agrarian science",80
+97,"scientific coauthorship network",63
+97,"giant component",60
+97,"research group",60
+97,"research area",50
+97,"scientific collaboration",50
+97,"scientific community",50
+97,"social science",50
+97,"brazilian coauthorship network",47
+97,"brazilian scientific coauthorship network",40
+97,"health science",40
+98,"news article",410
+98,"main event",286
+98,"scoring factor",253
+98,"main event descriptor",142
+98,"article main event",126
+98,"causal relation",90
+98,"natural language processing",79
+98,"event descriptor",75
+98,"candidate scoring",70
+98,"extraction performance",70
+98,"question answering",70
+98,"explicit event descriptor",63
+98,"copulative conjunction",60
+98,"information system",60
+98,"analysis task",50
+98,"annotated phrase",50
+98,"combined scoring",50
+98,"computational linguistic",50
+98,"how question",50
+98,"lead paragraph",50
+98,"location candidate",50
+98,"named entity",50
+98,"natural language",50
+98,"publishing date",50
+98,"first open source",47
+98,"semantic role labeling",47
+98,"third scoring factor",47
+98,"w1h extraction method",47
+98,"w1h extraction system",47
+98,"weighted scoring factor",47
+99,"scoring scheme",280
+99,"vector space model",190
+99,"information retrieval",186
+99,"subject based scoring",174
+99,"digital library",140
+99,"subject based vector",126
+99,"document retrieval",120
+99,"subject based document retrieval",120
+99,"top retrieved document",79
+99,"vector space",70
+99,"document clustering",60
+99,"document collection",60
+99,"mechanical product design methodology",60
+99,"query term",60
+99,"subject based vectorized representation",60
+99,"user query",60
+99,"relevant document",50
+99,"retrieved document",50
+99,"information retrieval model",47
+99,"keyword subject matrix",47
+99,"subject based representation",47
+99,"travel time uncertainty",47
+99,"azadeh mohebi",40
+99,"bayesian network",40
+99,"constraint based metabolic network",40
+99,"derived mesenchymal stem cell",40
+99,"information technology",40
+99,"marrow derived mesenchymal stem",40
+99,"self modeling curve resolution",40
+100,"citation context",1281
+100,"citation context list",491
+100,"information retrieval",250
+100,"cited paper",160
+100,"diverse citation context list",160
+100,"cited article",130
+100,"diversification strategy",130
+100,"search result diversification",110
+100,"academic literature",100
+100,"citation recommendation",90
+100,"ranking algorithm",90
+100,"semantic distance",90
+100,"sorted list",80
+100,"diverse citation context",79
+100,"explicit semantic analysis",79
+100,"knowledge recommendation",70
+100,"user case study",63
+100,"citing article",60
+100,"score difference",60
+100,"research design",50
+100,"texa usa",50
+100,"cohen kappa score",47
+100,"maximal marginal relevance",47
+100,"natural language processing",47
+100,"scientific article summarization",47
+100,"semantic distance algorithm",47
+100,"citeseerx database",40
+100,"divscore algorithm",40
+100,"redundant information",40
+100,"text summarization",40
+101,"associate information",380
+101,"associating information",360
+101,"digital document",320
+101,"bidirectional association",220
+101,"physical document",190
+101,"create association",150
+101,"entire document",150
+101,"unidirectional association",150
+101,"cross document linking",142
+101,"association mechanism",130
+101,"separate document",130
+101,"cross document",106
+101,"system folder",100
+101,"bibliography reference manager",95
+101,"linked document",90
+101,"online survey",90
+101,"associated part",80
+101,"association resulting",80
+101,"document linking mechanism",79
+101,"personal information management",79
+101,"design implication",70
+101,"digital medium",70
+101,"document linking",63
+101,"document linking solution",63
+101,"reading and writing",63
+101,"beat signer",60
+101,"digital scenario",60
+101,"used mechanism",60
+101,"user behaviour",60
+101,"use annotation",50
+102,"strong witness",320
+102,"scientific claim",260
+102,"knowledge base",230
+102,"digital library",160
+102,"plausible claim",110
+102,"document collection",100
+102,"skyline operator",100
+102,"pancreatic cancer",80
+102,"support vector machine",79
+102,"candidate claim",70
+102,"digital library collection",63
+102,"high quality",60
+102,"high quality knowledge base",60
+102,"machine learning",60
+102,"word embedding",60
+102,"crowdsourcing task",50
+102,"pareto semantic",50
+102,"semantic type",50
+102,"word feature",50
+102,"high quality content",47
+102,"knowledge base construction",47
+102,"natural language processing",47
+102,"strong scientific claim",47
+102,"word mover distance",47
+102,"natural language",45
+102,"coffee consumption",40
+102,"dominant relation",40
+102,"non beneficial",40
+102,"real world",40
+102,"skyline set",40
+103,"recurrent neural network",110
+103,"neural network",103
+103,"eeg segment",100
+103,"eeg signal",80
+103,"gru model",80
+103,"short term memory",79
+103,"gated recurrent unit",63
+103,"eeg data",60
+103,"epileptic patient",60
+103,"eeg recording",40
+103,"electrical activity",40
+103,"healthy eeg surface eeg",40
+103,"hidden state",40
+103,"performance analysis",40
+103,"seizure prediction",40
+104,"authority record",215
+104,"authority data",190
+104,"data element",135
+104,"data collection point",110
+104,"linked data",100
+104,"linked data enabling element",100
+104,"personal name authority record",80
+104,"rda based field",79
+104,"metadata change",70
+104,"marc authority",62
+104,"rda based data element",60
+104,"rda based marc authority",60
+104,"rda based marc field",60
+104,"digital library",50
+104,"linked data enabling",47
+104,"marc authority record",47
+104,"marc authority standard",47
+104,"name authority record",47
+104,"rda based marc",47
+104,"data collection",40
+104,"metadata record",40
+104,"personal name",40
+104,"rda based authority data",40
+104,"rda based authority record",40
+104,"rda standard",40
+104,"real world object uri",40
+104,"resource description",40
+104,"variable field",40
+105,"session context",230
+105,"seed document",170
+105,"stratagem search",170
+105,"exploratory search",160
+105,"philipp mayr",140
+105,"living lab",133
+105,"history size",130
+105,"contextual ranking feature",126
+105,"implicit relevance signal",126
+105,"digital library",120
+105,"search activity",120
+105,"search result",120
+105,"implicit relevance",116
+105,"user search",110
+105,"default ranking",100
+105,"digital librarys living lab",100
+105,"global usefulness",100
+105,"local usefulness",100
+105,"ranking feature",100
+105,"zeljko carevic",100
+105,"implicit relevance feedback",95
+105,"user search context",95
+105,"document similarity",90
+105,"contextualised browsing",80
+105,"document view",80
+105,"information retrieval",80
+105,"living lab study",79
+105,"non contextualised baseline",79
+105,"user information need",79
+105,"relevance feedback",70
+106,"digital library",533
+106,"information retrieval",235
+106,"information searching",186
+106,"search task",180
+106,"iir system",160
+106,"user interaction",150
+106,"information searching behaviour",126
+106,"real user",120
+106,"simulated user",120
+106,"digital collection",110
+106,"information science",110
+106,"user model",100
+106,"dl searcher model",95
+106,"interactive information retrieval",95
+106,"leif azzopardi",90
+106,"work task",90
+106,"information need",80
+106,"information seeking",80
+106,"interactive information retrieval system",80
+106,"searching behaviour",80
+106,"library related task",79
+106,"kalervo jaervelin",70
+106,"search behaviour",70
+106,"search strategy",70
+106,"user simulation",70
+106,"user study",70
+106,"digital library system",63
+106,"information seeking task",63
+106,"ling method",50
+106,"searching task",50
+107,"author paper",110
+107,"pu learning model",110
+107,"reliable negative",100
+107,"scholarly recommendation",70
+107,"training data",70
+107,"naive baye classifier",63
+107,"heterogeneous graph",60
+107,"learning model",55
+107,"relevant paper",50
+107,"classi f ier",47
+107,"non pu learning",47
+107,"random walk probability",47
+107,"graphical feature",40
+107,"meta path",40
+107,"paper recommendation",40
+107,"random walk",40
+107,"random walk probability score",40
+107,"stratified k fold cross",40
+107,"threshold probability",40
+107,"word vector",40
+108,"knowledge base",215
+108,"entity linking",155
+108,"aida babelfy dbpedia spotlight",100
+108,"early english legal document",100
+108,"gold standard",90
+108,"eu ner fox",79
+108,"fox kea pboh",79
+108,"investigating entity linking",79
+108,"kea pboh wat",79
+108,"ner fox kea",79
+108,"popular knowledge base",79
+108,"spotlight dexter entityclassifier",79
+108,"annotation system",70
+108,"disambiguation system",70
+108,"emerging entity",70
+108,"annotator agdistis aida",63
+108,"f1 macro precision",63
+108,"f1 micro precision",63
+108,"macro f1 macro",63
+108,"macro precision macro",63
+108,"macro recall micro",63
+108,"micro f1 micro",63
+108,"micro precision micro",63
+108,"precision macro recall",63
+108,"recall micro f1",63
+108,"world wide web",63
+108,"named entity",60
+108,"texa usa",60
+108,"digital humanity",50
+108,"entity recognition",50
+109,"contextual browsing",490
+109,"seed workset",320
+109,"large scale digital library",240
+109,"information seeking",210
+109,"prioritised contextual browsing",190
+109,"similarity distribution",185
+109,"large scale",170
+109,"reset context strategy",126
+109,"contextual metadata",120
+109,"serendipitous discovery",120
+109,"large scale dl",110
+109,"reset context",110
+109,"information seeking behaviour",95
+109,"digital library",80
+109,"entity description",80
+109,"prioritised context",80
+109,"unprioritised context",70
+109,"information seeking strategy",63
+109,"roman catholic theologian",63
+109,"steady state simulation",63
+109,"information behaviour",60
+109,"information filtering",60
+109,"information need",60
+109,"link discovery",60
+109,"linked data",60
+109,"passive search",60
+109,"simulated strategy",60
+109,"anchor specification",50
+109,"benedictine writer",50
+109,"information resource",50
+110,"keyphrase extraction",232
+110,"natural language processing",110
+110,"information retrieval",70
+110,"keyphrase extraction model",63
+110,"digital library",60
+110,"research paper",50
+110,"digital library application",47
+110,"keyphrase extraction task",47
+110,"computer science",40
+110,"corina florescu",40
+110,"scientific document",40
+111,"word embedding",170
+111,"author name disambiguation",142
+111,"co author similarity",95
+111,"digital library",80
+111,"publication title",80
+111,"semantic feature",80
+111,"semantic similarity",80
+111,"content similarity",70
+111,"co author evidence",63
+111,"ambiguous author",50
+111,"natural language processing",47
+111,"publication co author",47
+111,"test set split",47
+111,"word embedding vector",47
+112,"entity mixture",490
+112,"entity mixture detection",253
+112,"knowledge base",180
+112,"mixed entity",160
+112,"occurrence vector",150
+112,"knowledge based service",142
+112,"hierarchical clustering",140
+112,"isaac newton",140
+112,"object value",140
+112,"detecting entity mixture",126
+112,"information extraction",110
+112,"knowledge based system",110
+112,"name tuple",110
+112,"similarity length ratio",79
+112,"natural language",75
+112,"name entity",70
+112,"recall rate",70
+112,"co occurrence document",63
+112,"digital library",60
+112,"relevant document",60
+112,"big data",50
+112,"data set",50
+112,"domain expert",50
+112,"eliminating entity mixture",47
+112,"natural language processing",47
+112,"non mixed triple",47
+112,"real world entity",47
+112,"strong accuracy rate",47
+112,"subject predicate object",47
+112,"strong accuracy",46
+113,"pid kernel information",863
+113,"kernel information",566
+113,"data type registry",459
+113,"data type",396
+113,"pid kernel",285
+113,"service time",210
+113,"complex data type",190
+113,"local handle service",190
+113,"type registry",165
+113,"digital object",153
+113,"persistent identifier",150
+113,"pid record",150
+113,"handle system",140
+113,"data object",130
+113,"enhanced pid system",126
+113,"pid kernel information profile",120
+113,"pid system",120
+113,"backbone provenance view",95
+113,"handle service",90
+113,"pid assignment",90
+113,"local handle",85
+113,"kernel information profile",79
+113,"local handle server",79
+113,"research data alliance",79
+113,"pid resolution",70
+113,"provenance view",70
+113,"research data",65
+113,"extended pid system",63
+113,"global handle registry",63
+113,"global handle service",63
+114,"citation time interval",126
+114,"heterogeneous network",90
+114,"citation network",70
+114,"heterogeneous academic network",47
+114,"mutual reinforcement",40
+114,"ranking algorithm",40
+114,"venue ranking",40
+115,"web archives",275
+115,"archived web page",269
+115,"http response header",237
+115,"hash value",216
+115,"embedded resource",210
+115,"web page",190
+115,"archive specific archive",158
+115,"http status code",158
+115,"merkle tree",140
+115,"response header",125
+115,"entity transient error response",120
+115,"perma archives",120
+115,"transient error response hdrs",120
+115,"archived web",110
+115,"archive specific",100
+115,"archived page",100
+115,"average chan em",79
+115,"main html file",79
+115,"selected uri rs",79
+115,"leaf node",70
+115,"root hash",70
+115,"http entity body",63
+115,"michael evil wayback",63
+115,"technical report arxiv",63
+115,"utm campaign womensmarch",63
+115,"utm source tw",63
+115,"composite memento",60
+115,"old dominion university norfolk",60
+115,"path length",60
+115,"raw content",60
+116,"news vertical",430
+116,"story rate",405
+116,"general serp",280
+116,"general serp collection",253
+116,"news storey",246
+116,"vertical serp",230
+116,"search engine",225
+116,"news story",220
+116,"serp collection",180
+116,"collection building",177
+116,"order page",160
+116,"vertical serp collection",158
+116,"date range parameter",142
+116,"news vertical collection",126
+116,"news vertical serp",126
+116,"average new story rate",120
+116,"google serp",120
+116,"healthcare bill",120
+116,"hurricane harvey",120
+116,"manchester bombing",120
+116,"date range",115
+116,"page level",110
+116,"web page",110
+116,"digital library",100
+116,"local news collection generator",100
+116,"trump russia",100
+116,"refinding news storey",95
+116,"focused crawler",90
+116,"higher order",80
+116,"lower order",80
+117,"socio technical interaction network",160
+117,"dfw schizophrenia study team",140
+117,"data repository",90
+117,"digital library service",63
+117,"schizophrenia study team",63
+117,"digital service",50
+117,"stin analysis",50
+117,"digital library",40
+117,"interdisciplinary informatics research collaboratory",40
+117,"twu library",40
+118,"time reference",200
+118,"collective memory",180
+118,"world war",160
+118,"facet focused history",158
+118,"general commemoration",156
+118,"temporal expression",150
+118,"general history",145
+118,"focused history general commemoration",140
+118,"general commemoration historical event",140
+118,"historical event historical entity",140
+118,"historical event",136
+118,"historical entity",135
+118,"history related content",110
+118,"present entity",110
+118,"regional history facet",110
+118,"history related",100
+118,"temporal reference",80
+118,"history national",70
+118,"category general history",63
+118,"digital history",60
+118,"social medium",60
+118,"data collection",50
+118,"donald trump",50
+118,"entity type",50
+118,"news article",50
+118,"related tweets",50
+118,"co occurring entity",47
+118,"first world war",47
+118,"general history hashtag",47
+118,"history related hashtag",47
+119,"citation count",152
+119,"northern illinois university dekalb",80
+119,"research article",80
+119,"social medium",80
+119,"citation prediction",70
+119,"citation count prediction",63
+119,"random forest",60
+119,"knowledge management cikm",47
+119,"machine learning model",47
+119,"median citation count",47
+119,"spectral evolution model",47
+119,"content feature",40
+119,"decision tree",40
+119,"edu northern illinois university",40
+119,"online platform",40
+119,"scholarly impact",40
+119,"scholarly work",40
+119,"textual feature",40
+120,"citation count",150
+120,"accepted article",120
+120,"acc article",100
+120,"candidate article",100
+120,"peer review",87
+120,"peer review system",87
+120,"computer science",80
+120,"research article",80
+120,"bibliography section",70
+120,"desk rejection",70
+120,"exhaustive list",70
+120,"machine learning",70
+120,"ai assisted peer review system",69
+120,"d rej article",63
+120,"d rej paper",63
+120,"nucleic acid research",63
+120,"primary author average",63
+120,"impact reference",60
+120,"meta data",60
+120,"research score",60
+120,"target paper",60
+120,"temporal distance",60
+120,"accepted paper",50
+120,"affiliation feature",50
+120,"author credibility",50
+120,"citation analysis",50
+120,"impact citation",50
+120,"reference section",50
+120,"scientific impact",50
+120,"title scope",50
+121,"news site",280
+121,"news website",200
+121,"pm eastern time",126
+121,"election day",120
+121,"hero story",110
+121,"similarity score",110
+121,"measuring news similarity",95
+121,"entity similarity",90
+121,"texa usa",90
+121,"digital library",80
+121,"document representation",80
+121,"old dominion university norfolk",80
+121,"similarity metric",80
+121,"york time",80
+121,"cosine similarity",60
+121,"similarity measure",60
+121,"veteran day",60
+121,"hero storey",50
+121,"naming convention",50
+121,"news organization",50
+121,"significant event",50
+121,"top storey",50
+121,"top story",50
+121,"archives memento api",47
+121,"collection similarity score",47
+121,"internet archives memento",47
+121,"top k storey",47
+121,"collection building",40
+121,"thanksgiving day",40
+121,"usa today",40
+122,"digital reading",461
+122,"mobile reading",135
+122,"china digital reading",126
+122,"bigdata research co",95
+122,"ireader technology co",95
+122,"iresearch consulting group",95
+122,"mobile reading market",95
+122,"china digital reading industry",60
+122,"china literature",60
+122,"reading market",60
+122,"white paper",60
+122,"annual reading trend",47
+122,"digital publishing association",47
+122,"digital reading content",47
+122,"e book reading",47
+122,"big data",40
+122,"china mobile reading market",40
+122,"chinese internet literature industry",40
+122,"consulting group",40
+122,"copyright protection",40
+122,"huge e reading market",40
+122,"internet literature",40
+122,"literature limited",40
+122,"paid chinese e book",40
+122,"printed book",40
+122,"ranking list",40
+122,"reading time",40
+122,"th national reading survey",40
+123,"collaborative filtering",236
+123,"factorization machine",180
+123,"neural collaborative filtering model",180
+123,"uncertainty level",176
+123,"collaborative filtering model",169
+123,"ranking auc",130
+123,"convolutional neural network",126
+123,"multi layer perceptron",95
+123,"sentence uncertainty classification",95
+123,"knowledge discovery",90
+123,"matrix factorization",85
+123,"classification auc",80
+123,"layer perceptron collaborative filtering",80
+123,"multi layer",80
+123,"term association",80
+123,"uncertainty constraint",80
+123,"matrix factorization method",79
+123,"sentence uncertainty",75
+123,"cf uncertain model",63
+123,"matrix factorization model",63
+123,"multi layer perception",63
+123,"neural collaborative filtering",63
+123,"classification loss",60
+123,"evaluation metric",60
+123,"future association",60
+123,"global information",60
+123,"layer perception collaborative filtering",60
+123,"test data",60
+123,"jaccard coefficient",50
+123,"local information",50
+124,"word embedding",380
+124,"precision ratio",165
+124,"deep learning",150
+124,"deep learning technology",142
+124,"retrieval result",140
+124,"academic context",130
+124,"precise query",110
+124,"recall ratio",80
+124,"query expansion",75
+124,"domain expert",70
+124,"information retrieval",70
+124,"information center chinese",63
+124,"irrelevant literature",60
+124,"semantic feature",60
+124,"literature retrieval",50
+124,"scientific literature",50
+124,"anomaly detection algorithm",47
+124,"enriched semantic feature",47
+124,"low precision ratio",47
+124,"low recall ratio",47
+124,"query expansion technique",47
+124,"academic database",40
+124,"author keyword",40
+124,"embedding space",40
+124,"improve recall",40
+124,"neural network",40
+124,"science wuhan",40
+124,"semantic relevance",40
+124,"semantic space",40
+124,"wuhan documentation",40
+125,"multiple diagram navigation",95
+125,"reciprocal link",85
+125,"wikipedia hyperlink graph",63
+125,"exploratory search",60
+125,"selected item",60
+125,"diagram element",50
+125,"digital library",50
+125,"energy spreading",50
+125,"internal diagram",50
+125,"received energy",50
+125,"selecting dinka",50
+125,"similarity rating",50
+125,"non reciprocal link",47
+125,"american civil war battle",40
+125,"chocolate bar",40
+125,"increasing order",40
+125,"non increasing",40
+125,"non reciprocal link conductance",40
+125,"ranking algorithm",40
+125,"send energy",40
+125,"world language",40
+127,"eye movement",255
+127,"user interest",206
+127,"oculomotor plant",162
+127,"user interest modeling",126
+127,"oculomotor plant feature",95
+127,"user interest model",95
+127,"user modeling",80
+127,"interest modeling",70
+127,"opf value",70
+127,"implicit relevance feedback",63
+127,"eye tracking",50
+127,"user activity",50
+127,"user model",50
+127,"eye movement classification",47
+127,"eye movement signal",47
+127,"intelligent user interface",47
+127,"saccade bounded opf",47
+127,"existing interest modeling architecture",40
+127,"gaze data",40
+127,"human oculomotor plant feature",40
+127,"oculomotor plant mathematical model",40
+128,"sentiment analysis",100
+128,"author confidence",80
+128,"identifying author confidence",63
+128,"computer science",60
+128,"writing style",50
+128,"medical frequency term",47
+128,"open archives initiative",47
+128,"biomedical article",40
+128,"biomedical text",40
+130,"mathematical formula",370
+130,"gold standard",235
+130,"mathematical format conversion",158
+130,"content information",110
+130,"tree edit distance",110
+130,"textual context",100
+130,"latex expression",90
+130,"representation format",90
+130,"content language",80
+130,"presentation language",80
+130,"riemann hypothesis",80
+130,"computer algebra system",79
+130,"mathematical expression tree",79
+130,"mathematical symbol",70
+130,"presentation mathml",70
+130,"computer science",60
+130,"content mathml",60
+130,"content tree",60
+130,"corrected tex",60
+130,"expression tree",60
+130,"mathematical content",60
+130,"mathematical expression",60
+130,"pom tagger",60
+130,"mathematical concept",50
+130,"mathml markup",50
+130,"permissible output",50
+130,"semantic annotation",50
+130,"semantic information",50
+130,"semantic latex",50
+130,"wikidata item",50
+131,"enumerated co citation",375
+131,"citation graph",290
+131,"citation function",276
+131,"citation context",250
+131,"functional component",240
+131,"citation function label",221
+131,"vector representation",190
+131,"scientific paper",160
+131,"function label",145
+131,"enumerated co citation prediction",140
+131,"paper representation",100
+131,"context dependent similarity",95
+131,"fasttext section functionality",95
+131,"dimensional vector",80
+131,"enumerated co citation context",80
+131,"texa usa",80
+131,"functional component information",79
+131,"natural language processing",79
+131,"distributed representation",70
+131,"representation learning",66
+131,"citation recommendation system",63
+131,"co citation analysis",63
+131,"learning multi vector",63
+131,"multi vector representation",63
+131,"learning representation",60
+131,"word vector",60
+131,"body text",50
+131,"citation resolution",50
+131,"paper vector",50
+131,"random walk",50
+132,"video viewer",90
+132,"video based learning",79
+132,"active viewing practice",63
+132,"digital library",60
+132,"british columbia",50
+132,"video annotation",40
+133,"community driven data curation system",162
+133,"data review process",95
+133,"contextual information",60
+133,"deposit manager",50
+133,"data curation",45
+134,"mobile library",125
+134,"text data",60
+134,"user opinion",60
+134,"mobile library user",47
+134,"mobile library service quality",40
+135,"wechat official account",126
+135,"typical chinese academic library",80
+135,"university library",60
+136,"search result",100
+136,"full text",90
+136,"full text version",63
+136,"academic document",60
+136,"questionnaire survey",50
+136,"unfamiliar field",50
+136,"information retrieval system",47
+136,"jp kyushu university",47
+136,"research method",40
+136,"research trend",40
+137,"web server",120
+137,"web archiving",80
+137,"http page cache",79
+137,"digital library",70
+137,"load balancer",70
+137,"page cache",50
+137,"page cache server",47
+137,"archiving process",40
+137,"autoscaling group",40
+137,"server performance",40
+137,"zhiwu xie",40
+138,"library special collection",47
+139,"keyphrase extraction",130
+139,"prior knowledge",120
+139,"controlled vocabulary",110
+139,"supervised learning algorithm",110
+139,"prior probability",100
+139,"keyphras candidate",50
+139,"candidate keyphras",40
+139,"keyphrase candidate",40
+139,"optimal weight",40
+139,"prior knowledge tf idf",40
+140,"neural network",50
+140,"self learning library",47
+140,"analytical model",40
+140,"sample rate",40
+140,"vibration data",40
+141,"narrative image",50
+141,"image region",40
+141,"narrative image annotation model",40
+142,"digital collection",110
+142,"digital library",80
+142,"measuring reuse",70
+142,"collecting use statistic",63
+142,"reuse data",60
+142,"cultural heritage organization",47
+142,"digital object",40
+143,"mobile reading",210
+143,"reading behavior",147
+143,"mobile reading behavior",142
+143,"page reading duration",95
+143,"reading session",70
+143,"reading break duration",63
+143,"hyper attention",60
+143,"reading schedule",60
+143,"professional book",50
+143,"bib bib id",47
+143,"long tail effect",47
+143,"mobile reading environment",47
+143,"page jumping record",47
+143,"reading session duration",47
+143,"type periodical number",47
+143,"book genre",40
+143,"fine reading behavior data",40
+143,"power law",40
+143,"user reading",40
+144,"cross technology",140
+144,"environmental protection industry",63
+144,"information technology industry",63
+144,"new energy industry",63
+144,"high end equipment manufacturing",60
+144,"material industry",50
+144,"equipment manufacturing industry",47
+144,"energy saving",40
+144,"new energy vehicle industry",40
+145,"rough co citation",285
+145,"co citation clustering",174
+145,"rough co citation relationship",80
+145,"additional citing document",63
+145,"citation clustering technique",63
+145,"citation relationship",50
+145,"distance matrix",50
+145,"full text",50
+145,"full text search",47
+145,"similar citation context",47
+145,"source document",40
+146,"digital library search",79
+146,"digital library",70
+146,"sally jo cunningham",63
+146,"word wrap problem",47
+146,"david bainbridge",40
+146,"full text",40
+146,"stephen downie",40
+147,"seed term",90
+147,"seed concept",70
+147,"semantic disambiguation",70
+147,"digital library",50
+147,"seeding strategy",50
+147,"craig taube schock",47
+147,"full semantic analysis",47
+147,"loose semantic connection",47
+147,"cic network",40
+147,"david bainbridge",40
+147,"seeding process",40
+147,"semantic connection",40
+147,"stephen downie",40
+150,"page level",50
+150,"digital library",40
+150,"solr server",40
+150,"spark framework",40
+151,"smart library",410
+151,"term smart library",79
+151,"meta synthesis",60
+151,"knowledge infrastructure",40
+151,"text analysis",40
+152,"human defined topic name topic",46
+154,"digital library",140
+154,"exact match",60
+154,"identify surrogate",50
+154,"slight variation",50
+154,"open access surrogate",47
+154,"near match",40
+154,"open access surrogate resource",40
+155,"integrated information system",79
+155,"metadata policy",50
+155,"library resource discovery",47
+155,"copyright roadmap",40
+155,"license agreement",40
+155,"right metadata",40
+156,"frequently used interaction tactic",80
+156,"academic library user interaction",60
+156,"interaction tactic",40
+156,"video information retrieval system",40
+157,"wikimedia project",90
+157,"talk page",80
+157,"collaborative infrastructure",60
+157,"activity theory",50
+157,"study used content analysis",40
+158,"landing page",135
+158,"relation type",70
+158,"entry page uri",63
+158,"landing page entry",63
+158,"page entry page",63
+158,"http uri landing page",60
+158,"alamos national laboratory",47
+158,"doi uri identifying",47
+158,"http link header",47
+158,"bibliographic resource",40
+158,"link relation",40
+158,"signposting concept",40
+160,"web page",130
+160,"warc file",110
+160,"preserving web page",63
+160,"web archives",60
+160,"api key",40
+160,"mat kelly",40
+160,"running archivenow",40
+160,"spacex falcon heavy everything",40
+160,"web archiving",40
+161,"custom element",140
+161,"archival banner",90
+161,"archival replay",62
+161,"mat kelly",50
+161,"sawood alam",50
+161,"extensible archival replay banner",40
+161,"provenance information",40
+161,"user experience",40
+161,"web archival replay system",40
+162,"research paper",290
+162,"paper recommender system",142
+162,"research paper recommender",142
+162,"learning material",130
+162,"recommender system",120
+162,"e book system",110
+162,"recommended paper",70
+162,"book system bookroll",47
+162,"answer type",40
+162,"institutional repository",40
+162,"university student",40
+163,"song lyric",140
+163,"word embedding",100
+163,"user interpretation",90
+163,"word vector",90
+163,"topic classification",50
+163,"vector representation",50
+163,"j stephen downie",47
+163,"jin ha lee",47
+163,"lyric topic classification",47
+163,"topic classification task",47
+163,"classification system",40
+163,"user comment",40
+164,"user satisfaction",230
+164,"mobile library service",221
+164,"service quality",200
+164,"mobile service",110
+164,"library service",95
+164,"academic library",80
+164,"mobile library",80
+164,"resource quality",70
+164,"environment quality",60
+164,"interaction quality",60
+164,"outcome quality",60
+164,"sub dimension",50
+164,"academic library user",47
+164,"customer satisfaction index",47
+164,"library service quality",47
+164,"perceived service quality",47
+164,"context awareness",40
+164,"mobile network",40
+164,"public library",40
+165,"professional field",130
+165,"fundamental data",80
+165,"hotspot tracking model",79
+165,"sci tech information",79
+165,"tech information resource",79
+165,"hot topic",50
+165,"information resource",50
+165,"candidate hotspot tij",47
+165,"candidate potential hotspot",47
+165,"feature word",40
+165,"organization name",40
+165,"potential hotspot",40
+166,"web resource",130
+166,"referenced resource",90
+166,"link decoration",70
+166,"robust link",60
+166,"alamos national laboratory",47
+166,"martin klein",40
+166,"reference rot",40
+166,"scholarly communication",40
+166,"scholarly record",40
+166,"web archives",40
+167,"intelligence analysis",110
+167,"digital library",80
+167,"information science",80
+167,"research librarian",80
+167,"intelligence analysis service",79
+167,"decision making",70
+167,"research library",60
+167,"information analysis",50
+167,"knowledge management",50
+167,"providing intelligence analysis",47
+167,"knowledge discovery",40
+167,"north texa",40
+168,"digital library",120
+168,"digital object",90
+168,"triple store",60
+168,"item content",50
+168,"hathitrust research center",47
+168,"rdf workset representation",47
+168,"computational analysis",40
+168,"intra item",40
+168,"item metadata",40
+168,"workset model",40
+169,"research data",167
+169,"research data service",126
+169,"research data lifecycle",95
+169,"research data management",79
+169,"data lifecycle",70
+169,"data management",70
+169,"american academic library",63
+169,"technical support rds",63
+169,"academic library",50
+169,"technical support",50
+169,"content analysis",40
+169,"data access",40
+169,"data curation",40
+169,"information architecture",40
+170,"linked data",50
+170,"maryland college park",47
+170,"brown dog",40
+170,"digital repository",40
+170,"dra tic",40
+170,"information study",40
+171,"event description",80
+171,"time range",80
+171,"event class",50
+171,"event category",40
+171,"historical event",40
+171,"ranking method",40
+172,"experiment series",80
+172,"explicit experiment model",79
+172,"data management",70
+172,"attribute attribute attribute",63
+172,"digital medium lab university",60
+172,"de digital medium lab",40
+172,"experiment library",40
+172,"explicit model",40
+172,"material science",40
+172,"system biology",40
+173,"public understanding",160
+173,"scientific text",120
+173,"northern illinois university dekalb",80
+173,"scientific literacy",70
+173,"average word length",63
+173,"civic scientific literacy",47
+173,"random forest regressor",47
+173,"regression model",40
+174,"digital library",60
+174,"graphical model",50
+174,"topical impact",50
+174,"beta distribution",40
+174,"citation count",40
+174,"topical prevalence",40
+175,"machine learning",125
+175,"digital library",120
+175,"applied machine learning",63
+175,"digital library system",63
+175,"machine learning application",47
+175,"natural language processing",47
+177,"digital library",320
+177,"mass scale digital library",100
+177,"large scale digital library",80
+177,"scale digital library",71
+177,"hathitrust digital library",47
+177,"hathitrust research center",47
+177,"nebraska lincoln",40
+178,"topic space",177
+178,"topic space module",142
+178,"space recommendation model",47
+178,"topic space api",47
+178,"topic space recommendation",47
+178,"information system",40
+178,"long tail",40
+178,"search term",40
+178,"undergraduate library",40
+179,"digital library",315
+179,"cultural heritage digital library",180
+179,"cultural heritage",96
+179,"methodological framework",70
+179,"environmental scanning",50
+179,"inuvialuit settlement region",47
+179,"community member",40
+179,"inuit community",40
+180,"digital library",80
+180,"digital library system",63
+180,"smart digital library",63
+180,"data infrastructure",60
+180,"smart infrastructure",60
+180,"infrastructure data",50
+180,"complex adaptive system",47
+180,"human centered community",47
+180,"design thinking and visioning",40
+180,"qualitative research",40
+181,"computer science zhejiang",79
+181,"visualization scheme",70
+181,"chinese herbal medicine data",60
+181,"main entity",60
+181,"child entity",50
+181,"entity relationship",50
+181,"secondary entity",50
+181,"university hangzhou",50
+181,"visualization system",50
+181,"paper node",40
+182,"entity mixture",155
+182,"entity mixture detection",110
+182,"detecting entity mixture",63
+182,"knowledge base",60
+182,"hierarchical clustering",50
+182,"occurrence vector",50
+182,"mixed entity",40
+183,"cloud service",285
+183,"cloud computing",70
+183,"maintaining cloud service",63
+183,"deploying cloud service",47
+183,"library staff",40
+183,"serving patron",40
+184,"cross language citation",221
+184,"cross language",190
+184,"language citation recommendation",126
+184,"semi supervised random walk",100
+184,"language citation",87
+184,"supervised random walk algorithm",80
+184,"citation relation",75
+184,"cross language content",63
+184,"citation recommendation",60
+184,"machine translation",50
+184,"publication representation",50
+184,"citation representation fusion",47
+184,"language citation relation",47
+184,"content semantic",40
+184,"cross language semantic matching",40
+184,"digital library",40
+184,"dimensional joint embedding space",40
+184,"language semantic matching relation",40
+184,"low dimensional joint embedding",40
+184,"novel cross language citation",40
+185,"semantic information",275
+185,"mathematical expression",270
+185,"computer algebra system",269
+185,"andre greiner petter",174
+185,"intelligent computer mathematics",110
+185,"pom tagger",110
+185,"mathematical formula",100
+185,"computer science",90
+185,"word processor",80
+185,"master s thesis",79
+185,"algebra system",75
+185,"inverse hyperbolic",70
+185,"sufficient semantic information",63
+185,"digital library",60
+185,"generic latex",60
+185,"latex expression",60
+185,"semantic latex",60
+185,"semantic preserving bijective mapping",60
+185,"syntax tree",60
+185,"content mathml",50
+185,"doctoral consortium",50
+185,"doctoral research",50
+185,"jacobi polynomial",50
+185,"perform translation",50
+185,"scientific paper",50
+185,"search engine",50
+185,"surrounding text",50
+185,"translation tool",50
+185,"visited feb",50
+185,"pom tagger project",47
+186,"news article",120
+186,"main event",80
+186,"article main event",63
+187,"di erent start year",80
+187,"start year",70
+187,"next ve year",63
+188,"news archives",110
+188,"named entity",90
+188,"temporal expression",90
+188,"semantic aspect",60
+188,"time interval",50
+188,"pseudo relevant document",47
+188,"pseudo relevant set",47
+188,"semantic annotation",40
+189,"eye tracking",85
+189,"eye tracker",70
+189,"user experience",70
+189,"dual monitor setup",47
+189,"eye tracking tool",47
+189,"hd ultimate bundle",47
+190,"query suggestion",240
+190,"aware diversified query suggestion",80
+190,"time point",70
+190,"candidate query",60
+190,"time aware query suggestion",60
+190,"information retrieval",50
+190,"time aware",50
+190,"query suggestion diversification",47
+190,"time aware query",47
+190,"hitting time",40
+191,"conditional token probability",79
+191,"name extraction",75
+191,"web page",70
+191,"structural feature",50
+191,"information extraction task",47
+191,"name extraction problem",47
+191,"web data extraction",47
+192,"converging technology",340
+192,"technological convergence",100
+192,"high end equipment manufacturing",80
+192,"equipment manufacturing industry",63
+192,"strategic emerging industry",63
+192,"co occurrence matrix",47
+192,"quintuple patent family",47
+192,"technical structure map",47
+192,"identifying and analyzing converging technology",46
+192,"cross industry",40
+192,"material industry",40
+193,"citation context",245
+193,"citation context list",79
+193,"semantic distance",60
+193,"diversification strategy",50
+193,"score difference",50
+194,"econstor author",90
+194,"external identifier",60
+194,"authority data",50
+194,"leibniz information center",47
+194,"zbw leibniz information",47
+194,"authority control",40
+194,"authority file",40
+194,"concept application",40
+194,"linked data",40
+195,"smart library",425
+195,"term smart library",79
+195,"knowledge infrastructure",40
+195,"library automation",40
+195,"meta synthesis",40
+195,"stark county district library",40
+195,"text analysis",40
+196,"author contribution section",63
+196,"contribution section",60
+196,"role mention",60
+196,"author role",50
+196,"biomedical publication",50
+196,"paper review",50
+196,"adapt centre trinity",47
+196,"centre trinity college",47
+196,"college dublin ireland",47
+196,"micro averaged precision",47
+196,"trinity college dublin",47
+196,"natural language",40
+196,"role extractor",40
+197,"rough co citation",301
+197,"co citation clustering",158
+197,"co citation relationship",79
+197,"additional citing document",63
+197,"scientific paper search",63
+197,"distance matrix",50
+197,"full text",50
+197,"citation clustering technique",47
+197,"full text search",47
+197,"citing document",40
+197,"clustering technique",40
+197,"rough co citation relationship",40
+197,"source document",40
+197,"weak co citation relationship",40
+198,"convolutional neural network",47
+198,"sentence level comparison",47
+198,"sentence level",40
+198,"wikipedia article",40
+199,"accepted article",70
+199,"computer science",60
+199,"research article",60
+199,"affl max doc",47
+199,"auth max cit",47
+199,"desk rejected paper",47
+199,"citation count",40
+199,"premier institution",40
+199,"rejected article",40
+200,"co authorship network",95
+200,"link prediction problem",95
+200,"link prediction",90
+200,"neighbor weighted",60
+200,"data mining",50
+200,"knowledge discovery",50
+200,"network embedding",50
+200,"recommender system",50
+200,"national research university",47
+200,"machine learning",40
+201,"authority record",135
+201,"linked data enabling element",80
+201,"authority data",70
+201,"data element",65
+201,"personal name authority record",60
+201,"rda based data element",60
+201,"pre rda field",47
+201,"linked data",40
+201,"personal name",40
+201,"rda based marc authority",40
+202,"precision medicine",50
+203,"author name disambiguation",95
+203,"content similarity",80
+203,"word embedding",80
+203,"co author similarity",79
+203,"co author evidence",47
+203,"publication co author",47
+203,"ambiguous author",40
+203,"light weight semantic feature",40
+203,"publication title",40
+204,"digital library",170
+204,"problem project based learning",60
+204,"claypool publisher",40
+204,"content based image retrieval",40
+204,"social network",40
+204,"virginia tech",40
+205,"machine learning",100
+205,"deep neural network",95
+205,"neural network",80
+205,"convolutional neural network",47
+205,"method o evaluation",47
+205,"o experimental method",47
+205,"recurrent neural network",47
+205,"digital library",40
+205,"evaluation measure",40
+206,"eir service",210
+206,"academic library",170
+206,"university library",150
+206,"kwazulu natal",90
+206,"strategic initiative",90
+206,"north central nigeria",79
+206,"sustaining eir service",79
+206,"mixed method",60
+206,"strategic planning",60
+206,"information science",50
+206,"information study",50
+206,"library service",50
+206,"strategic plan",50
+206,"academic librarian",40
+206,"data collection",40
+206,"doctoral consortium",40
+206,"higher education",40
+206,"ict technical support staff",40
+206,"ifla wlic",40
+206,"natal pietermaritzburg",40
+206,"sustaining eir",40
+207,"knowledge management",907
+207,"nursing care",344
+207,"knowledge management resource",190
+207,"nursing care delivery",142
+207,"knowledge management system",126
+207,"resource based view",126
+207,"teaching hospital",125
+207,"technical km resource",110
+207,"selected teaching hospital",95
+207,"social km resource",95
+207,"registered nurse",90
+207,"human km resource",79
+207,"knowledge management tool",79
+207,"management system",70
+207,"sample size",70
+207,"cultural km resource",63
+207,"knowledge management effectiveness",63
+207,"structural km resource",63
+207,"health care",60
+207,"health institution",60
+207,"kwa zulu",60
+207,"nursing practice",60
+207,"organizational performance",60
+207,"pilot study",60
+207,"south africa telephone number",60
+207,"competitive advantage",50
+207,"information science",50
+207,"nursing process",50
+207,"patient care",50
+207,"qualitative data",50
+208,"south africa",300
+208,"university teaching hospital",253
+208,"medical doctor",230
+208,"ict medical doctor",174
+208,"communication technology",130
+208,"selected university teaching hospital",120
+208,"texa usa",110
+208,"university teaching",80
+208,"health technology assessment",79
+208,"delta state",70
+208,"teaching hospital",70
+208,"healthcare service delivery",63
+208,"wilson chukwunedum ochonogor",63
+208,"kwazulu natal",60
+208,"research question",60
+208,"survey research",60
+208,"health care",50
+208,"information study",50
+208,"information technology",50
+208,"institutional theory",50
+208,"research problem",50
+208,"social science",50
+208,"jcdl doctoral consortium",47
+208,"sustainable development goal",47
+208,"mixed method",40
+208,"mobile phone delivery vehicle",40
+208,"qualitative data",40
+208,"sample size",40
+209,"e library database",380
+209,"academic staff",340
+209,"library database",226
+209,"electronic library database",126
+209,"information science",110
+209,"north central nigeria",95
+209,"ethnographic study",60
+209,"online database",60
+209,"social science",60
+209,"university library",50
+209,"academic subject librarian",47
+209,"doctoral consortium",40
+209,"library philosophy",40
+209,"nigerian university",40
+209,"qualitative research",40
+209,"research output",40
+209,"subject librarian",40
+210,"digital preservation",546
+210,"digital curation",270
+210,"stephen abram",180
+210,"digital library",150
+210,"jcdl doctoral consortium",142
+210,"digital preservation efficacy",95
+210,"digital preservation enterprise",79
+210,"mixed method research",79
+210,"preservation enabled communication",79
+210,"preserved digital resource",79
+210,"preservation enterprise",70
+210,"preserved resource",70
+210,"digital information",60
+210,"information system",60
+210,"conceptual framework",50
+210,"human communication",50
+210,"preservation management",50
+210,"preservation success",50
+210,"research program",50
+210,"long term preservation",47
+210,"archival science",40
+210,"contingent and contextualized nature",40
+210,"data management",40
+210,"digital resource",40
+210,"information science",40
+210,"open ended time horizon",40
+210,"preservation efficacy",40
+210,"preservation outcome",40
+210,"principal investigator",40
+210,"theorizing success",40
+211,"research collaboration",190
+211,"faculty hiring",120
+211,"interdisciplinary research",80
+211,"future impact",70
+211,"scienti c impact",63
+211,"social network analysis",63
+211,"citation count",60
+211,"faculty member",60
+211,"future scienti",60
+211,"information science",60
+211,"texa usa",60
+211,"digital library",50
+211,"doctoral consortium",50
+211,"future research",50
+211,"institutional prestige",50
+211,"multidisciplinary institution",50
+211,"national academy",50
+211,"zhiya zuo",50
+211,"carnegie classi cation",47
+211,"citation based measure",47
+211,"faculty hiring network",47
+211,"future research impact",47
+211,"academic career",40
+211,"hiring decision",40
+211,"interdisciplinary collaboration",40
+211,"scientific impact",40
+212,"formula concept",437
+212,"recommender system",334
+212,"stem document",320
+212,"formula concept discovery",190
+212,"formula pattern",130
+212,"formula concept recognition",110
+212,"mathematical concept",110
+212,"mathematical formula",100
+212,"wikidata item",90
+212,"klein gordon equation",79
+212,"named entity recognition",79
+212,"research paper recommender",79
+212,"wikipedia article",70
+212,"mathematical information retrieval",63
+212,"paper recommender system",63
+212,"defining formula",50
+212,"digital library",50
+212,"information retrieval",50
+212,"recommendation generation",50
+212,"semantic web",50
+212,"stem discipline",50
+212,"formula pattern discovery",47
+212,"formula pattern recognition",47
+212,"latex source code",47
+212,"mathematical formula concept",47
+212,"scharpf uni konstanz",47
+212,"content based literature exploration",40
+212,"content based recommender system",40
+212,"formula syntax",40
+212,"mathematical argumentation",40
+213,"social medium",651
+213,"social medium marketing",280
+213,"strategic social medium marketing",120
+213,"elaboration likelihood model",110
+213,"social medium engagement",110
+213,"university library",110
+213,"social medium marketing framework",100
+213,"successful social medium marketing",100
+213,"medium marketing",90
+213,"user engagement",90
+213,"academic library",70
+213,"library service",70
+213,"undergraduate student",70
+213,"social networking site",63
+213,"information science",60
+213,"social medium platform",47
+213,"social medium strategy",47
+213,"information study",40
+213,"information technology",40
+213,"library marketing",40
+213,"victoria university",40
+214,"experiment model",515
+214,"research data",244
+214,"data documentation",221
+214,"research data management",221
+214,"data management",200
+214,"research work ow",174
+214,"experiment series",170
+214,"material science",130
+214,"series based experiment model",120
+214,"experiment design",110
+214,"digital library",100
+214,"data documentation process",95
+214,"domain expert",80
+214,"domain speci",80
+214,"xed parameter",80
+214,"computer science",70
+214,"susanne putze",70
+214,"c experiment model",63
+214,"comprehensive experiment model",63
+214,"data management system",63
+214,"experiment model view",63
+214,"speci c experiment",63
+214,"advanced information system engineering",60
+214,"domain model",60
+214,"infosy system",60
+214,"research question",60
+214,"data discovery",50
+214,"experimental design",50
+214,"metadata standard",50
+214,"rainer malaka",50
+215,"digital library",366
+215,"information seeking behavior",285
+215,"information seeking",260
+215,"saudi digital library",206
+215,"academic library",180
+215,"stimulated recall",123
+215,"saudi arabia",110
+215,"academic digital library",95
+215,"cross language information",95
+215,"information retrieval system",95
+215,"language information seeking",95
+215,"cross language",90
+215,"information science",90
+215,"seeking behavior",80
+215,"american library association",63
+215,"saudi student studying",63
+215,"florida state",60
+215,"saudi digital library user",60
+215,"electronic library",50
+215,"information behavior",50
+215,"semi structured interview",47
+215,"stimulated recall interview",47
+215,"stimulated recall methodology",47
+215,"arabic language",40
+215,"doctoral consortium",40
+215,"graduate student",40
+215,"information resource",40
+215,"information retrieval",40
+215,"library management",40
+215,"library website",40
+216,"digital curation",160
+216,"computer supported cooperative work",140
+216,"data curation",130
+216,"florida state",100
+216,"social identity theory",95
+216,"self determination theory",79
+216,"activity theory",70
+216,"information science",70
+216,"knowledge curation work",63
+216,"digital library",60
+216,"goal setting",60
+216,"open collaboration",60
+216,"university tallahassee",60
+216,"intrinsic motivator",50
+216,"record lifecycle",50
+216,"talk page",50
+216,"teaching assistant",50
+216,"qualitative content analysis",47
+216,"quantitative content analysis",47
+216,"semi structured interview",47
+216,"activity system",40
+216,"american society",40
+216,"content analysis",40
+216,"online peer production community",40
+216,"scientific research institutional repository",40
+216,"similar online production community",40
+216,"wikipedia article",40
+217,"digital humanity",110
+217,"digital library",50
+218,"smartphone usage",100
+218,"learning disability",90
+218,"digital citizenship",60
+218,"critical thinking",50
+218,"attention deficit hyperactivity",47
+218,"deficit hyperactivity disorder",47
+218,"inquiry based learning",47
+218,"risk taking behavior",47
+218,"digital responsibility",40
+219,"semantic similarity",360
+219,"academic literature",235
+219,"recommender system",225
+219,"visualization concept",200
+219,"plagiarism detection",156
+219,"use case",137
+219,"semantic feature",130
+219,"stem field",130
+219,"digital library",120
+219,"literature recommendation",110
+219,"citation pattern",100
+219,"recommended literature",100
+219,"semantic similarity measure",95
+219,"text based similarity",95
+219,"image based similarity",79
+219,"information science",70
+219,"mathematical formula",70
+219,"semantic analysis",70
+219,"stem literature",70
+219,"content based recommendation",63
+219,"pd use case",63
+219,"semantically enriched recommendation",63
+219,"citation based plagiarism detection",60
+219,"doctoral consortium corinna breitinger",60
+219,"texa usa",60
+219,"information need",50
+219,"information retrieval",50
+219,"semantic marker",50
+219,"independent semantic marker",47
+219,"paper recommender system",47
+220,"electronic document",265
+220,"electronic document archiving",237
+220,"set archiving",180
+220,"record management",110
+220,"archives science study",95
+220,"e government system",95
+220,"electronic record management",95
+220,"dual set archiving",79
+220,"sun yat sen",63
+220,"yat sen university",63
+220,"document single set archiving",60
+220,"annual meeting",50
+220,"electronic record",50
+220,"research project",50
+220,"electronic document single set",40
+220,"electronic record management system",40
+220,"heng hou",40
+220,"practical work",40
+220,"research question",40
+220,"sixth china archives career",40
+221,"archive it collection",332
+221,"web archive collection",316
+221,"old dominion university",174
+221,"social card",160
+221,"web archives",150
+221,"collection understanding",130
+221,"seed memento",130
+221,"user task",115
+221,"improving collection understanding",110
+221,"semantic category",100
+221,"computer science",80
+221,"digital library",80
+221,"live web curation platform",80
+221,"natural language processing",79
+221,"topic modeling",70
+221,"representative memento",60
+221,"seed uri",60
+221,"semantic type",60
+221,"web page",60
+221,"dominion university",55
+221,"old dominion",55
+221,"path depth",50
+221,"web archiving",50
+221,"yasmin alnoamany",50
+221,"boston marathon bombing",47
+221,"good information scent",47
+221,"individual memento visualization",47
+221,"many user task",47
+221,"memento mediawiki extension",47
+221,"world wide web",47
+222,"social medium",410
+222,"micro collection",290
+222,"dougla high school shooting",180
+222,"archive it collection",174
+222,"collection building",140
+222,"twitter moment",110
+222,"archived collection",100
+222,"web archive collection",95
+222,"ebola virus",90
+222,"research effort",90
+222,"stoneman dougla",90
+222,"computer science",80
+222,"internet archive",80
+222,"seed collection",80
+222,"bootstrapping web archive",79
+222,"flint water crisis",79
+222,"old dominion university",79
+222,"user generated collection",79
+222,"generating seed",70
+222,"news storey",70
+222,"search engine",70
+222,"various topic",70
+222,"collection building process",63
+222,"local memory project",63
+222,"michael l nelson",63
+222,"bootstrapping web archive collection",60
+222,"collection characterization",60
+222,"ron fonger",60
+222,"web archive",55
+222,"brief test",50
+223,"archived web page",840
+223,"xity information",827
+223,"web page",525
+223,"web archives",366
+223,"archived web",285
+223,"archived page",260
+223,"archived resource",230
+223,"hash value",160
+223,"archived content",120
+223,"generating xity information",110
+223,"repeatable xity information",110
+223,"web archiving",100
+223,"data model",95
+223,"multiple archives",90
+223,"trusty uri",90
+223,"generate xity",80
+223,"http response header",79
+223,"archived xity information",63
+223,"establishing and verifying",63
+223,"published xity information",63
+223,"technical report arxiv",63
+223,"di erent hash value",60
+223,"digital library",60
+223,"embedded resource",60
+223,"verifying fixity",60
+223,"web archive",60
+223,"malicious change",55
+223,"computer science",50
+223,"internet archive",50
+223,"memento protocol",50
+224,"social network",120
+224,"computer science",100
+224,"social medium",90
+224,"twitter profile",90
+224,"entity resolution",80
+224,"linkedin profile",70
+224,"gold standard dataset",63
+224,"science old dominion university",60
+224,"twitter account",55
+224,"official twitter account",47
+224,"old dominion university",47
+224,"social medium profile",47
+224,"dear jcdl doctoral consortium member",46
+224,"community analysis",40
+224,"contact information",40
+224,"feature selection",40
+224,"matching algorithm",40
+224,"search engine",40
+224,"social graph community analysis",40
+224,"social medium profile data",40
+224,"social profile",40
+224,"user profile",40
+225,"level novelty detection",412
+225,"document level novelty",348
+225,"peer review",180
+225,"natural language processing",174
+225,"computer science",150
+225,"novelty detection",150
+225,"research article",130
+225,"target document",130
+225,"natural language inference",126
+225,"academic peer review system",120
+225,"level novelty",103
+225,"scientific article",100
+225,"source document",100
+225,"natural language",95
+225,"artificial intelligence",90
+225,"information retrieval",90
+225,"tirthankar ghosal",90
+225,"accepted article",80
+225,"argumentation mining",80
+225,"quality prediction",80
+225,"scope detection",80
+225,"peer review system",79
+225,"sentence level novelty",79
+225,"asif ekbal",70
+225,"iit patna",70
+225,"author editor reviewer",63
+225,"editor reviewer interaction",63
+225,"nucleic acid research",63
+225,"desk rejection",60
+225,"textual entailment",60
+226,"utah valley university",158
+226,"carl eric scott",63
+226,"negotiated text network",63
+226,"engaged learning",60
+226,"quill project",50
+226,"software platform",50
+226,"alfie abdul rahman",47
+226,"valley university utah",47
+226,"Nichola cole",40
+226,"rodney smith",40
+226,"samuel corry",40

@@ -10,7 +10,6 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData
-from getInsight import parseAuthorCSVFile
 
 from be.models.CsvDataBuilder import CsvDataBuilder
 from be.models.CsvData import CsvData
@@ -48,8 +47,6 @@ def uploadCSV(request):
 			#datadict for column mapping
 			dataDictionary = {}
 			dataDictionary = (request.POST).dict()
-			# print dataDictionary
-
 			rowContent = ""
 
 			if "author.csv" in fileName:
