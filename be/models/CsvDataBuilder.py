@@ -3,6 +3,7 @@ from CsvData import CsvData
 import csv
 import codecs
 from collections import Counter
+
 from polls.utils import getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime
 
 '''
