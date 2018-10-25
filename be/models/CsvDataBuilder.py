@@ -4,7 +4,7 @@ import csv
 import codecs
 from collections import Counter
 
-from polls.utils import getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, testCSVFileFormatMatching, isNumber, parseSubmissionTime
+from polls.utils import getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime
 
 '''
 Represents a builder class to build csv data from an uploaded csv file
