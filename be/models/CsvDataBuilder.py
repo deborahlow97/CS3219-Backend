@@ -483,5 +483,5 @@ class CsvDataBuilder:
         combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", dict)
         
         # TODO: implement parameters and put into parsedResult
-        
+        parsedResult = {}
         return parsedResult
