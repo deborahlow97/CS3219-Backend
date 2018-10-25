@@ -4,7 +4,7 @@ import csv
 import codecs
 from collections import Counter
 
-from polls.utils import combineLinesOnKey, parseCSVFile, parseCSVFileInverted, testCSVFileFormatMatching, isNumber, parseSubmissionTime
+from polls.utils import getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, testCSVFileFormatMatching, isNumber, parseSubmissionTime
 
 '''
 Represents a builder class to build csv data from an uploaded csv file
@@ -146,14 +146,7 @@ class CsvDataBuilder:
         """
 
         parsedResult = {}
-        #Case 1: Header given in CSV File - array is empty
-        if not authorDict:
-            lines = parseCSVFile(inputFile)[1:]
-        #Case 2: Header not given in CSV file 
-        else:
-            lines = parseCSVFile(inputFile)
-        
-        lines = [ele for ele in lines if ele]
+        lines = getLinesFromInputFile(inputFile, authorDict)
 
         #invertedLines = parseCSVFileInverted(lines)
 
@@ -207,14 +200,8 @@ class CsvDataBuilder:
         """
 
         parsedResult = {}
-        #Case 1: Header given in CSV File - array is empty
-        if not reviewDict:
-            lines = parseCSVFile(inputFile)[1:]
-        #Case 2: Header not given in CSV file 
-        else:
-            lines = parseCSVFile(inputFile)
+        lines = getLinesFromInputFile(inputFile, reviewDict)
 
-        lines = [ele for ele in lines if ele]
         evaluation = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines]
         submissionIDs = set([str(line[int(reviewDict.get("review.Submission #"))]) for line in lines])
 
@@ -282,15 +269,7 @@ class CsvDataBuilder:
         """
 
         parsedResult = {}
-        #Case 1: Header given in CSV File - array is empty
-        if not submissionDict:
-            lines = parseCSVFile(inputFile)[1:]
-        #Case 2: Header not given in CSV file 
-        else:
-            lines = parseCSVFile(inputFile)
-
-        #change list of list to -> remove empty rows
-        lines = [ele for ele in lines if ele]
+        lines = getLinesFromInputFile(inputFile, submissionDict)
 
         """
             lines = []
@@ -406,17 +385,8 @@ class CsvDataBuilder:
         inputFile2 = self.csvDataList[index].csvFiles.get('review')
 
         parsedResult = {}
-        #Case 1: Header given in CSV File - array is empty
-        if not dict:
-            lines1 = parseCSVFile(inputFile1)[1:]
-            lines2 = parseCSVFile(inputFile2)[1:]
-        #Case 2: Header not given in CSV file 
-        else:
-            lines1 = parseCSVFile(inputFile1)
-            lines2 = parseCSVFile(inputFile2)
-
-        lines1 = [ele for ele in lines1 if ele]
-        lines2 = [ele for ele in lines2 if ele]
+        lines1 = getLinesFromInputFile(inputFile1, dict)
+        lines2 = getLinesFromInputFile(inputFile2, dict)
 
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", dict)
         
@@ -430,17 +400,8 @@ class CsvDataBuilder:
         inputFile2 = self.csvDataList[index].csvFiles.get('submission')
 
         parsedResult = {}
-        #Case 1: Header given in CSV File - array is empty
-        if not dict:
-            lines1 = parseCSVFile(inputFile1)[1:]
-            lines2 = parseCSVFile(inputFile2)[1:]
-        #Case 2: Header not given in CSV file 
-        else:
-            lines1 = parseCSVFile(inputFile1)
-            lines2 = parseCSVFile(inputFile2)
-
-        lines1 = [ele for ele in lines1 if ele]
-        lines2 = [ele for ele in lines2 if ele]
+        lines1 = getLinesFromInputFile(inputFile1, dict)
+        lines2 = getLinesFromInputFile(inputFile2, dict)
 
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "submission.Submission #", dict)
         
@@ -453,18 +414,8 @@ class CsvDataBuilder:
         inputFile1 = self.csvDataList[index].csvFiles.get('review')
         inputFile2 = self.csvDataList[index].csvFiles.get('submission')
 
-        parsedResult = {}
-        #Case 1: Header given in CSV File - array is empty
-        if not dict:
-            lines1 = parseCSVFile(inputFile1)[1:]
-            lines2 = parseCSVFile(inputFile2)[1:]
-        #Case 2: Header not given in CSV file 
-        else:
-            lines1 = parseCSVFile(inputFile1)
-            lines2 = parseCSVFile(inputFile2)
-
-        lines1 = [ele for ele in lines1 if ele]
-        lines2 = [ele for ele in lines2 if ele]
+        lines1 = getLinesFromInputFile(inputFile1, dict)
+        lines2 = getLinesFromInputFile(inputFile2, dict)
 
         combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", dict)
         
