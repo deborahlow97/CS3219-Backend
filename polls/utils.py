@@ -9,6 +9,28 @@ def isNumber(inputStr):
 	except ValueError:
 		return False
 
+def getLinesFromInputFile(inputFile, dict):
+	#Case 1: Header given in CSV File - array is empty
+	if not dict:
+		lines = parseCSVFile(inputFile)[1:]
+	#Case 2: Header not given in CSV file 
+	else:
+		lines = parseCSVFile(inputFile)
+    
+	#change list of list to -> remove empty rows
+	lines = [ele for ele in lines if ele]
+	return lines
+
+def combineLinesOnKey(lines1, lines2, key1, key2, dict):
+	combinedLines = []
+	for ele1 in lines1:
+		for ele2 in lines2:
+			if (ele1[dict.get(key1)] == ele2[dict.get(key2)]): 
+				combinedLines.append(ele1 + ele2)
+				lines2.remove(ele2)
+				break
+	return combinedLines
+
 def parseCSVFile(inputFile):
 	"""
 	Parse the uploaded CSV file
@@ -22,7 +44,7 @@ def parseCSVFile(inputFile):
 	csvFile = inputFile
 	print inputFile
 	print ("startSniffing")
-	dialect = csv.Sniffer().sniff(codecs.EncodedFile(csvFile, "utf-8").read(1024))
+	# dialect = csv.Sniffer().sniff(codecs.EncodedFile(csvFile, "utf-8").read(1024))
 	print ("endSniffing")
 	csvFile.open()
 	# reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect=dialect)
