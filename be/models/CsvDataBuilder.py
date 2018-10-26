@@ -136,8 +136,11 @@ class CsvDataBuilder:
     '''
     ==================================== GET INFO METHODS =====================================
     '''
-    def getAuthorInfo(self, index):
-        authorDict = self.csvDataList[index].order
+    def getAuthorInfo(self, index, dict = None):
+        if (dict is None):
+            authorDict = self.csvDataList[index].order
+        else:
+            authorDict = dict
         inputFile = self.csvDataList[index].csvFiles.get('author')
 
         """
@@ -177,8 +180,11 @@ class CsvDataBuilder:
         #print (parsedResult['topAffiliations'])
         return parsedResult
 
-    def getReviewInfo(self, index):
-        reviewDict = self.csvDataList[index].order
+    def getReviewInfo(self, index, dict = None):
+        if (dict is None):
+            reviewDict = self.csvDataList[index].order
+        else:
+            reviewDict = dict
         inputFile = self.csvDataList[index].csvFiles.get('review')
         # print reviewDict
 
@@ -266,8 +272,11 @@ class CsvDataBuilder:
         parsedResult['reviewTimeSeries'] = reviewTimeSeries
         return parsedResult
         
-    def getSubmissionInfo(self, index):
-        submissionDict = self.csvDataList[index].order
+    def getSubmissionInfo(self, index, dict = None):
+        if (dict is None):
+            submissionDict = self.csvDataList[index].order
+        else:
+            submissionDict = dict
         inputFile = self.csvDataList[index].csvFiles.get('submission')
 
         """
@@ -433,15 +442,22 @@ class CsvDataBuilder:
         return parsedResult
 
     def getReviewSubmissionInfo(self, index):
-        dict = self.csvDataList[index].order
+        combinedDict = self.csvDataList[index].order
+        reviewDict = self.getReviewOrder(index)
+        submissionDict = self.getSubmissionOrder(index)
+
         inputFile1 = self.csvDataList[index].csvFiles.get('review')
         inputFile2 = self.csvDataList[index].csvFiles.get('submission')
 
-        lines1 = getLinesFromInputFile(inputFile1, dict)
-        lines2 = getLinesFromInputFile(inputFile2, dict)
+        parsedResult = {}
+        lines1 = getLinesFromInputFile(inputFile1, combinedDict)
+        lines2 = getLinesFromInputFile(inputFile2, combinedDict)
 
-        combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", dict)
+        combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", reviewDict, submissionDict)
         
+        reviewInfo = self.getReviewInfo(index, reviewDict)
+        submissionInfo = self.getSubmissionInfo(index, submissionDict)
+
         # TODO: implement parameters and put into parsedResult
         parsedResult = {}
         return parsedResult

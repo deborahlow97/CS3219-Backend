@@ -32,11 +32,11 @@ def combineOrderDict(dict1, dict2):
 	return dict3
 	
 
-def combineLinesOnKey(lines1, lines2, key1, key2, dict):
+def combineLinesOnKey(lines1, lines2, key1, key2, dict1, dict2):
 	combinedLines = []
 	for ele1 in lines1:
 		for ele2 in lines2:
-			if (ele1[dict.get(key1)] == ele2[dict.get(key2)]): 
+			if (ele1[dict1.get(key1)] == ele2[dict2.get(key2)]):
 				combinedLines.append(ele1 + ele2)
 				lines2.remove(ele2)
 				break
