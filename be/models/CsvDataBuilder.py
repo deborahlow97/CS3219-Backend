@@ -3,7 +3,8 @@ from CsvData import CsvData
 import csv
 import codecs
 from collections import Counter
-from polls.utils import getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime
+
+from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime
 
 '''
 Represents a builder class to build csv data from an uploaded csv file
@@ -33,19 +34,15 @@ class CsvDataBuilder:
             order = self.getSubmissionOrder(index)
         elif type == "author.review":
             print ("author + review")
-            order = dict(self.getAuthorOrder(index))
-            order.update(self.getReviewOrder(index))
+            order = combineOrderDict(self.getAuthorOrder(index), self.getReviewOrder(index))
         elif type == "author.submission":
             print ("author + submission")
-            order = dict(self.getAuthorOrder(index))
-            order.update(self.getSubmissionOrder(index))
+            order = combineOrderDict(self.getAuthorOrder(index), self.getSubmissionOrder(index))
         elif type == "review.submission":
             print ("submission + review")
-            order = dict(self.getReviewOrder(index))
-            order.update(self.getSubmissionOrder(index))
+            order = combineOrderDict(self.getReviewOrder(index), self.getSubmissionOrder(index))
         elif type == "author.review.submission":
-            # TODO: Update 3 files code
-            order = self.getAuthorOrder(index)
+            # Not doing
             print ("author + review + submission")
         else:
             print ("ERROR: No such type")
@@ -65,7 +62,6 @@ class CsvDataBuilder:
         elif type == "submission":
             info = self.getSubmissionInfo(index)
         elif type == "author.review":
-            print("HDFJLKGRFRDEFGBNHFMJYUHGTRFE")
             info = self.getAuthorReviewInfo(index)
             print ("author + review")
         elif type == "author.submission":
@@ -75,8 +71,8 @@ class CsvDataBuilder:
             info = self.getReviewSubmissionInfo(index)
             print ("submission + review")
         elif type == "author.review.submission":
-            # TODO: Update 3 files code
-            info = self.getAuthorInfo(index)
+            # Not doing
+            info = {}
             print ("author + review + submission")            
         else:
             print ("ERROR: No such info")
@@ -132,6 +128,9 @@ class CsvDataBuilder:
             elif "submission." in key:
                 submissionDict.update({str(key): int(value)})
 
+        # for key, value in submissionDict.iteritems():
+        #     print key
+        #     print value
         return submissionDict
 
     '''
@@ -235,7 +234,7 @@ class CsvDataBuilder:
 
         for submissionID in submissionIDs:
             reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
-
+            # print reviews
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 

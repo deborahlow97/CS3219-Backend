@@ -69,7 +69,6 @@ def uploadCSV(request):
 		
 		# Combined visualisations
 		if (hasFiles[0] and hasFiles[1]): # author + review
-			print("author and review")
 			csvDataBuilder.addCsvData("author.review", dataDictionary, csvFiles)
 		if (hasFiles[0] and hasFiles[2]): # author + submission
 			csvDataBuilder.addCsvData("author.submission", dataDictionary, csvFiles)

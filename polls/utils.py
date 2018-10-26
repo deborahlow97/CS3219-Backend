@@ -21,6 +21,17 @@ def getLinesFromInputFile(inputFile, hasHeader):
 	lines = [ele for ele in lines if ele]
 	return lines
 
+def combineOrderDict(dict1, dict2):
+	# order of dict1, dict2 matters! should match with combineLinesOnKey
+	dict3 = dict(dict1)
+	size = len(dict1) - 1
+	for key in dict2.keys():
+		if (".HasHeader" not in key):
+			dict2[key] = dict2[key] + size
+	dict3.update(dict2)
+	return dict3
+	
+
 def combineLinesOnKey(lines1, lines2, key1, key2, dict):
 	combinedLines = []
 	for ele1 in lines1:
@@ -44,7 +55,7 @@ def parseCSVFile(inputFile):
 	csvFile = inputFile
 	print inputFile
 	print ("startSniffing")
-	#dialect = csv.Sniffer().sniff(codecs.EncodedFile(csvFile, "utf-8").read(1024))
+	# dialect = csv.Sniffer().sniff(codecs.EncodedFile(csvFile, "utf-8").read(1024))
 	print ("endSniffing")
 	csvFile.open()
 	# reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect=dialect)
