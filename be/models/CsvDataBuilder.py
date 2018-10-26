@@ -237,36 +237,36 @@ class CsvDataBuilder:
         for index, col in enumerate(recommendDistributionCounts):
             recommendDistributionLabels[index] = str(0 + 0.1 * index) + " ~ " + str(0 + 0.1 * index + 0.1)
 
-        # for submissionID in submissionIDs:
-        #     reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
-        #     confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
-        #     scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
+        for submissionID in submissionIDs:
+            reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
+            confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
+            scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
-        #     confidenceList.append(sum(confidences) / len(confidences))
-        #     # recommends = [1.0 for review in reviews if review.split("\n")[2].split(": ")[1] == "yes" else 0.0]
-        #     try:
-        #         recommends = map(lambda review: 1.0 if review.split("\n")[2].split(": ")[1] == "yes" else 0.0, reviews)
-        #     except:
-        #         recommends = [0.0 for n in range(len(reviews))]
-        #     weightedScore = sum(x * y for x, y in zip(scores, confidences)) / sum(confidences)
-        #     weightedRecommend = sum(x * y for x, y in zip(recommends, confidences)) / sum(confidences)
+            confidenceList.append(sum(confidences) / len(confidences))
+            # recommends = [1.0 for review in reviews if review.split("\n")[2].split(": ")[1] == "yes" else 0.0]
+            try:
+                recommends = map(lambda review: 1.0 if review.split("\n")[2].split(": ")[1] == "yes" else 0.0, reviews)
+            except:
+                recommends = [0.0 for n in range(len(reviews))]
+            weightedScore = sum(x * y for x, y in zip(scores, confidences)) / sum(confidences)
+            weightedRecommend = sum(x * y for x, y in zip(recommends, confidences)) / sum(confidences)
 
-        #     scoreColumn = min(int((weightedScore + 3) / 0.25), 23)
-        #     recommendColumn = min(int((weightedRecommend) / 0.1), 9)
-        #     scoreDistributionCounts[scoreColumn] += 1
-        #     recommendDistributionCounts[recommendColumn] += 1
-        #     submissionIDReviewMap[submissionID] = {'score': weightedScore, 'recommend': weightedRecommend}
-        #     scoreList.append(weightedScore)
-        #     recommendList.append(weightedRecommend)
+            scoreColumn = min(int((weightedScore + 3) / 0.25), 23)
+            recommendColumn = min(int((weightedRecommend) / 0.1), 9)
+            scoreDistributionCounts[scoreColumn] += 1
+            recommendDistributionCounts[recommendColumn] += 1
+            submissionIDReviewMap[submissionID] = {'score': weightedScore, 'recommend': weightedRecommend}
+            scoreList.append(weightedScore)
+            recommendList.append(weightedRecommend)
 
-        # parsedResult['IDReviewMap'] = submissionIDReviewMap
-        # parsedResult['scoreList'] = scoreList
-        # parsedResult['meanScore'] = sum(scoreList) / len(scoreList)
-        # parsedResult['meanRecommend'] = sum(recommendList) / len(recommendList)
-        # parsedResult['meanConfidence'] = sum(confidenceList) / len(confidenceList)
-        # parsedResult['recommendList'] = recommendList
+        parsedResult['IDReviewMap'] = submissionIDReviewMap
+        parsedResult['scoreList'] = scoreList
+        parsedResult['meanScore'] = sum(scoreList) / len(scoreList)
+        parsedResult['meanRecommend'] = sum(recommendList) / len(recommendList)
+        parsedResult['meanConfidence'] = sum(confidenceList) / len(confidenceList)
+        parsedResult['recommendList'] = recommendList
         parsedResult['scoreDistribution'] = {'labels': scoreDistributionLabels, 'counts': scoreDistributionCounts}
-        # parsedResult['recommendDistribution'] = {'labels': recommendDistributionLabels, 'counts': recommendDistributionCounts}
+        parsedResult['recommendDistribution'] = {'labels': recommendDistributionLabels, 'counts': recommendDistributionCounts}
         parsedResult['reviewTimeSeries'] = reviewTimeSeries
         return parsedResult
         
@@ -436,17 +436,25 @@ class CsvDataBuilder:
         return parsedResult
 
     def getAuthorSubmissionInfo(self, index):
-        dict = self.csvDataList[index].order
+        authorDict = self.getAuthorOrder(index)
+        submissionDict = self.getSubmissionOrder(index)
+        combinedDict = self.csvDataList[index].order
+
         inputFile1 = self.csvDataList[index].csvFiles.get('author')
         inputFile2 = self.csvDataList[index].csvFiles.get('submission')
 
         parsedResult = {}
-        lines1 = getLinesFromInputFile(inputFile1, dict)
-        lines2 = getLinesFromInputFile(inputFile2, dict)
+        lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("author.HasHeader")))
+        lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
 
-        combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "submission.Submission #", dict)
+        combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "submission.Submission #", authorDict, submissionDict)
         
+        authorInfo = self.getAuthorInfo(index, authorDict)
+        submissionInfo = self.getSubmissionInfo(index, submissionDict)
+
         # TODO: implement parameters and put into parsedResult
+
+        print type(authorInfo['topAuthors'])
 
         return parsedResult
 
@@ -458,8 +466,8 @@ class CsvDataBuilder:
         inputFile2 = self.csvDataList[index].csvFiles.get('submission')
 
         parsedResult = {}
-        lines1 = getLinesFromInputFile(inputFile1, combinedDict)
-        lines2 = getLinesFromInputFile(inputFile2, combinedDict)
+        lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("review.HasHeader")))
+        lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
         combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", reviewDict, submissionDict)
         
         reviewInfo = self.getReviewInfo(index, reviewDict)
@@ -467,7 +475,6 @@ class CsvDataBuilder:
 
         # TODO: implement parameters and put into parsedResult
         tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in combinedLines]).keys())
-        expertiseLevels = dict()
         expertiseByTrack = dict()
         # expertiseSR = expertiseByTrack
         for track in tracks:
@@ -478,9 +485,10 @@ class CsvDataBuilder:
             expertiseLevels = dict(Counter(dataListForCurrentTrack))
             expertiseByTrack[track] = expertiseLevels
 
-        parsedResult['expertiseSR'] = {'labels': tracks, 'data': list(expertiseByTrack.values()) }
+        parsedResult['expertiseSR'] = {'labels': tracks, 'data': list(expertiseByTrack.values())}
+        
         # print ("====================================")
-        # print parsedResult['expertiseSR']
+        # print reviewInfo['scoreList']
         # print ("====================================")
 
         return parsedResult
