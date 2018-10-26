@@ -406,32 +406,59 @@ class CsvDataBuilder:
         lines1 = getLinesFromInputFile(inputFile1, bool(dict.get("author.HasHeader")))
         lines2 = getLinesFromInputFile(inputFile2, bool(dict.get("review.HasHeader")))
 
-        combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", dict)
+        combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", authorDict, reviewDict)
+        # print ("=====")
+        # print (combinedLines)
         reviewInfo = self.getReviewInfo(index, reviewDict)
         authorInfo = self.getAuthorInfo(index, authorDict)
         #computedResults = getComputedResult()
-        # Top 10 Authors (by mean review score across all the authors submissions) bar : author names (x axis) mean score (y axis) topAuthorsAR.
-        # Affiliation distribution of top 10 authors  pie chart:affiliation distribution affiliationDistributionAR
-        # Country distribution of top 10 authors  pie chart:country distribution countryDistributionAR
-        # Top 10 countries with highest mean scores  bar : countries ( x-axis), mean score(y-axis)  topCountriesAR
-        # Top 10 affiliations with highest mean scores  bar : affiliations( x-axis), mean score(y-axis)  topAffiliationsAR
+        # 1. Top 10 Authors (by mean review score across all the authors submissions) bar : author names (x axis) mean score (y axis) topAuthorsAR.
+        # 2. Affiliation distribution of top 10 authors  pie chart:affiliation distribution affiliationDistributionAR
+        # 3. Country distribution of top 10 authors  pie chart:country distribution countryDistributionAR
+        # 4. Top 10 countries with highest mean scores  bar : countries ( x-axis), mean score(y-axis)  topCountriesAR
+        # 5. Top 10 affiliations with highest mean scores  bar : affiliations( x-axis), mean score(y-axis)  topAffiliationsAR
         # Top 10 authors that were recommended for best paper  : authors names (x-axis),
         #acceptedSubmission = [line for line in lines if str(line[int(submissionDict.get("submission.Decision"))]) == 'accept']
-        #infoDict where name is key and reviewScore is value
+        combinedOrderDict = combineOrderDict(authorDict, reviewDict)
+        # print ("========")
+        # print (combinedOrderDict)
+        name = []
+        reviewScore = []
+        affiliation = []
+        country = []
+        #name and reviewScore MUST be given
+        for Info in combinedLines:
+            name.append(str(Info[int(combinedOrderDict.get("author.First Name"))]) + " " + str(Info[int(combinedOrderDict.get("author.Last Name"))]))
+            reviewScore.append(int(Info[int(combinedOrderDict.get("review.Overall Evaluation Score"))]))
+            affiliation.append(str(Info[int(combinedOrderDict.get("author.Organization"))]))
+            country.append(str(Info[int(combinedOrderDict.get("author.Country"))]))
 
-        # infoDict = {}
-        # for info in combinedLines:
-        #     #authorInfo = line.replace("\"", "").split(",")
-        #     infoDict.update(
-        #         {str(info[int(dict.get("author.First Name"))]) + " " + str(info[int(dict.get("author.Last Name"))]) :
-        #         str(info[int(dict.get("review.Overall Evaluation Score"))])})
+        infoAndScore = zip(reviewScore, name, affiliation, country)[:10]
+        infoAndScore.sort(reverse=True)
 
-        # hi = sorted(infoDict, key = infoDict.get, reverse=True)[:10]
+        affiliationAndScore = zip(reviewScore, affiliation)
+        affiliationAndScore.sort(reverse=True)
 
-        # TODO: implement parameters and put into parsedResult
-        parsedResult['topAuthorsAR'] =  1       #topAuthorsScore
-        parsedResult['affiliationDistributionAR'] = 1
-        parsedResult['countryDistributionAR'] = 1 
+        #HashMap with author Name as key
+
+        authorScoreMap = {}
+        for Info in combinedLines:
+            name = str(Info[int(combinedOrderDict.get("author.First Name"))] + " " + Info[int(combinedOrderDict.get("author.Last Name"))])
+            score = int(Info[int(combinedOrderDict.get("review.Overall Evaluation Score"))])
+            if name not in authorScoreMap:
+                authorScoreMap[name] = [score]
+            else:
+                authorScoreMap[name].append(score)
+
+        for x in authorScoreMap:
+            print (x)
+
+        parsedResult['topAuthorsAR'] =  {'authors': [ele[0] for ele in infoAndScore],
+        'score': [ele[1] for ele in infoAndScore]}       #topAuthorsScore
+        parsedResult['affiliationDistributionAR'] = {'organization': [ele[2] for ele in infoAndScore],
+        'score': [ele[1] for ele in infoAndScore]}
+        parsedResult['countryDistributionAR'] = {'authors': [ele[3] for ele in infoAndScore],
+        'score': [ele[1] for ele in infoAndScore]} 
         parsedResult['topCountriesAR'] = 1
         parsedResult['topAffiliationsAR'] = 1
 
