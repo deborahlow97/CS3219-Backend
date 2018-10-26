@@ -4,11 +4,13 @@ import csv
 import codecs
 from collections import Counter
 from polls.utils import getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime
+from polls import ConferenceType
 
 '''
 Represents a builder class to build csv data from an uploaded csv file
 '''
 class CsvDataBuilder:
+    
     def __init__(self):
         self.csvDataList = []
         self.size = 0
@@ -65,7 +67,6 @@ class CsvDataBuilder:
         elif type == "submission":
             info = self.getSubmissionInfo(index)
         elif type == "author.review":
-            print("HDFJLKGRFRDEFGBNHFMJYUHGTRFE")
             info = self.getAuthorReviewInfo(index)
             print ("author + review")
         elif type == "author.submission":
@@ -181,7 +182,6 @@ class CsvDataBuilder:
     def getReviewInfo(self, index):
         reviewDict = self.csvDataList[index].order
         inputFile = self.csvDataList[index].csvFiles.get('review')
-        # print reviewDict
 
         """
         review.csv
@@ -388,16 +388,18 @@ class CsvDataBuilder:
 
     def getAuthorReviewInfo(self, index):
         dict = self.csvDataList[index].order
+
         inputFile1 = self.csvDataList[index].csvFiles.get('author')
         inputFile2 = self.csvDataList[index].csvFiles.get('review')
 
         parsedResult = {}
         lines1 = getLinesFromInputFile(inputFile1, bool(dict.get("author.HasHeader")))
-        lines2 = getLinesFromInputFile(inputFile2, bool(dict.get("reviw.HasHeader")))
+        lines2 = getLinesFromInputFile(inputFile2, bool(dict.get("review.HasHeader")))
 
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", dict)
 
-        #computedResults = getComputedResult()
+        # infoArr = ["author", "review"]
+        # computedResults = getComputedResult(infoArr)
         # Top 10 Authors (by mean review score across all the authors submissions) bar : author names (x axis) mean score (y axis) topAuthorsAR.
 
         # Affiliation distribution of top 10 authors  pie chart:affiliation distribution affiliationDistributionAR
