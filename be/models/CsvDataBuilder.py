@@ -3,14 +3,13 @@ from CsvData import CsvData
 import csv
 import codecs
 from collections import Counter
+
 from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime
-from polls import ConferenceType
 
 '''
 Represents a builder class to build csv data from an uploaded csv file
 '''
 class CsvDataBuilder:
-    
     def __init__(self):
         self.csvDataList = []
         self.size = 0
@@ -105,6 +104,7 @@ class CsvDataBuilder:
             elif "author." in key:
                 authorDict.update({str(key): int(value)})
 
+        print authorDict
         return authorDict
 
     def getReviewOrder(self, index):
@@ -127,11 +127,9 @@ class CsvDataBuilder:
             if "submission.HasHeader" in key:
                 submissionDict.update({str(key): bool(value)})
             elif "submission." in key:
+
                 submissionDict.update({str(key): int(value)})
 
-        # for key, value in submissionDict.iteritems():
-        #     print key
-        #     print value
         return submissionDict
 
     '''
@@ -187,6 +185,7 @@ class CsvDataBuilder:
         else:
             reviewDict = dict
         inputFile = self.csvDataList[index].csvFiles.get('review')
+        # print reviewDict
 
         """
         review.csv
@@ -199,6 +198,7 @@ class CsvDataBuilder:
         """
 
         parsedResult = {}
+
         lines = getLinesFromInputFile(inputFile, bool(reviewDict.get("review.HasHeader")))
 
         evaluation = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines]
@@ -396,6 +396,8 @@ class CsvDataBuilder:
 
     def getAuthorReviewInfo(self, index):
         dict = self.csvDataList[index].order
+        reviewDict = self.getReviewOrder(index)
+        authorDict = self.getAuthorOrder(index)
 
         inputFile1 = self.csvDataList[index].csvFiles.get('author')
         inputFile2 = self.csvDataList[index].csvFiles.get('review')
@@ -405,31 +407,28 @@ class CsvDataBuilder:
         lines2 = getLinesFromInputFile(inputFile2, bool(dict.get("review.HasHeader")))
 
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", dict)
-
-        # infoArr = ["author", "review"]
-        # computedResults = getComputedResult(infoArr)
+        reviewInfo = self.getReviewInfo(index, reviewDict)
+        authorInfo = self.getAuthorInfo(index, authorDict)
+        #computedResults = getComputedResult()
         # Top 10 Authors (by mean review score across all the authors submissions) bar : author names (x axis) mean score (y axis) topAuthorsAR.
-
         # Affiliation distribution of top 10 authors  pie chart:affiliation distribution affiliationDistributionAR
-
         # Country distribution of top 10 authors  pie chart:country distribution countryDistributionAR
-
         # Top 10 countries with highest mean scores  bar : countries ( x-axis), mean score(y-axis)  topCountriesAR
-
         # Top 10 affiliations with highest mean scores  bar : affiliations( x-axis), mean score(y-axis)  topAffiliationsAR
         # Top 10 authors that were recommended for best paper  : authors names (x-axis),
-
-        # TODO: implement parameters and put into parsedResult
         #acceptedSubmission = [line for line in lines if str(line[int(submissionDict.get("submission.Decision"))]) == 'accept']
         #infoDict where name is key and reviewScore is value
-        infoDict = {}
-        for info in combinedLines:
-            #authorInfo = line.replace("\"", "").split(",")
-            infoDict.update(
-                {str(info[int(dict.get("author.First Name"))]) + " " + str(info[int(dict.get("author.Last Name"))]) :
-                str(info[int(dict.get("review.Overall Evaluation Score"))])})
 
-        hi = sorted(infoDict, key = infoDict.get, reverse=True)[:10]
+        # infoDict = {}
+        # for info in combinedLines:
+        #     #authorInfo = line.replace("\"", "").split(",")
+        #     infoDict.update(
+        #         {str(info[int(dict.get("author.First Name"))]) + " " + str(info[int(dict.get("author.Last Name"))]) :
+        #         str(info[int(dict.get("review.Overall Evaluation Score"))])})
+
+        # hi = sorted(infoDict, key = infoDict.get, reverse=True)[:10]
+
+        # TODO: implement parameters and put into parsedResult
         parsedResult['topAuthorsAR'] =  1       #topAuthorsScore
         parsedResult['affiliationDistributionAR'] = 1
         parsedResult['countryDistributionAR'] = 1 
