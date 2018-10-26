@@ -103,7 +103,9 @@ class CsvDataBuilder:
         authorDict = {}
 
         for key, value in dataDictionary.iteritems():
-            if "author." in key:
+            if "author.HasHeader" in key:
+                authorDict.update({str(key): bool(value)})
+            elif "author." in key:
                 authorDict.update({str(key): int(value)})
 
         return authorDict
@@ -113,7 +115,9 @@ class CsvDataBuilder:
         reviewDict = {}
 
         for key, value in dataDictionary.iteritems():
-            if "review." in key:
+            if "review.HasHeader" in key:
+                reviewDict.update({str(key): bool(value)})
+            elif "review." in key:
                 reviewDict.update({str(key): int(value)})
 
         return reviewDict
@@ -123,12 +127,11 @@ class CsvDataBuilder:
         submissionDict = {}
 
         for key, value in dataDictionary.iteritems():
-            if "submission." in key:
+            if "submission.HasHeader" in key:
+                submissionDict.update({str(key): bool(value)})
+            elif "submission." in key:
                 submissionDict.update({str(key): int(value)})
 
-        # for key, value in submissionDict.iteritems():
-        #     print key
-        #     print value
         return submissionDict
 
     '''
@@ -146,7 +149,7 @@ class CsvDataBuilder:
 
         parsedResult = {}
 
-        lines = getLinesFromInputFile(inputFile, authorDict)
+        lines = getLinesFromInputFile(inputFile, bool(authorDict.get("author.HasHeader")))
         authorList = []
         print len(lines)
 
@@ -182,9 +185,6 @@ class CsvDataBuilder:
 
         """
         review.csv
-        data format: 
-        review ID | paper ID? | reviewer ID | reviewer name | unknown | text | scores | overall score | unknown | unknown | unknown | unknown | date | time | recommend?
-        File has NO header
 
         score calculation principles:
         Weighted Average of the scores, using reviewer's confidence as the weights
@@ -194,7 +194,7 @@ class CsvDataBuilder:
         """
 
         parsedResult = {}
-        lines = getLinesFromInputFile(inputFile, reviewDict)
+        lines = getLinesFromInputFile(inputFile, bool(reviewDict.get("review.HasHeader")))
 
         evaluation = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines]
         submissionIDs = set([str(line[int(reviewDict.get("review.Submission #"))]) for line in lines])
@@ -273,13 +273,10 @@ class CsvDataBuilder:
 
         """
         submission.csv
-        data format: 
-        submission ID | track ID | track name | title | authors | submit time | last update time | form fields | keywords | decision | notified | reviews sent | abstract
-        File has header
         """
 
         parsedResult = {}
-        lines = getLinesFromInputFile(inputFile, submissionDict)
+        lines = getLinesFromInputFile(inputFile, bool(submissionDict.get("submission.HasHeader")))
 
         """
             lines = []

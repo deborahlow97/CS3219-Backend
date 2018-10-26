@@ -9,9 +9,9 @@ def isNumber(inputStr):
 	except ValueError:
 		return False
 
-def getLinesFromInputFile(inputFile, dict):
-	#Case 1: Header given in CSV File - array is empty
-	if not dict:
+def getLinesFromInputFile(inputFile, hasHeader):
+	#Case 1: Header given. hasHeader == true
+	if hasHeader:
 		lines = parseCSVFile(inputFile)[1:]
 	#Case 2: Header not given in CSV file 
 	else:
