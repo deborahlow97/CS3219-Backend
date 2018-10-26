@@ -411,6 +411,16 @@ class CsvDataBuilder:
         # Top 10 authors that were recommended for best paper  : authors names (x-axis),
 
         # TODO: implement parameters and put into parsedResult
+        #acceptedSubmission = [line for line in lines if str(line[int(submissionDict.get("submission.Decision"))]) == 'accept']
+        #infoDict where name is key and reviewScore is value
+        infoDict = {}
+        for info in combinedLines:
+            #authorInfo = line.replace("\"", "").split(",")
+            infoDict.update(
+                {str(info[int(dict.get("author.First Name"))]) + " " + str(info[int(dict.get("author.Last Name"))]) :
+                str(info[int(dict.get("review.Overall Evaluation Score"))])})
+
+        hi = sorted(infoDict, key = infoDict.get, reverse=True)[:10]
         parsedResult['topAuthorsAR'] =  1       #topAuthorsScore
         parsedResult['affiliationDistributionAR'] = 1
         parsedResult['countryDistributionAR'] = 1 

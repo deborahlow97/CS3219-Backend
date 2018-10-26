@@ -2,7 +2,7 @@ import csv
 import codecs
 from collections import Counter
 
-from utils import parseCSVFile, testCSVFileFormatMatching, isNumber, parseSubmissionTime
+from utils import parseCSVFile, isNumber, parseSubmissionTime
 
 def getReviewScoreInfo(inputFile):
 	"""
