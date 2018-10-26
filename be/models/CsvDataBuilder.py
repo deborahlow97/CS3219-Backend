@@ -454,7 +454,13 @@ class CsvDataBuilder:
 
         # TODO: implement parameters and put into parsedResult
 
-        print type(authorInfo['topAuthors'])
+        parsedResult['topCountriesAS'] = {}
+        parsedResult['topAffiliationsAS'] = {}
+        parsedResult['organizationDistributionAS'] = {}
+
+        print ("====================================")
+        print parsedResult['topCountriesAS']
+        print ("====================================")
 
         return parsedResult
 
@@ -482,11 +488,11 @@ class CsvDataBuilder:
             for line in combinedLines:
                 if (line[int(combinedDict.get("submission.Track Name"))] == track):
                     dataListForCurrentTrack.append(line[int(combinedDict.get("review.Field #"))])
-            expertiseLevels = dict(Counter(dataListForCurrentTrack))
-            expertiseByTrack[track] = expertiseLevels
+            expertiseByTrack[track] = dict(Counter(dataListForCurrentTrack))
 
         parsedResult['expertiseSR'] = {'labels': tracks, 'data': list(expertiseByTrack.values())}
-        
+        parsedResult['averageScoreSR'] = {}
+
         # print ("====================================")
         # print reviewInfo['scoreList']
         # print ("====================================")
