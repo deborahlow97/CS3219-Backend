@@ -392,12 +392,29 @@ class CsvDataBuilder:
         inputFile2 = self.csvDataList[index].csvFiles.get('review')
 
         parsedResult = {}
-        lines1 = getLinesFromInputFile(inputFile1, dict)
-        lines2 = getLinesFromInputFile(inputFile2, dict)
+        lines1 = getLinesFromInputFile(inputFile1, bool(dict.get("author.HasHeader")))
+        lines2 = getLinesFromInputFile(inputFile2, bool(dict.get("reviw.HasHeader")))
 
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", dict)
-        
+
+        #computedResults = getComputedResult()
+        # Top 10 Authors (by mean review score across all the authors submissions) bar : author names (x axis) mean score (y axis) topAuthorsAR.
+
+        # Affiliation distribution of top 10 authors  pie chart:affiliation distribution affiliationDistributionAR
+
+        # Country distribution of top 10 authors  pie chart:country distribution countryDistributionAR
+
+        # Top 10 countries with highest mean scores  bar : countries ( x-axis), mean score(y-axis)  topCountriesAR
+
+        # Top 10 affiliations with highest mean scores  bar : affiliations( x-axis), mean score(y-axis)  topAffiliationsAR
+        # Top 10 authors that were recommended for best paper  : authors names (x-axis),
+
         # TODO: implement parameters and put into parsedResult
+        parsedResult['topAuthorsAR'] =  1       #topAuthorsScore
+        parsedResult['affiliationDistributionAR'] = 1
+        parsedResult['countryDistributionAR'] = 1 
+        parsedResult['topCountriesAR'] = 1
+        parsedResult['topAffiliationsAR'] = 1
 
         return parsedResult
 
