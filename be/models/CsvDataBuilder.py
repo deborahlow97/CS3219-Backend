@@ -448,18 +448,39 @@ class CsvDataBuilder:
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
 
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "submission.Submission #", authorDict, submissionDict)
-        
+        print combinedLines[0]
+        print combinedLines[1]
+
         authorInfo = self.getAuthorInfo(index, authorDict)
         submissionInfo = self.getSubmissionInfo(index, submissionDict)
 
         # TODO: implement parameters and put into parsedResult
+        topCountriesList = authorInfo['topCountries']['labels']
+        decisionBasedOnTopCountries = dict()
+        for country in topCountriesList:
+            decisionForCurrentCountry = []
+            for line in combinedLines:
+                if (line[int(combinedDict.get("author.Country"))] == country):
+                    decisionForCurrentCountry.append(line[int(combinedDict.get("submission.Decision"))]) #currently includes keywords also, possibly because of how csv is parsed
+            decisionBasedOnTopCountries[country] = dict(Counter(decisionForCurrentCountry))
 
-        parsedResult['topCountriesAS'] = {}
-        parsedResult['topAffiliationsAS'] = {}
+        topAffiliationsList = authorInfo['topAffiliations']['labels']
+        decisionBasedOnTopAffiliations = dict()
+        for org in topAffiliationsList:
+            decisionForCurrentAffiliation = []
+            for line in combinedLines:
+                if (line[int(combinedDict.get("author.Organization"))] == org):
+                    decisionForCurrentAffiliation.append(line[int(combinedDict.get("submission.Decision"))]) #currently includes keywords also, possibly because of how csv is parsed
+            decisionBasedOnTopAffiliations[country] = dict(Counter(decisionForCurrentAffiliation))
+
+        parsedResult['topCountriesAS'] = decisionBasedOnTopCountries
+        parsedResult['topAffiliationsAS'] = decisionBasedOnTopAffiliations
         parsedResult['organizationDistributionAS'] = {}
 
         print ("====================================")
-        print parsedResult['topCountriesAS']
+        print combinedDict.get("submission.Decision")
+        # print parsedResult['topCountriesAS']
+        print parsedResult['topAffiliationsAS']
         print ("====================================")
 
         return parsedResult
