@@ -570,13 +570,6 @@ class CsvDataBuilder:
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
         combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", reviewDict, submissionDict)
         
-        for key, value in combinedDict.items():
-            print key
-        #if "review.Comments" not in key:
-            if "review.Overall Evaluation Score" in key:
-                print [str(ele[value]) for ele in combinedLines]
-                print ("====================================")
-
         reviewInfo = self.getReviewInfo(index, reviewDict)
         submissionInfo = self.getSubmissionInfo(index, submissionDict)
 
