@@ -1,0 +1,1013 @@
+1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
+1,2,48,Juxxxx Bruxxxx,1,(OVERALL EVALUATION) Incorrect format and unrelated content,"Overall evaluation: -3
+Reviewer's confidence: 5
+Recommend for best paper: no",-3,,,,,2018-02-13,03:04,no
+2,2,63,Vitxxxx Casxxxx,2,"(OVERALL EVALUATION) The topic is interesting, and undoubtedly touches upon very important economic aspects of the world-wide coffee trade. However, I believe that it would be of interest to a (very) small group of JCDL attendees. I would suggest to present this topic to a more appropriate event.","Overall evaluation: -1
+Reviewer's confidence: 2
+Recommend for best paper: no",-1,,,,,2018-02-15,12:05,no
+3,3,48,Juxxxx Bruxxxx,1,"(OVERALL EVALUATION) This poster analyzes responses from town hall-style meetings regarding smart communities and the implications for digital libraries. I found the methods to be confusing; the author appears to have listened to meetings and derived the opinions of the participants in the meetings and the associated implications on digital libraries in smart communities. Coupled with the double blind submission, the poorly defined methods and results leave enough doubt to prevent this from being accepted.","Overall evaluation: -1
+Reviewer's confidence: 3
+Recommend for best paper: no",-1,,,,,2018-02-13,03:13,no
+4,3,63,Vitxxxx Casxxxx,2,"(OVERALL EVALUATION) Omni-comprehensive and multi-disciplinary infrastructures and their relationship with digital libraries are indeed actual topics, but in this brief abstract the considerations provided are at such a high level that they are not able to provide further insight or actual suggestions useful for those topics. Also “human centered” seem to be more buzz-words rather than actual requirements or features. 
+If this contribution will be accepted, it might be worth to better present and discuss the concept of the library as a “digital octopus”, as this is one aspect of the actual (hot) discussions whether research data should be part of the library or rather part of the “digital laboratory” (i.e. the infrastructure) supporting the research activities.","Overall evaluation: 0
+Reviewer's confidence: 4
+Recommend for best paper: no",0,,,,,2018-02-15,12:06,no
+6,4,326,Jacxxxx Saxx,1,"(OVERALL EVALUATION) The topics of the paper is clearly appropriate for the JCDL conference.  The authors presents a study of the effectiveness of four learning schemes used to predict the quality of a citation (binary:  important vs. marginal) in an corps of scientific papers (ACL corpus on computational linguistics). The experiment is based on a set of 450 citations (not so big).  
+
+In a second part, the authors propose two new learning strategies (one based on SVM and random forest, the second on a deep learning architecture).  The experiment shows that a better performance (precision, Recall, F1) can be achieved by the two new proposed schemes.  A statistical test is missing to confirm this findings.    
+
+minor points
+Who are the experts (Page 3, Section 3).
+Is the citation collection available? (Page 3, Section 3)
+Section 4.1. not fully clear:  ""Each feature is divided into four categories""  Each feature or the whole feature set?
+Section ""4 Results ..."" must be ""5. Results ..""
+In Fig 2 and 3 :  add a space before ""(area =""
+Page 7:  ""by using the-fold"" -> ""by using the three-fold""
+""6 Conclusion""  -> ""7. Conclusion""
+In the conclusion, the support for your learning scheme is a single collection... maybe another scientific domain can have a different citation pattern..
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) This is an interesting paper.  A few problems, but nothing that cannot be fixed in a final version.  
+I don't fully understand why you reject it... but that's life...","Overall evaluation: 1
+Reviewer's confidence: 4
+Recommend for best paper: no",1,,,,,2018-02-23,16:06,no
+7,4,90,Yixx Dxx,2,"(OVERALL EVALUATION) The current paper explores the rhetorical context of citations in scholarly big data. I provide several suggestions and hope the authors can consider: More sentences should be provided for better elaborating the motivation of this paper. This paper needs a thorough round of English proof reading. It also needs more methodological implications in the Conclusion section. Moreover, potential pros and cons of the algorithms in the 4.1-4.4 sections should be detailed more.","Overall evaluation: 1
+Reviewer's confidence: 4
+Recommend for best paper: no",1,Yi,Bu,buyi@iu.edu,353,2018-02-08,16:14,no
+8,4,421,Bxx Y,3,"(OVERALL EVALUATION) This paper proposed a new classifier for citation purpose classification by consolidating features from four prior models, and also a LSTM model. Overall the paper does not demonstrate significant intellectual contribution for the following reasons:
+
+First, consolidating prior models is incremental work, unless some insights were provided regarding the strength and weakness of each model, and how the new model addresses these issues. Unfortunately no such analysis was provided. 
+
+Second, the use of LSTM model cannot be justified because LSTM takes sequence input, but the 64 features do not form sequence. The parameters like 52 input units do not match with the 64 features. More details are needed to explain the implementation of the LSTM. Because the data set is rather small with only hundreds of examples, a 5-layer LSTM model is likely overfitting.  
+
+Other issues:
+
+The authors did extensive literature review on related work. It would be more helpful if the classification tasks can be specifically described along with performance comparison in that different studies used different numbers of categories and their definitions vary as well.
+
+The research method description could also include more rationale for critical choices. For example, in 3.1. why used three different tools (OpenNLP, StanfordParser and Factorie) for pre-processing? How are features like ""Author uses tools/algorithm of cited article"" extracted?","Overall evaluation: -2
+Reviewer's confidence: 4
+Recommend for best paper: no",-2,,,,,2018-02-17,05:36,no
+10,4,8,Ghxxxx Abxxxx,4,"(OVERALL EVALUATION) the authors apply the Extra-Trees classifier to extract 29 best new features and create a new model that they use to apply Random Forest and Support Vector Machine to classify reference as important or not important. The new model improves on the state of the art by 11.25 according to the experimental results.
+The paper is technically sound, the approach is described in details and the results are reasonable. My understanding is that the paper contributed two things:
+1- identified new features that will help with enhancing model accuracy
+2- compared different models using two different supervised learning approaches (SVM's and RF)
+
+The related work section is a little long for a technical paper, however, it provided a nice survey of the previous work. I wish it was shorter and the extra space was used to better explain the paper contribution and add more tables such as the confusion matrix which I like to look at since I can get more information about the model performance. 
+
+Using the LSTM was not justified especially since LSTM is not suitable for this kind of data. The only justification given is that it is a new popular approach which is not a good justification.","Overall evaluation: 1
+Reviewer's confidence: 4
+Recommend for best paper: no",1,,,,,2018-02-24,07:36,no
+12,5,326,Jacxxxx Saxx,1,"(OVERALL EVALUATION) Interesting paper.  The authors have analyzed 75 papers on experiments / presentation / descriptions of deploying cloud services for libraries. The main results focus on data, patrons, library staff, IT infrastructure, cloud services, costs, and policies & contracts. Besides these main aspects, the authors underline that the librarians must understand the IT processes.  In addition, the authors mention clearly the problems related to the legal aspects, the risks, and the importance for librarians to support the new web services. 
+
+In a second part, the paper presents seven main recommendations to help librarians in selecting / developing a set of cloud services (the service scope, managing the time, the costs, the quality, the human resource, the communication and the risks).   
+
+The style and writing of the paper is clear and easy to follow.  The organisation is good and examples are used to help the reader to understand the underlying problems / issues / possible solutions. 
+
+This paper might generate questions and discussions during the conference.","Overall evaluation: 3
+Reviewer's confidence: 4
+Recommend for best paper: yes",3,,,,,2018-03-08,21:18,no
+14,5,411,Zhxxx Xx,2,"(OVERALL EVALUATION) The paper summarizes challenges reported in papers related to library cloud adaptions, then offers some general guidelines to address these challenges. While the topic is relevant and of interest to JCDL audiences, the paper does not go deep enough to reveal much new information not already well known. The methods section lacks details, making it difficult to evaluate the validity of the results. The recommendations section makes all identified challenges a project management issue, which lacks support from the literature and experience. A few other issues:
+
+1. Figure 1 is too small. The clustering and the linking could be a major contribution of the paper but are not sufficiently addressed in the paper.
+2. It is not clear how many of the identfied challenges are library specific. It feels like that they are in general limitations of any SaaS. These issues are being addressed by the industry, e.g., via govcloud, better tooled management interfaces, and better cost estimation, etc. It’s not clear if the challenges remain unresolved or have been alleviated by these new developments.
+3. Are library journals the best place to mine these challenges? It may be the case that libraries lag behind the IT industry in cloud adoptions such that library SaaS is implemented poorer than industry average and then library personnel is poorer prepared for the transition? Or the quality of some papers can be lacking? For example, the UWHS example cited in the paper drawing from a single failure of adopting free cloud-based videoconferencing its conclusion that ‘UWHS is less likely to rely on any free, cloud application for any “critical project again”’. This clearly ignores the fact that a significant number of universities have already outsourced their email services to free google or Microsoft cloud services.
+4. The focus on SaaS, in particular ILS, does not take into considerations of many other library cloud adoptions. Many institutional repository software, including Dspace and fedora, have developed cloud images and are widely used.
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) Could still be accepted as a poster.","Overall evaluation: -1
+Reviewer's confidence: 5
+Recommend for best paper: no",-1,,,,,2018-02-17,00:33,no
+15,5,301,Bexx Plxx,3,"(OVERALL EVALUATION) The manuscript addresses the role of cloud computing in library services.  Is there a net gain to incorporating cloud services? What are they? What are the potential problems?   While cloud computing as a formalized concept has been in the lexicon of IT for over a decade, with recent growing awareness of data sensitivities and vulnerabilities, the topic remains timely.  The objective of the manuscript is strong:  illuminate the benefits and concerns to incorporating cloud computing in library services, and offer recommendations.  
+
+The manner in which the objective is achieved is deeply weak however. A fundamental weakness is an ill defined concept of cloud computing.  For instance, the authors imply that email is a cloud service. It is not, and shows confusion over the difference between distributed local area services provided by an institution and commercial cloud providers.  The authors bring some clarity to the question by naming Software As A Service (SAAS) in the abstract, but this is only mentioned in the abstract and the SAAS concept is then not carried through the body of the work.   The manuscript could be improved by carrying the concept of SAAS through the manuscript, and within that, carefully distinguishing local area services (such as those supported by the institution), private cloud services, and public cloud services.   Use a similar conceptual frame to identify library services too - those are similarly not well defined.   
+
+The two major topics of the manuscript: a challenges of cloud computing (Sections 3, 4) and a recommendation section (5). The two topics are disjoint, and appear to have been glued together given that they do not support one another, do not flow from one to the other, and have opposing assumptions.  The challenges (Sections 3, 4) appears to be a student literature survey; it is written in a halting, disconnected style that speaks to a master's student summarizing papers and hooking them together in a barely present narrative.  This incoherence between topics and a glaring lack of technical knowledge on the part of the authors results in rather absurd inferred conclusions (i.e., 4.1 para 3): Since anyone can set up a cloud account, it is advisable to not share patron data over the web.   (4.1 para 7): Data loss is a glaring threat because (Amazon) hosts can crash. The reviewer refrains from attempting to explain why these are absurd conclusions, and instead suggests that the authors can improve the manuscript by vetting the conclusions with someone with deeper technical knowledge than the authors appear to have. 
+
+The authors raise good questions about the location, rights, and protections of their major data assets.   The institution as a stakeholder has data resource management policies that affect the decision to move core data assets to a commercial cloud.  The manuscript would be strengthened by a focus on data assets of the libraries. The reviewer recommends this focus.  
+
+For this or any topic to be effective in the context of this manuscript, however, the challenges need to be crisply identified in a more coherent narrative in Sec 4, and then addressed in an integrated fashion in Sec 5.   This requires bringing together the highly disparate Sec's 4 and 5, but that is required anyway for the manuscript to approach being in a form that contributes to a reader's knowledge.  
+
+In summary, while the manuscript is far too weak for inclusion in this venue, the authors are encouraged to continue to work on the topic especially in handling the data assets of a library. It is recommended that the authors additionally engage a technical data scientist who can help crystallize the true challenges of moving to a commercial cloud.
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) The paper is heavily flawed;  it's two relatively unconnected topics glued together.  The first topic shows glaring weakness of knowledge in computing, resulting in absurd conclusions.  The second topic does not reflect any conclusions from the first topic; it is completely standalone.  I will strongly argue against this manuscript being accepted in the form that it is in.  Perhaps next year we'll see a better version.","Overall evaluation: -3
+Reviewer's confidence: 5
+Recommend for best paper: no",-3,,,,,2018-02-18,16:26,no
+17,6,2,Trxxx Aaxxxx,1,"(OVERALL EVALUATION) This short paper presents a mobile device application that supports the exploration of the physical collection in a library building by recommending relevant subject areas in other areas. Log file analysis is used to answer some specific research questions such as what trends can be identified for this kind of browsing.
+
+I find this research is interesting and relevant for the conference, but although the experiment is somewhat easy to understand, the presentation is unfocused and not yet at the level that is required for a conference publication. 
+
+In the abstract and the beginning of the paper, the paper claims to present the development and evaluation of the topic space recommendation model. I do not find that this model is presented properly anywhere in the paper, and do not see any references to other papers presenting it. It is partially described in the background section, but difficult to identify what this model actually does. In the conclusion, the name of the app that implements this module is mentioned but it is unclear if this app module is the same as the model initially indicated as the topic of the paper. 
+
+The introduction of the paper (as well as the abstract) lacks the contextualization and motivation for this experiment. I also find it inappropriate to include authors contention and personal position, as it only weakens the contribution.  In general, the paper lacks a good description with examples on how the system works and what the actual contribution is.
+
+A main contribution of this paper seems to be the log analysis that is used to answer 2 research questions. The first RQ is well formulated, but the second is hard to figure out and the author can improve the contribution from this research by more carefully designing a set of well-defined research questions. 
+
+The graphs do not render well on my print, and I suspect that this also will be a problem in the final print. Even in the pdf on screen, the images do not render well because of low resolution. 
+
+The analysis in the finding seems to be focused on what recommendations that have been made - or followed by end users. Given that the log is covering 2 years, I find the number of users and records recommended surprisingly low and indicates a mobile app that is rather infrequently used? It is somewhat unclear if they at all investigated how successful the recommendations where. Phrases like ""checkout records"" and ""strong enough for circulation"" may make sense for a librarian but is not a precise way of describing the limitations of the research. The recommendations are described as having a ""long tail power law distribution"" but the research would have been much more interesting if the authors succeeded in explaining this phenomena in terms of user experience. All in all, I find it hard to figure out what the actual findings are.
+
+The paper has a good list of publications, although the formatting needs to be improved.","Overall evaluation: -1
+Reviewer's confidence: 4
+Recommend for best paper: no",-1,,,,,2018-02-23,08:53,no
+19,6,138,Danxxxx Gxx,2,"(OVERALL EVALUATION) In the digital era, the huge number of books gets harder and harder to manage over time. In order to solve this problem, the author of this paper presents a new application in order to develop and evaluate the topic space recommendation model. 
+Also, this study presents some interesting results about how this application increases awareness and access to library services. 
+The structure of this paper is clear and  well proportioned. Also, the method is presented in detail, giving enough information about the methods used. 
+However, a few comments should be taken into account by the author:
+- Figure 1 should be placed in the paper near where it is first discussed, rather than at the end of the Introduction, if possible.
+- Proofreading is necessary to correct some minor errors (pg. 1 “to scholarly inquiry”, “has been renewed interest on” – the use of the article is recommended; “a collections”).
+The paper describe how to develop and evaluate the topic space recommendation model as an alternative to the personalization algorithm. Anyway, in order to develop this model by using a mobile application, this research has a good practical implication.
+With suggested minor improvements along these lines, this paper can make a good case for digital library development.","Overall evaluation: 2
+Reviewer's confidence: 4
+Recommend for best paper: no",2,,,,,2018-03-08,15:29,no
+20,6,427,Zhxxxx Zhxx,3,"(OVERALL EVALUATION) This paper did an analysis of how library users navigate different categories of books by using a mobile app. To be more specific, the authors analyzed the log of 18 unique mobile app users over 2 years, and analyzed how's the recommendation quality after users have scanned some book barcodes. The conclusions are that: (1) some book classes have more subsequent recommendations than others. (2) the outlier analysis shows how topic expansions are related with some attributes, and resulted in long-tail phenomenon. 
+
+My general feeling about this paper is borderline. One major issue that I'm concerned most is that there are too few users involved in this study (i.e. only 18 unique users). This might cause high variance in the subsequent analysis. Moreover, I strongly suggest the authors combine more closely Sec. 4 and Sec. 5 to show how the log analysis of the apps and Fig.2&3 lead to the conclusions in Sec.5. In its current writing, my feeling is that Sec.5 is very loosely connected with Sec.4. 
+
+My past experience on Internet-related analysis papers is that, a study like this shall be done on at least hundreds of users, and use statistics or data analysis tools to reveal some key metrics (e.g. number of expanded topics after starting item, the plot of long-tail distribution, some more quantitative analysis) which lead to the claimed conclusions. But I do acknowledge this may not apply to library science, and it's possibly wrong in this paper's case, so please use your discretion to ignore this paragraph.","Overall evaluation: 0
+Reviewer's confidence: 3
+Recommend for best paper: no",0,,,,,2018-02-16,19:35,no
+22,7,49,Juxxxx Fx,1,"(OVERALL EVALUATION) This paper presents a method of generating a representative document with a canonical timeline of events that are cataloged on Twitter by users sharing URIs of articles. In other words, the authors are using sharing activity on social media to generate a timeline for events being discussed at high volumes.
+
+The authors use hashtags, n-grams, and their associated shared URIs to generate topical indexes, and use a retweet and sharing count to identify popular topics under the assumption that popular means the event should be cataloged. 
+
+The approaches to identifying topical events is very intriguing. However, the fine-grained intent of the authors is unclear. one sentence in particular in the introduction (""While one could argue that editorial content and wikipedia pages contain the best information, many other perspectives are left behind due to attention, bias, and human scalability."") suggests that this approach is designed to incorporate multiple biases or viewpoints. However, the approach used by the authors has the potential to introduce bias. One can imagine that tweets using hashtags regarding #benghazi or #clintonemails would center around content vastly different than #trumptaxreturns or #mexicowall. Rather, timelines regarding #rogueone would be much more comprehensive. In other words, I didn't see any evaluations regarding the completeness of the timelines using this selection method to discredit any bias introduced into the resulting documents. I would have preferred to see examples of bias being removed or countered to ease my discomfort with the potential for this phenomenon to occur.
+
+My concerns about bias regardless of popularity of content is amplified in the evaluation section. The authors aim to generate a timeline of events, but only use one wikipedia article (out of 9!) that has a comparable timeline. When comparing against the wikipedia articles, the inferred timelines have a very broad set of precision and recall measures (e.g., 0.07 vs 0.80) based on the topics. It seems difficult to draw conclusions about algorithmic effectiveness given this breadth.
+
+Further, the authors use humans to identify defects in the constructed timelines. This seems to excuse low recall of events in the timeline. In other words, their evaluation identifies the number of irrelevant events in a timeline; if the recall of the timeline is low, the algorithm may perform better. However, f-measure is more indicative of the algorithm's success in this case. I would have preferred to see a canonical reference timeline (potentially generated by human experts) and the precision *and* recall and associated defects measured. 
+
+Figures 6 and 7 were not fully understandable; what is ""T"" and ""W"" on the X-axis?
+
+In summary, this paper is extremely interesting, but the evaluation and test dataset evaluation falls short.
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) I hate to be the ""non-committal reviewer"", but I truly am on the proverbial ""fence"" about this paper. I see a high value in the work (it's really neat that they are working on automatic story generation given the shutdown of storify), but think there are moderately concerning shortcomings with the evaluation. I look forward to my peers' input and will revise my review if others' have compelling arguments that I have not considered for either acceptance or rejection.
+
+UPDATE -- given my peers' comfort with this paper and my reverence for both of their high levels of expertise in the area, I have changed my review to ""Accept"";","Overall evaluation: 2
+Reviewer's confidence: 3
+Recommend for best paper: no",2,,,,,2018-02-19,17:54,no
+23,7,18,Haxxx Alxxxx,2,"(OVERALL EVALUATION) This paper proposes an interesting idea for automatically generating a story in the form of a wiki using tweets and news articles. It introduces the concept of social pseudo relevance feedback and social query expansion. 
+
+The paper offers a clear explanation of the methods used. 
+
+Here are some questions and suggestions: 
+
+- Figure 1 is mentioned in the text on page 1. However, the figure does not appear until page 3. The figure should be moved to page 2 where it would be most helpful to readers.
+- Page 2: Change “Sharif et al.” to “Sharifi et al.”
+- Page 2: “Integer LP approach.” Please state what LP stands for.
+- Page 2: A shortcoming of the paper is that it does not offer an in-depth discussion of related work. For example, “Other work includes linking online news and social media [28]” and “generating event storylines from microblogs [15]” are just the titles of the cited articles. This is not sufficient to explain anything about these studies, the literature in general, or how the current paper extends, differs from, or contributes to the research landscape. 
+-Moreover, how does the current paper differ from the following related work that was not cited: 
+- Hua, T., Zhang, X., Wang, W., Lu, C. T., & Ramakrishnan, N. (2016, October). Automatical Storyline Generation with Help from Twitter. In Proceedings of the 25th ACM International on Conference on Information and Knowledge Management (pp. 2383-2388). ACM. 
+- Zhou, D., Xu, H., & He, Y. (2015). An Unsupervised Bayesian Modelling Approach for Storyline Detection on News Articles. In Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing (pp. 1943-1948).
+- Wang, Z., Shou, L., Chen, K., Chen, G., & Mehrotra, S. (2015). On summarization and timeline generation for evolutionary tweet streams. IEEE Transactions on Knowledge and Data Engineering, 27(5), 1301-1315.
+- Page 8: Section 6.2. How many articles were collected?
+- Pages 8-9: In Figures 6, 7, and 8. What do the x-axis and y-axis represent?
+- Page 8: Section 6.2. The authors compare their timeline with references from Wikipedia given that many articles on Wikipedia don’t have a timeline. It would be interesting to compare the proposed timeline with a Wikipedia timeline. Several events on Wikipedia do have a timeline, however: https://en.wikipedia.org/w/index.php?search=Timeline+&title=Special:Search&fulltext=1&searchToken=3cc4yhepmcrukrd4z9jne76m1.  
+- It is not clear what percentage of links are from spammers or advertisers.","Overall evaluation: 1
+Reviewer's confidence: 3
+Recommend for best paper: no",1,,,,,2018-02-16,00:55,no
+25,7,25,Yaxxxx Alnxxxxx,3,"(OVERALL EVALUATION) The paper presents a framework that automatically generates a timeline for an event or an evolution of a story from the online stream of social media. The product of this research is similar to a wiki page in a couple of aspects: table of content, story evolution or timeline, references, related work. As the authors mentioned, a Wikipedia page usually is more than this; it usually has a history of the events, causes, and consequences.  The authors performed three evaluation methods on the page they generate an offline evaluation, a Wikipedia evaluation, and a diversity evaluation.   
+
+
+The paper is well written and the methodology was clear. However, some parts of the evaluations and the results need more clarification. For example, section 6.1 that explains the offline evaluation doesn’t show enough details about table 3, especially the length. I couldn’t get exactly how the evaluation was done, who are the workers who evaluated D2 and what are their background, etc.?","Overall evaluation: 2
+Reviewer's confidence: 3
+Recommend for best paper: no",2,,,,,2018-02-16,19:56,no
+27,8,327,Jacxxxx Saxx,1,"(OVERALL EVALUATION) The objective of this paper is to present a multi-disciplinary methodological framework.
+The current version of the paper is a description of a experimental design of a digital libraries (cultural heritage) for a Inuit community (North of Canada).  The author must clearly justify the choice and explain some of the used term (e.g., multi method) and how this can be integrated into a framework.  I'm expecting reading the advantages and limitations of the proposed new methodical considerations.  But many interesting questions can be found from this experiment (what are the specific cultural heritage objects that must be preserved? in which form and why?, etc.).
+
+The writing is clear and organisation of the paper is good.
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) Very limited interest, and the title does not correspond to the content","Overall evaluation: -1
+Reviewer's confidence: 3
+Recommend for best paper: no",-1,,,,,2018-02-19,15:27,no
+29,8,400,Mixx Wrxxx,2,"(OVERALL EVALUATION) The paper outlines the methodological framework used to develop a community digital library (Digital Library North - DLN)  for an indigenous community in the north of Canada. The introduction, context and related work sections provide decent background. The core is section 4 which outlines the framework key elements; environmental scan, formative usability study, surveys , community leader engagement, information audit, community workshops and photography, What has already been reported in other references are the development of the model for the environmental scan and results of a community survey.
+
+In the introduction and in the beginning of the conclusion, the author (project team) asserts that to develop a community DL for indigenous communities, you need a diverse methodological framework, and that is what the paper lays as the framework for the DLN.
+
+The conclusions, however,  jump the reader from a review of the framework (with, what I'd expect as limited evaluation of its parts), to asserting three key lessons for developing a cultural digital heritage library without presenting or referring to specific results analysis - e.g. the final conclusion is the “DLN framework allows for a deeper and a more accurate perspective of how to develop community DLs … for indigenous and aboriginal communities”. It seems a leap from the framework discussion and note of some initial results to these assertions for what is a work in progress - I can understand these key issues, but it seems to get to assertion based on evaluation would be future work (or work that’s been done, but not reported yet).
+
+That said, I’m intrigued to hear more of the project, and I think this project is definitely within the audience interest of JCDL. As this short paper only outlines the framework of community engagement, I hope we could look forward to reports on the environmental scan and how well it functions for a DL, more analysis on the usability data (and the comment of “less formal ways to collect usability data” would be interesting to develop), and what was learned from the leader engagement as a long paper. The information audit appears to have identified quite a large corpus of material, and it would seem an archival digitization task is in the offing.
+
+Section 4.3 - end of section states survey data were analyzed and presented in another paper, but that paper is not in the references.","Overall evaluation: 1
+Reviewer's confidence: 4
+Recommend for best paper: no",1,,,,,2018-02-19,14:55,no
+30,8,287,Daxxx Nixxxx,3,"(OVERALL EVALUATION) This paper describes methods used to engage with a community for the construction of heritage collections.
+
+The paper is well-written and it clearly describes the methods chosen for the project. The review of related work is an appropriate size for a short paper but there is no clear linkage between this work and the framework in Section 4. Figure 2 just seems to be the union of all methods previously mentioned. The methods are described well but in a more narrative format than in a critical reflection - which is what I would hope for.
+
+At the end of Section 3 there is mention of another paper but no citation. This is odd unless it is also submitted to the conference.
+
+The “key lessons” listed in the Conclusion don’t appear to be be specifically based on the experiences of this project: can they just be restated as ‘we used the methods we had selected earlier’? There doesn’t appear to anything specific that links the methods chosen and the community-based collection development: I don’t see a clear contribution beyond reporting project activity.","Overall evaluation: 0
+Reviewer's confidence: 3
+Recommend for best paper: no",0,,,,,2018-02-17,03:22,no
+31,9,370,Praxxxx Terxxxxx,1,"(OVERALL EVALUATION) The paper provides a method for combining knowledge captured from practitioners and from documents into semantically meaningful concepts. 
+  The paper utilizes the lettrines labelled by historians utilizing relevance to propogate labels across the database. The motivation behind the paper and a brief
+  background into challenges and related work is provided. The relationship between keyword visual representation, concepts in the context of system design, the learning process, 
+  the algorithm are discussed. Experimental results for a set of 910 lettrines across different letters, patterns, background and sizes from Virtual Humanistic Libraries
+  was used to study propogation. Results are discussed and future work is identified.
+
+  The paper is innovative and applicable to digital libraries and image analysis. There are minor issues with clarity which should be addressed. Particularly
+  the last line of the first paragraph of the Introduction, spacing through out the introduction (manually_done, a a_conclusion). Acronyms (CIBR - Content based IR ?) need
+  expansion, spelling for words such as precized (3.2) needs correction.","Overall evaluation: 1
+Reviewer's confidence: 2
+Recommend for best paper: no",1,,,,,2018-02-14,03:22,no
+32,9,62,Vitxxxx Casxxxx,2,"(OVERALL EVALUATION) Lettrines are the big decorated letters that often appears as the first letter of a word in ancient books. They are very useful for historians to distinguish the works, the printers and the date of printing. The paper presents a system for the interactive propagation of annotations made by a historian to other lettrines in a data base of lettrines’ images. 
+The methodology is well described and the results seem quite promising. However, the topic is very specialized and would be of interest to a small minority of attendees. Also from the description it does not appear that the described methodology could be used in other applications. The contribution might be more appropriate if presented as a poster.","Overall evaluation: 0
+Reviewer's confidence: 2
+Recommend for best paper: no",0,,,,,2018-02-16,23:53,no
+33,9,13,Marxxxxxxx Agxxx,3,"(OVERALL EVALUATION) The authors in the abstract specify that the goal of the paper is: ""... we propose an approach to interactively propagate annotations representing the historians’ knowledge on a database of lettrines images manually populated by historians (with annotations). ""
+The concept of annotation is then central to the work, but in the related works section they do not refer to seminal works of the extensive bibliography on annotations, digital annotations and systems to support the creation and management of annotations. Why? Are the authors aware of all the work done in the sector?
+Much important activity has been carried out within the DELOS network of excellence and the Open Annotation Collaboration.
+Subsequently, many results of interest were published in the proceedings of the JCDL, ECDL, TPDL, and ACM DogEng conferences, and in the relevant scientific journals such as, for example, ACM TOIS and IJDL.
+
+The presentation of what has been done by the authors is presented at very different levels of study:
+- The authors use keywords that are typical of the field of information retrieval and that refer to general concepts, but the authors never contextualise in depth each topic with respect to what actually done. 
+- Instead, section 3.3 shows a ""learning algorithm"" for a model. This algorithm refers to a specific implementation, so is more low level. It would be useful to the reader to understand what the authors propose, if the model the algorithm refers to was presented. But the presentation of the model is not introduced and explained in the paper.
+
+In section 4.1 the process of indexing of the documents is illustrated in a simplistic way, as if the authors did not really know the methods of indexing the text that have always been based on the knowledge of the research results of George Kingsley Zipf.
+
+Probably the authors were influenced by the choice to present their results through a short paper, so they oscillate between a presentation of general concepts in a generic way, and then with some attempt to provide details of some aspects that would be of interest. It also seems that the paper was written hastily, because there are many errors in writing: repetitive words, words that lack a letter, unnecessary white space, etc.
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) Unfortunately in the current presentation the work can not be accepted.","Overall evaluation: -2
+Reviewer's confidence: 5
+Recommend for best paper: no",-2,,,,,2018-02-18,16:23,no
+34,9,30,Daxxx Baixxxxxx,4,"(OVERALL EVALUATION) This submission details an adaptive pattern recognition technique the authors have devised to support scholars without a programming background to study visual artifacts within documents, such as lettrines.  Indeed, lettrines is the focus of this article, although the authors point out that -- given the adaptive nature of the approach which starts with no a priori knowledge -- the approach is also applicable to other visual artifacts.
+
+The paper is reasonably structured, however the number of grammatical errors and spelling mistakes makes some parts hard to follow.  Any spell checker would flag ‘achine’ ‘manuallydone’ and ‘precized’ as not recognized words: the first looks like it was meant to be ‘machine’, the second ‘manually done’, but I could not work out what the latter was meant to be.  
+
+The paper uses the term ‘semantic concepts’ numerous times without defining (or giving a reference to) what is meant by this.  This is more problematic than the grammatical and typing errors in being able to follow the work that is being described.  I wonder if all that is being described in this case are manually assigned text labels? It is another detail that could be addressed with some editing work, but continues the trend of a lack of care and attention to detail.  
+
+The description at the very end of Section 2 is rather nebulous as to what it means.  I wonder, for example, if the fundamentals of the Gamera software suite by the DDMAL group at the McGill University (Canada) (which incidentally would count as prior work) doesn’t meet the requirements set out by the authors.
+
+In terms of the technical work, it was troubling to read that their processing of the image maps it to be a gray-scale image when color is given as one of the four principal elements to lettrines that are studied (“the letter, the color of the letter, the pattern and the background”). The use of 3x3 cells also seems somewhat arbitrary, and not justified.  It begs the question what would happen to the accuracy of the technique reported if lettrines varied considerably in size, or if the digitized images the scholar is interested in comes from disparate sources where scan resolution is not uniformly controlled.  This then links to the wider context of just how exactly the document recognition system being described -- which requires it to be under the control of the scholar -- would operate in practice in a digital library -- this is not addressed in the paper, but is clearly an important issue given the conference topic.
+
+The reported test set size is not very large (910 lettrine images covering the 26 letters of the alphabet), which was then further split in two to produce training and testing data.  I found it unusual that precision results were given without being accompanied with recall rates.
+
+These issues make the paper too problematic in its current form for me to recommend it be accepted as a short paper to JCDL.","Overall evaluation: -1
+Reviewer's confidence: 4
+Recommend for best paper: no",-1,,,,,2018-02-20,09:39,no
+36,10,326,Jacxxxx Saxx,1,"(OVERALL EVALUATION) This paper focuses on the problem of identifying temporal street names (a street name with a date reference) in various languages: to automatically determine whether a street name is a temporal street name.  The paper is well structured and clearly written.   The description of the proposed system is well presented.  Various analyses are provided: Are some dates more frequent than others? Are some months more frequently used than others? ...  The precision achieved by the system is rather high (97%), and 62% when providing an explanation. 
+
+The main drawback of this paper is the topic.  It is very specific and not directly connected with DL.   
+
+Minor comments.
+Beginning of Section 2.1:  The duration and set type are not explained.
+Last paragrph in Section 2.5.  We could have a street and avenue with the same date, but both are distinct streets (the same in German with Strasse, Weg, Gasse).
+Beginning of Section 5.1.  It seems that the street names appearing in the test set were already used when generating the system.  Need to confirm (or not) this point.
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) Very specific topic, and if you have room, why not.  The paper is clearly written with an evaluation","Overall evaluation: 1
+Reviewer's confidence: 4
+Recommend for best paper: no",1,,,,,2018-03-08,23:31,no
+37,10,163,Fexxx Haxxxx,2,"(OVERALL EVALUATION) The paper proposes an analysis process that automatically extracts ""temporal"" street names from OSM. Afterward, the process seeks for each extracted street name Wikipedia pages that explain the cause or origin of the respective street name. Afterward, the authors conduct a manual analysis of the street names and explanation.
+
+While the paper presents an interesting idea, it is unclear to me how this would be of interest to the JCDL community, mainly for two reasons First, the computer science contribution is rather low, since the described process simply combined well-established NLP methods to extract street name and find relevant Wikipedia pages. Second, the analysis of temporal streets (Sec 4) is likely more of interest to the social sciences or geography that to a computer science audience. Moreover, the usecase of the research project is not sufficiently described by the authors: whom would the proposed project and results be beneficial to?
+
+In Section 5, the authors evaluate the two processing steps of their automated analysis: extraction and seeking of Wikipedia pages to explain temporal street names. As the authors note in Sec 1 and Sec 7, comparing the workflow with other methods is difficult or even not possible, since no approach so far has aimed to address this issue. While the evaluation of both processing steps is technically sound, a comparison with a baseline method would be great, specifically for the second step, which links Wikipedia pages to extracted street names. Also, it is unclear how many annotators participated in the study (Sec 5.2), only one or were those the same as mentioned in Sec 5.1. In both Sections, the authors should give information on the background of the participants. Even more important, they should caluclate the ICR and only accept the results if the ICR is sufficiently high between all involved participants.","Overall evaluation: -1
+Reviewer's confidence: 4
+Recommend for best paper: no",-1,,,,,2018-01-31,14:02,no
+38,10,57,PĂxxxx Caxxx,3,"(OVERALL EVALUATION) This paper presents a study on street names mentioning dates. The authors show how the data is obtained and perform a study on the distribution of dates in several countries.
+
+The paper is very appropriate for this venue. Although, technically it is not very original, it does show novel exploratory results. The method is well described and is potentially useful to many different areas.","Overall evaluation: 2
+Reviewer's confidence: 3
+Recommend for best paper: no",2,,,,,2018-02-16,15:05,no
+39,12,341,Giaxxxxxx Silxxxx,1,"(OVERALL EVALUATION) The paper presents a quite interesting insight into the training text used to determine word embeddings. On the other hand, the paper could present better motivations for the work and clearer take-home messages. 
+In general, the paper does not read very well and it is not always easy to follow. The presentation of the work could be largely improved in clarity and organization in order to make it more readable and comprehensible. Moreover, there are some problems with the evaluation which uses a ""quality"" measure not better specified and do not report any statistical study of significance which is required for such analyses. 
+
+
+More in details:
+The first sentence is not grounded in the literature: ""Word embedding approaches like Word2Vec [21] or Glove [25] are powerful tools facilitating better search results and data analysis in digital libraries."" Word embeddings are used in many contexts especially in NLP; in IR they are used within neural networks in particular, but they are more means to represent documents in order to employ neural networks models for search rather than retrieval methods themselves. Moreover, within DLs I do not know if they have been employed to improve search results or to analyse data; it could be, but references are needed or this sentence should be revised accordingly.
+As a consequence, the very motivation for this work is not well grounded in the DL area. 
+
+The description of word embeddings is not very clear and quite cumbersome. I mean, I know how word embeddings are determined but I had some troubles understanding section 2.1.1 An example would have better served the purpose. 
+
+Figure 1 in Section 3.2 is baffling. What is average quality? How is ""quality"" defined? Usually, the effectiveness of a model is evaluated by using proper metrics (e.g. DCG or AP or ...) and each metric has a proper meaning measuring a different angle of the model. Is quality based on how close the predicted embedding is with the ""correct"" one? 
+
+Quality is not defined also afterward. This affects all the results. I do not know what I am looking at. 
+Anyway, are the differences between the similarity measures of statistic significance? 
+
+The comparison with the Google dataset is rather speculative and this is comprehensible since the underlying text is not available.","Overall evaluation: -1
+Reviewer's confidence: 4
+Recommend for best paper: no",-1,,,,,2018-01-26,09:50,no
+41,12,330,Chrxxxxx Sexxxx,2,"(OVERALL EVALUATION) The paper investigates the influence of corpus fragmentation on the quality of text embeddings using standard evaluation sets. 
+This topic is highly interesting, and obtained results would help researchers in choosing good parameters for corpus construction and model training. Word embeddings for encoding text semantics is of interest to the community. 
+The chosen methodology is generally sound, the paper nicely written and the steps are understandable. However, I do have some question about details/choices and are not convinced about some conclusions the authors made. Especially, the conclusion of ""3-grams are best"" and the deviation from the notion of window size of Mikolovs paper might cause confusion and hinder correct uptake of results from the community. 
+Publishing source code and data sets is definitely a plus and increases reproducibility of the study.
+ 
+Detailed comments can be found below.
+
+
+Background
+==========
+- Formula (1): I think this is a simplification. I would add a parameter \theta for model-specific hyperparameters (e.g. negative sampling in word2ve). Among the hyperparameters are then d, epoch_nr, win). C and dict_size are parameters for the training data and not the model itself.
+Also the fragmentation (k in k-gram) would be such a parameter.
+- 2.1.2. I was wondering why the authors chose CBOW. since already in Mikolov's original paper [citation 21 in the paper] skip-gram outperforms cbow.
+- Footnote 2: For me, it is not clear how you treat sentences. For sentence ""A b c d. E"" and 3-grams would you generate abc, bcd or anything else? An Example would have helped.
+- Section 2.3. 
+ - It seems that you use a different notion of window size and context than word2vec. A window size of 2 would generate 4 context words in word2vec/cbow. For a 5-gram a b c d e, the training example generated would be a b d e -> c (only the middle word is predicted). In you example you 1) consider a different notion of window size and 2) also create training examples a b c d -> e.
+First, I would like to know the reasoning for these choices and second it has to be made clear in the paper that this differs from word2vec notion of window-size, otherwise readers might misinterpret the results. Your window size of 2 is Mikolov's window size of 1.
+
+Experiment Setup
+=================
+- Figure 1 interpretation: It seems from figure 1 that - other than described in the text - the model is best at 7 epochs, and after getting worse, accuracy seems to increase again after 10 epochs. So, I am not convinced of your choice of 5 epochs.
+- I wondered for the analogy tasks how you counted test cases for which a, b, and/or c were not part of the vocabulary. Did this happen?
+- It would be helpful for result interpretation to report the values achieved in other studies on the different corpora. Just to see, whether your corpus+model+fragmentation-methods are way off or very close to what has been achieved elsewhere.
+
+
+Experiment Questions
+====================
+- experiment question 1: 
+ - ""..size of any n-gram corpus increases exponentially with large n"". I am not convinced of that. The number of tokens is nearly the same. Of we move a sliding window over a text of size s, we get s-n+1 tokens (if we ignore sentence boundaries). The corpus size is then the number of distinct tokens. As I agree, that the number of bigrams is larger than the number of unigrams, I am not convinced that this relation also holds for 10-grams and 11-grams, for instance. Seeing, that we stop to generate the n-gram at sentence boundaries. (**)
+ - Justification of the question: I think this question needs to be limited to corpora of specific sizes. For a small corpus, but large n, we will have a lot of n-grams with a very low match count. Thus, the question (and your answers) need to be constrained to ""sufficiently large corpora"" (as you also argue in section 3.1.)
+- experiment question 2:
+ - the same argument for the size of the corpus as above holds here
+
+Experiment Results
+==================
+- Section 5.2.1. n-gram size, referring to table 5:
+ - I would disagree with the interpretation that 3-gram is the best. The total loss for 2-grams compared to 3-grams is 50% (17% to 6.7%). From 3-grams to 5-grams we again half the loss (6.7% to 2.3%). For the analogy tasks, results will even be better than full-text with 5-grams.  Only the difference from 5-grams to 8-grams is nearly neglect-able on average. Thus I would go for 5-grams. However, if a second parameter (e.g. the corpus size and thereby the training efficiency) needs to be considered, this choice might be different (see also my other comment marked with **)
+  - I would use a similar argument w.r.t results in table 6.
+- Section 5.3. 
+  - It would be helpful to get a more detailed knowledge why min-count is so important. Which examples (or how many) could not be solved in the analogy task because a word from the test set was not part of the training set due to this threshold? Could you give examples?
+  - Further, it would be interesting to see the different final corpus sizes with a specific miscount parameter (how many n-grams will be excluded?)
+- Section 5.3.3.
+  - what is an existing match count compared to the actual value for the match count? Do you mean theoretical value an actual value? Like x-axis are all natural numbers between 1 and max-match-count and y-axis is the observed frequency? Please clarify, to help interpret figure 2
+
+
+
+Language/Format/Structure
+=========================
+- It took me some time to relate the results in Table 1-4 to the benchmark set described in section 3.3. It would be helpful to have the names you used for the columns of the table in section 3.3 (some are there but not all), and also have an additional heading in the tables saying which are similarity and which are analogy test sets. Further, it would also have been helpful to read the evaluation metric (Spearman vs. accuracy) in the table (either in the caption or in the column heading. 
+- The same (heading, aggregation) applies for tables 7 and 8.
+- I suggest to aggregate Tables 1-4 were aggregated, having an additional column/indicator for the respective window size. This would allow to better compare the results w.r.t. window sizes.
+- above table 5: ""as explained Example 3"" -> as explained in Example
+- Section 5.2.: You already introduced the parameter \emp{win} as window size. Please use the same parameter in section 5.2. (instead of $j$).
+- Table 5: I was confused that the bold values (largest) ones actually encode the second-to-worst values. This does not make sense to me (apart that in the interpretation that this is the method you would chose, but I would disagree). Please reconsider the coding. 
+- Table 10: please include the distance measure (cosine) in the table header
+- Figure 2 should be placed on the page before, at least before table 10
+- Figures 1 and 2 have some artefacts in print-out. Could you include a vector graphics version instead?","Overall evaluation: 1
+Reviewer's confidence: 4
+Recommend for best paper: no",1,,,,,2018-02-09,13:28,no
+42,12,31,Daxxx Baxxx,3,"(OVERALL EVALUATION) This paper presents work analyzing the comparative accuracy of word embeddings trained on Google ngram-style corpora (i.e., as counts of ngrams rather than full, continuous text) under a several different experimental designs (varying the minimum count threshold and essentially the ngram/window size).  While most work using word embeddings tends to either work directly with embedding pre-trained on another continuous corpus (e.g., word2vec, Glove), some important work does use embeddings trained on Google ngrams (e.g., Hamilton et al. 2014), so it's a useful exercise to examine how the embedding quality might degrade as a function of reducing the amount of information in aggregating it.
+
+Strengths:
+
+-- Overall this is a nice experimental design, and I appreciate the in-depth explanation of the causes behind the degration in quality for the different factors.
+
+-- The use of two corpora (Wikipedia, 1B word dataset of news) is great, and it's heartening to know the results are similar between the two, which speaks to the robustness of the results
+
+-- I appreciate the clear recommendations (e.g., setting a minimum count threshold no less than 1/1,000,000).
+
+Weaknesses.
+
+-- I have strong concerns that the results presented here are not due to the factors examined (window size, min count), but rather to hyperparameter choices in word2vec (or other artefacts of the learning algorithm) such as the learning rate or the order in which the data is presented.  This is most salient in the example from table 1; with a window size of 1, word2vec trained on full, continuous text sees exactly the same information as every model with a fragmentation level > 2 (i.e., wiki_3_1, wiki_5_1 , wiki_8_1) -- only (as the authors point out), half as many times as any fragmented model.  If a full model and the wiki_3_1 model were initialized at exactly the same place and the wiki_3_1 was run for half as many iterations as the full model, so that it observed exactly the same *amount* of training data, would we not expect to see exactly the same representations in both models? 
+
+-- This may be what section 5.4 is getting at, but since word2vec is trained using SGD, the order in which it is presented information matters for the embeddings that are learned.  Is it possible that the deficient behavior is observed here with the fragmented models because it's essentially taking a steps that's twice as big for each update (compared to the full model), since it's seeing exactly the same data twice?
+
+-- Some of the results show the fragmented models performing worse than the full model, which I suspect is a result of just statistical error.  Can you present confidence intervals for the results (using the bootstrap, for example)?
+
+-- I think some of the citation practices here could be improved; for example, instead of saying ""the famous example"" of man/women = king/queen, just cite Mikolov 2013; the citation provided for sentiment analysis on Twitter (Brody and Diakopoulos) doesn't actually use word embeddings at all.  
+
+Minor
+
+-- The initial discussion of fragmentation is a little confusing; why are 2grams more fragmented than 5grams?  I think this is conflating fragmentation with the minimum count parameter.
+
+-- I disagree with the rhetoric in section 1 that one can come to ""general conclusions"" about the quality of embeddings with intrinsic evaluation.  Those metrics assess fitness for those specific tasks, but not a ""general"" fitness across a wide range of tasks.
+
+-- in 2.1.2., yes word2vec and Glove have been shown to share general properties, but it's too strong to state ""that there are no fundamental theoretical differences"" between them.
+
+-- I'm quite confused by what figure 2/section 5.3.3 is meant to communicate.","Overall evaluation: -2
+Reviewer's confidence: 5
+Recommend for best paper: no",-2,,,,,2018-02-16,23:57,no
+43,13,369,Praxxxx Terxxxxx,1,"(OVERALL EVALUATION) This paper introduces a data extraction system for acquiring affiliation information from web pages across domains incorporation conditional token probabilities, enriched using structural features (DOM) of HTML documents. A good background for methods used in extraction of entities and challenges in extraction of entities using a single methodology across domains is provided. The idea underlying the paper is unique, and is appropriate to digital libraries.
+
+    There are however serious concerns in the discussion of the methodology, and evaluation of the methodology. When discussing the mathematical foundations of how the conditional probabilities are calculated the paper seems to make use of the equality operator, when an approximation operator should be utilized, since the
+LHS of the equation is no longer equal to the RHS when simplifications are applied to one side of the equation. The evaluation of the paper does not state if the same set was used for building the conditional token probabilities and for testing. Assuming that the same set was utilized, the paper does not discuss the fit of the model (over fitting is possible when the size of sample is small (total of 11782 entities) even with cross validation). It would be useful to have any of the methods discussed in related work be evaluated on the same set for comparison.
+
+    There are minor spelling and grammatical errors (Introduction Line 2: Tipically, Introduction Paragraph 4: To acknowledge (estimate?)","Overall evaluation: -2
+Reviewer's confidence: 3
+Recommend for best paper: no",-2,,,,,2018-02-13,06:36,no
+46,13,149,Swxxxx Gotxxxxx,2,"(OVERALL EVALUATION) 1. An interesting task as current NERs are not such elaborative in terms of languages and html content as targeted in this paper. The paper focus on extracting names from faculty websites. The traditional NER taggers are more focused on the grammatical structure and are not suitable for faculty websites. The authors should emphasize on this. 
+2. The paper uses a methodology of the textual content and structural content to achieve the precision on the task. 	
+3. This is a useful problem and can be applied in many education application. The authors should also talk about how this can be useful in the education environment applications. 
+4. The current models fail in such tasks. So authors should provide a comparison experiments of using standard NER techniques on this tasks. 
+5. More details about labeling approach, and statistics of the languages and faculty counts will be useful. It is unclear from the paper the details of the dataset for training and testing. Also, it would be good to provide some details of how the model performed on various languages. On which languages it performed better vs which languages it failed? What is the analysis?
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) I have seen that standard NERs models have many limitations and had to be tweeked for problems like this. The authors used text and structural features for better accuracy and on multiple languages. I would say that more details on the experiments should be sufficient to accept this paper.","Overall evaluation: 0
+Reviewer's confidence: 5
+Recommend for best paper: no",0,,,,,2018-02-24,00:43,no
+48,13,324,Haxx Salxxxxxxx,3,"(OVERALL EVALUATION) In this work, the authors present one of the problems of web data extraction, namely entity name extraction of authors in faculty directories with the purpose of enriching public bibliographic databases. They propose a statistical approach that combines textual and structural features of HTML web pages which produced high precision and recall upon testing it against a dataset they created of +11000 researchers.
+
+The flow of the paper is good, with high clarity and organization. The authors covered the prior contributions extensively and with breadth. They also devote a good amount of the paper to explaining the problem, and their approach and methodology to solve it. I was most impressed with the dataset that they collected and manually labelled. I hope the authors will publish it as well as this work so that the scientific community could benefit from it. Finally the experiments were sufficient and well documented. All in all this is a good balanced paper in my opinion. My only suggestion is that it would have been much more impactful if they ran their experiments on the same testing dataset but using a couple of the other prior approaches from their related works section. Their 0.95 F-score is good but would have been more impactful if it was compared with the other methods' results.","Overall evaluation: 2
+Reviewer's confidence: 4
+Recommend for best paper: yes",2,,,,,2018-03-09,00:18,no
+49,14,48,Juxxxx Bruxxxx,1,(OVERALL EVALUATION) No paper submitted.,"Overall evaluation: -3
+Reviewer's confidence: 1
+Recommend for best paper: no",-3,,,,,2018-02-12,10:34,no
+50,14,63,Vitxxxx Casxxxx,2,(OVERALL EVALUATION) The few lines of abstract provided seem to suggest that the topics of the poster will be the digitization of donor files (to be used in the future for sociological research) and the use of SobekCM (an open source system for digital libraries) to create collections of historical materials. Both topics are not new and might not be of interest to the attendees of JCDL 2018.,"Overall evaluation: -2
+Reviewer's confidence: 4
+Recommend for best paper: no",-2,,,,,2018-02-15,12:07,no
+52,14,339,Sanxxxxx Sixxx,3,(OVERALL EVALUATION) No document available for review,"Overall evaluation: -2
+Reviewer's confidence: 4
+Recommend for best paper: no",-2,,,,,2018-02-16,05:50,no
+53,15,389,Kaxxx Verxxxx,1,"(OVERALL EVALUATION) This paper proposes a method for ontology fusion that is based on a set of heuristics for handling local ontological relationships that exist for a node/entity in each of two ontologies, and prioritising specific relationships during the fusion process. Overall I found the paper difficult to follow and the intuitions underlying the approach not well justified.
+
+The authors talk about ""binary similarity"" but this entire concept seems poorly articulated to me. This is simply ""strict matching"" rather than ""similarity"", is it not? Binary: either something matches or it doesn't. There is no ""similarity"".
+
+Methodology:
+The authors present their method in a collection of semi-formal definitions and rules. However, these aren't entirely formalized and do not clearly express constraints. Consider Rule II: if there are no nodes in O_1 that match o_j, then o_j is added to O_1. In that case o_j is inserted as a child of o_i -- which o_i given that o_j matches none of the nodes? Why is it safe to assume that o_i has the same type as this node o_j that doesn't match anything in O_1? This does not appear to be well-defined.
+
+In general several of the definitions and rules seem to be defined in terms of the example in Figure 1 but it is not entirely clear how it can be applied in general.
+
+The algorithm pseudocode is likewise not general (rather it is defined in terms of the layers in the example; does the notion of layers generalize?). Furthermore it contains errors:, n, I, etc. are defined to be integers but the pseudocode refers to null (implying a set) and in any case n is never updated and I is incremented as a counter, not an item removed from a set.
+
+Why are all relations other than subordination lumped together as ""Correlation""? Why is this okay to do?
+
+3.2.2 refers to stability of results in terms of ""mapping size""/large datasets. I don't see how this follows from the results in Figure 3 -- is this inferred from contrasting Figure 3 with Figure 2? In that case, putting the results in the same graph would make it more clear. This could be tested more systematically by considering different-sized subsets of the larger ontologies. Further, it is important to explore what is the impact of having many entities that cannot be directly mapped between two ontologies, i.e. for which Sim(o_i,o_j)=0? I suppose the reason for many other algorithms allowing for (partial) similarity rather than binary matching (Rule I isn't about similarity at all -- it requires strict matching) is to allow more nodes/entities to be aligned. What is the intuition that supports hardening this requirement? This very likely explains the higher precision -- strict matching would result in many false negatives (nodes unmatched when they should be).
+
+It is not entirely clear what the P/R/F numbers mean -- correctness of nodes, relations, both? What exactly is a TP?
+
+How can the authors claim 100% accuracy in the Conclusion?
+
+Quality of writing:
+The language in this paper is hard to follow in places; word choice and grammar are both not fully fluent. Some of these are easy fixes (""on the base of"" -> ""on the basis of""), others are a little more complicated (""the algorithm of main traverse procedure"" -> ""an algorithm for traversal of ontologies"") and others are just unclear (""timeless efficiency""). These are all examples from the abstract, but the main text suffers from this as well (""All entities ... are operated by layered traversal"" -- how can ""entities"" be ""operated""?) What are ""deformation methods""? I'm not sure what ""the missing open access of experiments environment"" means precisely. What is a ""loop algorithm"" and why does it lead to lower recall? Not following the logic.
+
+The authors also mention that ontology fusion is distinct from ontology mapping/alignment in 3.1.1 but they do not elaborate on what this means. In what way are these tasks different?
+
+References:
+The referencing has some gaps. First, a sentence on the use of lexical semantic similarity _in ontology fusion_ cites a paper which is only about lexical similarity, not about ontology fusion (i.e. not really supporting the point that ""most studies"" focus on this but rather using the reference to indirectly define lexical semantic similarity). In fact there are several references which only consider semantic similarity but don't seem to contribute to the issue of ontology fusion. At the same time, the notion of lexical semantic similarity is not directly defined.
+
+The authors might be interested in:
+Joslyn, Cliff, Patrick Paulson, and Karin Verspoor. ""Exploiting term relations for semantic hierarchy construction."" Semantic Computing, 2008 IEEE International Conference on. IEEE, 2008.
+Gessler, Damian DG, Cliff Joslyn, and Karin Verspoor. ""A posteriori ontology engineering for data-driven science."" Data Intensive Science (2013).","Overall evaluation: -1
+Reviewer's confidence: 3
+Recommend for best paper: no",-1,,,,,2018-01-29,07:21,no
+54,15,97,Antxxxx Doxxx,3,"(OVERALL EVALUATION) This paper introduces BS Onto, a system for ontology fusion that relies on binary similarity (that is, BS). The motivation of this contribution is to tackle the issue of the performance of ontology fusion.
+  Experiments show that BSOnto can perform in line with most existing systems (that is, slightly below the state of the art), but is computed faster.
+  Relevance is a potential concern. A real use case analysis is lacking, and it is neither clear in the paper why ontology fusion is an important issue, nor why efficiency of ontology fusion is especially important to the JCDL community. This seems to be an offline process, for which efficiency is not so much of a concern.
+  Soundness is another concern. The paper introduces challenges in terms of space- and time-complexity, but the core complexity of the algorithms is not discussed. This is only addressed by run time observations.
+  Presentation: The paper is essentially well-written although a small number of formulations could be improved thanks to careful proof-reading.","Overall evaluation: 0
+Reviewer's confidence: 3
+Recommend for best paper: no",0,,,,,2018-02-17,07:27,no
+55,15,345,Daxxx Smxx,4,"(OVERALL EVALUATION) The authors describe a method for ontology fusion and evaluate it on tasks from the OAEI Instance Matching track. The proposed method (BSOnto) is shown to have higher precision, and slightly lower recall, than several baselines. This seems like a good, focused short paper contribution; however, the writing is at times very obscure. For example, the abstract refers to ""main traverse procedure"" and ""timeless efficiency"". The last paragraph of the introduction seems to be saying that it's very hard to evaluate or compare systems at all, but that doesn't seem right given the straightforward evaluation. The mapping between ontology tasks in the Evaluation section (#3) is unclear. The runtime comparisons could analyze the significance of the results, given the much lower variance of the proposed system. All in all, a little work on clarifying this paper's contributions would be useful.","Overall evaluation: -1
+Reviewer's confidence: 3
+Recommend for best paper: no",-1,,,,,2018-02-20,14:03,no
+56,16,247,Gaxx Marxxxxxxx,1,"(OVERALL EVALUATION) This paper presents a strategy for name disambiguation (only the homonym problem) that does not require supervised learning and thus may be less costly to apply.  Rather than presenting the method as solution and comparing it to other solutions, the novelty in the paper is its focus on the different features (sources of evidence) and how results evolve over iterations of the clustering algorithm used.  The eight features are those typically used in similar work and the one key issue is defining a measure of similarity that drives whether the algorithm merges clusters or not.  Assessing the veracity of this measure with different selected combinations of features and investigating a limiting factor for convergence are the two issues of substance in the paper.  The evaluation and results are presented in a set of figures that demand careful reading and viewing on the part of the reader but demonstrate how results vary not only depending on what features are included but also how the clustering process proceeds over time.  It would be helpful to the reader to do a bit more explanation of each figure in the text and put them closer to text in the final version.  The finding that co-author and author references are helpful under different clustering constraints (similarity, limiting factor) confirms common sense about disambiguating authors with the same tokenized name.  
+Overall, this is a useful paper because it demonstrates a method that could be applied in different use cases, for example, those where precision is valued over recall, or vice versa.  In effect, digital librarians could tune the similarity and limiting parameters to the needs of their users and collection.  Additionally, the costs of implementation could be considered in implementing the unsupervised approach with tunable parameters.","Overall evaluation: 2
+Reviewer's confidence: 3
+Recommend for best paper: no",2,,,,,2018-02-08,20:06,no
+57,16,65,Lilxxxx Caxxx,2,"(OVERALL EVALUATION) The paper presents an alternative approach to name disambiguation.  The theme of the proposed approach is to reduce the complexity of the process.  The approach is tested on Web of Science data in order to have good name sets for testing, using the author-id of WoS. 
+
+The authors describe a good selection of relevant work, acknowledging that some approaches achieve good results.  Their focus is on reducing the complexity of the approach.  No direct comparison of the results of their approach to other approaches is available.  Instead, the authors rely on specific results of their approach over a variety of sizes of data.
+
+The paper is clearly written and the results documented in a large set of graphs showing performance.  
+
+The authors several times use the word ""intend"" instead of ""intent""
+The frequent use of w.r.t is a bit distracting.  No other abbreviations are used and this comes up rather often.
+In the final paragraph of Section 4.2, there is an instance of ""his"" that should be ""this.""
+
+Figure references are not always in order of the figure numbers.","Overall evaluation: 2
+Reviewer's confidence: 3
+Recommend for best paper: no",2,,,,,2018-02-15,20:01,no
+58,16,142,Bexx Gxx,3,"(OVERALL EVALUATION) The paper addresses the well-researched problem of author name homonymy. Various approaches have been proposed to address this problem such as analyzing co-author networks.
+
+The author presents a very simple, yet novel probabilistic similarity measure that delivers state-of-the-art results although being conceptionally simple.
+
+What I like:
+- interesting idea
+- well presented
+- good analysis and data visualization
+- good discussion of results
+- figures in the appendix
+- the surprisingly good results
+
+What could be improved:
+- It would be great if the code and the data would be made available to allow reproducibility. This way others can compare their own results with the results achieved. E.g. using https://dataverse.org/","Overall evaluation: 2
+Reviewer's confidence: 3
+Recommend for best paper: no",2,,,,,2018-02-16,21:22,no
+60,16,386,Anxxx Vexxxx,4,"(OVERALL EVALUATION) This paper should be of considerable interest to the JCDL community and I was compelled by the claims made for this work: a simple, easy to understand and effective author-name disambiguation.  
+
+Although the overall method is pretty clear and offers a promising strategy to tackle this problem, its claims to greater simplicity and greater accuracy than other methods are not solidly substantiated by evidence. Other claims such as the discussion of quality limits for clustering moves in section 3.6 sounds like the author(s) are convincing themselves that their formula for ""l"" just works and that the reader should just take it on faith that, for example ""the exact values [for alpha and beta] are not particularly important - only the order of magnitude"" and the Implementation details section is sparse.  The discussion of the experiments in section 4.4 also leaves the impression that the authors have not had much time to systematically analyze the result to understand why their choices of alpha, beta and epsilon are effective. The experimental maximization of these parameters may be evident to the authors from an examination of the results graphs but it would be helpful to more clearly guide the reader through that reasoning.
+
+In short - I think this approach to the problem is very promising and I trust that the author(s) are onto an effective strategy. For this conference, I would have preferred that this paper might summarized as a short paper (without all the graphs etc.) or else that the claims of effectiveness and simplicity be better substantiated, even with just a table of F1 scores comparing the agglomerative clustering approach with other approaches, even if they were arrived at on different corpora. 
+
+Below are a few suggestions for improvement for the next version of this paper.
+
+P. 1 Col 2. ""We note that when disambiguating a name {\it name}, we do not need to consider any other names {\it name'} (in) R""
+
+I am not sure (a) I understand what that means or (b) why this is worthy of note.  Is it because other approaches (e.g. ones that use pair-wise comparisons of names) do not consider each name one at a time?
+
+Since the authors of this paper seem to put some weight on their (simpler) approach.
+
+P.2 Col 1. ""She shows that the extend of ambiguity has a direct influence on the scientific performance"" - typo with ""extend""
+
+P.2 Col 1. ""They show among others that the top-ranked researchers are so high up the ranking due to a lack of author name disambiguation."" 
+
+Suggest a rephrasing ""They show, among other things, that one reason that the top-ranked
+researchers are so high up the ranking is due to the lack of author name disambiguation.""
+
+P.2 contains four occurrences of the phrase ""very good results"" or ""very good results"" to describe other researchers work but with no quantitative measures to back it up (except for one reference to an F1 measure).
+
+Suggest an comparison of F1 measures of various methods (if available), e.g. in the discussion section - to substantiate the ""very good"" / ""better"" claims
+
+P.2 Col 2. ""Depending on supervision and what they call ’rules’ renders their method rather complicated"".
+
+What aspect of supervision makes their method complicated?  The fact that it *depends* on supervision or that their supervisory training method depends on 'rules'... I am willing to accept that the method is complicated but it isn't clear why.
+
+P.2. Col 2. ""there is exactly one document d(x) that this mention appears on."" Suggest:
+""there is exactly one document d(x) in which this mention appears.""
+
+P.3. Col 1. ""All categories assigned to d(x)""... by whom? Elsevier's subject categories? It isn't clear from the description of Fcat(X) whether or not the authors of this article decided on the categories.  Same comment about keywords (although it seems likely that these are they keyword chosen by the articles' authors.
+
+P.3. Col 1. ""All names given as authors of all documents d' referenced by d"".  Does this mean the same thing as ""All the names of the authors in the list of references in d"" or does it mean ""All the names of the authors in the list of references in d that are also authors in the collection.""?  In other words, are you considering author names for works referenced by d but which (the works) are not also in the collection you were studying?
+
+P.3. Col 1. The sentence structure for Feature 8 is unclear.
+
+Section 3.2 describing the Agglomerative clustering algorithm seems could be clarified to substantiate the claim in section 2 that ""blocking"" is being used. If, as the authors state in 3.2 ""the initial state where each mention x is in its own cluster C = {x}"" and ""Then, pairs (C,C') of clusters are merged"", surely this amounts to pairwise comparisons of {x} / {x'} in the limiting case where each cluster is a singleton of one.
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) I didn't want to say it point-blank to the author(s) but it seems to me that there is a lot of ""hand-waving"" in this paper.  It also reads like ""notes to myself about why I did what I did"" rather than a research paper.","Overall evaluation: -1
+Reviewer's confidence: 2
+Recommend for best paper: no",-1,,,,,2018-02-18,18:35,no
+61,17,376,Ricxxxx Toxxx,1,"(OVERALL EVALUATION) This paper introduces research initiatives related to the proposal and use of a framework for the validation of conformance checkers. Three dimensions are considered in the framework: correctness, usability, and usefulness.
+
+Motivation and objectives are started clearly. Furthermore, the evaluation framework is sound. Its phases and components are in general explained properly and their use is illustrated in such a way that may serve as a guide for others in the community interested in performing similar evaluation protocols. 
+Experimental results validate the use of the proposed framework and shared learned lessons are of wide interest.
+
+Presentation needs to be improved, although. Some issues include:
+
+1.	It is not clear how many tools compose the conformance checker. An architectural overview of the system should be included in the paper.
+2.	It is not clear the rationale for the media types considered in the study.  Part of the discussion present in reference [10] should be brought to this paper.
+3.	A more detailed overview regarding the profiles of participants could be incorporated with the paper. For example, it is not clear how familiar they are with similar tools (or technologies) to those used in the usability studies.
+4.	There is no clear discussion about used classifiers in the correctness evaluation phase.
+5.	Tables 2 and 3 should be replaced by graphs (e.g., boxplots).
+
+Some minor issues include:
+
+6.	Some overview about achieved results could be included in the abstract.
+7.	Provide dates for the last access to the listed links.
+8.	The use of quotes in the description of classes should be revised.
+9.	It is not clear what authors mean by “Section 2.2 IDs”. Does this section refer to the PDF reference?","Overall evaluation: 2
+Reviewer's confidence: 4
+Recommend for best paper: no",2,,,,,2018-02-10,18:49,no
+62,17,356,Shxxxx Sugxxxx,2,"(OVERALL EVALUATION) This paper presents an experimental evaluation under the project named PREFORMA to evaluate conformance checkers for preservation of digital resources in three aspects - correctness, usability and usefulness. This paper describes the evaluation methodology in each of these aspects and shows the evaluation results followed by discussions. 
+
+The project presented in this paper is interesting and practical. The methodology taken in this project seems reasonable and sound as a practical project. However, unfortunately, this paper is weak as a scholarly paper because it lacks descriptions about the innovative features of the evaluation methodology and/or results obtained from the project. 
+
+Proof-reading by a third person is recommended for this paper because there are unclear descriptions/sentences.
+- Correctness, Usability, Usefulness need definitions as criteria for evaluation
+- Unclear English phrases, e.g., singular and plural forms of ""the conformance checker(s)""
+- N in the sentence ""where N is the total number..."" below formula (3) is not used in none of the formulas
+- It would be better to include richer related works
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) This paper is acceptable as a poster.","Overall evaluation: -1
+Reviewer's confidence: 4
+Recommend for best paper: no",-1,,,,,2018-02-17,16:00,no
+63,17,202,Jaxx Kaxx,3,"(OVERALL EVALUATION) The paper investigates ""conformance checkers"" for three file formats.
+
+There are some key strengths:
+
+- The general topic of quality control of file ingestion at scale, is of key importance to the practical application of advanced DL solutions in heritage and memory institutions.
+
+- The attention to the professional aspects, rather than the pure technical aspects, is refreshing and long overdue -- these tend to be the key barrier to realworld application.
+
+- The proposal is a very simple and straightforward approach with limited novelty -- which is a key strength as this will be crucial for practical uptake.
+
+There are some limitations:
+
+- The results are interesting, and promising, but a more crisp cost/benefit analysis would be welcome.
+
+- A broader discussion of the embedding in (current) curatorial practices would be welcome.
+
+- The paper at times reads too much like an EU project report, and less as a scientific paper on the topic -- although this is perhaps a matter of style and preferences.
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) Interesting -- and important new aspect to discuss at JCDL -- but more a project report than having earthshattering results or insights.","Overall evaluation: 2
+Reviewer's confidence: 5
+Recommend for best paper: no",2,,,,,2018-02-23,11:43,no
+64,17,415,Seuxxxxx Yxx,4,"(OVERALL EVALUATION) * Strengths
+	- Good amount of details provided for a conformance checker developed from the project PREFORMA
+	- Opensource tool and training/test corpus publicly shared
+	- Thorough evaluation of the prototype tool involving both users and experts
+
+* Notes
+	- Figures 3 and 4 unnecessary (taking up too much space without much information, font in these figures is too small to read)","Overall evaluation: 2
+Reviewer's confidence: 3
+Recommend for best paper: no",2,,,,,2018-02-24,16:11,no
+65,18,55,Klexxxx BĂxx,1,"(OVERALL EVALUATION) IMHO, the contribution of this paper is incremental/marginal and does not warrant publication at this conference. It is too specifically tailored to one paper, which is somewhat extended and compared against.
+
+More specifically:
+- ""uncovered by the inventory"" -- What does this mean?
+- ""we take another random sample ... on the set taken by the authors"" -- Why do you say this here?
+- ""... in improving the precision of sense detection."" -- Upto here, everything sounds incremental, and the contribution has not become clear yet.
+- ""... of novel word sense detection."" -- The text until here (the previous paragraph in particular) are too verbose.
+- ""In particular, if a target word qualifies ...of the two time points."" -- I do not sufficiently understand this.
+- ""Manual evaluation of the results ... by the original method."" -- Why are there no comparisons with other approaches, such as the ones from Kulkarni et al. or Hamilton et al.?
+- ""The proposed method can therefore ... of novel word sense detection."" -- This is not precise enough. What exactly can be combined with what?
+- As mentioned, related work is mentioned, but the relationship remains unclear, in terms of performance in particular. There need to be experimental comparisons.
+- ""their bigram distribution"" -- What is it? This submitted paper should be self-contained.
+- lexicographer's mutual information -- What is it? This submitted paper should be self-contained.
+- ""we are concerned with only 'birth' cases for our study"" -- Why?
+- Hierarchical Dirichlet Process -- What is it? This submitted paper should be self-contained. 
+- ""and are expressed by the top-N words ... probability"" -- An example would be helpful (if this plays a role). All in all, this description is not understandable. The relationship to the new method proposed later is not sufficiently clear to me.
+- ""The authors treated the ... in a sense repository."" -- I do not understand this.
+
+English:
+- as per the users' needs
+- with 'attractive personality' related sense
+- Attempt has also been made
+- detect novel sense of a word","Overall evaluation: -2
+Reviewer's confidence: 4
+Recommend for best paper: no",-2,,,,,2018-01-29,08:24,no
+66,18,350,Mxx Sxx,2,"(OVERALL EVALUATION) The present paper proposes a new technique based on network features to improve the precision of new word sense detection. The paper is particularly interested in detecting continuous changes of word meanings over time.
+Although the paper provides important research problems and the interesting apporach to word sense detection, the paper suffers from the following several issues.
+
+
+Major problems
+The authors claim that ""In this paper, we showed how complex network theory can help improving the performance of otherwise challenging task of novel sense detection."" However, I am not convinced how the present paper address complex network theory to tackle the word sense detection problem. If the authors want to make such strong argument, they need to provide engough evidence for it.
+
+
+I am confused about the following sentence. What do you refer to by ""In this work"" Mitra et al. or your work? It seems to me that you refer to your work. But it is vert unclear what you exactly refer to.
+""In this work, authors consider multiple time points and not only detect new senses (i.e., ‘birth’), but also identify cases where (i) two senses become indistinguishable (‘join’), or (ii) one sense splits into multiple senses, or (iii) a sense falls out of the vocabulary (‘death’).""
+
+Tense of verb must be consistent. I found that there are a number of places that tense of verb is inconsistent.
+
+The authors mentioned that ""We perform the evaluations manually and each of the candidate word is judged by 3 evaluators."" But they did not mention about the agreement rate among three evaluators. Since the author used the manual evaluation, it is critical to show the agreement of judgements among evaluators.
+
+Minor problems
+like machine translation, semantic search, disambiguation, Q&A etc. --> like machine translation, semantic search, disambiguation, Q&A, etc.
+
+by Mitra et al. -> by Mitra et al. [27]","Overall evaluation: 0
+Reviewer's confidence: 4
+Recommend for best paper: no",0,,,,,2018-02-14,17:14,no
+67,18,176,Anxxxx Hixx,3,"(OVERALL EVALUATION) The authors introduce their NLP approach to disambiguation and language dynamics, in particular the detection of new meanings and word meaning shifts. 
+
+The paper has a very strong focus on the baseline an evaluation, with the novelty of the approach being merely sketched. Unfortunately, significant related work on disambiguation is missing from the non-NLP field, such as ""An open-source toolkit for mining Wikipedia"", ""Improving access to large-scale Digital libraries through Semantic-enhanced Search and Disambiguation"", as well as work on Gerbil- the General Entity Annotation Benchmark Framework, to name just a few. 
+
+The evaluation is described in detail, especially the detection of novel senses and the detection of known shifts. However, the authors describe their results in detail (for some concrete examples) but do not compare with any other approaches (beyond their two baseline algorithms), which makes evaluating the impact of their results difficult. We suggest shortening abstract and introduction, as well as Section 3, to make room for more details on comparison to other approaches in their experiments.  
+
+The paper appears as if mere lip-service is paid to Digital Libraries by mentioning them just once in the introduction. Clearer discussion in how this research would benefit digital libraries (beyond generic 'large data') could make the paper more relevant to the JCDL audience.","Overall evaluation: 1
+Reviewer's confidence: 3
+Recommend for best paper: no",1,,,,,2018-02-18,19:00,no
+68,20,74,Hunxxxxxxx Cxx,1,"(OVERALL EVALUATION) This workshop proposes to gather the studies on the knowledge discovery from digital libraries.  My main concern of this proposal is that such a scope is probably too large for a workshop and very likely to be highly overlapped with the main conference. The proposed topics of interest include very broad topics (e.g., artificial intelligence, big data analytics, information retrieval, etc.); some of which I believe even larger than the topics of interest for the main conference.  As a result, it is perhaps inappropriate to include this proposal as a workshop for JCDL.
+
+The organizers are suggested to list some prospective program committee members to show that the organizers are well prepared.","Overall evaluation: -1
+Reviewer's confidence: 4",-1,,,,,2018-01-24,02:47,no
+69,20,352,Laxxx Soxxxx,2,"(OVERALL EVALUATION) The workshop aims at promoting knowledge discovery for the digital library, which might be a potential research topic. However, I think the topic of knowledge discovery is too broad. Organizers should at least mention examples of possible tasks willing to be solved by knowledge discovery technics. What are the downstream tasks and the long-term objectives in the field? I have the feeling that any work feeling with data mining/machine learning/big data/… might fit with the topic. In my sense, the « topics of interest » item might be more particularly addressed to research challenges.
+
+Otherwise, important dates and submission details sound good. Organizers have publications in related fields but nothing is said about their experience in organizing workshops.","Overall evaluation: -1
+Reviewer's confidence: 3",-1,,,,,2018-01-27,14:18,no
+70,20,402,Dxx W,3,"(OVERALL EVALUATION) Knowledge discovering is related to digital libraries but not quite new. The topics listed in the proposal seem a bit decentralized and covers everything including big data analytics, artificial intelligence, information retrieval, etc. As a workshop, I think it should be focused on a specific field. In addition, the proposal is simple, not considering some detailed factors like the acceptance rate, the audience, how to call for papers, etc. It even does not tell the brief bio about organizers. I think it should be further carefully planned.","Overall evaluation: 0
+Reviewer's confidence: 4",0,,,,,2018-01-28,18:44,no
+72,21,20,Suxxx Alxxx,1,"(OVERALL EVALUATION) relevance to JCDL: This study explores an important topic -- what metric companies can use as a guide for strategic decisions about research investments. Linking research and outcomes is important for all sectors however a clearer linkage of the relevancy to JCDL is needed. 
+
+ novelty/originality: The approach used by the researchers -- linking a comprehensive review of patents with revenue generation as reported in the Fortune 500 rankings is sound and extends work undertaken in the past. It does offer a novel approach adding the concept of temporal buckets.
+
+ methodology: The methodology is well thought out and has checks in place to achieve rigor. The study works with a substantial dataset (2.6 million full txt articles and 93 million patent citations) and identifies rigorous processes including a full suite of preprocessing steps.
+
+ style/quality of writing: This paper is very well written both in terms of its organization and style.  The argument is clearly stated following a logical progression that provides the reader with scaffolding for understanding the impetus for the work, the design of the research, the experimental setup and the results.  In addition the writing is easy to read with terms being defined and concepts being described in easy-to-understand language. 
+
+evaluation: the study results are interesting and well presented. The possible explanations offer interesting analyses of the results and insights that are useful. The addition of case studies offers further insight and suggests the authors were working to triangulate results which adds further credibility to their work.
+
+ replicability: The description of the study  appears to be thorough and explicit which suggests it would be replicable. For example the description of bucket construction, which is a unique piece of this study, appears to be sufficiently detailed for replication. I use the word ""appears"" since my own experience is that until replication is tried it is not possible to imagine every condition that may diminish replicability.
+
+ adequacy of references: References are acceptable for this paper which wisely uses much of its specified space on this study after providing an adequate lit review to set context","Overall evaluation: 2
+Reviewer's confidence: 4
+Recommend for best paper: no",2,,,,,2018-02-24,20:07,no
+73,21,238,Jonxxxxx Lexxx,2,"(OVERALL EVALUATION) This paper details an interesting study into ranking trends of Fortune 500 in terms of revenue and innovation (measured via patents). The authors propose temporal buckets for aggregation and analysis. The authors present several breakdowns and analyses for sets/buckets of Fortune 500 companies. Analysis of content found within patent data also provides an interesting source of network science based insights into the interworkings of Fortune 500 companies. The concept of temporal ranked shifts itself is an interesting and relevant topic to retrieval. The paper itself is well written. 
+
+However, this paper does not propose new insights, approaches, techniques, or theory that are revelant to the JCDL community at large. While this paper presents interesting insights on several aspects of their dataset and case studies, the proposed analysis appears more ancedotal than exhaustive. The references are suitable for the topic but indicate that an enterprise, economics, or data mining conference would be more suitable for this submission. It is not clear where this paper could possibly fit within the JCDL agenda.","Overall evaluation: -3
+Reviewer's confidence: 4
+Recommend for best paper: no",-3,,,,,2018-02-16,03:52,no
+74,21,288,Jeaxxxxxx Ogxx,3,"(OVERALL EVALUATION) This paper proposes a  study concerning the relationship between innovation and revenue generation for several Fortune 500 companies over a period of time. This kind of study is quite important since it permits to have a view on the amount to be invested for future research, according to the correlation between scientific production and economic performance. This study relies on two important parameters to evaluate research outputs which are respectively the quantity and quality of scientific papers and patents. 
+
+
+Relying on a robust study of the patent citation dataset available in the Reed Technology Index collected from the US Patent Office, authors highlight some relations between parameters such as number of (i) patent applications, (ii) patent grants, (iii) patent citations and Fortune 500 ranks of companies. 
+This analysis is crossed with a temporal analysis showing the trends over the time, and try to highlight causal explanation concerning the influence of these parameters.. Two use cases of industry giants illustrating•fierce technology competition and its effect on overall ranks is also discussed through a nice graph based analysis
+
+
+The paper is very well written are argued, the data are perfectly presented, and the experimental conditions are correctly discussed…. However, the paper  raises several questions and comments that follow …
+
+First of all, the analysis proposes a study concerning several Fortune 500 companies, but doesn’t really make any disctinction between the nature of their activities while these nature could strongly infuuence the results of the analysis… For instance, the production industry may behave differently from the service industry. 
+Regarding this aspect, the classification doesn’t really distinguish the enterprises issuing of the digital economy, while their business model is very different from “historical” industry, especially in terms of patent management… These points should be discussed in a final version of the paper, in order to objectively assess the situation..
+Another point deal with the classification in 3 buckets that conditions many conclusions of the paper. Even if this classification permits to structure the reasoning process, it would be interesting to add some comments about the influence of this classification on the global conclusions of the paper… What would have happened if a company had been classified in another bucket ? what would have been the conclusions if 4 or 5 buckets had been used…In reality, what is the impact of the choice of this classification in 3 buckets
+Another more theoretical point point which raises a question is the correlation tool, that is used in many places in the paper. The correlation is an excellent analysis tool for some parts of the criteria which are studied in the paper, but I think that the paper could be enhanced by using more “powerful” mathematical tools for such studies. This point is particularily true for the temporal analysis (trends in the time) for which some inter-correlation tools (coming from signal processing) or distances between distributions could also be interesting (Kulback distance or word mover’s distance for instance)… In order to cross more parameters, some techniques such as Principal component analysis could also be very useful …
+In the 6th part, concerning the characteristic of temporal rank shift, the classification in 4 categories is discussable. It is discussable because it impacts the conclusion. Even if we can consider that the authors made a choice (which is “their choice”), the way the classification is done could be improved… The thresholds which are retained for the classification (80%) and the distribution around these 80% (+/- 10 or +/-2 std deviation rely on theoretical assumptions which have nont been proved (normal distribution ? ) 
+Concerning th e 7th part, which is very interesting, the construction of the graph should be more clearly explained … The edges are explained, but nothing about the node is given… Are the nodes attributed ? 
+Without these information it is quite difficult for the reader to extract the meaning of the graph. 
+Furthermore the drawing of the figure 13 (graphs) permits to highlight some kind of “patterns” in the graph.. It would nbe interesting to try to interpretate these patterns, as well explaining a little bit the global shape of the observed graph.
+
+Besides these comments this paper is very interesting and shows how the crossing of different disciplines can help to analyze a societal question.
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) I hesitaed between weak accept and borderline. The topic is interesting. The way the problem is addressed is correct, but could be improved with more powerful theoretical tools. However, it is a nice transdisciplinary subject.","Overall evaluation: 1
+Reviewer's confidence: 4
+Recommend for best paper: no",1,,,,,2018-02-16,18:50,no
+76,21,99,Jx Stexxxx,4,"(OVERALL EVALUATION) This is an interesting bibliometric analysis of the relationships among large corporations and patent production and use. As such, it definitely has many merits and has an audience that would appreciate it. However, after three readings of the paper, I cannot find myself making a case that this paper is in scope for JCDL. This paper is better suited for a informetrics conference or a business conference innovation conference.","Overall evaluation: -3
+Reviewer's confidence: 5
+Recommend for best paper: no",-3,,,,,2018-02-18,02:25,no
+77,22,49,Juxxxx Fx,1,"(OVERALL EVALUATION) This paper uses health rumor data to evaluate users' trust in the material being rumored.
+
+Several red-flags exist with this submission:
+-- Wrong format (JCDL uses ACM/IEEE)
+-- Submitted as double blind (JCDL uses single blind)
+-- Poor use of space (3/4 of page 10 are white space)
+-- No ties to JCDL topics (digital libraries, archiving, institutional knowledge)
+
+Beyond this, the authors also utilize a flawed methodology by only using verified rumors to measure user trust rather than compare user trust in verified rumors vs non-rumors. Further, the authors rely heavily on the work by Zhang (as cited), but make no effort to compare their results or differentiate their work from the work of Zhang. It seems that explicit supporting or rejecting the proposed hypotheses would allow the authors to either support Zhang's findings (i.e., health rumors follow the same trust patterns as non-health rumors) or demonstrate that health rumors have special properties that make them different from non-health rumors.
+
+This paper unfortunately is not suitable on any of its topic, presentation, or methods to be accepted to JCDL2018.","Overall evaluation: -3
+Reviewer's confidence: 3
+Recommend for best paper: no",-3,,,,,2018-02-05,19:40,no
+80,22,10,Maxx Agxx,2,"(OVERALL EVALUATION) The research topic is relevant to JCDL and literature is well reviewed. 
+
+Research hypotheses look reasonable and interesting, but the survey design doesn’t look fit very well for the research questions. The fact that all of the 30 participants are graduate students (22 master degree holder and 8 PhD candidate, and 14 participants major in social science) means that they are likely to have higher information literacy than the general public and to be critical to the rumors, thus they are unlikely to share general attitude toward online health rumors, as the authors briefly mentioned. Therefore, a direct comparison between precedent studies is difficult. A sugges for further research: making a similar survey with younger students with presumably lower information literacy and comparing the result with that of the present study would give insight into a role of information literacy education. 
+
+The selection of the rumors used in the survey requires a more detailed explanation, especially because the rumors database (reference 33) is not accessible. Authors used such a broad word “health” as a keyword and“randomly” selected rumors “which include the proposed rumor presentation (picture, verification or hyperlink)”, but a criteria for selection, for example, the number of comments/retweets, classification of dread rumors and wish rumors (which are common classification for online health rumors), or categories of the health topic (such as dentists, beauty care, child care, diseases of aging people, etc.) could have improved the survey plan and been useful for data analysis. 
+
+A little work for the presentation of the article would be required; tables shouldn’t divided into different pages/columns (tables 1 and 2), figures in table 3 should be right-aligned, the caption for the figure 3 should be beneath the figure rather than in the next column, and contents of sections 3.1 and 3.2 are partially redundant.
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) I changed my evaluation from ""1"" to ""-1"", though I didn't virtually change my comments (just added one phrase). Re-consideration of the problems of the paper which other reviews had pointed out, with which I agree, and I myself had wrote in my reivew made me change my evaluation.","Overall evaluation: -1
+Reviewer's confidence: 3
+Recommend for best paper: no",-1,,,,,2018-02-22,00:49,no
+81,22,335,Frxxx Shxxxx,3,"(OVERALL EVALUATION) The study of what components make rumors trusted is important and particularly so with respect to health information.  The authors appear to use the term rumor to be misinformation although the term rumor could also be used to refer to correct information from a non-direct source.
+
+While the study has numerous issues (small sample size of microblog posts, inappropriate study population), the results of the paper substantiate/reinforce prior results.   The authors acknowledge the issues with the study in the limitations section -- which is refreshing, but this seems really to be a decent pilot study for a more rigorous examination of the issues using a more appropriate study population and a larger set of microblog posts and/or variations of the same microblog post with/without the features being explored.","Overall evaluation: -2
+Reviewer's confidence: 4
+Recommend for best paper: no",-2,,,,,2018-02-18,19:11,no
+82,22,390,Jenxxxxxx Wxx,4,"(OVERALL EVALUATION) This paper investigates the effect of rumor presentation on user trust 
+in online health rumor.
+
+In general, the papaer is clearly written.
+However, in addition to the ANOVA test of the presence of pictures, verification, and hyperlinks,
+there's no proposed method in distinguishing between rumors.
+
+The contribution of the paper is not clear.
+
+Also, the sample size in the experiment is too small with 30 students in the survey,
+and 10 students in the interview.
+The data size of 24 rumors is also not acceptable.
+The experimental results are not convincing.","Overall evaluation: -2
+Reviewer's confidence: 4
+Recommend for best paper: no",-2,,,,,2018-02-19,03:28,no
+83,23,375,Domxxxxx Tkxxxx,1,"(OVERALL EVALUATION) The paper is about semantic modelling, which is an important topic. The paper, however, is very chaotic and difficult to follow. The state of the art, the novel contributions, and the boundaries between the two are not clearly stated. It is therefore difficult to judge the novelty or relevance.
+
+The paper is very abstract and lacks examples or diagrams that would help the reader to understand it. A lot of names appear without any definition or reference.
+
+In addition, I think the abstract does not match the paper itself. For example, the authors write in the abstract: ""We explore the similarity of our approach to object-oriented analysis and modeling."" I don't see such a comparison in the paper.
+
+For this reasons, I believe it should be rejected.","Overall evaluation: -2
+Reviewer's confidence: 2
+Recommend for best paper: no",-2,,,,,2018-02-12,15:07,no
+85,23,60,Joxx Hx,3,"(OVERALL EVALUATION) The paper describes a mapping between ontological concepts and the object-oriented model. The goal of the authors is to provide rich descriptions of real life objects, based on the Human Activities and Infrastructures Foundry of ontologies. There is a good intellectual work behind the paper, that follows previous works of the authors. However, the paper includes several inconsistencies from the object-oriented perspective that need to be pointed out.
+
+First of all, the paper is confusing and merges concepts of very different levels of abstraction without providing a clear rationale. 
+The goal of the work is very ambitious since the authors try to build structured models of complex historical situations. They propose to use the conceptualization made in the HAIF, which seems to be a good option. However, at the same time, they put the focus on how its concepts map to Object-oriented concepts, making assumptions that are not exact. For instance, the authors claim that the goal of encapsulation in object-oriented programming is pairing of objects with methods, which is too simplistic and out of focus. Encapsulation is a programming technique used to ensure information hiding as a way of reducing coupling between modules, and later classes, in classical programming languages. Pairing objects woth methods would be a mean to ensure encapsulation, but not a goal on itself.
+
+Quallities are clearly properties of objects that, surprisingly, are not mapped to attributes in object-orientes languages. Relational qualities, in turn, could be seen as associations (in UML terminology). Finally, there is another mistake when the authors associate UML with BPMN. There are completely different notations. In fact, UML has a much wider scope than BPMN, to the point that the so-called Activity Diagram in UML covers the same domain as BPMN, namely process modelling.
+
+There is extensive literature on formal and object oriented modelling languages proposed in the early 1990s that explored the view of objects as observable processes. H. D. Erich, A. Sernadas, G. Saake and others developed families of languages that covered this view). Also, Yair Wand published a famous paper where he defined a direct mappingbetween the Mario BUnge’s ontology and the OO model:
+
+An ontological model of an information system
+Y Wand, R Weber - IEEE transactions on software engineering, 1990
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) The paper is confusing, with notorius inconsistencies regarding the Object oriented model.","Overall evaluation: -2
+Reviewer's confidence: 4
+Recommend for best paper: no",-2,,,,,2018-02-15,09:42,no
+86,23,141,Cx Lxx,4,"(OVERALL EVALUATION) Based on previous work that proposed a Human Activities and Infrastructures Foundry (HAIF), this paper considers issues in the implementation of that Foundry. Previously they proposed a basic formal ontology BFO to describe their foundry.  This paper explore additions to the foundry ontologies to support formal modeling on Korean ceramic water droppers.
+
+They then investigate two museum objects to identify some of the differences between descriptions of Universals and Particulars in the BFO, and explore the possibility of using their techniques to supplement traditional metadata.
+
+There are several issues not discussed.
+
+There were no actual examples given of the derived ontologies nor was there any discussion of the size of the ontology and how it would scale.
+
+There is no discussion of how such an ontology would be evaluated.","Overall evaluation: -1
+Reviewer's confidence: 3
+Recommend for best paper: no",-1,,,,,2018-02-16,17:06,no
+88,24,148,Sujxxxx Dxx,1,"(OVERALL EVALUATION) The proposed topic is of interest to the JCDL community and as the authors point out, the number of images being made available online and part of digital library collections is increasing.
+Consequently, it is good to have a venue where people working on related topics and listed problems can gather to discuss status of research, practical aspects, and commercial solutions in these areas.
+
+However, I am unable to judge if the listed authors were involved in similar workshop organization and have enough background and expertise on the topics mentioned in the proposal (based on their homepages) to be able to review and judge papers in the area.
+The call for workshop specifically asks for the following information which is missing in the proposal.
+
+·         identification of the expected audience and expected number of attendees
+·         contact and biographical information about the organizers
+·         if a workshop or closely related workshop has been held previously, information about the earlier sessions should be provided dates, locations, outcomes, attendance, etc.
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) The workshop sounds interesting and will be of value to the JCDL community.
+However, I could not figure out the proposers' background and expertise on these specific topics and if they have organized similar workshops previously.","Overall evaluation: 0
+Reviewer's confidence: 4",0,,,,,2018-01-25,05:34,no
+89,24,381,Supxxxxxx Tuxxx,2,"(OVERALL EVALUATION) This workshop aims to bring together researchers and practitioners who deal with digital libraries of images and image retrieval. Image fields have played a big role in digital libraries recently, it would be nice to have a workshop that keep participants abreast of challenges and solutions in handling image collections.","Overall evaluation: 2
+Reviewer's confidence: 4",2,,,,,2018-01-26,13:36,no
+90,24,352,Laxxx Soxxxx,3,"(OVERALL EVALUATION) The workshop addresses a very interesting and relevant topic dealing with image collection. Recent advances in deep learning have increased the need for large-scale image collections, opening several challenges in terms of creation, organization, access, and use. 
+The workshop format (one day) is accurate and allows enough time for discussion. The possible topics are interesting. 
+
+Suggestion: I would add another one related to the creation/use of multi-modal collections (e.g., text/image) since both evidence sources are complementary and there are several contributions in terms of multi-modal retrieval, captioning, ....","Overall evaluation: 2
+Reviewer's confidence: 3",2,,,,,2018-01-27,14:08,no
+91,25,168,Daxxxx H,1,"(OVERALL EVALUATION) The paper proposed an entity relationship model and a set of visualization schemes.
+Node-link graph, force-oriented layout and bubble map and etc. are used in the schemes.
+The entity model include three entity sets: the main-entity set, the child-entity set and the secondary-entity set.
+Two examples of applying the visualization scheme have been presented.
+
+Strength and contributions:
+An entity relationship model is proposed and a set of visualization schemes are proposed.
+The model has high universality and enables quick search of related entities.
+Detailed requirement, rendering method and exhibition schemes have been discussed.
+Two visualization systems have been made for two datasets to show the applicability of the scheme.
+
+Weakness and questions:
+The novelty of the proposed scheme is limited or at least not well illustrated.
+When first mention some algorithm or terms, it’s better to add the corresponding citations. For example, when force-oriented layout is mentioned in introduction, citations should be added. Otherwise it is not easy to follow.
+In Chinese Medicine, how about two prescriptions with same medicine but different amount? They must be the same prescription?
+In related work or introduction, there should be more clearer discussion on how this work differ from previous work.","Overall evaluation: 0
+Reviewer's confidence: 3
+Recommend for best paper: no",0,,,,,2018-02-11,20:09,no
+92,25,1,Trxxx Aaxxxx,2,"(OVERALL EVALUATION) This full paper presents a query/resultset model and visualization scheme for data that consist of entities of multiple types that are interrelated. The initial contribution is a generalized model of main entity, with related child entities and secondary entity(ies), which is applied in the construction of search results and the visualization of the results. The method and visualization are explored two different use cases, which serve as a proof of concept, but otherwise there is no evaluation to validate the generic nature, applicability or usefulness of the solution. 
+
+The contribution is relevant for the conference, but there are different elements of this paper that can be improved. I find that the maturity of the research is a bit below what we should expect for a full paper. 
+
+I find the proposed generalized model interesting, but the paper lacks proper evidence that this is a common pattern. In knowledge bases with multiple entities, there are potentially many different entities that can serve as the main entity - depending on the user´s interest. This sort of implies to me, that such a model is more related to the presentation of results. The two use cases that utilizes this model, may at best serve as an indication that this is a reasonable generic design assumption. The paper has an emphasis on the visualizations, but only presents the solution and a major critique to the paper is the lack of evaluation of the results in terms of usability. A user study - or other form of evaluation - will significantly increase the value of this.
+
+The paper is reasonably well structured, with relevant figures and illustrations. The language generally needs to be improved, and the numbered lists should have been properly formatted as lists. The space before the citations is systematically left out, but the list of references is relevant. In general, I find this contribution interesting and relevant, but will encourage the users to broaden the scope and maybe contextualize and relate to the field of entity search. An more systematic evaluation of either the usability of the  visualization or the general applicability of the proposed model, is needed.","Overall evaluation: -1
+Reviewer's confidence: 4
+Recommend for best paper: no",-1,,,,,2018-02-14,11:34,no
+93,25,6,Alxxx Abduxxxxxxx,3,"(OVERALL EVALUATION) This paper presents a visualization scheme for displaying multi-entity relationship using the similarity correlation among the entities. The scheme was then demonstrated through the use of two datasets: a Chinese herbal medicine prescription dataset and a paper dataset.
+
+This paper is interesting as it provides users with the capability of visualizing the multi-entity relationship within a search result. Within the visualizations, users are able to explore the similarity between the entities. However, the colors that are used in graphics make the visualizations hard to read. I would suggest the use of either ColorCAT (http://colorcat.org/) or ColorBrewer (http://colorbrewer2.org/) in the justification of the color usage. Although there is a section on the sample analysis, it would be nice to have a user evaluation to demonstrate the usability of the system (besides the authors of the paper). Perhaps a case study with domain experts, e.g., a pharmacist using the Chinese herbal medicine prescription dataset completing some defined tasks. I can understand the usage of the bubble graph in providing a more detailed class classification chart, but I was wondering whether the paper can also provide an explanation how it plans to address the issue of JND in using a bubble graph.
+
+Some minor comments:
+- Missing references:
+* NEREx: Named-Entity Relationship Exploration in Multi-Party Conversations (https://dx.doi.org/10.1111/cgf.13181)
+* WebVOWL: Web-based Visualization of Ontologies (https://link.springer.com/chapter/10.1007%2F978-3-319-17966-7_21)
+- Some typos:
+* Section 3.2: and and association -> and association
+* Reference to the Chinese herbal medicine system database","Overall evaluation: -1
+Reviewer's confidence: 3
+Recommend for best paper: no",-1,,,,,2018-02-14,14:17,no
+94,26,181,Nixx Hoxxxx,1,"(OVERALL EVALUATION) I think this paper has merit for a number of reasons, although some modification to its methodology would yield more rich results. It is relevant to the JCDL since it highlights practical and social issues related to digital libraries through its investigation of the scholarly literature about digital scholarship centers in academic libraries worldwide, with particular focus on China. They explained that China is in an early, exploratory stage regarding digital scholarship, so this preliminary study is novel and produces the beginnings of a framework for establishing these centers and services in their country.
+
+I thought the methodology of searching academic databases and conducting content analysis on the results was well-intentioned, however they only searched Web of Science, ScienceDirect and Emerald (plus some professional reports) for English-language sources and three Chinese sources. If they intend to learn about digital scholarship services offered by university libraries, the academic literature will likely only provide evidence from other overview studies or individual institutions that have happened to publish about their services, which might not be representative of what's actually offered. Many digital scholarship centers offer information about their services on their websites, in blogs, on social media, etc. and further study of these sources might yield more reliable results about what institutions are actually offering. 
+
+That being said, the authors did a good job analyzing what results they did get, and I liked their strategy of grouping digital scholarship services into broader categories for the purpose of constructing a framework. Groupings like this are interesting and needed within digital scholarship in order to better organize the wide array of services associated with the term. If they find additional services offered through more data/literature collection, they might consider revising or expanding them. The writing style was clear and understandable with a few small stylistic and grammatical errors that a quick copyedit could fix.","Overall evaluation: 2
+Reviewer's confidence: 4
+Recommend for best paper: no",2,,,,,2018-02-09,17:05,no
+95,26,39,Toxxxx Blxxx,2,"(OVERALL EVALUATION) The paper provides an overview of digital scholarship activities in order to support further development in China. While it largely is an overview of existing literature, it could be interesting to the conference to understand some recent developments there. It is a detailed literature review but lacks a strong theoretical framework to bring together the various elements they identify as digital scholarship. It would have been nice to see some critical evaluation whether the hype around DS is justified.
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) I would think this works better as poster - if accepted.","Overall evaluation: 1
+Reviewer's confidence: 4
+Recommend for best paper: no",1,,,,,2018-02-14,13:15,no
+97,26,397,Nicxxxxx Woxx,3,"(OVERALL EVALUATION) The authors are reporting on a national initiative to establish a theoretical framework for developing digital scholarship services within Chinese university libraries. The initiative itself could be relevant to JCDL audiences; however, the content of this paper is mostly a preliminary literature review. There are distracting grammatical errors and the discussion is fairly short. Table 1 wastes space that could be used for more detailed discussion. There is nothing novel or original in the conclusion. There is little regarding the unique or interesting factors affecting providing digital scholarship services in China. As the authors note, further empirical work needs to be done to support their framework.","Overall evaluation: -2
+Reviewer's confidence: 4
+Recommend for best paper: no",-2,,,,,2018-02-15,19:41,no
+98,27,307,Anixxxx Prxxx,1,"(OVERALL EVALUATION) Summary of the review: 
+
+
+Relevance to JCDL: The given work explicitly deals with the problem of domain specific linguistic variations in a big collection documents. 
+The work present a cross-collection topic model combined with automatic domain term and phrase selection. The model achieves this by introducing different distributions (parameter) governing by the entropy for the collection-specific and collection-independent words.  
+
+
+Novelty/Originality: The main novelty is treating domain specific text as something being generated from a distribution for common terms and another distribution for domain dependent terms (per domain) and training for the distributions jointly to maximise entropy. 
+
+Assessment/Evaluation/Comparison: The proposed model is compared in details with the closest cross collection topics model. The authors perform explicit evaluation on perplexity and topic coherence as well as implicit evaluation on document classification to distinguish the words in two groups as mentioned. 
+
+
+Style/quality of writing: The writing is good and overall the work is a pleasure to read. Different portions of the paper like motivation, background, technique etc are well weighted. 
+
+
+Replicability: The experiments are generally replicable. The dataset is public and the experimental details are adequate to replicate the setup.   
+
+
+Adequacy of references: The references are adequate from a focused task paper point of view.
+
+
+General Queries:
+1) recently there has been a lot of interest in using word embedding for compensating for the lack of semantic information in statistical LDA model? How do you think it compares with [1] (or many similar works)? Basically can word embedding compensate for facts that topic and apparatus mean the same thing (and hence maybe separate distributions are not needed)  
+
+2) How does this model compare with hLDA where we can have hierarchy for domains and topics?
+
+
+Minor:
+line 29/1: “Upto 4% better perplexity” use lower instead of better? since other two comparisons are higher and all three are better in some way.
+
+line 22/2:Linguistic contrasts, such as domain-specific vocabulary, complicate topic modeling. Maybe the example paragraph follow directly after this line.
+
+
+References:
+
+[1] Das, Rajarshi, Manzil Zaheer, and Chris Dyer. ""Gaussian lda for topic models with word embeddings."" Proceedings of the 53rd Annual Meeting of the Association for Computational Linguistics and the 7th International Joint Conference on Natural Language Processing (Volume 1: Long Papers). Vol. 1. 2015.","Overall evaluation: 2
+Reviewer's confidence: 3
+Recommend for best paper: no",2,,,,,2018-02-15,19:51,no
+99,27,107,Andxxxxx Ferxxxx,2,"(OVERALL EVALUATION) In the paper, the authors propose combine ccLDA with a measure of termhood for modeling multiple domain-specific text collections, tokenizing by phrase segmentation. They propose a novel topic model that splits the vocabulary into collection-specific and collection-independent words, according to entropy-based termhood measure.
+
+They uses the entropy of hapax legonema for determining the threshold value to split the vocabulary into domain-specific and -independent words.
+
+The paper is well written and organized, the references are suitable.
+
+The paper is original and relevant to JCDL.
+
+The authors compare their proposal with ccLDA under accuracy, topic coherence and perplexity measures. 
+
+Please, put the equation of termhood in the text body.
+
+At the link provided in the paper, I was unable to access the code of the work. This makes it difficult to replicate the work results. 
+
+In the Datasets section, you must discuss how the articles from English, French and German Wikipedia are reduced to the minimum number of words.
+
+In the Document Classification section, it is not clear what the values presented on Table 3 are. Are they average values from 10-fold cross validation?
+
+A bracket is missing in the first equation at the Perplexity section.","Overall evaluation: 3
+Reviewer's confidence: 3
+Recommend for best paper: yes",3,,,,,2018-02-16,18:35,no
+100,27,140,Cx Lxx,3,"(OVERALL EVALUATION) The authors present a cross-collection topic model combined with automatic domain term extraction and phrase segmentation. Their model distinguishes collection-specfic and collection-independent words based on information entropy and reveals commonalities and differences of multiple text collections. They evaluate their model on patents, scientific papers, newspaper articles, forum posts, and Wikipedia articles. In comparison with state-of-the-art cross-collection topic modeling, their model achieves higher topic coherence, better perplexity, and higher document classification accuracy. They claim there model results in very clear topic representations.
+
+These are interesting results but on small data sets that are very disparate. There are several issues.
+
+How will the models scale? Not well I suppose.
+
+How does one measure ""clear-cut topic representations."" Just by looking? This claim is over stated and not evident from the tables.
+
+It would have been more interesting to compare fields within computer science or within science. The areas compared are somewhat disjoint.
+
+There are many missing relevant citations; here are a few.
+
+Jo, Yookyung, John E. Hopcroft, and Carl Lagoze. ""The web of topics: discovering the topology of topic evolution in a corpus."" Proceedings of the 20th international conference on World wide web. ACM, 2011.
+
+Du, Lan, Wray Lindsay Buntine, and Huidong Jin. ""Sequential latent dirichlet allocation: Discover underlying topic structures within a document."" Data Mining (ICDM), 2010 IEEE 10th International Conference on. IEEE, 2010.
+
+He, Qi, et al. ""Detecting topic evolution in scientific literature: how can citations help?."" Proceedings of the 18th ACM conference on Information and knowledge management. ACM, 2009.
+
+Wang, Xiaolong, Chengxiang Zhai, and Dan Roth. ""Understanding evolution of research themes: a probabilistic generative model for citations."" Proceedings of the 19th ACM SIGKDD international conference on Knowledge discovery and data mining. ACM, 2013.","Overall evaluation: 1
+Reviewer's confidence: 4
+Recommend for best paper: no",1,,,,,2018-02-18,15:17,no
+101,28,399,Mixx Wrxxx,1,"(OVERALL EVALUATION) Paper describes investigation of some possible approaches to ranking papers by citation. Common method is through number of citations. Here, they do some sentiment analysis of the sentence in which the citation occurs, determine if it’s a “positive”, “neutral” or “negative” citation, and use that to modify the citation count.  They use some NLP approaches to develop the sentiment - they have developed a classifier to give the positive, neutral (objective) and negative.
+
+They then use this to compare rankings by two general approaches; one based on citation count, and a second based on pagerank-like method that weights citation edges.  In each case, they run over a corpus from the computational linguistics literature (ACL anthology network) twice, once with just the count, or pagerank, the second incorporating sentiment. Results in each pair indicate changes in rank for a given paper. 
+
+I have no problem with the basic method used to get a sentiment measure, and then define the ranking approaches and do a comparison, but what’s the value of this beyond a nice NLP and ranking exercise?
+
+Adding in sentiment has changed the ranking, but what does that mean? In each example case, the papers moved down the ranking when sentiment was included (but then didn’t some go up then too?) Let’s say I have a paper, could I think that neutral citations are in some ways just “dotting the i’s” of recognizing the literature (e.g. when referencing JCDL literature, something this paper doesn’t do by the way), positive cites are those building on, or using, what my paper has suggested, and negative could well be others looking to differentiate their work.  Hence, a negative sentiment could be an indicator of really new work in the field.
+
+I think to make this a more solid contribution to thinking about how to develop automated citation analysis tools that would help others find relevant material in the field, then more thought into what the data means is needed - something the authors begin to hint at in the future work section. At the core of this is to figure out what those sentiment measures can actually tell us.  This is definitely dangling an interesting prospect in thinking of bibliometrics or scientometrics.
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) The core experiment is actually quite nice and would have been better as a short paper as it’s really not yet formed in how their ranking approaches utlizing sentiment would help a researcher in the field. Mainly as they haven’t really figured out what their sentiment measures actually mean.","Overall evaluation: -1
+Reviewer's confidence: 4
+Recommend for best paper: no",-1,,,,,2018-02-10,22:07,no
+103,28,413,Wexxxx X,2,"(OVERALL EVALUATION) This paper presented an investigation of introducing sentiment of a citation into the ranking of scientific papers. The paper first investigated methods of assessing a sentimental score for each citation sentences. Then the authors proposed two basic ranking schema and compared ranking results with/without considering sentiment score. Finally, the impact of the sentiment influence in the index is closely inspected with one paper as an example. 
+
+The paper is generally well written with experiments towards sentiment analysis accuracy and differences of ranking results. But the overall contribution and conclusion are not clearly presented due to the list of concerns listed as follows. 
+
+- The sentiment analysis accuracy is about 80.61% which doesn't seem very high. The author also did not compare their results with other approaches. As an active research field, many open source packages and pre-trained models are available to support sentiment analysis. The author should consider adding comparisons of their proposed method with some established one, such as Stanford coreNLP for sentiment analysis.  This can help readers better understand their accuracy results and contributions. 
+
+-  The author trained and tuned based on a smaller curated dataset (corpus 1) and applied it to a larger corpus. As shown in table 1, the distribution of positive/negative instances is quite different between two corpora. Additional explanation and analysis may be needed. One potential reason is due to the bias introduced by oversampling of minority classes. 
+
+- The comparison results of different ranking results may need more discussion. What is the goal of such comparisons?  It is not clear what conclusion authors trying to draw besides the four indexes are different. On the other hand, how the sentiment scores are introduced to build indices are not clearly presented. Different weighting schema used may change the ranking results greatly. 
+
+- The analysis of example paper also seems inconclusive. Introducing the sentiment score displayed different impacts in different indexing schema. The research questions 3 need further studies.","Overall evaluation: 0
+Reviewer's confidence: 4
+Recommend for best paper: no",0,,,,,2018-02-25,11:29,no
+104,28,258,Phixxxx Mxx,3,"(OVERALL EVALUATION) The paper introduces different ranking options for scientific papers. The novelty is taking sentiments of citation contexts/instances into account.
+
+The introduction in well written and motivates the project of utilizing citation instances. I would recommend to use citation context as a term. This seems to be the more established term. 
+
+In related work the authors miss the research around citation contexts a bit. There are many relevant papers. They also miss to mention some relevant workshops and shared tasks. But this is not a huge problem.
+
+The problem starts with the research questions which are not well formulated and clear. Esp. RQ 1 and 3. 
+
+The corpora are fine and adequate.
+
+Chapter 6 is detailed but I miss the connection to the RQs.
+
+The ranking indexes should have proper names not just numbers.
+The interpretation of the evaluation of the indexes is not well explained and discussed.
+
+Citation contexts/instances can play a major role in DL and can improve IR, but I can’t see how the approach in this paper can improve the current situation in DLs.
+
+I like the general idea a lot but the set-up of the paper (RQs, evaluation and discussion of the results) is not proper enough.
+
+Perhaps the paper can be downsized to a short paper. Effectively it is not a complete full paper (10pages) yet.
+
+(CONFIDENTIAL REMARKS FOR THE PROGRAM COMMITTEE) Perhaps the paper can be downsized to a short paper. Effectively it is not a complete full paper (10pages) yet.","Overall evaluation: 0
+Reviewer's confidence: 4
+Recommend for best paper: no",0,,,,,2018-02-16,11:51,no
+105,28,421,Bxx Y,4,"(OVERALL EVALUATION) This manuscript aims for incorporating citation sentiment into ranking index of scientific publications. While this is an interesting idea, the work described in this manuscript seems in the early stage of research, which is not yet ready for publication due to a number of methodological issues.
+
+First, citation sentiment does not indicate target. A positive sentiment could mean good or bad to a cited paper in a comparison like ""[1] is better than [2]"". Some research is needed to investigate how to identify the target of sentiment.
+
+Second, the details of the citation sentiment classification were not reported. Also, since the goal is to rank scientific publications, how would the classification accuracy affect the ranking?
+
+Third, some caution is needed when using the SMOTE method for oversampling language data. Different from image data, which can be easily altered slightly to generate a new example, language data cannot be easily altered without distorting the semantic meaning. There have been some creative approaches for augmenting language data, e.g. Zhang et al. (2015) 
+
+Zhang, X., Zhao, J., & LeCun, Y. (2015). Character-level convolutional networks for text classification. In Advances in neural information processing systems (pp. 649-657).
+
+Lastly, the evaluation strategy is confusing. Several ranking index methods were compared based on the similarity between the ranking result, and then a particular paper was picked to investigate the influence of citation sentiment on the ranking. Neither step provides strong evidence for the validity of the ranking methods.","Overall evaluation: -2
+Reviewer's confidence: 4
+Recommend for best paper: no",-2,,,,,2018-02-17,03:33,no
+106,29,417,Xixx Yxx,1,"(OVERALL EVALUATION) This paper proposed to solve multi-label document classification based on titles only, since the availability of titles is much higher than that of full-text, therefore we could have more training data for a machine learning model. This idea is innovative and has its value in practical usage.
+
+However, there are several problems in the comparison results. Multiple factors (training set size, models, feature representations) are entangled, making the comparisons less convincing.
+
+First, the author claimed that MLP is better than CNN and LSTM in certain cases. However, MLP used the TFIDF representation of *full* text and CNN and LSTM methods use the pre-trained embeddings only for the *first* k words. This is an unfair comparison since first k words are a biased subsampling of the full-text (e.g. on average full-text has 2.5k-6.7k words but the author only used first 250 words). MLP method can utilized all information in the full-text.
+
+Second, the author used different hyper-parameters (e.g. # hidden units) for full-text and titles, and the model for titles has more #hidden units (therefore larger capacities). For comparison purpose, the author should use the same hyper-parameters. Only in that case can we conclude that the benefits are coming from the more available titles, not the model itself. I guess the author's rationale was trying to get the best performance. However this doesn't control the factors.
+
+The claim that deep learning models outperform traditional methods when training set is larger that 65k is not rigorous. This is not what [44] suggested. [44] suggested that generally speaking there is a dichotomy, but the exact number should be case-by-case.
+
+The author claimed that there are very few papers on classification with large-scale label spaces. However nearly all neural machine translation models are dealing with large-scale label spaces.
+
+A citation to AdaGrad is missing.","Overall evaluation: -1
+Reviewer's confidence: 4
+Recommend for best paper: no",-1,,,,,2018-02-16,18:21,no

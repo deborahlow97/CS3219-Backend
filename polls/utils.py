@@ -60,7 +60,7 @@ def parseCSVFile(inputFile):
 	# reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect=dialect)
 	reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect='excel')
 	rowResults = [row for row in reader]
-	print (len(rowResults))
+	#print (len(rowResults))
 	return rowResults
 
 def parseCSVFileInverted(input2DArr):
@@ -85,7 +85,7 @@ def parseCSVFileFromDjangoFile(inputFile):
 	parsedResult = {}
 	fileData = inputFile.read().decode("utf-8")
 	lines = fileData.split("\n")
-	print lines[0]
+	#print lines[0]
 	headerRow = lines[0]
 	secondRow = lines[1]
 			

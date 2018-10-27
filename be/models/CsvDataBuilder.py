@@ -104,7 +104,7 @@ class CsvDataBuilder:
             elif "author." in key:
                 authorDict.update({str(key): int(value)})
 
-        print authorDict
+        #print authorDict
         return authorDict
 
     def getReviewOrder(self, index):
@@ -218,7 +218,6 @@ class CsvDataBuilder:
 
             reviewTimeSeries.append({'x': lastReviewStamps, 'y': reviewedNumber[index]})
 
-        print reviewTimeSeries
         scoreList = []
         recommendList = []
         confidenceList = []
@@ -240,7 +239,7 @@ class CsvDataBuilder:
 
         for submissionID in submissionIDs:
             reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
-            # print reviews
+
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
@@ -409,58 +408,114 @@ class CsvDataBuilder:
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", authorDict, reviewDict)
         # print ("=====")
         # print (combinedLines)
-        reviewInfo = self.getReviewInfo(index, reviewDict)
-        authorInfo = self.getAuthorInfo(index, authorDict)
-        #computedResults = getComputedResult()
+        # reviewInfo = self.getReviewInfo(index, reviewDict)
+        # authorInfo = self.getAuthorInfo(index, authorDict)
         # 1. Top 10 Authors (by mean review score across all the authors submissions) bar : author names (x axis) mean score (y axis) topAuthorsAR.
         # 2. Affiliation distribution of top 10 authors  pie chart:affiliation distribution affiliationDistributionAR
         # 3. Country distribution of top 10 authors  pie chart:country distribution countryDistributionAR
         # 4. Top 10 countries with highest mean scores  bar : countries ( x-axis), mean score(y-axis)  topCountriesAR
-        # 5. Top 10 affiliations with highest mean scores  bar : affiliations( x-axis), mean score(y-axis)  topAffiliationsAR
+        # 5. Top 10 affiliations with highest mean scores bar : affiliations( x-axis), mean score(y-axis)  topAffiliationsAR
         # Top 10 authors that were recommended for best paper  : authors names (x-axis),
         #acceptedSubmission = [line for line in lines if str(line[int(submissionDict.get("submission.Decision"))]) == 'accept']
         combinedOrderDict = combineOrderDict(authorDict, reviewDict)
-        # print ("========")
-        # print (combinedOrderDict)
+        ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
+        for key, value in combinedOrderDict.items():
+            print key
+            print [str(ele[value]) for ele in combinedLines]
+            print ("====================================")
         name = []
         reviewScore = []
         affiliation = []
         country = []
         #name and reviewScore MUST be given
+        counter = 1
         for Info in combinedLines:
+            
             name.append(str(Info[int(combinedOrderDict.get("author.First Name"))]) + " " + str(Info[int(combinedOrderDict.get("author.Last Name"))]))
-            reviewScore.append(int(Info[int(combinedOrderDict.get("review.Overall Evaluation Score"))]))
             affiliation.append(str(Info[int(combinedOrderDict.get("author.Organization"))]))
             country.append(str(Info[int(combinedOrderDict.get("author.Country"))]))
+            try:    
+                reviewScore.append(int(Info[int(combinedOrderDict.get("review.Overall Evaluation Score"))]))
+
+            except Exception as e:
+                print "Line is at %d" % (counter)
+            
+            finally:
+                counter += 1
 
         infoAndScore = zip(reviewScore, name, affiliation, country)[:10]
         infoAndScore.sort(reverse=True)
 
-        affiliationAndScore = zip(reviewScore, affiliation)
-        affiliationAndScore.sort(reverse=True)
+        # affiliationAndScore = zip(reviewScore, affiliation)
+        # affiliationAndScore.sort(reverse=True)
 
         #HashMap with author Name as key
-
         authorScoreMap = {}
+        countryScoreMap = {}
+        organizationScoreMap ={}
         for Info in combinedLines:
             name = str(Info[int(combinedOrderDict.get("author.First Name"))] + " " + Info[int(combinedOrderDict.get("author.Last Name"))])
             score = int(Info[int(combinedOrderDict.get("review.Overall Evaluation Score"))])
+            country = str(Info[int(combinedOrderDict.get("author.Country"))])
+            affiliation = str(Info[int(combinedOrderDict.get("author.Organization"))])
+            #print (int(combinedOrderDict.get("review.Overall Evaluation Score")))
+
             if name not in authorScoreMap:
                 authorScoreMap[name] = [score]
             else:
                 authorScoreMap[name].append(score)
 
-        for x in authorScoreMap:
-            print (x)
+            if country not in countryScoreMap:
+                countryScoreMap[country] = [score]
+            else:
+                countryScoreMap[country].append(score)
 
-        parsedResult['topAuthorsAR'] =  {'authors': [ele[0] for ele in infoAndScore],
-        'score': [ele[1] for ele in infoAndScore]}       #topAuthorsScore
+            if affiliation not in organizationScoreMap:
+                organizationScoreMap[affiliation] = [score]
+            else:
+                organizationScoreMap[affiliation].append(score)
+
+        #getting average of each author
+        for key,value in authorScoreMap.iteritems():
+            authorScoreMap[key] = sum(value)/len(value)
+
+        sorted(authorScoreMap, key=authorScoreMap.get, reverse=True)
+        authorScoreMapTop10 = Counter(authorScoreMap)
+        authorScoreMapTop10 = authorScoreMapTop10.most_common(10)
+
+        #getting average of each country
+        for key,value in countryScoreMap.iteritems():
+            countryScoreMap[key] = sum(value)/len(value)
+
+        sorted(countryScoreMap, key=countryScoreMap.get, reverse=True)
+        countryScoreMapTop10 = Counter(countryScoreMap)
+        countryScoreMapTop10 = countryScoreMapTop10.most_common(10)
+
+        #getting average of each organization
+        for key,value in organizationScoreMap.iteritems():
+            organizationScoreMap[key] = sum(value)/len(value)
+
+        sorted(organizationScoreMap, key=organizationScoreMap.get, reverse=True)
+        organizationScoreMapTop10 = Counter(organizationScoreMap)
+        organizationScoreMapTop10 = organizationScoreMapTop10.most_common(10)
+
+        parsedResult['topAuthorsAR'] =  {'authors': [ele[0] for ele in authorScoreMapTop10],
+        'score': [ele[1] for ele in authorScoreMapTop10]}       #topAuthorsScore
         parsedResult['affiliationDistributionAR'] = {'organization': [ele[2] for ele in infoAndScore],
-        'score': [ele[1] for ele in infoAndScore]}
-        parsedResult['countryDistributionAR'] = {'authors': [ele[3] for ele in infoAndScore],
-        'score': [ele[1] for ele in infoAndScore]} 
-        parsedResult['topCountriesAR'] = 1
-        parsedResult['topAffiliationsAR'] = 1
+        'score': [ele[0] for ele in infoAndScore]}
+        parsedResult['countryDistributionAR'] = {'country': [ele[3] for ele in infoAndScore],                
+        'score': [ele[0] for ele in infoAndScore]} 
+        parsedResult['topCountriesAR'] = {'countries': [ele[0] for ele in countryScoreMapTop10],
+        'score': [ele[1] for ele in countryScoreMapTop10]}
+        parsedResult['topAffiliationsAR'] = {'organization': [ele[0] for ele in organizationScoreMapTop10],
+        'score': [ele[1] for ele in organizationScoreMapTop10]}
+
+        for x,y in parsedResult.iteritems():
+            print ("theresult")
+            print (x)
+            for key,value in y.iteritems():
+                print (key)
+                print (value)
 
         return parsedResult
 
