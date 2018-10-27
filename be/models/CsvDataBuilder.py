@@ -421,8 +421,9 @@ class CsvDataBuilder:
         ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
         for key, value in combinedOrderDict.items():
             print key
-            print [str(ele[value]) for ele in combinedLines]
-            print ("====================================")
+            if "review.Comments" not in key:
+                print [str(ele[value]) for ele in combinedLines]
+                print ("====================================")
         name = []
         reviewScore = []
         affiliation = []
