@@ -96,6 +96,7 @@ class CsvDataBuilder:
 
     def getAuthorOrder(self, index):
         dataDictionary = self.csvDataList[index].data
+        print dataDictionary
         authorDict = {}
 
         for key, value in dataDictionary.iteritems():
@@ -448,8 +449,8 @@ class CsvDataBuilder:
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
 
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "submission.Submission #", authorDict, submissionDict)
-        print combinedLines[0]
-        print combinedLines[1]
+        # print combinedLines[0]
+        # print combinedLines[1]
 
         authorInfo = self.getAuthorInfo(index, authorDict)
         submissionInfo = self.getSubmissionInfo(index, submissionDict)
@@ -465,23 +466,29 @@ class CsvDataBuilder:
             decisionBasedOnTopCountries[country] = dict(Counter(decisionForCurrentCountry))
 
         topAffiliationsList = authorInfo['topAffiliations']['labels']
+        # print topAffiliationsList
         decisionBasedOnTopAffiliations = dict()
         for org in topAffiliationsList:
             decisionForCurrentAffiliation = []
             for line in combinedLines:
                 if (line[int(combinedDict.get("author.Organization"))] == org):
                     decisionForCurrentAffiliation.append(line[int(combinedDict.get("submission.Decision"))]) #currently includes keywords also, possibly because of how csv is parsed
-            decisionBasedOnTopAffiliations[country] = dict(Counter(decisionForCurrentAffiliation))
+            decisionBasedOnTopAffiliations[org] = dict(Counter(decisionForCurrentAffiliation))
 
         parsedResult['topCountriesAS'] = decisionBasedOnTopCountries
         parsedResult['topAffiliationsAS'] = decisionBasedOnTopAffiliations
         parsedResult['organizationDistributionAS'] = {}
 
-        print ("====================================")
-        print combinedDict.get("submission.Decision")
-        # print parsedResult['topCountriesAS']
+        # print ("====================================")
+        print parsedResult['topCountriesAS']
         print parsedResult['topAffiliationsAS']
-        print ("====================================")
+
+        # ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
+        # for key, value in combinedDict.items():
+        #     print key
+        #     print [str(ele[value]) for ele in combinedLines]
+        #     print ("====================================")
+        # print ("====================================")
 
         return parsedResult
 

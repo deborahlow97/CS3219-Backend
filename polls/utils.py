@@ -30,14 +30,14 @@ def combineOrderDict(dict1, dict2):
 			dict2[key] = dict2[key] + size
 	dict3.update(dict2)
 
-	print "=============================================="
-	print dict1
-	print "=============================================="
-	print dict2
-	print "=============================================="
-	print dict3
-	print "=============================================="
-	
+	# print "=============================================="
+	# print dict1
+	# print "=============================================="
+	# print dict2
+	# print "=============================================="
+	# print dict3
+	# print "=============================================="
+
 	return dict3
 	
 def combineLinesOnKey(lines1, lines2, key1, key2, dict1, dict2):
@@ -46,6 +46,7 @@ def combineLinesOnKey(lines1, lines2, key1, key2, dict1, dict2):
 		for ele2 in lines2:
 			if (ele1[dict1.get(key1)] == ele2[dict2.get(key2)]):
 				combinedLines.append(ele1 + ele2)
+				lines2.remove(ele2)
 	return combinedLines
 
 def parseCSVFile(inputFile):
