@@ -533,7 +533,7 @@ class CsvDataBuilder:
             topAffiliationsList = Counter(acceptedSubmissionsByAffiliationAndTrack).most_common(10)
             decisionBasedOnTopAffiliations.append(dict(topAffiliationsList))
 
-        parsedResult['topCountriesAS'] = topCountriesList
+        parsedResult['topCountriesAS'] = {'labels': topCountriesList.keys(), 'data': topCountriesList.values()}
         parsedResult['topAffiliationsAS'] = {'labels':tracks, 'data': decisionBasedOnTopAffiliations}
 
         # ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
@@ -542,7 +542,7 @@ class CsvDataBuilder:
         #     print [str(ele[value]) for ele in combinedLines]
         #     print ("====================================")
         # print ("====================================")
-        # print parsedResult['topCountriesAS']
+        print parsedResult['topCountriesAS']
         # print parsedResult['topAffiliationsAS']
         # print ("====================================")
 
@@ -561,6 +561,7 @@ class CsvDataBuilder:
         combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", reviewDict, submissionDict)
 
         tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in combinedLines]).keys())
+        expertiseLevels = ['1', '2', '3', '4', '5']
         expertiseByTrack = dict()
         for track in tracks:
             dataListForCurrentTrack = []
@@ -568,6 +569,9 @@ class CsvDataBuilder:
                 if (line[int(combinedDict.get("submission.Track Name"))] == track):
                     dataListForCurrentTrack.append(line[int(combinedDict.get("review.Field #"))])
             expertiseByTrack[track] = dict(Counter(dataListForCurrentTrack))
+            for ele in expertiseLevels:
+                if (ele not in expertiseByTrack[track]):
+                    expertiseByTrack[track][ele] = 0
 
         meanScoreByTrack = dict()
         for track in tracks:
@@ -586,7 +590,7 @@ class CsvDataBuilder:
         #     print [str(ele[value]) for ele in combinedLines if key == "review.Overall Evaluation Score" or key == "submission.Track Name"]
         #     print ("====================================")
         # print ("====================================")
-        # print parsedResult['expertiseSR']
+        print parsedResult['expertiseSR']
         # print parsedResult['averageScoreSR']
         # print ("====================================")
 
