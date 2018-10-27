@@ -96,7 +96,6 @@ class CsvDataBuilder:
 
     def getAuthorOrder(self, index):
         dataDictionary = self.csvDataList[index].data
-        print dataDictionary
         authorDict = {}
 
         for key, value in dataDictionary.iteritems():
@@ -201,7 +200,7 @@ class CsvDataBuilder:
 
         lines = getLinesFromInputFile(inputFile, bool(reviewDict.get("review.HasHeader")))
 
-        evaluation = [str(line[int(reviewDict.get("review.Overall Evaluation Score"))]).replace("\r", "") for line in lines]
+        evaluation = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines]
         submissionIDs = set([str(line[int(reviewDict.get("review.Submission #"))]) for line in lines])
         reviewTime = [str(ele[int(reviewDict.get("review.Time"))]) for ele in lines]
         reviewDate = [str(ele[int(reviewDict.get("review.Date"))]) for ele in lines]
@@ -239,7 +238,7 @@ class CsvDataBuilder:
             recommendDistributionLabels[index] = str(0 + 0.1 * index) + " ~ " + str(0 + 0.1 * index + 0.1)
 
         for submissionID in submissionIDs:
-            reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
+            reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
@@ -465,21 +464,24 @@ class CsvDataBuilder:
                     decisionForCurrentCountry.append(line[int(combinedDict.get("submission.Decision"))]) #currently includes keywords also, possibly because of how csv is parsed
             decisionBasedOnTopCountries[country] = dict(Counter(decisionForCurrentCountry))
 
-        topAffiliationsList = authorInfo['topAffiliations']['labels']
-        # print topAffiliationsList
+        acceptedCountriesList = []
+        for ele in combinedLines:
+            if str(ele[int(combinedDict.get("submission.Decision"))]) == 'accept':
+                acceptedCountriesList.append(ele[int(combinedDict.get("author.Country"))])
+        topCountriesList = dict(Counter(acceptedCountriesList).most_common(10))
+
         decisionBasedOnTopAffiliations = dict()
-        for org in topAffiliationsList:
-            decisionForCurrentAffiliation = []
-            for line in combinedLines:
-                if (line[int(combinedDict.get("author.Organization"))] == org):
-                    decisionForCurrentAffiliation.append(line[int(combinedDict.get("submission.Decision"))]) #currently includes keywords also, possibly because of how csv is parsed
-            decisionBasedOnTopAffiliations[org] = dict(Counter(decisionForCurrentAffiliation))
+        tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in combinedLines]).keys())
+        for track in tracks:
+            acceptedSubmissionsByAffiliationAndTrack = []
+            for ele in combinedLines:
+                if str(ele[int(combinedDict.get("submission.Decision"))]) == 'accept' and str(ele[int(combinedDict.get("submission.Track Name"))]) == track:
+                    acceptedSubmissionsByAffiliationAndTrack.append(ele[int(combinedDict.get("author.Organization"))])
+            topAffiliationsList = Counter(acceptedSubmissionsByAffiliationAndTrack).most_common(10)
+            decisionBasedOnTopAffiliations.update({track: dict(topAffiliationsList)})
 
-
-        parsedResult['topCountriesAS'] = decisionBasedOnTopCountries
-        parsedResult['topAffiliationsAS'] = decisionBasedOnTopAffiliations
-        # parsedResult['organizationDistributionAS'] = {'labels': tracks, 'data': }
-        parsedResult['organizationDistributionAS'] = {}
+        parsedResult['topCountriesAS'] = topCountriesList
+        parsedResult['topAffiliationsAS'] = {'labels':tracks, 'data': decisionBasedOnTopAffiliations}
 
         # print ("====================================")
         # print parsedResult['topCountriesAS']
@@ -535,8 +537,8 @@ class CsvDataBuilder:
         #     print key
         #     print [str(ele[value]) for ele in combinedLines if key == "review.Overall Evaluation Score" or key == "submission.Track Name"]
         #     print ("====================================")
-        print ("====================================")
+        # print ("====================================")
         # print parsedResult['averageScoreSR']
-        print ("====================================")
+        # print ("====================================")
 
         return parsedResult
