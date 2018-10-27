@@ -96,7 +96,6 @@ class CsvDataBuilder:
 
     def getAuthorOrder(self, index):
         dataDictionary = self.csvDataList[index].data
-        print dataDictionary
         authorDict = {}
 
         for key, value in dataDictionary.iteritems():
@@ -518,42 +517,33 @@ class CsvDataBuilder:
         # print combinedLines[0]
         # print combinedLines[1]
 
-        authorInfo = self.getAuthorInfo(index, authorDict)
-        submissionInfo = self.getSubmissionInfo(index, submissionDict)
+        acceptedCountriesList = []
+        for ele in combinedLines:
+            if str(ele[int(combinedDict.get("submission.Decision"))]) == 'accept':
+                acceptedCountriesList.append(ele[int(combinedDict.get("author.Country"))])
+        topCountriesList = dict(Counter(acceptedCountriesList).most_common(10))
 
-        # TODO: implement parameters and put into parsedResult
-        topCountriesList = authorInfo['topCountries']['labels']
-        decisionBasedOnTopCountries = dict()
-        for country in topCountriesList:
-            decisionForCurrentCountry = []
-            for line in combinedLines:
-                if (line[int(combinedDict.get("author.Country"))] == country):
-                    decisionForCurrentCountry.append(line[int(combinedDict.get("submission.Decision"))]) #currently includes keywords also, possibly because of how csv is parsed
-            decisionBasedOnTopCountries[country] = dict(Counter(decisionForCurrentCountry))
+        decisionBasedOnTopAffiliations = []
+        tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in combinedLines]).keys())
+        for track in tracks:
+            acceptedSubmissionsByAffiliationAndTrack = []
+            for ele in combinedLines:
+                if str(ele[int(combinedDict.get("submission.Decision"))]) == 'accept' and str(ele[int(combinedDict.get("submission.Track Name"))]) == track:
+                    acceptedSubmissionsByAffiliationAndTrack.append(ele[int(combinedDict.get("author.Organization"))])
+            topAffiliationsList = Counter(acceptedSubmissionsByAffiliationAndTrack).most_common(10)
+            decisionBasedOnTopAffiliations.append(dict(topAffiliationsList))
 
-        topAffiliationsList = authorInfo['topAffiliations']['labels']
-        # print topAffiliationsList
-        decisionBasedOnTopAffiliations = dict()
-        for org in topAffiliationsList:
-            decisionForCurrentAffiliation = []
-            for line in combinedLines:
-                if (line[int(combinedDict.get("author.Organization"))] == org):
-                    decisionForCurrentAffiliation.append(line[int(combinedDict.get("submission.Decision"))]) #currently includes keywords also, possibly because of how csv is parsed
-            decisionBasedOnTopAffiliations[org] = dict(Counter(decisionForCurrentAffiliation))
-
-        parsedResult['topCountriesAS'] = decisionBasedOnTopCountries
-        parsedResult['topAffiliationsAS'] = decisionBasedOnTopAffiliations
-        parsedResult['organizationDistributionAS'] = {}
-
-        # print ("====================================")
-        print parsedResult['topCountriesAS']
-        print parsedResult['topAffiliationsAS']
+        parsedResult['topCountriesAS'] = topCountriesList
+        parsedResult['topAffiliationsAS'] = {'labels':tracks, 'data': decisionBasedOnTopAffiliations}
 
         # ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
         # for key, value in combinedDict.items():
         #     print key
         #     print [str(ele[value]) for ele in combinedLines]
         #     print ("====================================")
+        # print ("====================================")
+        # print parsedResult['topCountriesAS']
+        # print parsedResult['topAffiliationsAS']
         # print ("====================================")
 
         return parsedResult
@@ -569,14 +559,9 @@ class CsvDataBuilder:
         lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("review.HasHeader")))
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
         combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", reviewDict, submissionDict)
-        
-        reviewInfo = self.getReviewInfo(index, reviewDict)
-        submissionInfo = self.getSubmissionInfo(index, submissionDict)
 
-        # TODO: implement parameters and put into parsedResult
         tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in combinedLines]).keys())
         expertiseByTrack = dict()
-        # expertiseSR = expertiseByTrack
         for track in tracks:
             dataListForCurrentTrack = []
             for line in combinedLines:
@@ -584,11 +569,25 @@ class CsvDataBuilder:
                     dataListForCurrentTrack.append(line[int(combinedDict.get("review.Field #"))])
             expertiseByTrack[track] = dict(Counter(dataListForCurrentTrack))
 
-        parsedResult['expertiseSR'] = {'labels': tracks, 'data': list(expertiseByTrack.values())}
-        parsedResult['averageScoreSR'] = {}
+        meanScoreByTrack = dict()
+        for track in tracks:
+            scoreListForCurrentTrack = []
+            for line in combinedLines:
+                if (line[int(combinedDict.get("submission.Track Name"))] == track):
+                    scoreListForCurrentTrack.append(line[int(combinedDict.get("review.Overall Evaluation Score"))])
+            meanScoreByTrack[track] = sum([int(ele) for ele in scoreListForCurrentTrack])/len(scoreListForCurrentTrack)
 
+        parsedResult['expertiseSR'] = {'labels': tracks, 'data': list(expertiseByTrack.values())}
+        parsedResult['averageScoreSR'] = {'labels': tracks, 'data': list(meanScoreByTrack.values())}
+
+        # ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
+        # for key, value in combinedDict.items():
+        #     print key
+        #     print [str(ele[value]) for ele in combinedLines if key == "review.Overall Evaluation Score" or key == "submission.Track Name"]
+        #     print ("====================================")
         # print ("====================================")
-        # print reviewInfo['scoreList']
+        # print parsedResult['expertiseSR']
+        # print parsedResult['averageScoreSR']
         # print ("====================================")
 
         return parsedResult
