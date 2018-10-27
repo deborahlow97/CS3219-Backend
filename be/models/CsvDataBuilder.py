@@ -96,6 +96,7 @@ class CsvDataBuilder:
 
     def getAuthorOrder(self, index):
         dataDictionary = self.csvDataList[index].data
+        print dataDictionary
         authorDict = {}
 
         for key, value in dataDictionary.iteritems():
@@ -104,7 +105,10 @@ class CsvDataBuilder:
             elif "author." in key:
                 authorDict.update({str(key): int(value)})
 
+<<<<<<< HEAD
         #print authorDict
+=======
+>>>>>>> devMarlene
         return authorDict
 
     def getReviewOrder(self, index):
@@ -218,6 +222,10 @@ class CsvDataBuilder:
 
             reviewTimeSeries.append({'x': lastReviewStamps, 'y': reviewedNumber[index]})
 
+<<<<<<< HEAD
+=======
+        # print reviewTimeSeries
+>>>>>>> devMarlene
         scoreList = []
         recommendList = []
         confidenceList = []
@@ -239,7 +247,10 @@ class CsvDataBuilder:
 
         for submissionID in submissionIDs:
             reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
+<<<<<<< HEAD
 
+=======
+>>>>>>> devMarlene
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
@@ -519,37 +530,92 @@ class CsvDataBuilder:
         return parsedResult
 
     def getAuthorSubmissionInfo(self, index):
-        dict = self.csvDataList[index].order
+        authorDict = self.getAuthorOrder(index)
+        submissionDict = self.getSubmissionOrder(index)
+        combinedDict = self.csvDataList[index].order
+
         inputFile1 = self.csvDataList[index].csvFiles.get('author')
         inputFile2 = self.csvDataList[index].csvFiles.get('submission')
 
         parsedResult = {}
-        lines1 = getLinesFromInputFile(inputFile1, dict)
-        lines2 = getLinesFromInputFile(inputFile2, dict)
+        lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("author.HasHeader")))
+        lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
 
-        combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "submission.Submission #", dict)
-        
+        combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "submission.Submission #", authorDict, submissionDict)
+        # print combinedLines[0]
+        # print combinedLines[1]
+
+        authorInfo = self.getAuthorInfo(index, authorDict)
+        submissionInfo = self.getSubmissionInfo(index, submissionDict)
+
         # TODO: implement parameters and put into parsedResult
+        topCountriesList = authorInfo['topCountries']['labels']
+        decisionBasedOnTopCountries = dict()
+        for country in topCountriesList:
+            decisionForCurrentCountry = []
+            for line in combinedLines:
+                if (line[int(combinedDict.get("author.Country"))] == country):
+                    decisionForCurrentCountry.append(line[int(combinedDict.get("submission.Decision"))]) #currently includes keywords also, possibly because of how csv is parsed
+            decisionBasedOnTopCountries[country] = dict(Counter(decisionForCurrentCountry))
+
+        topAffiliationsList = authorInfo['topAffiliations']['labels']
+        # print topAffiliationsList
+        decisionBasedOnTopAffiliations = dict()
+        for org in topAffiliationsList:
+            decisionForCurrentAffiliation = []
+            for line in combinedLines:
+                if (line[int(combinedDict.get("author.Organization"))] == org):
+                    decisionForCurrentAffiliation.append(line[int(combinedDict.get("submission.Decision"))]) #currently includes keywords also, possibly because of how csv is parsed
+            decisionBasedOnTopAffiliations[org] = dict(Counter(decisionForCurrentAffiliation))
+
+        parsedResult['topCountriesAS'] = decisionBasedOnTopCountries
+        parsedResult['topAffiliationsAS'] = decisionBasedOnTopAffiliations
+        parsedResult['organizationDistributionAS'] = {}
+
+        # print ("====================================")
+        print parsedResult['topCountriesAS']
+        print parsedResult['topAffiliationsAS']
+
+        # ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
+        # for key, value in combinedDict.items():
+        #     print key
+        #     print [str(ele[value]) for ele in combinedLines]
+        #     print ("====================================")
+        # print ("====================================")
 
         return parsedResult
 
     def getReviewSubmissionInfo(self, index):
-        combinedDict = self.csvDataList[index].order
         reviewDict = self.getReviewOrder(index)
         submissionDict = self.getSubmissionOrder(index)
-
+        combinedDict = self.csvDataList[index].order
         inputFile1 = self.csvDataList[index].csvFiles.get('review')
         inputFile2 = self.csvDataList[index].csvFiles.get('submission')
 
         parsedResult = {}
-        lines1 = getLinesFromInputFile(inputFile1, combinedDict)
-        lines2 = getLinesFromInputFile(inputFile2, combinedDict)
-
+        lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("review.HasHeader")))
+        lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
         combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", reviewDict, submissionDict)
         
         reviewInfo = self.getReviewInfo(index, reviewDict)
         submissionInfo = self.getSubmissionInfo(index, submissionDict)
 
         # TODO: implement parameters and put into parsedResult
-        parsedResult = {}
+        tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in combinedLines]).keys())
+        expertiseByTrack = dict()
+        # expertiseSR = expertiseByTrack
+        for track in tracks:
+            dataListForCurrentTrack = []
+            for line in combinedLines:
+                if (line[int(combinedDict.get("submission.Track Name"))] == track):
+                    dataListForCurrentTrack.append(line[int(combinedDict.get("review.Field #"))])
+            expertiseByTrack[track] = dict(Counter(dataListForCurrentTrack))
+
+        parsedResult['expertiseSR'] = {'labels': tracks, 'data': list(expertiseByTrack.values())}
+        parsedResult['averageScoreSR'] = {}
+
+        # print ("====================================")
+        # print reviewInfo['scoreList']
+        # print ("====================================")
+
         return parsedResult

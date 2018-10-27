@@ -29,9 +29,17 @@ def combineOrderDict(dict1, dict2):
 		if (".HasHeader" not in key):
 			dict2[key] = dict2[key] + size
 	dict3.update(dict2)
+
+	# print "=============================================="
+	# print dict1
+	# print "=============================================="
+	# print dict2
+	# print "=============================================="
+	# print dict3
+	# print "=============================================="
+
 	return dict3
 	
-
 def combineLinesOnKey(lines1, lines2, key1, key2, dict1, dict2):
 	combinedLines = []
 	for ele1 in lines1:
@@ -60,7 +68,11 @@ def parseCSVFile(inputFile):
 	# reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect=dialect)
 	reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect='excel')
 	rowResults = [row for row in reader]
+<<<<<<< HEAD
 	#print (len(rowResults))
+=======
+	# print (len(rowResults))
+>>>>>>> devMarlene
 	return rowResults
 
 def parseCSVFileInverted(input2DArr):
