@@ -201,7 +201,7 @@ class CsvDataBuilder:
 
         lines = getLinesFromInputFile(inputFile, bool(reviewDict.get("review.HasHeader")))
 
-        evaluation = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines]
+        evaluation = [str(line[int(reviewDict.get("review.Overall Evaluation Score"))]).replace("\r", "") for line in lines]
         submissionIDs = set([str(line[int(reviewDict.get("review.Submission #"))]) for line in lines])
         reviewTime = [str(ele[int(reviewDict.get("review.Time"))]) for ele in lines]
         reviewDate = [str(ele[int(reviewDict.get("review.Date"))]) for ele in lines]
@@ -239,7 +239,7 @@ class CsvDataBuilder:
             recommendDistributionLabels[index] = str(0 + 0.1 * index) + " ~ " + str(0 + 0.1 * index + 0.1)
 
         for submissionID in submissionIDs:
-            reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
+            reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
@@ -475,13 +475,15 @@ class CsvDataBuilder:
                     decisionForCurrentAffiliation.append(line[int(combinedDict.get("submission.Decision"))]) #currently includes keywords also, possibly because of how csv is parsed
             decisionBasedOnTopAffiliations[org] = dict(Counter(decisionForCurrentAffiliation))
 
+
         parsedResult['topCountriesAS'] = decisionBasedOnTopCountries
         parsedResult['topAffiliationsAS'] = decisionBasedOnTopAffiliations
+        # parsedResult['organizationDistributionAS'] = {'labels': tracks, 'data': }
         parsedResult['organizationDistributionAS'] = {}
 
         # print ("====================================")
-        print parsedResult['topCountriesAS']
-        print parsedResult['topAffiliationsAS']
+        # print parsedResult['topCountriesAS']
+        # print parsedResult['topAffiliationsAS']
 
         # ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
         # for key, value in combinedDict.items():
@@ -510,7 +512,6 @@ class CsvDataBuilder:
         # TODO: implement parameters and put into parsedResult
         tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in combinedLines]).keys())
         expertiseByTrack = dict()
-        # expertiseSR = expertiseByTrack
         for track in tracks:
             dataListForCurrentTrack = []
             for line in combinedLines:
@@ -518,11 +519,24 @@ class CsvDataBuilder:
                     dataListForCurrentTrack.append(line[int(combinedDict.get("review.Field #"))])
             expertiseByTrack[track] = dict(Counter(dataListForCurrentTrack))
 
-        parsedResult['expertiseSR'] = {'labels': tracks, 'data': list(expertiseByTrack.values())}
-        parsedResult['averageScoreSR'] = {}
+        meanScoreByTrack = dict()
+        for track in tracks:
+            scoreListForCurrentTrack = []
+            for line in combinedLines:
+                if (line[int(combinedDict.get("submission.Track Name"))] == track):
+                    scoreListForCurrentTrack.append(line[int(combinedDict.get("review.Overall Evaluation Score"))])
+            meanScoreByTrack[track] = sum([int(ele) for ele in scoreListForCurrentTrack])/len(scoreListForCurrentTrack)
 
-        # print ("====================================")
-        # print reviewInfo['scoreList']
-        # print ("====================================")
+        parsedResult['expertiseSR'] = {'labels': tracks, 'data': list(expertiseByTrack.values())}
+        parsedResult['averageScoreSR'] = {'labels': tracks, 'data': list(meanScoreByTrack.values())}
+
+        # ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
+        # for key, value in combinedDict.items():
+        #     print key
+        #     print [str(ele[value]) for ele in combinedLines if key == "review.Overall Evaluation Score" or key == "submission.Track Name"]
+        #     print ("====================================")
+        print ("====================================")
+        # print parsedResult['averageScoreSR']
+        print ("====================================")
 
         return parsedResult
