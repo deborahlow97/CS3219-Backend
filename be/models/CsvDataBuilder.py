@@ -394,20 +394,18 @@ class CsvDataBuilder:
         return parsedResult
 
     def getAuthorReviewInfo(self, index):
-        dict = self.csvDataList[index].order
-        reviewDict = self.getReviewOrder(index)
         authorDict = self.getAuthorOrder(index)
-
+        reviewDict = self.getReviewOrder(index)
+        combinedDict = self.csvDataList[index].order
         inputFile1 = self.csvDataList[index].csvFiles.get('author')
         inputFile2 = self.csvDataList[index].csvFiles.get('review')
 
         parsedResult = {}
-        lines1 = getLinesFromInputFile(inputFile1, bool(dict.get("author.HasHeader")))
-        lines2 = getLinesFromInputFile(inputFile2, bool(dict.get("review.HasHeader")))
+        lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("author.HasHeader")))
+        lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("review.HasHeader")))
 
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", authorDict, reviewDict)
-        # print ("=====")
-        # print (combinedLines)
+
         # reviewInfo = self.getReviewInfo(index, reviewDict)
         # authorInfo = self.getAuthorInfo(index, authorDict)
         # 1. Top 10 Authors (by mean review score across all the authors submissions) bar : author names (x axis) mean score (y axis) topAuthorsAR.
@@ -417,9 +415,9 @@ class CsvDataBuilder:
         # 5. Top 10 affiliations with highest mean scores bar : affiliations( x-axis), mean score(y-axis)  topAffiliationsAR
         # Top 10 authors that were recommended for best paper  : authors names (x-axis),
         #acceptedSubmission = [line for line in lines if str(line[int(submissionDict.get("submission.Decision"))]) == 'accept']
-        combinedOrderDict = combineOrderDict(authorDict, reviewDict)
+        #combinedOrderDict = combineOrderDict(authorDict, reviewDict)
         ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
-        for key, value in combinedOrderDict.items():
+        for key, value in combinedDict.items():
             print key
             if "review.Comments" not in key:
                 print [str(ele[value]) for ele in combinedLines]
@@ -432,11 +430,11 @@ class CsvDataBuilder:
         counter = 1
         for Info in combinedLines:
             
-            name.append(str(Info[int(combinedOrderDict.get("author.First Name"))]) + " " + str(Info[int(combinedOrderDict.get("author.Last Name"))]))
-            affiliation.append(str(Info[int(combinedOrderDict.get("author.Organization"))]))
-            country.append(str(Info[int(combinedOrderDict.get("author.Country"))]))
+            name.append(str(Info[int(combinedDict.get("author.First Name"))]) + " " + str(Info[int(combinedDict.get("author.Last Name"))]))
+            affiliation.append(str(Info[int(combinedDict.get("author.Organization"))]))
+            country.append(str(Info[int(combinedDict.get("author.Country"))]))
             try:    
-                reviewScore.append(int(Info[int(combinedOrderDict.get("review.Overall Evaluation Score"))]))
+                reviewScore.append(int(Info[int(combinedDict.get("review.Overall Evaluation Score"))]))
 
             except Exception as e:
                 print "Line is at %d" % (counter)
@@ -455,10 +453,10 @@ class CsvDataBuilder:
         countryScoreMap = {}
         organizationScoreMap ={}
         for Info in combinedLines:
-            name = str(Info[int(combinedOrderDict.get("author.First Name"))] + " " + Info[int(combinedOrderDict.get("author.Last Name"))])
-            score = int(Info[int(combinedOrderDict.get("review.Overall Evaluation Score"))])
-            country = str(Info[int(combinedOrderDict.get("author.Country"))])
-            affiliation = str(Info[int(combinedOrderDict.get("author.Organization"))])
+            name = str(Info[int(combinedDict.get("author.First Name"))] + " " + Info[int(combinedDict.get("author.Last Name"))])
+            score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
+            country = str(Info[int(combinedDict.get("author.Country"))])
+            affiliation = str(Info[int(combinedDict.get("author.Organization"))])
             #print (int(combinedOrderDict.get("review.Overall Evaluation Score")))
 
             if name not in authorScoreMap:
