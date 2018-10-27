@@ -405,8 +405,7 @@ class CsvDataBuilder:
         lines2 = getLinesFromInputFile(inputFile2, bool(dict.get("review.HasHeader")))
 
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", dict)
-        reviewInfo = self.getReviewInfo(index, reviewDict)
-        authorInfo = self.getAuthorInfo(index, authorDict)
+
         #computedResults = getComputedResult()
         # Top 10 Authors (by mean review score across all the authors submissions) bar : author names (x axis) mean score (y axis) topAuthorsAR.
         # Affiliation distribution of top 10 authors  pie chart:affiliation distribution affiliationDistributionAR
@@ -451,9 +450,6 @@ class CsvDataBuilder:
         # print combinedLines[0]
         # print combinedLines[1]
 
-        authorInfo = self.getAuthorInfo(index, authorDict)
-        submissionInfo = self.getSubmissionInfo(index, submissionDict)
-
         acceptedCountriesList = []
         for ele in combinedLines:
             if str(ele[int(combinedDict.get("submission.Decision"))]) == 'accept':
@@ -496,11 +492,7 @@ class CsvDataBuilder:
         lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("review.HasHeader")))
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
         combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", reviewDict, submissionDict)
-        
-        reviewInfo = self.getReviewInfo(index, reviewDict)
-        submissionInfo = self.getSubmissionInfo(index, submissionDict)
 
-        # TODO: implement parameters and put into parsedResult
         tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in combinedLines]).keys())
         expertiseByTrack = dict()
         for track in tracks:
