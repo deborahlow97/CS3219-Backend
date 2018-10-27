@@ -221,6 +221,25 @@ class CsvDataBuilder:
         recommendList = []
         confidenceList = []
 
+        expertiseScoreMap = {}
+        expertise = []
+        expertiseScore = []
+        for info in lines:
+            expertiseLevel = int(info[int(reviewDict.get("review.Field #"))])
+            score = int(info[int(reviewDict.get("review.Overall Evaluation Score"))])
+            if expertiseLevel not in expertiseScoreMap:
+                expertiseScoreMap[expertiseLevel] = [score]
+            else:
+                expertiseScoreMap[expertiseLevel].append(score)
+
+        #getting average of evaluation score given
+        for key,value in expertiseScoreMap.iteritems():
+            expertiseScoreMap[key] = sum(value)/float(len(value))
+
+        for key, value in sorted(expertiseScoreMap.items()):
+            expertise.append(key)
+            expertiseScore.append(value)
+
         submissionIDReviewMap = {}
 
         # Idea: from -3 to 3 (min to max scores possible), every 0.25 will be a gap
@@ -267,6 +286,8 @@ class CsvDataBuilder:
         parsedResult['scoreDistribution'] = {'labels': scoreDistributionLabels, 'counts': scoreDistributionCounts}
         parsedResult['recommendDistribution'] = {'labels': recommendDistributionLabels, 'counts': recommendDistributionCounts}
         parsedResult['reviewTimeSeries'] = reviewTimeSeries
+        parsedResult['meanEvaluationScore'] = {'expertise': expertise, 'avgScore': expertiseScore }
+
         return parsedResult
         
     def getSubmissionInfo(self, index, dict = None):
