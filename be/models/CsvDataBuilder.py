@@ -453,14 +453,14 @@ class CsvDataBuilder:
 
         authorInfo = self.getAuthorInfo(index, authorDict)
         submissionInfo = self.getSubmissionInfo(index, submissionDict)
-        
+
         acceptedCountriesList = []
         for ele in combinedLines:
             if str(ele[int(combinedDict.get("submission.Decision"))]) == 'accept':
                 acceptedCountriesList.append(ele[int(combinedDict.get("author.Country"))])
         topCountriesList = dict(Counter(acceptedCountriesList).most_common(10))
 
-        decisionBasedOnTopAffiliations = dict()
+        decisionBasedOnTopAffiliations = []
         tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in combinedLines]).keys())
         for track in tracks:
             acceptedSubmissionsByAffiliationAndTrack = []
@@ -468,20 +468,19 @@ class CsvDataBuilder:
                 if str(ele[int(combinedDict.get("submission.Decision"))]) == 'accept' and str(ele[int(combinedDict.get("submission.Track Name"))]) == track:
                     acceptedSubmissionsByAffiliationAndTrack.append(ele[int(combinedDict.get("author.Organization"))])
             topAffiliationsList = Counter(acceptedSubmissionsByAffiliationAndTrack).most_common(10)
-            decisionBasedOnTopAffiliations.update({track: dict(topAffiliationsList)})
+            decisionBasedOnTopAffiliations.append(dict(topAffiliationsList))
 
         parsedResult['topCountriesAS'] = topCountriesList
         parsedResult['topAffiliationsAS'] = {'labels':tracks, 'data': decisionBasedOnTopAffiliations}
-
-        # print ("====================================")
-        # print parsedResult['topCountriesAS']
-        # print parsedResult['topAffiliationsAS']
 
         # ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
         # for key, value in combinedDict.items():
         #     print key
         #     print [str(ele[value]) for ele in combinedLines]
         #     print ("====================================")
+        # print ("====================================")
+        # print parsedResult['topCountriesAS']
+        # print parsedResult['topAffiliationsAS']
         # print ("====================================")
 
         return parsedResult
@@ -528,6 +527,7 @@ class CsvDataBuilder:
         #     print [str(ele[value]) for ele in combinedLines if key == "review.Overall Evaluation Score" or key == "submission.Track Name"]
         #     print ("====================================")
         # print ("====================================")
+        # print parsedResult['expertiseSR']
         # print parsedResult['averageScoreSR']
         # print ("====================================")
 
