@@ -68,11 +68,7 @@ def parseCSVFile(inputFile):
 	# reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect=dialect)
 	reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect='excel')
 	rowResults = [row for row in reader]
-<<<<<<< HEAD
-	#print (len(rowResults))
-=======
 	# print (len(rowResults))
->>>>>>> devMarlene
 	return rowResults
 
 def parseCSVFileInverted(input2DArr):

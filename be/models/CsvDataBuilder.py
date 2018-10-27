@@ -105,10 +105,6 @@ class CsvDataBuilder:
             elif "author." in key:
                 authorDict.update({str(key): int(value)})
 
-<<<<<<< HEAD
-        #print authorDict
-=======
->>>>>>> devMarlene
         return authorDict
 
     def getReviewOrder(self, index):
@@ -222,10 +218,6 @@ class CsvDataBuilder:
 
             reviewTimeSeries.append({'x': lastReviewStamps, 'y': reviewedNumber[index]})
 
-<<<<<<< HEAD
-=======
-        # print reviewTimeSeries
->>>>>>> devMarlene
         scoreList = []
         recommendList = []
         confidenceList = []
@@ -247,10 +239,6 @@ class CsvDataBuilder:
 
         for submissionID in submissionIDs:
             reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
-<<<<<<< HEAD
-
-=======
->>>>>>> devMarlene
             confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
             scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
 
@@ -411,12 +399,10 @@ class CsvDataBuilder:
         inputFile1 = self.csvDataList[index].csvFiles.get('author')
         inputFile2 = self.csvDataList[index].csvFiles.get('review')
 
-        parsedResult = {}
         lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("author.HasHeader")))
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("review.HasHeader")))
-
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", authorDict, reviewDict)
-
+        parsedResult = {}
         # reviewInfo = self.getReviewInfo(index, reviewDict)
         # authorInfo = self.getAuthorInfo(index, authorDict)
         # 1. Top 10 Authors (by mean review score across all the authors submissions) bar : author names (x axis) mean score (y axis) topAuthorsAR.
@@ -425,39 +411,27 @@ class CsvDataBuilder:
         # 4. Top 10 countries with highest mean scores  bar : countries ( x-axis), mean score(y-axis)  topCountriesAR
         # 5. Top 10 affiliations with highest mean scores bar : affiliations( x-axis), mean score(y-axis)  topAffiliationsAR
         # Top 10 authors that were recommended for best paper  : authors names (x-axis),
-        #acceptedSubmission = [line for line in lines if str(line[int(submissionDict.get("submission.Decision"))]) == 'accept']
-        #combinedOrderDict = combineOrderDict(authorDict, reviewDict)
-        ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
-        for key, value in combinedDict.items():
-            print key
-            if "review.Comments" not in key:
-                print [str(ele[value]) for ele in combinedLines]
-                print ("====================================")
+
         name = []
         reviewScore = []
         affiliation = []
         country = []
         #name and reviewScore MUST be given
-        counter = 1
+        #counter = 1
         for Info in combinedLines:
             
             name.append(str(Info[int(combinedDict.get("author.First Name"))]) + " " + str(Info[int(combinedDict.get("author.Last Name"))]))
             affiliation.append(str(Info[int(combinedDict.get("author.Organization"))]))
             country.append(str(Info[int(combinedDict.get("author.Country"))]))
-            try:    
-                reviewScore.append(int(Info[int(combinedDict.get("review.Overall Evaluation Score"))]))
-
-            except Exception as e:
-                print "Line is at %d" % (counter)
-            
-            finally:
-                counter += 1
+            reviewScore.append(int(Info[int(combinedDict.get("review.Overall Evaluation Score"))]))
+            # try:    
+            # except Exception as e:
+            #     print "Line is at %d" % (counter)
+            # finally:
+            #     counter += 1
 
         infoAndScore = zip(reviewScore, name, affiliation, country)[:10]
         infoAndScore.sort(reverse=True)
-
-        # affiliationAndScore = zip(reviewScore, affiliation)
-        # affiliationAndScore.sort(reverse=True)
 
         #HashMap with author Name as key
         authorScoreMap = {}
@@ -468,7 +442,6 @@ class CsvDataBuilder:
             score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
             country = str(Info[int(combinedDict.get("author.Country"))])
             affiliation = str(Info[int(combinedDict.get("author.Organization"))])
-            #print (int(combinedOrderDict.get("review.Overall Evaluation Score")))
 
             if name not in authorScoreMap:
                 authorScoreMap[name] = [score]
@@ -487,7 +460,7 @@ class CsvDataBuilder:
 
         #getting average of each author
         for key,value in authorScoreMap.iteritems():
-            authorScoreMap[key] = sum(value)/len(value)
+            authorScoreMap[key] = sum(value)/float(len(value))
 
         sorted(authorScoreMap, key=authorScoreMap.get, reverse=True)
         authorScoreMapTop10 = Counter(authorScoreMap)
@@ -495,7 +468,7 @@ class CsvDataBuilder:
 
         #getting average of each country
         for key,value in countryScoreMap.iteritems():
-            countryScoreMap[key] = sum(value)/len(value)
+            countryScoreMap[key] = sum(value)/float(len(value))
 
         sorted(countryScoreMap, key=countryScoreMap.get, reverse=True)
         countryScoreMapTop10 = Counter(countryScoreMap)
@@ -503,7 +476,7 @@ class CsvDataBuilder:
 
         #getting average of each organization
         for key,value in organizationScoreMap.iteritems():
-            organizationScoreMap[key] = sum(value)/len(value)
+            organizationScoreMap[key] = sum(value)/float(len(value))
 
         sorted(organizationScoreMap, key=organizationScoreMap.get, reverse=True)
         organizationScoreMapTop10 = Counter(organizationScoreMap)
@@ -514,7 +487,7 @@ class CsvDataBuilder:
         parsedResult['affiliationDistributionAR'] = {'organization': [ele[2] for ele in infoAndScore],
         'score': [ele[0] for ele in infoAndScore]}
         parsedResult['countryDistributionAR'] = {'country': [ele[3] for ele in infoAndScore],                
-        'score': [ele[0] for ele in infoAndScore]} 
+        'score': [ele[0] for ele in infoAndScore], 'author': [ele[1] for ele in infoAndScore]} 
         parsedResult['topCountriesAR'] = {'countries': [ele[0] for ele in countryScoreMapTop10],
         'score': [ele[1] for ele in countryScoreMapTop10]}
         parsedResult['topAffiliationsAR'] = {'organization': [ele[0] for ele in organizationScoreMapTop10],
@@ -597,6 +570,13 @@ class CsvDataBuilder:
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
         combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", reviewDict, submissionDict)
         
+        for key, value in combinedDict.items():
+            print key
+        #if "review.Comments" not in key:
+            if "review.Overall Evaluation Score" in key:
+                print [str(ele[value]) for ele in combinedLines]
+                print ("====================================")
+
         reviewInfo = self.getReviewInfo(index, reviewDict)
         submissionInfo = self.getSubmissionInfo(index, submissionDict)
 
