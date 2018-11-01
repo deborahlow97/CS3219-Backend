@@ -432,6 +432,13 @@ class CsvDataBuilder:
         # 5. Top 10 affiliations with highest mean scores bar : affiliations( x-axis), mean score(y-axis)  topAffiliationsAR
         # Top 10 authors that were recommended for best paper  : authors names (x-axis),
 
+
+        for key, value in combinedDict.items():
+            print key
+            print [str(ele[value]) for ele in combinedLines if key == "review.Overall Evaluation Score"]
+            print ("====================================")
+        print ("====================================")
+
         name = []
         reviewScore = []
         affiliation = []
