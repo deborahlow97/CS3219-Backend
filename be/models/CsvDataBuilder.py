@@ -558,10 +558,16 @@ class CsvDataBuilder:
             for ele in combinedLines:
                 if str(ele[int(combinedDict.get("submission.Decision"))]) == 'accept' and str(ele[int(combinedDict.get("submission.Track Name"))]) == track:
                     acceptedSubmissionsByAffiliationAndTrack.append(ele[int(combinedDict.get("author.Organization"))])
-            topAffiliationsList = Counter(acceptedSubmissionsByAffiliationAndTrack).most_common(10)
-            decisionBasedOnTopAffiliations.append(dict(topAffiliationsList))
+            topAffiliationsList = dict(Counter(acceptedSubmissionsByAffiliationAndTrack).most_common(10))
+            topAffiliationsList = sorted(topAffiliationsList.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+            topAffiliationDataForTrack = []
+            topAffiliationDataForTrack.append([key for key, value in topAffiliationsList])
+            topAffiliationDataForTrack.append([value for key, value in topAffiliationsList])
+            decisionBasedOnTopAffiliations.append(topAffiliationDataForTrack)
 
-        parsedResult['topCountriesAS'] = topCountriesList
+        topCountriesList = sorted(topCountriesList.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+
+        parsedResult['topCountriesAS'] = {'labels': [key for key, value in topCountriesList], 'data': [value for key, value in topCountriesList]}
         parsedResult['topAffiliationsAS'] = {'labels':tracks, 'data': decisionBasedOnTopAffiliations}
 
         # ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
@@ -569,10 +575,11 @@ class CsvDataBuilder:
         #     print key
         #     print [str(ele[value]) for ele in combinedLines]
         #     print ("====================================")
-        # print ("====================================")
-        # print parsedResult['topCountriesAS']
-        # print parsedResult['topAffiliationsAS']
-        # print ("====================================")
+        print ("====================================")
+        print parsedResult['topCountriesAS']
+        print "==="
+        print parsedResult['topAffiliationsAS']
+        print ("====================================")
 
         return parsedResult
 
