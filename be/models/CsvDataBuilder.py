@@ -575,11 +575,11 @@ class CsvDataBuilder:
         #     print key
         #     print [str(ele[value]) for ele in combinedLines]
         #     print ("====================================")
-        print ("====================================")
-        print parsedResult['topCountriesAS']
-        print "==="
-        print parsedResult['topAffiliationsAS']
-        print ("====================================")
+        # print ("====================================")
+        # print parsedResult['topCountriesAS']
+        # print "==="
+        # print parsedResult['topAffiliationsAS']
+        # print ("====================================")
 
         return parsedResult
 
