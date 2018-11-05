@@ -549,7 +549,18 @@ class CsvDataBuilder:
         for ele in combinedLines:
             if str(ele[int(combinedDict.get("submission.Decision"))]) == 'accept':
                 acceptedCountriesList.append(ele[int(combinedDict.get("author.Country"))])
-        topCountriesList = dict(Counter(acceptedCountriesList).most_common(10))
+        # topCountriesList = dict(Counter(acceptedCountriesList).most_common(10))
+        topCountriesList = dict(Counter(acceptedCountriesList))
+        topCountriesList = sorted(topCountriesList.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+        distinctNumDecisions = []
+        for i in range(len(topCountriesList)):
+            if (topCountriesList[i] not in distinctNumDecisions):
+                distinctNumDecisions.append(topCountriesList[i])
+            if (len(distinctNumDecisions) > 10):
+                #top 10
+                endIndex = i-1
+                break
+        topCountriesList = topCountriesList[:endIndex]
 
         decisionBasedOnTopAffiliations = []
         tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in combinedLines]).keys())
@@ -558,14 +569,26 @@ class CsvDataBuilder:
             for ele in combinedLines:
                 if str(ele[int(combinedDict.get("submission.Decision"))]) == 'accept' and str(ele[int(combinedDict.get("submission.Track Name"))]) == track:
                     acceptedSubmissionsByAffiliationAndTrack.append(ele[int(combinedDict.get("author.Organization"))])
-            topAffiliationsList = dict(Counter(acceptedSubmissionsByAffiliationAndTrack).most_common(10))
+            # topAffiliationsList = dict(Counter(acceptedSubmissionsByAffiliationAndTrack).most_common(10))
+            topAffiliationsList = dict(Counter(acceptedSubmissionsByAffiliationAndTrack))
             topAffiliationsList = sorted(topAffiliationsList.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+            
             topAffiliationDataForTrack = []
+
+            distinctNumDecisions = []
+            endIndex = len(topAffiliationsList)
+            for i in range(len(topAffiliationsList)):
+                if (topAffiliationsList[i] not in distinctNumDecisions):
+                    distinctNumDecisions.append(topAffiliationsList[i])
+                if (len(distinctNumDecisions) > 10):
+                    #top 10
+                    endIndex = i-1
+                    break
+            topAffiliationsList = topAffiliationsList[:endIndex]
             topAffiliationDataForTrack.append([key for key, value in topAffiliationsList])
             topAffiliationDataForTrack.append([value for key, value in topAffiliationsList])
             decisionBasedOnTopAffiliations.append(topAffiliationDataForTrack)
-
-        topCountriesList = sorted(topCountriesList.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+            
 
         parsedResult['topCountriesAS'] = {'labels': [key for key, value in topCountriesList], 'data': [value for key, value in topCountriesList]}
         parsedResult['topAffiliationsAS'] = {'labels':tracks, 'data': decisionBasedOnTopAffiliations}
