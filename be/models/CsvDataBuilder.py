@@ -85,8 +85,9 @@ class CsvDataBuilder:
         infoData = {}
         for i in range(self.size):
             csvData = self.csvDataList[i]
-            print csvData.infoType
-            infoType.append(csvData.infoType)
+            # print csvData.infoType
+            if (".csv" in csvData.infoType):
+                infoType.append(csvData.infoType)
             infoData.update(csvData.info)
 
         rowContent['infoType'] = infoType
@@ -561,7 +562,7 @@ class CsvDataBuilder:
                 endIndex = i-1
                 break
         topCountriesList = topCountriesList[:endIndex]
-
+ 
         decisionBasedOnTopAffiliations = []
         tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in combinedLines]).keys())
         for track in tracks:

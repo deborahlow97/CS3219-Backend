@@ -51,17 +51,17 @@ def uploadCSV(request):
 
 			if "author.csv" in fileName:
 				csvFiles['author'] = csvFile
-				csvDataBuilder.addCsvData("author", dataDictionary, {'author': csvFile})
+				csvDataBuilder.addCsvData("author.csv", dataDictionary, {'author': csvFile})
 				hasFiles[0] = True
 				print ("yaya")
 			elif "review.csv" in fileName:
 				csvFiles['review'] = csvFile
-				csvDataBuilder.addCsvData("review", dataDictionary, {'review': csvFile})
+				csvDataBuilder.addCsvData("review.csv", dataDictionary, {'review': csvFile})
 				hasFiles[1] = True
 				print ("yayb")
 			elif "submission.csv" in fileName:
 				csvFiles['submission'] = csvFile
-				csvDataBuilder.addCsvData("submission", dataDictionary, {'submission': csvFile})
+				csvDataBuilder.addCsvData("submission.csv", dataDictionary, {'submission': csvFile})
 				hasFiles[2] = True
 				print ("yayc")
 			else:
