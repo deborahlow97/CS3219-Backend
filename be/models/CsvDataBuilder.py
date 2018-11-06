@@ -24,13 +24,13 @@ class CsvDataBuilder:
         self.csvDataList[index].setOrder(order)
         
     def getOrder(self, index):
-        order = []
+        order = {}
         type = self.csvDataList[index].infoType
-        if type == "author":
+        if type == "author.csv":
             order = self.getAuthorOrder(index)
-        elif type == "review":
+        elif type == "review.csv":
             order = self.getReviewOrder(index)
-        elif type == "submission":
+        elif type == "submission.csv":
             order = self.getSubmissionOrder(index)
         elif type == "author.review":
             print ("author + review")
@@ -55,11 +55,11 @@ class CsvDataBuilder:
     def getInfo(self, index):
         info = {}
         type = self.csvDataList[index].infoType
-        if type == "author":
+        if type == "author.csv":
             info = self.getAuthorInfo(index)
-        elif type == "review":
+        elif type == "review.csv":
             info = self.getReviewInfo(index)
-        elif type == "submission":
+        elif type == "submission.csv":
             info = self.getSubmissionInfo(index)
         elif type == "author.review":
             info = self.getAuthorReviewInfo(index)
