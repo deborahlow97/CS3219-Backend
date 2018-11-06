@@ -14,8 +14,8 @@ from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData
 from be.models.CsvDataBuilder import CsvDataBuilder
 from be.models.CsvData import CsvData
 
-# Create your views here.
-# Note: a view is a func taking the HTTP request and returns sth accordingly
+def checkFormDataType(formDataRequest):
+	return 0
 
 def index(request):
 	return HttpResponse("Hello, world. You're at the polls index. =)")
@@ -23,8 +23,30 @@ def index(request):
 def test(request):
 	return HttpResponse("<h1>This is the very first HTTP request! =)</h1>")
 
-# Note: csr: cross site request, adding this to enable request from localhost
+
 @csrf_exempt
+def controlRequest(request):
+	print ("Got request!")
+	if request.method == 'POST':
+    	dataDictionary = {}
+        dataDictionary = request.raw_post_data.json.loads()
+
+		if "upload" in dataDictionary.get("request"):
+			content = uploadCSV(request)
+			return HttpResponse(json.dumps(content))
+		elif "save" in dataDictionary.get("request"):
+			return 0
+		elif "getData" in dataDictionary.get("request"):
+			return 0
+		elif "getAll" in dataDictionary.get("request"):
+			return 0
+		else:
+			print ("Error")
+			return 0  
+	else:
+		print ("Not found the file! =(")
+		return HttpResponseNotFound('Page not found for CSV =(')
+
 def uploadCSV(request):
 	print ("Inside the upload function!!")
 	if request.FILES and request.method == 'POST':
@@ -44,6 +66,7 @@ def uploadCSV(request):
 			fileName = csvFile.name
 			print fileName
 			
+			print request.POST
 			#datadict for column mapping
 			dataDictionary = {}
 			dataDictionary = (request.POST).dict()
