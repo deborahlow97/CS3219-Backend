@@ -491,6 +491,8 @@ class CsvDataBuilder:
             authorScoreMap[key] = sum(value)/float(len(value))
 
         sorted(authorScoreMap, key=authorScoreMap.get, reverse=True)
+        authorScoreList = sorted(authorScoreMap.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+
         authorScoreMapTop10 = Counter(authorScoreMap)
         authorScoreMapTop10 = authorScoreMapTop10.most_common(10)
 
@@ -510,8 +512,26 @@ class CsvDataBuilder:
         organizationScoreMapTop10 = Counter(organizationScoreMap)
         organizationScoreMapTop10 = organizationScoreMapTop10.most_common(10)
 
-        parsedResult['topAuthorsAR'] =  {'authors': [ele[0] for ele in authorScoreMapTop10],
-        'score': [ele[1] for ele in authorScoreMapTop10]}       #topAuthorsScore
+        distinctNumScores = []
+        for x in authorScoreList:
+            print x
+            print "--------------------"
+        endIndex = len(authorScoreList)
+        for idx in range(len(authorScoreList)):
+            #print authorScoreList[idx][1]
+            if (authorScoreList[idx][1] not in distinctNumScores):
+                distinctNumScores.append(authorScoreList[idx][1])
+            if (len(distinctNumScores) > 10):
+                #top 10
+                endIndex = idx-1
+                break
+        authorScoreList = authorScoreList[:endIndex]
+        # for x in authorScoreList:
+        #     print x
+        #     print "*************************"
+
+        parsedResult['topAuthorsAR'] =  {'authors': [ele[0] for ele in authorScoreList],
+        'score': [ele[1] for ele in authorScoreList]}       #topAuthorsScore
         parsedResult['affiliationDistributionAR'] = {'organization': [ele[2] for ele in infoAndScore],
         'score': [ele[0] for ele in infoAndScore]}
         parsedResult['countryDistributionAR'] = {'country': [ele[3] for ele in infoAndScore],                
@@ -521,12 +541,12 @@ class CsvDataBuilder:
         parsedResult['topAffiliationsAR'] = {'organization': [ele[0] for ele in organizationScoreMapTop10],
         'score': [ele[1] for ele in organizationScoreMapTop10]}
 
-        for x,y in parsedResult.iteritems():
-            print ("theresult")
-            print (x)
-            for key,value in y.iteritems():
-                print (key)
-                print (value)
+        # for x,y in parsedResult.iteritems():
+        #     print ("theresult")
+        #     print (x)
+        #     for key,value in y.iteritems():
+        #         print (key)
+        #         print (value)
 
         return parsedResult
 
