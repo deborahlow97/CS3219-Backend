@@ -539,9 +539,9 @@ class CsvDataBuilder:
         parsedResult['countryDistributionAR'] = {'country': [ele[3] for ele in infoAndScore],                
         'score': [ele[0] for ele in infoAndScore], 'author': [ele[1] for ele in infoAndScore]} 
         parsedResult['topCountriesAR'] = {'countries': [ele[0] for ele in countryScoreMapTop10],
-        'score': [ele[1] for ele in countryScoreMapTop10]}
+        'score': [round(ele[1],3) for ele in countryScoreMapTop10]}
         parsedResult['topAffiliationsAR'] = {'organization': [ele[0] for ele in organizationScoreMapTop10],
-        'score': [ele[1] for ele in organizationScoreMapTop10]}
+        'score': [round(ele[1],3) for ele in organizationScoreMapTop10]}
 
         # for x,y in parsedResult.iteritems():
         #     print ("theresult")
