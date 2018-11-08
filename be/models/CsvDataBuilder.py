@@ -440,26 +440,25 @@ class CsvDataBuilder:
             print ("====================================")
         print ("====================================")
 
-        name = []
-        reviewScore = []
-        affiliation = []
-        country = []
+        nameArr = []
+        reviewScoreArr = []
+        affiliationArr = []
+        countryArr = []
         #name and reviewScore MUST be given
         #counter = 1
         for Info in combinedLines:
             
-            name.append(str(Info[int(combinedDict.get("author.First Name"))]) + " " + str(Info[int(combinedDict.get("author.Last Name"))]))
-            affiliation.append(str(Info[int(combinedDict.get("author.Organization"))]))
-            country.append(str(Info[int(combinedDict.get("author.Country"))]))
-            reviewScore.append(int(Info[int(combinedDict.get("review.Overall Evaluation Score"))]))
+            nameArr.append(str(Info[int(combinedDict.get("author.First Name"))]) + " " + str(Info[int(combinedDict.get("author.Last Name"))]))
+            affiliationArr.append(str(Info[int(combinedDict.get("author.Organization"))]))
+            countryArr.append(str(Info[int(combinedDict.get("author.Country"))]))
+            reviewScoreArr.append(int(Info[int(combinedDict.get("review.Overall Evaluation Score"))]))
             # try:    
             # except Exception as e:
             #     print "Line is at %d" % (counter)
             # finally:
             #     counter += 1
 
-        infoAndScore = zip(reviewScore, name, affiliation, country)[:10]
-        infoAndScore.sort(reverse=True)
+
 
         #HashMap with author Name as key
         authorScoreMap = {}
@@ -526,6 +525,9 @@ class CsvDataBuilder:
                 endIndex = idx-1
                 break
         authorScoreList = authorScoreList[:endIndex]
+
+        infoAndScore = zip(reviewScoreArr, nameArr, affiliationArr, countryArr)[:endIndex]
+        infoAndScore.sort(reverse=True)
         # for x in authorScoreList:
         #     print x
         #     print "*************************"
