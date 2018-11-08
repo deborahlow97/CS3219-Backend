@@ -16,12 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from polls.views import index, test, uploadCSV
+from polls.views import index, test, uploadData
 
 urlpatterns = [
 	url(r'^$', index, name='home'),		# This is the default url
     url(r'^admin/', admin.site.urls),
     url(r'^index/', index, name = 'index'),
     url(r'^test/', test, name = 'test'),
-    url(r'^upload/', uploadCSV, name = 'upload'),
+    url(r'^upload/', uploadData, name = 'upload'),
 ]

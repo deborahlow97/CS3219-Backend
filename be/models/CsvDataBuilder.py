@@ -104,7 +104,7 @@ class CsvDataBuilder:
                 authorDict.update({str(key): bool(value)})
             elif "author." in key:
                 authorDict.update({str(key): int(value)})
-
+                
         return authorDict
 
     def getReviewOrder(self, index):
@@ -512,12 +512,9 @@ class CsvDataBuilder:
         organizationScoreMapTop10 = organizationScoreMapTop10.most_common(10)
 
         distinctNumScores = []
-        for x in authorScoreList:
-            print x
-            print "--------------------"
+
         endIndex = len(authorScoreList)
         for idx in range(len(authorScoreList)):
-            #print authorScoreList[idx][1]
             if (authorScoreList[idx][1] not in distinctNumScores):
                 distinctNumScores.append(authorScoreList[idx][1])
             if (len(distinctNumScores) > 10):
@@ -528,9 +525,7 @@ class CsvDataBuilder:
 
         infoAndScore = zip(reviewScoreArr, nameArr, affiliationArr, countryArr)[:endIndex]
         infoAndScore.sort(reverse=True)
-        # for x in authorScoreList:
-        #     print x
-        #     print "*************************"
+
 
         parsedResult['topAuthorsAR'] =  {'authors': [ele[0] for ele in authorScoreList],
         'score': [ele[1] for ele in authorScoreList]}       #topAuthorsScore
@@ -542,13 +537,6 @@ class CsvDataBuilder:
         'score': [round(ele[1],3) for ele in countryScoreMapTop10]}
         parsedResult['topAffiliationsAR'] = {'organization': [ele[0] for ele in organizationScoreMapTop10],
         'score': [round(ele[1],3) for ele in organizationScoreMapTop10]}
-
-        # for x,y in parsedResult.iteritems():
-        #     print ("theresult")
-        #     print (x)
-        #     for key,value in y.iteritems():
-        #         print (key)
-        #         print (value)
 
         return parsedResult
 
