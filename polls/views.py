@@ -110,7 +110,7 @@ def uploadCSVFiles(request):
 		csvDataBuilder.setOrder(i)
 		csvDataBuilder.setInfo(i)
 		# print csvDataBuilder.csvDataList[i].order
-		# print csvDataBuilder.csvDataList[i].info
+		#print csvDataBuilder.csvDataList[i].info
 	
 	rowContent = csvDataBuilder.formatRowContent()
 	return rowContent

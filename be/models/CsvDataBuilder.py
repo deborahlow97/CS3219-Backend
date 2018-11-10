@@ -2,8 +2,10 @@ from CsvData import CsvData
 
 import csv
 import codecs
+import re
+from CsvExceptions import *
+import polls.ConferenceType
 from collections import Counter
-
 from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime
 
 '''
@@ -59,6 +61,7 @@ class CsvDataBuilder:
             info = self.getAuthorInfo(index)
         elif type == "review.csv":
             info = self.getReviewInfo(index)
+            print info
         elif type == "submission.csv":
             info = self.getSubmissionInfo(index)
         elif type == "author.review":
@@ -142,12 +145,6 @@ class CsvDataBuilder:
             authorDict = dict
         inputFile = self.csvDataList[index].csvFiles.get('author')
 
-        """
-        author.csv: header row, author names with affiliations, countries, emails
-        data format:
-        submission ID | f name | s name | email | country | affiliation | page | person ID | corresponding?
-        """
-
         parsedResult = {}
 
         lines = getLinesFromInputFile(inputFile, bool(authorDict.get("author.HasHeader")))
@@ -155,7 +152,6 @@ class CsvDataBuilder:
         print len(lines)
 
         for authorInfo in lines:
-            #authorInfo = line.replace("\"", "").split(",")
             authorList.append(
                 {'name': str(authorInfo[int(authorDict.get("author.First Name"))]) + " " + str(authorInfo[int(authorDict.get("author.Last Name"))]),
                 'country': str(authorInfo[int(authorDict.get("author.Country"))]),
@@ -165,18 +161,14 @@ class CsvDataBuilder:
         topAuthors = Counter(authors).most_common(10)
         parsedResult['topAuthors'] = {'labels': [ele[0] for ele in topAuthors], 'data': [ele[1] for ele in topAuthors]}
 
-        # for x in parsedResult:
-        # 	for y in x['topAuthors']:
-        # 		print str(y['labels']) + " aaa " + str(y['data'])
-
         countries = [ele['country'] for ele in authorList if ele]
         topCountries = Counter(countries).most_common(10)
         parsedResult['topCountries'] = {'labels': [ele[0] for ele in topCountries], 'data': [ele[1] for ele in topCountries]}
-        #print (parsedResult['topCountries'])
+
         affiliations = [ele['affiliation'] for ele in authorList if ele]
         topAffiliations = Counter(affiliations).most_common(10)
         parsedResult['topAffiliations'] = {'labels': [ele[0] for ele in topAffiliations], 'data': [ele[1] for ele in topAffiliations]}
-        #print (parsedResult['topAffiliations'])
+        
         return parsedResult
 
     def getReviewInfo(self, index, dict = None):
@@ -185,17 +177,6 @@ class CsvDataBuilder:
         else:
             reviewDict = dict
         inputFile = self.csvDataList[index].csvFiles.get('review')
-        # print reviewDict
-
-        """
-        review.csv
-
-        score calculation principles:
-        Weighted Average of the scores, using reviewer's confidence as the weights
-
-        recommended principles:
-        Yes: 1; No: 0; weighted average of the 1 and 0's, also using reviewer's confidence as the weights
-        """
 
         parsedResult = {}
 
@@ -204,7 +185,27 @@ class CsvDataBuilder:
         evaluation = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines]
         submissionIDs = set([str(line[int(reviewDict.get("review.Submission #"))]) for line in lines])
         reviewTime = [str(ele[int(reviewDict.get("review.Time"))]) for ele in lines]
+
+        timeRegex = re.compile(polls.ConferenceType.TIME_REGEX)
+        
+        try:
+            for time in reviewTime:
+                if not timeRegex.match(time):
+                    raise TimeDataError( {"Error": "Oops! There seems to be an error related to the information in review - time. Do note that only HH:MM format is accepted."})
+        except TimeDataError as tde:
+            return tde.message
+
         reviewDate = [str(ele[int(reviewDict.get("review.Date"))]) for ele in lines]
+
+        dateRegex = re.compile(polls.ConferenceType.DATE_REGEX)
+
+        try:
+            for date in reviewDate:
+                if not dateRegex.match(date):
+                    raise DateDataError( {"Error": "Oops! There seems to be an error related to the information in review - date. Do note that only dd/mm/yyyy or d/m/yyyy format is accepted."})
+        except DateDataError as dde:
+            return dde.message
+
         reviewDate = Counter(reviewDate)
         lastReviewStamps = sorted([k for k in reviewDate])
         reviewedNumber = [0 for n in range(len(lastReviewStamps))]
@@ -226,8 +227,15 @@ class CsvDataBuilder:
         expertise = []
         expertiseScore = []
         for info in lines:
-            expertiseLevel = int(info[int(reviewDict.get("review.Field #"))])
-            score = int(info[int(reviewDict.get("review.Overall Evaluation Score"))])
+            try:
+                expertiseLevel = int(info[int(reviewDict.get("review.Field #"))])
+            except ValueError:
+                return {"Error": "Oops! Value Error occurred. There seems to be an error related to the information in review - field #. Do make sure that only numbers are accepted as field #."}
+            try:
+                score = int(info[int(reviewDict.get("review.Overall Evaluation Score"))])
+            except ValueError as e:
+                return {"Error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score. Do make sure that only numbers are accepted as overall evaluation scores."}
+            
             if expertiseLevel not in expertiseScoreMap:
                 expertiseScoreMap[expertiseLevel] = [score]
             else:
@@ -298,25 +306,18 @@ class CsvDataBuilder:
             submissionDict = dict
         inputFile = self.csvDataList[index].csvFiles.get('submission')
 
-        """
-        submission.csv
-        """
-
         parsedResult = {}
         lines = getLinesFromInputFile(inputFile, bool(submissionDict.get("submission.HasHeader")))
 
-        """
-            lines = []
-            for ele in lines:
-                if ele
-                    lines.append(ele)
-        """
         acceptedSubmission = [line for line in lines if str(line[int(submissionDict.get("submission.Decision"))]) == 'accept']
         rejectedSubmission = [line for line in lines if str(line[int(submissionDict.get("submission.Decision"))]) == 'reject']
-
+        
         acceptanceRate = float(len(acceptedSubmission)) / len(lines)
 
+        #check submission & last edit times
+
         submissionTimes = [parseSubmissionTime(str(ele[int(submissionDict.get("submission.Time Submitted"))])) for ele in lines]
+
         lastEditTimes = [parseSubmissionTime(str(ele[int(submissionDict.get("submission.Time Last Updated"))])) for ele in lines]
         submissionTimes = Counter(submissionTimes)
         lastEditTimes = Counter(lastEditTimes)
@@ -424,8 +425,7 @@ class CsvDataBuilder:
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("review.HasHeader")))
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", authorDict, reviewDict)
         parsedResult = {}
-        # reviewInfo = self.getReviewInfo(index, reviewDict)
-        # authorInfo = self.getAuthorInfo(index, authorDict)
+
         # 1. Top 10 Authors (by mean review score across all the authors submissions) bar : author names (x axis) mean score (y axis) topAuthorsAR.
         # 2. Affiliation distribution of top 10 authors  pie chart:affiliation distribution affiliationDistributionAR
         # 3. Country distribution of top 10 authors  pie chart:country distribution countryDistributionAR
@@ -433,32 +433,24 @@ class CsvDataBuilder:
         # 5. Top 10 affiliations with highest mean scores bar : affiliations( x-axis), mean score(y-axis)  topAffiliationsAR
         # Top 10 authors that were recommended for best paper  : authors names (x-axis),
 
-
-        for key, value in combinedDict.items():
-            print key
-            print [str(ele[value]) for ele in combinedLines if key == "review.Overall Evaluation Score"]
-            print ("====================================")
-        print ("====================================")
-
         nameArr = []
         reviewScoreArr = []
         affiliationArr = []
         countryArr = []
-        #name and reviewScore MUST be given
-        #counter = 1
         for Info in combinedLines:
             
             nameArr.append(str(Info[int(combinedDict.get("author.First Name"))]) + " " + str(Info[int(combinedDict.get("author.Last Name"))]))
             affiliationArr.append(str(Info[int(combinedDict.get("author.Organization"))]))
             countryArr.append(str(Info[int(combinedDict.get("author.Country"))]))
-            reviewScoreArr.append(int(Info[int(combinedDict.get("review.Overall Evaluation Score"))]))
+            try:
+                reviewScoreArr.append(int(Info[int(combinedDict.get("review.Overall Evaluation Score"))]))
+            except ValueError as e:
+                return {"Error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
             # try:    
             # except Exception as e:
             #     print "Line is at %d" % (counter)
             # finally:
             #     counter += 1
-
-
 
         #HashMap with author Name as key
         authorScoreMap = {}
@@ -466,7 +458,11 @@ class CsvDataBuilder:
         organizationScoreMap ={}
         for Info in combinedLines:
             name = str(Info[int(combinedDict.get("author.First Name"))] + " " + Info[int(combinedDict.get("author.Last Name"))])
-            score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
+            try:
+                score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
+            except ValueError as e:
+                return {"Error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
+
             country = str(Info[int(combinedDict.get("author.Country"))])
             affiliation = str(Info[int(combinedDict.get("author.Organization"))])
 
@@ -526,7 +522,6 @@ class CsvDataBuilder:
         infoAndScore = zip(reviewScoreArr, nameArr, affiliationArr, countryArr)[:endIndex]
         infoAndScore.sort(reverse=True)
 
-
         parsedResult['topAuthorsAR'] =  {'authors': [ele[0] for ele in authorScoreList],
         'score': [ele[1] for ele in authorScoreList]}       #topAuthorsScore
         parsedResult['affiliationDistributionAR'] = {'organization': [ele[2] for ele in infoAndScore],
@@ -553,9 +548,7 @@ class CsvDataBuilder:
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
 
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "submission.Submission #", authorDict, submissionDict)
-        # print combinedLines[0]
-        # print combinedLines[1]
-
+ 
         acceptedCountriesList = []
         for ele in combinedLines:
             if str(ele[int(combinedDict.get("submission.Decision"))]) == 'accept':
