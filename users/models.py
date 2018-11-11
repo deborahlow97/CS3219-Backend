@@ -15,8 +15,8 @@ class Session(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null = True)
     date = models.DateField()
     time = models.TimeField()
-    session_name = models.CharField(verbose_name="Session Name", max_length=50)
-    file_names = models.TextField(verbose_name="File Names", max_length=50)
+    name = models.CharField(verbose_name="Session Name", max_length=50)
+    files = models.TextField(verbose_name="File Names", max_length=50)
     data = models.TextField(verbose_name="File Data")
     objects = SessionManager()
 

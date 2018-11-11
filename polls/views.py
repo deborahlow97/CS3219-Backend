@@ -125,31 +125,31 @@ def uploadCSVFiles(request):
 def saveSession(request):
 	email = str(request['email'])
 	user = User.objects.filter(email=email).first()
-	session_name = str(request['name'])
+	name = str(request['name'])
 	date = str(request['date'])
 	time = str(request['time'])
-	file_names = str(request['files'])
+	files = str(request['files'])
 	data = request['data']
-	session = Session.objects.create_session(user, session_name, date, time, file_names, data)
-	return session.session_name
+	session = Session.objects.create_session(user, name, date, time, files, data)
+	return session.name
 
 def deleteSession(request):
 	email = str(request['email'])
 	user = User.objects.filter(email=email).first()
-	session_name = str(request['name'])
+	name = str(request['name'])
 	date = str(request['date'])
 	time = str(request['time'])
-	session = Session.objects.filter(user=user, session_name=session_name, date=date, time=time).first()
+	session = Session.objects.filter(user=user, name=name, date=date, time=time).first()
 	session.delete()
-	return session.session_name
+	return session.name
 
 def getSession(request):
 	email = str(request['email'])
 	user = User.objects.filter(email=email).first()
-	session_name = str(request['name'])
+	name = str(request['name'])
 	date = str(request['date'])
 	time = str(request['time'])
-	session = Session.objects.filter(user=user, session_name=session_name, date=date, time=time).first()
+	session = Session.objects.filter(user=user, name=name, date=date, time=time).first()
 	return session.data
 
 def getSessionsByEmail(request):
