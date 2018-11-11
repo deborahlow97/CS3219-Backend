@@ -36,12 +36,8 @@ def uploadData(request):
 		dataDictionary = {}
 		dataDictionary = (request.POST).dict()
 		requestType = dataDictionary.get("request")
-		# mycookie = request.COOKIES
-		# print "my cookie: "
-		# print mycookie
-		# myuser = request.user
-		# print "myuser: "
-		# print myuser
+		print dataDictionary
+		print requestType
 
 		if request.FILES and "uploadSession" == requestType:
 			data = uploadCSVFiles(request)
@@ -74,7 +70,6 @@ def uploadData(request):
 
 
 def uploadCSVFiles(request):
-	# file is present ? True : False
 	hasFiles = [False] * 3 
 
 	csvFiles = {}
@@ -91,8 +86,6 @@ def uploadCSVFiles(request):
 		#datadict for column mapping
 		dataDictionary = {}
 		dataDictionary = (request.POST).dict()
-		# print dataDictionary
-		# print "*************"
 		rowContent = ""
 
 		if "author.csv" in fileName:
@@ -166,29 +159,30 @@ def getSessionsByEmail(request):
 	return serializers.serialize('json', list(sessionsQuerySet))
 
 def registerUser(request):
-	registerUsername = request['username']
+	registerUsername = request['email']
+	print registerUsername
 	registerPassword = request['password']
 	isExist = authenticateUser(registerUsername, registerPassword)
 	if isExist:
-		return { "Error": "There already exist a username under that email"}
+		return {"isSuccessful": False, "errorMessage": "There already exist a username under that email"}
 	else:
 		createUser(registerUsername, registerPassword)
-	return {"User successfully registered!"}
+	return {"isSuccessful": True}
 
 def loginUser(request):
-	loginUsername = request['username']
+	loginUsername = request['email']
 	loginPassword = request['password']
 	isExist = authenticateUser(loginUsername, loginPassword)
 	if isExist:
-		return {"Error": ""}
+		return {"isSuccessful": True}
 	else:
-		return {"Error": "There is no existing user with that username"}
+		return {"isSuccessful": False, "errorMessage": "There is no existing user with that username"}
 
 def createUser(username, password):
 	user = User.objects.create_user(username, username, password)
 	return user.get_username()
 
-def authenticateUser(_username, _password): #might not be working atm, dk are we supposed to put in pw too?
+def authenticateUser(_username, _password):
     user = authenticate(username=_username, password=_password)
     if user is not None:
         return True
