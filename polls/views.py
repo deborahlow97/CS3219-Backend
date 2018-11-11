@@ -42,12 +42,13 @@ def uploadData(request):
 		# print myuser
 
 		if "uploadSession" == requestType:
-			data = uploadCSVFiles(request.FILES.getlist('file'))
+			data = uploadCSVFiles(request)
 		elif "getSession" == requestType:
 			data = 0
 		elif "deleteSession" == requestType:
 			data = 0
 		elif "saveSession" == requestType:
+			saveSession(request)
 			data = 0
 		elif "getAll" == requestType:
 			data = 0
@@ -71,12 +72,12 @@ def uploadData(request):
 		return HttpResponseNotFound('Page not found for CSV =(')
 
 
-
-def uploadCSVFiles(csvFileList):
+def uploadCSVFiles(request):
 	# file is present ? True : False
 	hasFiles = [False] * 3 
 
 	csvFiles = {}
+	csvFileList = request.FILES.getlist('file')
 
 	csvDataBuilder = CsvDataBuilder()
 
@@ -126,6 +127,9 @@ def uploadCSVFiles(csvFileList):
 	
 	rowContent = csvDataBuilder.formatRowContent()
 	return rowContent
+
+# def saveSession(request):
+	
 
 def registerUser(request):
 	registerUsername = request['username']
