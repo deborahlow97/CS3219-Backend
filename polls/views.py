@@ -149,7 +149,7 @@ def loginUser(request):
 		return { "Error": "There is no existing user with that username"}
 
 def createUser(username, password):
-    user = User.objects.create_user(username, username, password)
+	user = User.objects.create_user(username, username, password)
 	return user.get_username()
 
 def authenticateUser(_username): #might not be working atm, dk are we supposed to put in pw too?
