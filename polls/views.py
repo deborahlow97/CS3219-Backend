@@ -39,11 +39,6 @@ def uploadData(request):
 		# myuser = request.user
 		# print "myuser: "
 		# print myuser
-		requestType = dataDictionary.get("request")
-		createUser("dumy")
-		isExist = authenticateUser("abc@gmal.com")	#CHANGE THIS
-		print "Is there such user: "
-		print isExist
 
 		if "uploadSession" == requestType:
 			data = uploadCSVFiles(request)
@@ -56,9 +51,10 @@ def uploadData(request):
 		elif "getAll" == requestType:
 			data = 0
 		elif "register" == requestType:
-			data = 0
+			userCreated = registerUser(dataDictionary)
+			data = userCreated
 		elif "login" == requestType:
-			data = 0
+			data = loginUser(dataDictionary)
 		else:
 			print ("ERROR: file should have been rejected by frontend already")
 
@@ -131,13 +127,33 @@ def uploadCSVFiles(request):
 	rowContent = csvDataBuilder.formatRowContent()
 	return rowContent
 
-def createUser(data):
-    email = "abc@gmal.com" #CHANGE THIS
-    pw="1234"
-    user = User.objects.create_user(email, email, pw)
+def registerUser(request):
+	registerUsername = request['username']
+	registerPassword = request['password']
+	isExist = authenticateUser(registerUsername)
+	if isExist:
+		return { "Error": "There already exist a username under that email"}
+	else:
+		createUser(registerUsername, registerPassword)
+	return {"User successfully registered!"}
 
-def authenticateUser(_username):
-    user = authenticate(username=_username, password='1234')
+def loginUser(request):
+	loginUsername = request['username']
+	loginPassword = request['password']
+	isExist = authenticateUser(loginUsername)
+	if isExist:
+		print("TODO")
+		return 0
+		#DO SMTH - LOGIN
+	else:
+		return { "Error": "There is no existing user with that username"}
+
+def createUser(username, password):
+    user = User.objects.create_user(username, username, password)
+	return user.get_username()
+
+def authenticateUser(_username): #might not be working atm, dk are we supposed to put in pw too?
+    user = authenticate(username=_username, password='')
     if user is not None:
         return True
     else:
