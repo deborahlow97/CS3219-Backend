@@ -33,6 +33,7 @@ def uploadData(request):
 
 		dataDictionary = {}
 		dataDictionary = (request.POST).dict()
+		requestType = dataDictionary.get("request")
 		# mycookie = request.COOKIES
 		# print "my cookie: "
 		# print mycookie
