@@ -6,8 +6,8 @@ from django.contrib.auth.models import User, UserManager
 
 # Create your models here.
 class SessionManager(models.Manager):
-    def create_session(self, user, session_name, date, time, file_names, data):
-        session = self.model(user=user, session_name=session_name, date=date, time=time, file_names=file_names, data=data)
+    def create_session(self, user, name, date, time, files, data):
+        session = self.model(user=user, name=name, date=date, time=time, files=files, data=data)
         session.save()
         return session
         
