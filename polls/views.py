@@ -42,7 +42,7 @@ def uploadData(request):
 		# print myuser
 
 		if "uploadSession" == requestType:
-			data = uploadCSVFiles(request)
+			data = uploadCSVFiles(request.FILES.getlist('file'))
 		elif "getSession" == requestType:
 			data = 0
 		elif "deleteSession" == requestType:
@@ -72,11 +72,10 @@ def uploadData(request):
 
 
 
-def uploadCSVFiles(request):
+def uploadCSVFiles(csvFileList):
 	# file is present ? True : False
 	hasFiles = [False] * 3 
 
-	csvFileList = request.FILES.getlist('file')
 	csvFiles = {}
 
 	csvDataBuilder = CsvDataBuilder()
