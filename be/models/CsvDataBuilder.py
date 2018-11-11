@@ -3,6 +3,7 @@ from CsvData import CsvData
 import csv
 import codecs
 import re
+from be.CalculationUtil import *
 from CsvExceptions import *
 import polls.ConferenceType
 from collections import Counter
@@ -144,29 +145,11 @@ class CsvDataBuilder:
         inputFile = self.csvDataList[index].csvFiles.get('author')
 
         parsedResult = {}
-
         lines = getLinesFromInputFile(inputFile, bool(authorDict.get("author.HasHeader")))
-        authorList = []
-        print len(lines)
 
-        for authorInfo in lines:
-            authorList.append(
-                {'name': str(authorInfo[int(authorDict.get("author.First Name"))]) + " " + str(authorInfo[int(authorDict.get("author.Last Name"))]),
-                'country': str(authorInfo[int(authorDict.get("author.Country"))]),
-                'affiliation': str(authorInfo[int(authorDict.get("author.Organization"))])})
-
-        authors = [ele['name'] for ele in authorList if ele] # adding in the if ele in case of empty strings; same applies below
-        topAuthors = Counter(authors).most_common(10)
-        parsedResult['topAuthors'] = {'labels': [ele[0] for ele in topAuthors], 'data': [ele[1] for ele in topAuthors]}
-
-        countries = [ele['country'] for ele in authorList if ele]
-        topCountries = Counter(countries).most_common(10)
-        parsedResult['topCountries'] = {'labels': [ele[0] for ele in topCountries], 'data': [ele[1] for ele in topCountries]}
-
-        affiliations = [ele['affiliation'] for ele in authorList if ele]
-        topAffiliations = Counter(affiliations).most_common(10)
-        parsedResult['topAffiliations'] = {'labels': [ele[0] for ele in topAffiliations], 'data': [ele[1] for ele in topAffiliations]}
-        
+        parsedResult.update(getTopAuthors(lines, authorDict))
+        parsedResult.update(getTopCountries(lines, authorDict))
+        parsedResult.update(getTopAffiliations(lines, authorDict))
         return parsedResult
 
     def getReviewInfo(self, index, dict = None):
@@ -177,123 +160,11 @@ class CsvDataBuilder:
         inputFile = self.csvDataList[index].csvFiles.get('review')
 
         parsedResult = {}
-
         lines = getLinesFromInputFile(inputFile, bool(reviewDict.get("review.HasHeader")))
 
-        evaluation = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines]
-        submissionIDs = set([str(line[int(reviewDict.get("review.Submission #"))]) for line in lines])
-        reviewTime = [str(ele[int(reviewDict.get("review.Time"))]) for ele in lines]
-
-        timeRegex = re.compile(polls.ConferenceType.TIME_REGEX)
-        
-        try:
-            for time in reviewTime:
-                if not timeRegex.match(time):
-                    raise TimeDataError( {"error": "Oops! There seems to be an error related to the information in review - time. Do note that only HH:MM format is accepted."})
-        except TimeDataError as tde:
-            return tde.message
-
-        reviewDate = [str(ele[int(reviewDict.get("review.Date"))]) for ele in lines]
-
-        dateRegex = re.compile(polls.ConferenceType.DATE_REGEX)
-
-        try:
-            for date in reviewDate:
-                if not dateRegex.match(date):
-                    raise DateDataError( {"error": "Oops! There seems to be an error related to the information in review - date. Do note that only dd/mm/yyyy or d/m/yyyy format is accepted."})
-        except DateDataError as dde:
-            return dde.message
-
-        reviewDate = Counter(reviewDate)
-        lastReviewStamps = sorted([k for k in reviewDate])
-        reviewedNumber = [0 for n in range(len(lastReviewStamps))]
-        #lastEditNumber = [0 for n in range(len(lastEditStamps))]
-        reviewTimeSeries = []
-        for index, lastReviewStamps in enumerate(lastReviewStamps):
-            if index == 0:
-                reviewedNumber[index] = reviewDate[lastReviewStamps]
-            else:
-                reviewedNumber[index] = reviewDate[lastReviewStamps] + reviewedNumber[index - 1]
-
-            reviewTimeSeries.append({'x': lastReviewStamps, 'y': reviewedNumber[index]})
-
-        scoreList = []
-        recommendList = []
-        confidenceList = []
-
-        expertiseScoreMap = {}
-        expertise = []
-        expertiseScore = []
-        for info in lines:
-            try:
-                expertiseLevel = int(info[int(reviewDict.get("review.Field #"))])
-            except ValueError:
-                return {"Error": "Oops! Value Error occurred. There seems to be an error related to the information in review - field #. Do make sure that only numbers are accepted as field #."}
-            try:
-                score = int(info[int(reviewDict.get("review.Overall Evaluation Score"))])
-            except ValueError as e:
-                return {"Error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score. Do make sure that only numbers are accepted as overall evaluation scores."}
-            
-            if expertiseLevel not in expertiseScoreMap:
-                expertiseScoreMap[expertiseLevel] = [score]
-            else:
-                expertiseScoreMap[expertiseLevel].append(score)
-
-        #getting average of evaluation score given
-        for key,value in expertiseScoreMap.iteritems():
-            expertiseScoreMap[key] = sum(value)/float(len(value))
-
-        for key, value in sorted(expertiseScoreMap.items()):
-            expertise.append(key)
-            expertiseScore.append(value)
-
-        submissionIDReviewMap = {}
-
-        # Idea: from -3 to 3 (min to max scores possible), every 0.25 will be a gap
-        scoreDistributionCounts = [0] * int((3 + 3) / 0.25)
-        recommendDistributionCounts = [0] * int((1 - 0) / 0.1)
-
-        scoreDistributionLabels = [" ~ "] * len(scoreDistributionCounts)
-        recommendDistributionLabels = [" ~ "] * len(recommendDistributionCounts)
-
-        for index, col in enumerate(scoreDistributionCounts):
-            scoreDistributionLabels[index] = str(-3 + 0.25 * index) + " ~ " + str(-3 + 0.25 * index + 0.25)
-
-        for index, col in enumerate(recommendDistributionCounts):
-            recommendDistributionLabels[index] = str(0 + 0.1 * index) + " ~ " + str(0 + 0.1 * index + 0.1)
-
-        for submissionID in submissionIDs:
-            reviews = [str(line[int(reviewDict.get("review.Overall Evaluation Score (ignore)"))]).replace("\r", "") for line in lines if str(line[int(reviewDict.get("review.Submission #"))]) == submissionID]
-            confidences = [float(review.split("\n")[1].split(": ")[1]) for review in reviews]
-            scores = [float(review.split("\n")[0].split(": ")[1]) for review in reviews]
-
-            confidenceList.append(sum(confidences) / len(confidences))
-            # recommends = [1.0 for review in reviews if review.split("\n")[2].split(": ")[1] == "yes" else 0.0]
-            try:
-                recommends = map(lambda review: 1.0 if review.split("\n")[2].split(": ")[1] == "yes" else 0.0, reviews)
-            except:
-                recommends = [0.0 for n in range(len(reviews))]
-            weightedScore = sum(x * y for x, y in zip(scores, confidences)) / sum(confidences)
-            weightedRecommend = sum(x * y for x, y in zip(recommends, confidences)) / sum(confidences)
-
-            scoreColumn = min(int((weightedScore + 3) / 0.25), 23)
-            recommendColumn = min(int((weightedRecommend) / 0.1), 9)
-            scoreDistributionCounts[scoreColumn] += 1
-            recommendDistributionCounts[recommendColumn] += 1
-            submissionIDReviewMap[submissionID] = {'score': weightedScore, 'recommend': weightedRecommend}
-            scoreList.append(weightedScore)
-            recommendList.append(weightedRecommend)
-
-        parsedResult['IDReviewMap'] = submissionIDReviewMap
-        parsedResult['scoreList'] = scoreList
-        parsedResult['meanScore'] = sum(scoreList) / len(scoreList)
-        parsedResult['meanRecommend'] = sum(recommendList) / len(recommendList)
-        parsedResult['meanConfidence'] = sum(confidenceList) / len(confidenceList)
-        parsedResult['recommendList'] = recommendList
-        parsedResult['scoreDistribution'] = {'labels': scoreDistributionLabels, 'counts': scoreDistributionCounts}
-        parsedResult['recommendDistribution'] = {'labels': recommendDistributionLabels, 'counts': recommendDistributionCounts}
-        parsedResult['reviewTimeSeries'] = reviewTimeSeries
-        parsedResult['meanEvaluationScore'] = {'expertise': expertise, 'avgScore': expertiseScore }
+        parsedResult.update(getReviewTimeSeries(lines, reviewDict))
+        parsedResult.update(getScoreDistribution(lines, reviewDict))
+        parsedResult.update(getMeanEvScoreByExpertiseLevel(lines, reviewDict))
 
         return parsedResult
         
