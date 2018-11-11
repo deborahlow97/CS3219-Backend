@@ -35,13 +35,9 @@ def uploadData(request):
 		dataDictionary = {}
 		dataDictionary = (request.POST).dict()
 		requestType = dataDictionary.get("request")
-		# mycookie = request.COOKIES
-		# print "my cookie: "
-		# print mycookie
-		# myuser = request.user
-		# print "myuser: "
-		# print myuser
+		print dataDictionary
 		print requestType
+
 		if request.FILES and "uploadSession" == requestType:
 			data = uploadCSVFiles(request)
 		elif "getSession" == requestType:
@@ -75,7 +71,6 @@ def uploadData(request):
 
 
 def uploadCSVFiles(request):
-	# file is present ? True : False
 	hasFiles = [False] * 3 
 
 	csvFiles = {}
@@ -182,7 +177,7 @@ def createUser(username, password):
 	user = User.objects.create_user(username, username, password)
 	return user.get_username()
 
-def authenticateUser(_username, _password): #might not be working atm, dk are we supposed to put in pw too?
+def authenticateUser(_username, _password):
     user = authenticate(username=_username, password=_password)
     if user is not None:
         return True
