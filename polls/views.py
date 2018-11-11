@@ -157,7 +157,7 @@ def getSession(request):
 	session_name = str(request['name'])
 	date = str(request['date'])
 	time = str(request['time'])
-	session = Session.objects.filter(user=user, session_name=session_name, date=date, time=time)
+	session = Session.objects.filter(user=user, session_name=session_name, date=date, time=time).first()
 	return session.data
 
 def registerUser(request):
