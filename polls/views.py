@@ -41,7 +41,7 @@ def uploadData(request):
 		# myuser = request.user
 		# print "myuser: "
 		# print myuser
-
+		print requestType
 		if request.FILES and "uploadSession" == requestType:
 			data = uploadCSVFiles(request)
 		elif "getSession" == requestType:
@@ -92,8 +92,6 @@ def uploadCSVFiles(request):
 		#datadict for column mapping
 		dataDictionary = {}
 		dataDictionary = (request.POST).dict()
-		# print dataDictionary
-		# print "*************"
 		rowContent = ""
 
 		if "author.csv" in fileName:
@@ -161,7 +159,8 @@ def getSession(request):
 	return session.data
 
 def registerUser(request):
-	registerUsername = request['username']
+	registerUsername = request['email']
+	print registerUsername
 	registerPassword = request['password']
 	isExist = authenticateUser(registerUsername, registerPassword)
 	if isExist:
@@ -171,7 +170,7 @@ def registerUser(request):
 	return {"User successfully registered!"}
 
 def loginUser(request):
-	loginUsername = request['username']
+	loginUsername = request['email']
 	loginPassword = request['password']
 	isExist = authenticateUser(loginUsername, loginPassword)
 	if isExist:
