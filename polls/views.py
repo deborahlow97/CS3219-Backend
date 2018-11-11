@@ -53,7 +53,7 @@ def uploadData(request):
 			#todo: add if case when error
 			data = {'result': saveSession(dataDictionary)}
 		elif "getAll" == requestType:
-			data = 0
+			data = getSessionsByEmail(dataDictionary)
 		elif "register" == requestType:
 			userCreated = registerUser(dataDictionary)
 			data = userCreated
@@ -147,7 +147,7 @@ def deleteSession(request):
 	session_name = str(request['name'])
 	date = str(request['date'])
 	time = str(request['time'])
-	session = Session.objects.filter(user=user, session_name=session_name, date=date, time=time)
+	session = Session.objects.filter(user=user, session_name=session_name, date=date, time=time).first()
 	session.delete()
 	return session.session_name
 
@@ -157,8 +157,20 @@ def getSession(request):
 	session_name = str(request['name'])
 	date = str(request['date'])
 	time = str(request['time'])
-	session = Session.objects.filter(user=user, session_name=session_name, date=date, time=time)
+	session = Session.objects.filter(user=user, session_name=session_name, date=date, time=time).first()
+	print "$$$"
+	print session.data
+	print "$$$"
 	return session.data
+
+def getSessionsByEmail(request):
+	email = str(request['email'])
+	user = User.objects.filter(email=email).first()
+	sessionsList = list(Session.objects.filter(user=user))
+	print("4444444444444444444")
+	print sessionsList
+	print("4444444444444444444")
+	return sessionsList
 
 def registerUser(request):
 	registerUsername = request['username']
