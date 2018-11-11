@@ -65,9 +65,9 @@ def parseCSVFile(inputFile):
 
 	csvFile = inputFile
 	print inputFile
-	print ("startSniffing")
+	# print ("startSniffing")
 	# dialect = csv.Sniffer().sniff(codecs.EncodedFile(csvFile, "utf-8").read(1024))
-	print ("endSniffing")
+	# print ("endSniffing")
 	csvFile.open()
 	# reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect=dialect)
 	reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect='excel')
