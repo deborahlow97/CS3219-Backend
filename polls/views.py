@@ -45,11 +45,12 @@ def uploadData(request):
 		if request.FILES and "uploadSession" == requestType:
 			data = uploadCSVFiles(request)
 		elif "getSession" == requestType:
-			data = 0
+			data = {'result': getSession(dataDictionary)}
 		elif "deleteSession" == requestType:
-			data = 0
+			#todo: add if case when error
+			data = {'result': deleteSession(dataDictionary)}
 		elif "saveSession" == requestType:
-			print ("%%%%%%%%%%%%%%%%%%%%%")
+			#todo: add if case when error
 			data = {'result': saveSession(dataDictionary)}
 		elif "getAll" == requestType:
 			data = 0
@@ -137,11 +138,27 @@ def saveSession(request):
 	time = str(request['time'])
 	file_names = str(request['files'])
 	data = str(request['data'])
-	print ("%%%%%%%%%%%%%%%%%%%%%")
-	print (date)
-	print ("%%%%%%%%%%%%%%%%%%%%%")
 	session = Session.objects.create_session(user, session_name, date, time, file_names, data)
-	return session.email
+	return session.session_name
+
+def deleteSession(request):
+	email = str(request['email'])
+	user = User.objects.filter(email=email).first()
+	session_name = str(request['name'])
+	date = str(request['date'])
+	time = str(request['time'])
+	session = Session.objects.filter(user=user, session_name=session_name, date=date, time=time)
+	session.delete()
+	return session.session_name
+
+def getSession(request):
+	email = str(request['email'])
+	user = User.objects.filter(email=email).first()
+	session_name = str(request['name'])
+	date = str(request['date'])
+	time = str(request['time'])
+	session = Session.objects.filter(user=user, session_name=session_name, date=date, time=time)
+	return session.data
 
 def registerUser(request):
 	registerUsername = request['username']
