@@ -162,14 +162,14 @@ def registerUser(request):
 		return { "Error": "There already exist a username under that email"}
 	else:
 		createUser(registerUsername, registerPassword)
-	return {"User successfully registered!"}
+	return {"Success": "User successfully registered!"}
 
 def loginUser(request):
 	loginUsername = request['email']
 	loginPassword = request['password']
 	isExist = authenticateUser(loginUsername, loginPassword)
 	if isExist:
-		return {"Error": ""}
+		return {"Success": "You have successfully logged in!"}
 	else:
 		return {"Error": "There is no existing user with that username"}
 
