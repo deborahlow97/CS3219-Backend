@@ -131,7 +131,7 @@ def uploadCSVFiles(request):
 def registerUser(request):
 	registerUsername = request['username']
 	registerPassword = request['password']
-	isExist = authenticateUser(registerUsername)
+	isExist = authenticateUser(registerUsername, registerPassword)
 	if isExist:
 		return { "Error": "There already exist a username under that email"}
 	else:
@@ -141,7 +141,7 @@ def registerUser(request):
 def loginUser(request):
 	loginUsername = request['username']
 	loginPassword = request['password']
-	isExist = authenticateUser(loginUsername)
+	isExist = authenticateUser(loginUsername, loginPassword)
 	if isExist:
 		print("TODO")
 		return 0
@@ -153,8 +153,8 @@ def createUser(username, password):
 	user = User.objects.create_user(username, username, password)
 	return user.get_username()
 
-def authenticateUser(_username): #might not be working atm, dk are we supposed to put in pw too?
-    user = authenticate(username=_username, password='')
+def authenticateUser(_username, _password): #might not be working atm, dk are we supposed to put in pw too?
+    user = authenticate(username=_username, password=_password)
     if user is not None:
         return True
     else:
