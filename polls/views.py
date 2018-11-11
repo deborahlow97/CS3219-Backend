@@ -113,4 +113,8 @@ def uploadCSVFiles(request):
 		#print csvDataBuilder.csvDataList[i].info
 	
 	rowContent = csvDataBuilder.formatRowContent()
+	print "--------------------------"
+	for x in rowContent:
+		for y in x:
+			print y
 	return rowContent
