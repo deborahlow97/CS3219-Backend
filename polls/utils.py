@@ -13,6 +13,11 @@ def isNumber(inputStr):
 	except ValueError:
 		return False
 
+def appendHasErrorField(info):
+	if "error" not in info:
+		info.update({"error": ""})
+	return info
+
 def getLinesFromInputFile(inputFile, hasHeader):
 	#Case 1: Header given. hasHeader == true
 	if hasHeader:

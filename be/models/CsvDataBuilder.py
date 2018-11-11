@@ -6,7 +6,7 @@ import re
 from CsvExceptions import *
 import polls.ConferenceType
 from collections import Counter
-from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime
+from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime, appendHasErrorField
 
 '''
 Represents a builder class to build csv data from an uploaded csv file
@@ -93,8 +93,7 @@ class CsvDataBuilder:
             infoData.update(csvData.info)
 
         rowContent['infoType'] = infoType
-        rowContent['infoData'] = infoData
-
+        rowContent['infoData'] = appendHasErrorField(infoData)
         return rowContent
 
     def getAuthorOrder(self, index):
@@ -190,7 +189,7 @@ class CsvDataBuilder:
         try:
             for time in reviewTime:
                 if not timeRegex.match(time):
-                    raise TimeDataError( {"Error": "Oops! There seems to be an error related to the information in review - time. Do note that only HH:MM format is accepted."})
+                    raise TimeDataError( {"error": "Oops! There seems to be an error related to the information in review - time. Do note that only HH:MM format is accepted."})
         except TimeDataError as tde:
             return tde.message
 
@@ -201,7 +200,7 @@ class CsvDataBuilder:
         try:
             for date in reviewDate:
                 if not dateRegex.match(date):
-                    raise DateDataError( {"Error": "Oops! There seems to be an error related to the information in review - date. Do note that only dd/mm/yyyy or d/m/yyyy format is accepted."})
+                    raise DateDataError( {"error": "Oops! There seems to be an error related to the information in review - date. Do note that only dd/mm/yyyy or d/m/yyyy format is accepted."})
         except DateDataError as dde:
             return dde.message
 
@@ -444,7 +443,7 @@ class CsvDataBuilder:
             try:
                 reviewScoreArr.append(int(Info[int(combinedDict.get("review.Overall Evaluation Score"))]))
             except ValueError as e:
-                return {"Error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
+                return {"error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
             # try:    
             # except Exception as e:
             #     print "Line is at %d" % (counter)
@@ -460,7 +459,7 @@ class CsvDataBuilder:
             try:
                 score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
             except ValueError as e:
-                return {"Error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
+                return {"error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
 
             country = str(Info[int(combinedDict.get("author.Country"))])
             affiliation = str(Info[int(combinedDict.get("author.Organization"))])
