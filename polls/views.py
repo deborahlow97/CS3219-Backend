@@ -6,6 +6,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseNotFound
 from django.http import QueryDict
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
 import json
 import ConferenceType
@@ -13,7 +15,7 @@ import ConferenceType
 from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData
 from be.models.CsvDataBuilder import CsvDataBuilder
 from be.models.CsvData import CsvData
-
+from users import *
 # Create your views here.
 # Note: a view is a func taking the HTTP request and returns sth accordingly
 
@@ -31,7 +33,17 @@ def uploadData(request):
 
 		dataDictionary = {}
 		dataDictionary = (request.POST).dict()
+		# mycookie = request.COOKIES
+		# print "my cookie: "
+		# print mycookie
+		# myuser = request.user
+		# print "myuser: "
+		# print myuser
 		requestType = dataDictionary.get("request")
+		createUser("dumy")
+		isExist = authenticateUser("abc@gmal.com")	#CHANGE THIS
+		print "Is there such user: "
+		print isExist
 
 		if "uploadSession" == requestType:
 			data = uploadCSVFiles(request)
@@ -42,6 +54,10 @@ def uploadData(request):
 		elif "saveSession" == requestType:
 			data = 0
 		elif "getAll" == requestType:
+			data = 0
+		elif "register" == requestType:
+			data = 0
+		elif "login" == requestType:
 			data = 0
 		else:
 			print ("ERROR: file should have been rejected by frontend already")
@@ -114,3 +130,15 @@ def uploadCSVFiles(request):
 	
 	rowContent = csvDataBuilder.formatRowContent()
 	return rowContent
+
+def createUser(data):
+    email = "abc@gmal.com" #CHANGE THIS
+    pw="1234"
+    user = User.objects.create_user(email, email, pw)
+
+def authenticateUser(_username):
+    user = authenticate(username=_username, password='1234')
+    if user is not None:
+        return True
+    else:
+        return False
