@@ -341,9 +341,6 @@ class CsvDataBuilder:
 
             lastEditSeries.append({'x': lastEditStamp, 'y': lastEditNumber[index]})
 
-        # timeSeries = {'time': timeStamps, 'number': submittedNumber}
-        # lastEditSeries = {'time': lastEditStamps, 'number': lastEditNumber}
-
         acceptedKeywords = [str(ele[int(submissionDict.get("submission.Keyword(s)"))]).lower().replace("\r", "").split("\n") for ele in acceptedSubmission]
         acceptedKeywords = [ele for item in acceptedKeywords for ele in item]
         acceptedKeywordMap = {k : v for k, v in Counter(acceptedKeywords).iteritems()}
@@ -424,13 +421,6 @@ class CsvDataBuilder:
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", authorDict, reviewDict)
         parsedResult = {}
 
-        # 1. Top 10 Authors (by mean review score across all the authors submissions) bar : author names (x axis) mean score (y axis) topAuthorsAR.
-        # 2. Affiliation distribution of top 10 authors  pie chart:affiliation distribution affiliationDistributionAR
-        # 3. Country distribution of top 10 authors  pie chart:country distribution countryDistributionAR
-        # 4. Top 10 countries with highest mean scores  bar : countries ( x-axis), mean score(y-axis)  topCountriesAR
-        # 5. Top 10 affiliations with highest mean scores bar : affiliations( x-axis), mean score(y-axis)  topAffiliationsAR
-        # Top 10 authors that were recommended for best paper  : authors names (x-axis),
-
         nameArr = []
         reviewScoreArr = []
         affiliationArr = []
@@ -444,13 +434,7 @@ class CsvDataBuilder:
                 reviewScoreArr.append(int(Info[int(combinedDict.get("review.Overall Evaluation Score"))]))
             except ValueError as e:
                 return {"error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
-            # try:    
-            # except Exception as e:
-            #     print "Line is at %d" % (counter)
-            # finally:
-            #     counter += 1
 
-        #HashMap with author Name as key
         authorScoreMap = {}
         countryScoreMap = {}
         organizationScoreMap ={}
