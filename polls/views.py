@@ -175,11 +175,9 @@ def loginUser(request):
 	loginPassword = request['password']
 	isExist = authenticateUser(loginUsername, loginPassword)
 	if isExist:
-		print("TODO")
-		return 0
-		#DO SMTH - LOGIN
+		return {"Error": ""}
 	else:
-		return { "Error": "There is no existing user with that username"}
+		return {"Error": "There is no existing user with that username"}
 
 def createUser(username, password):
 	user = User.objects.create_user(username, username, password)
