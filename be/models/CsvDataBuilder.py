@@ -61,7 +61,6 @@ class CsvDataBuilder:
             info = self.getAuthorInfo(index)
         elif type == "review.csv":
             info = self.getReviewInfo(index)
-            print info
         elif type == "submission.csv":
             info = self.getSubmissionInfo(index)
         elif type == "author.review":
@@ -557,6 +556,7 @@ class CsvDataBuilder:
         topCountriesList = dict(Counter(acceptedCountriesList))
         topCountriesList = sorted(topCountriesList.iteritems(), key=lambda (k,v): (v,k), reverse=True)
         distinctNumDecisions = []
+        endIndex = len(topCountriesList)
         for i in range(len(topCountriesList)):
             if (topCountriesList[i] not in distinctNumDecisions):
                 distinctNumDecisions.append(topCountriesList[i])

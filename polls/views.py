@@ -15,6 +15,7 @@ import ConferenceType
 from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData
 from be.models.CsvDataBuilder import CsvDataBuilder
 from be.models.CsvData import CsvData
+from users.models import Session, SessionManager
 from users import *
 # Create your views here.
 # Note: a view is a func taking the HTTP request and returns sth accordingly
@@ -29,7 +30,7 @@ def test(request):
 @csrf_exempt
 def uploadData(request):
 	print ("Inside the upload function!!")
-	if request.FILES and request.method == 'POST':
+	if request.method == 'POST':
 
 		dataDictionary = {}
 		dataDictionary = (request.POST).dict()
@@ -41,15 +42,15 @@ def uploadData(request):
 		# print "myuser: "
 		# print myuser
 
-		if "uploadSession" == requestType:
+		if request.FILES and "uploadSession" == requestType:
 			data = uploadCSVFiles(request)
 		elif "getSession" == requestType:
 			data = 0
 		elif "deleteSession" == requestType:
 			data = 0
 		elif "saveSession" == requestType:
-			saveSession(request)
-			data = 0
+			print ("%%%%%%%%%%%%%%%%%%%%%")
+			data = {'result': saveSession(dataDictionary)}
 		elif "getAll" == requestType:
 			data = 0
 		elif "register" == requestType:
@@ -90,8 +91,8 @@ def uploadCSVFiles(request):
 		#datadict for column mapping
 		dataDictionary = {}
 		dataDictionary = (request.POST).dict()
-		print dataDictionary
-		print "*************"
+		# print dataDictionary
+		# print "*************"
 		rowContent = ""
 
 		if "author.csv" in fileName:
@@ -128,8 +129,19 @@ def uploadCSVFiles(request):
 	rowContent = csvDataBuilder.formatRowContent()
 	return rowContent
 
-# def saveSession(request):
-	
+def saveSession(request):
+	email = str(request['email'])
+	user = User.objects.filter(email=email).first()
+	session_name = str(request['name'])
+	date = str(request['date'])
+	time = str(request['time'])
+	file_names = str(request['files'])
+	data = str(request['data'])
+	print ("%%%%%%%%%%%%%%%%%%%%%")
+	print (date)
+	print ("%%%%%%%%%%%%%%%%%%%%%")
+	session = Session.objects.create_session(user, session_name, date, time, file_names, data)
+	return session.email
 
 def registerUser(request):
 	registerUsername = request['username']
