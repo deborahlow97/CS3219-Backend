@@ -8,6 +8,7 @@ from django.http import QueryDict
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.core import serializers
 
 import json
 import ConferenceType
@@ -47,10 +48,8 @@ def uploadData(request):
 		elif "getSession" == requestType:
 			data = {'result': getSession(dataDictionary)}
 		elif "deleteSession" == requestType:
-			#todo: add if case when error
 			data = {'result': deleteSession(dataDictionary)}
 		elif "saveSession" == requestType:
-			#todo: add if case when error
 			data = {'result': saveSession(dataDictionary)}
 		elif "getAll" == requestType:
 			data = getSessionsByEmail(dataDictionary)
@@ -137,7 +136,7 @@ def saveSession(request):
 	date = str(request['date'])
 	time = str(request['time'])
 	file_names = str(request['files'])
-	data = str(request['data'])
+	data = request['data']
 	session = Session.objects.create_session(user, session_name, date, time, file_names, data)
 	return session.session_name
 
@@ -158,19 +157,13 @@ def getSession(request):
 	date = str(request['date'])
 	time = str(request['time'])
 	session = Session.objects.filter(user=user, session_name=session_name, date=date, time=time).first()
-	print "$$$"
-	print session.data
-	print "$$$"
 	return session.data
 
 def getSessionsByEmail(request):
 	email = str(request['email'])
 	user = User.objects.filter(email=email).first()
-	sessionsList = list(Session.objects.filter(user=user))
-	print("4444444444444444444")
-	print sessionsList
-	print("4444444444444444444")
-	return sessionsList
+	sessionsQuerySet = Session.objects.filter(user=user)
+	return serializers.serialize('json', list(sessionsQuerySet))
 
 def registerUser(request):
 	registerUsername = request['username']
