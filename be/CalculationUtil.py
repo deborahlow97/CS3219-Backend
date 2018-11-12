@@ -61,7 +61,7 @@ def getTopAffiliations(authorData, authorDict):
     topAffiliationsList = sorted(affiliationMap.iteritems(), key=lambda (k,v): (v,k), reverse=True)
     endIndex = getEndIndexForTop10(topAffiliationsList)
     topAffiliationsList = topAffiliationsList[:endIndex]
-    result['topCountries'] = {'labels': [ele[0] for ele in topAffiliationsList], 'data': [ele[1] for ele in topAffiliationsList]}
+    result['topAffiliations'] = {'labels': [ele[0] for ele in topAffiliationsList], 'data': [ele[1] for ele in topAffiliationsList]}
     return result
 
 def getReviewTimeSeries(reviewData, reviewDict):
