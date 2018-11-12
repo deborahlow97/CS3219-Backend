@@ -8,38 +8,79 @@ from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnK
 
 def getTopAuthors(authorData, authorDict):
     result = {}
-    authorList = []
+    authorMap = {}
     for authorInfo in authorData:
-        authorList.append(
-            {'name': str(authorInfo[int(authorDict.get("author.First Name"))]) + " " + str(authorInfo[int(authorDict.get("author.Last Name"))])})
+        name = str(authorInfo[int(authorDict.get("author.First Name"))] + " " + authorInfo[int(authorDict.get("author.Last Name"))])
+        if name not in authorMap:
+            authorMap[name] = 1
+        else:
+            currCount = authorMap[name] + 1
+            authorMap[name] = currCount
 
-    authors = [ele['name'] for ele in authorList if ele]
-    topAuthors = Counter(authors).most_common(10)
-    result['topAuthors'] = {'labels': [ele[0] for ele in topAuthors], 'data': [ele[1] for ele in topAuthors]}
+    topAuthorList = sorted(authorMap.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+
+    distinctNumTopAuthors = []
+    endIndex = len(topAuthorList)
+    for idx in range(len(topAuthorList)):
+        print topAuthorList[idx][1]
+        if (topAuthorList[idx][1] not in distinctNumTopAuthors):
+            distinctNumTopAuthors.append(topAuthorList[idx][1])
+        if (len(distinctNumTopAuthors) > 10):
+            endIndex = idx-1
+            break
+
+    topAuthorList = topAuthorList[:endIndex]
+
+    result['topAuthors'] = {'labels': [ele[0] for ele in topAuthorList], 'data': [ele[1] for ele in topAuthorList]}
     return result
 
 def getTopCountries(authorData, authorDict):
     result = {}
-    countryList = []
+    countryMap = {}
     for countryInfo in authorData:
-        countryList.append(
-            {'country': str(countryInfo[int(authorDict.get("author.Country"))])})
+        countries = str(countryInfo[int(authorDict.get("author.Country"))])
+        if countries not in countryMap:
+            countryMap[countries] = 1
+        else:
+            currCount = countryMap[countries] + 1
+            countryMap[countries] = currCount
 
-    countries = [ele['country'] for ele in countryList if ele]
-    topCountries = Counter(countries).most_common(10)
-    result['topCountries'] = {'labels': [ele[0] for ele in topCountries], 'data': [ele[1] for ele in topCountries]}
+    topCountryList = sorted(countryMap.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+    distinctNumTopCountries = []
+    endIndex = len(topCountryList)
+    for idx in range(len(topCountryList)):
+        if (topCountryList[idx][1] not in distinctNumTopCountries):
+            distinctNumTopCountries.append(topCountryList[idx][1])
+        if (len(distinctNumTopCountries) > 10):
+            endIndex = idx-1
+            break
+    topCountryList = topCountryList[:endIndex]
+    result['topCountries'] = {'labels': [ele[0] for ele in topCountryList], 'data': [ele[1] for ele in topCountryList]}
     return result
 
 def getTopAffiliations(authorData, authorDict):
     result = {}
-    affiliationList = []
+    affiliationMap = {}
     for affiliationInfo in authorData:
-        affiliationList.append(
-            {'affiliation': str(affiliationInfo[int(authorDict.get("author.Organization"))])})
+        affiliations = str(affiliationInfo[int(authorDict.get("author.Organization"))])
+        if affiliations not in affiliationMap:
+            affiliationMap[affiliations] = 1
+        else:
+            currCount = affiliationMap[affiliations] + 1
+            affiliationMap[affiliations] = currCount
 
-    affiliations = [ele['affiliation'] for ele in affiliationList if ele]
-    topAffiliations = Counter(affiliations).most_common(10)
-    result['topAffiliations'] = {'labels': [ele[0] for ele in topAffiliations], 'data': [ele[1] for ele in topAffiliations]}
+    topAffiliationsList = sorted(affiliationMap.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+    distinctNumTopAffiliations = []
+    endIndex = len(topAffiliationsList)
+    for idx in range(len(topAffiliationsList)):
+        print topAffiliationsList[idx][1]
+        if (topAffiliationsList[idx][1] not in distinctNumTopAffiliations):
+            distinctNumTopAffiliations.append(topAffiliationsList[idx][1])
+        if (len(distinctNumTopAffiliations) > 10):
+            endIndex = idx-1
+            break
+    topAffiliationsList = topAffiliationsList[:endIndex]
+    result['topCountries'] = {'labels': [ele[0] for ele in topAffiliationsList], 'data': [ele[1] for ele in topAffiliationsList]}
     return result
 
 def getReviewTimeSeries(reviewData, reviewDict):
