@@ -203,8 +203,8 @@ def getTopAuthorsByTrackAndAcceptanceRate(submissionData, submissionDict):
         topAcceptedAuthorsThisTrack = sorted(topAcceptedAuthorsThisTrack, key=lambda x: x[1], reverse=True)
         endIndex = getEndIndexForTop10(topAcceptedAuthorsThisTrack)
         topAcceptedAuthorsThisTrack = topAcceptedAuthorsThisTrack[:endIndex]
-
         topAuthorsByTrack[track] = {'names': [ele[0] for ele in topAcceptedAuthorsThisTrack], 'counts': [ele[1] for ele in topAcceptedAuthorsThisTrack]}
+    
     result['topAuthorsByTrack'] = topAuthorsByTrack
     result['acceptanceRate'] = acceptanceRate
     return result
@@ -332,6 +332,67 @@ def getTopAffiliationsAR(authorReviewData, combinedDict):
     result['topAffiliationsAR'] = {'organization': [ele[0] for ele in affiliationScoreList], 'score': [round(ele[1],3) for ele in affiliationScoreList]}
     return result
 
+
+def getTopCountriesAS(authorSubmissionData, combinedDict):
+    result = {}
+    acceptedCountriesList = []
+    for ele in authorSubmissionData:
+        if str(ele[int(combinedDict.get("submission.Decision"))]) == 'accept':
+            acceptedCountriesList.append(ele[int(combinedDict.get("author.Country"))])
+    topCountriesList = dict(Counter(acceptedCountriesList))
+    topCountriesList = sorted(topCountriesList.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+    endIndex = getEndIndexForTop10(topCountriesList)
+    topCountriesList = topCountriesList[:endIndex]
+    result['topCountriesAS'] = {'labels': [key for key, value in topCountriesList], 'data': [value for key, value in topCountriesList]}
+    return result
+
+def getTopAffiliationsAS(authorSubmissionData, combinedDict):
+    result = {}
+    decisionBasedOnTopAffiliations = []
+    topAffiliationDataForTrack = []
+    tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in authorSubmissionData]).keys())
+    for track in tracks:
+        acceptedSubmissionsByAffiliationAndTrack = []
+        for ele in authorSubmissionData:
+            if str(ele[int(combinedDict.get("submission.Decision"))]) == 'accept' and str(ele[int(combinedDict.get("submission.Track Name"))]) == track:
+                acceptedSubmissionsByAffiliationAndTrack.append(ele[int(combinedDict.get("author.Organization"))])
+        topAffiliationsList = dict(Counter(acceptedSubmissionsByAffiliationAndTrack))
+        topAffiliationsList = sorted(topAffiliationsList.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+        endIndex = getEndIndexForTop10(topAffiliationsList)
+        topAffiliationsList = topAffiliationsList[:endIndex]
+        topAffiliationDataForTrack.append([key for key, value in topAffiliationsList])
+        topAffiliationDataForTrack.append([value for key, value in topAffiliationsList])
+        decisionBasedOnTopAffiliations.append(topAffiliationDataForTrack)
+    result['topAffiliationsAS'] = {'labels':tracks, 'data': decisionBasedOnTopAffiliations}
+    return result
+
+def getExpertiseSR(submissionReviewData, combinedDict):
+    result = {}
+    tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in submissionReviewData]).keys())
+    expertiseByTrack = dict()
+    for track in tracks:
+        dataListForCurrentTrack = []
+        for line in submissionReviewData:
+            if (line[int(combinedDict.get("submission.Track Name"))] == track):
+                dataListForCurrentTrack.append(line[int(combinedDict.get("review.Field #"))])
+        expertiseByTrack[track] = dict(Counter(dataListForCurrentTrack))
+    result['expertiseSR'] = {'labels': tracks, 'data': list(expertiseByTrack.values())}
+    return result
+
+def getAverageScoreSR(submissionReviewData, combinedDict):
+    result = {}
+    tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in submissionReviewData]).keys())
+    meanScoreByTrack = dict()
+    for track in tracks:
+        scoreListForCurrentTrack = []
+        for line in submissionReviewData:
+            if (line[int(combinedDict.get("submission.Track Name"))] == track):
+                scoreListForCurrentTrack.append(line[int(combinedDict.get("review.Overall Evaluation Score"))])
+        meanScoreByTrack[track] = sum([int(ele) for ele in scoreListForCurrentTrack])/len(scoreListForCurrentTrack)
+
+    result['averageScoreSR'] = {'labels': tracks, 'data': list(meanScoreByTrack.values())}
+    return result
+    
 ##################    UTILS    ####################
 
 def getEndIndexForTop10(dataList):
@@ -344,3 +405,6 @@ def getEndIndexForTop10(dataList):
             endIndex = idx-1
             break
     return endIndex
+
+
+

@@ -259,21 +259,10 @@ class CsvDataBuilder:
             topAffiliationDataForTrack.append([value for key, value in topAffiliationsList])
             decisionBasedOnTopAffiliations.append(topAffiliationDataForTrack)
             
-
+        # parsedResult.update(getTopCountriesAS(combinedLines, combinedDict))
+        # parsedResult.update(getTopAffiliationsAS(combinedLines, combinedDict))
         parsedResult['topCountriesAS'] = {'labels': [key for key, value in topCountriesList], 'data': [value for key, value in topCountriesList]}
         parsedResult['topAffiliationsAS'] = {'labels':tracks, 'data': decisionBasedOnTopAffiliations}
-
-        # ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
-        # for key, value in combinedDict.items():
-        #     print key
-        #     print [str(ele[value]) for ele in combinedLines]
-        #     print ("====================================")
-        # print ("====================================")
-        # print parsedResult['topCountriesAS']
-        # print "==="
-        # print parsedResult['topAffiliationsAS']
-        # print ("====================================")
-
         return parsedResult
 
     def getReviewSubmissionInfo(self, index):
@@ -288,34 +277,6 @@ class CsvDataBuilder:
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
         combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", reviewDict, submissionDict)
 
-        tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in combinedLines]).keys())
-        expertiseByTrack = dict()
-        for track in tracks:
-            dataListForCurrentTrack = []
-            for line in combinedLines:
-                if (line[int(combinedDict.get("submission.Track Name"))] == track):
-                    dataListForCurrentTrack.append(line[int(combinedDict.get("review.Field #"))])
-            expertiseByTrack[track] = dict(Counter(dataListForCurrentTrack))
-
-        meanScoreByTrack = dict()
-        for track in tracks:
-            scoreListForCurrentTrack = []
-            for line in combinedLines:
-                if (line[int(combinedDict.get("submission.Track Name"))] == track):
-                    scoreListForCurrentTrack.append(line[int(combinedDict.get("review.Overall Evaluation Score"))])
-            meanScoreByTrack[track] = sum([int(ele) for ele in scoreListForCurrentTrack])/len(scoreListForCurrentTrack)
-
-        parsedResult['expertiseSR'] = {'labels': tracks, 'data': list(expertiseByTrack.values())}
-        parsedResult['averageScoreSR'] = {'labels': tracks, 'data': list(meanScoreByTrack.values())}
-
-        # ######## PRINTING LIST OF HEADER-COLUMN VALUES ########
-        # for key, value in combinedDict.items():
-        #     print key
-        #     print [str(ele[value]) for ele in combinedLines if key == "review.Overall Evaluation Score" or key == "submission.Track Name"]
-        #     print ("====================================")
-        # print ("====================================")
-        # print parsedResult['expertiseSR']
-        # print parsedResult['averageScoreSR']
-        # print ("====================================")
-
+        parsedResult.update(getExpertiseSR(combinedLines, combinedDict))
+        parsedResult.update(getAverageScoreSR(combinedLines, combinedDict))
         return parsedResult
