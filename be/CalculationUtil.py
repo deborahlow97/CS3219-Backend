@@ -107,11 +107,12 @@ def getMeanEvScoreByExpertiseLevel(reviewData, reviewDict):
         for info in reviewData:
             try:
                 expertiseLevel = int(info[int(reviewDict.get("review.Field #"))])
-            except ValueError:
+            except (ValueError, TypeError) as e:
                 return {"Error": "Oops! Value Error occurred. There seems to be an error related to the information in review - field #. Do make sure that only numbers are accepted as field #."}
+            
             try:
                 score = int(info[int(reviewDict.get("review.Overall Evaluation Score"))])
-            except ValueError as e:
+            except (ValueError, TypeError) as e:
                 return {"Error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score. Do make sure that only numbers are accepted as overall evaluation scores."}
             
             if expertiseLevel not in expertiseScoreMap:
@@ -162,15 +163,23 @@ def getSubmissionTimeSeries(submissionData, submissionDict):
 	result['lastEditSeries'] = lastEditSeries
 	return result
 
-def getTopAcceptedAuthorsAndAcceptanceRate(submissionData, submissionDict):
+def getTopAuthorsByTrackAndAcceptanceRate(submissionData, submissionDict):
     result = {}
     acceptedSubmission = [line for line in submissionData if str(line[int(submissionDict.get("submission.Decision"))]) == 'accept']
     acceptanceRate = float(len(acceptedSubmission)) / len(submissionData)
-    acceptedAuthors = [str(ele[int(submissionDict.get("submission.Author(s)"))]).replace(" and ", ", ").split(", ") for ele in acceptedSubmission]
-    acceptedAuthors = [ele for item in acceptedAuthors for ele in item]
-    topAcceptedAuthors = Counter(acceptedAuthors).most_common(10)
-    topAcceptedAuthorsMap = {'names': [ele[0] for ele in topAcceptedAuthors], 'counts': [ele[1] for ele in topAcceptedAuthors]}
-    result['topAcceptedAuthors'] = topAcceptedAuthorsMap
+    topAuthorsByTrack = {}
+    acceptanceRateByTrack = {}
+    tracks = set([str(ele[int(submissionDict.get("submission.Track Name"))]) for ele in submissionData])
+    paperGroupsByTrack = {track : [line for line in submissionData if str(line[int(submissionDict.get("submission.Track Name"))]) == track] for track in tracks}
+    for track, papers in paperGroupsByTrack.iteritems():
+        acceptedPapersPerTrack = [ele for ele in papers if str(ele[int(submissionDict.get("submission.Decision"))]) == 'accept']
+        acceptanceRateByTrack[track] = float(len(acceptedPapersPerTrack)) / len(papers)
+        acceptedPapersThisTrack = [paper for paper in papers if str(paper[int(submissionDict.get("submission.Decision"))]) == 'accept']
+        acceptedAuthorsThisTrack = [str(ele[int(submissionDict.get("submission.Author(s)"))]).replace(" and ", ", ").split(", ") for ele in acceptedPapersThisTrack]
+        acceptedAuthorsThisTrack = [ele for item in acceptedAuthorsThisTrack for ele in item]
+        topAcceptedAuthorsThisTrack = Counter(acceptedAuthorsThisTrack).most_common(10)
+        topAuthorsByTrack[track] = {'names': [ele[0] for ele in topAcceptedAuthorsThisTrack], 'counts': [ele[1] for ele in topAcceptedAuthorsThisTrack]}
+    result['topAuthorsByTrack'] = topAuthorsByTrack
     result['acceptanceRate'] = acceptanceRate
     return result
 
