@@ -199,7 +199,11 @@ def getTopAuthorsByTrackAndAcceptanceRate(submissionData, submissionDict):
         acceptedPapersThisTrack = [paper for paper in papers if str(paper[int(submissionDict.get("submission.Decision"))]) == 'accept']
         acceptedAuthorsThisTrack = [str(ele[int(submissionDict.get("submission.Author(s)"))]).replace(" and ", ", ").split(", ") for ele in acceptedPapersThisTrack]
         acceptedAuthorsThisTrack = [ele for item in acceptedAuthorsThisTrack for ele in item]
-        topAcceptedAuthorsThisTrack = Counter(acceptedAuthorsThisTrack).most_common(10)
+        topAcceptedAuthorsThisTrack = Counter(acceptedAuthorsThisTrack).most_common()
+        topAcceptedAuthorsThisTrack = sorted(topAcceptedAuthorsThisTrack, key=lambda x: x[1], reverse=True)
+        endIndex = getEndIndexForTop10(topAcceptedAuthorsThisTrack)
+        topAcceptedAuthorsThisTrack = topAcceptedAuthorsThisTrack[:endIndex]
+
         topAuthorsByTrack[track] = {'names': [ele[0] for ele in topAcceptedAuthorsThisTrack], 'counts': [ele[1] for ele in topAcceptedAuthorsThisTrack]}
     result['topAuthorsByTrack'] = topAuthorsByTrack
     result['acceptanceRate'] = acceptanceRate
