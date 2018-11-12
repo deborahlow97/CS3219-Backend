@@ -32,7 +32,6 @@ def test(request):
 def uploadData(request):
 	print ("Inside the upload function!!")
 	if request.method == 'POST':
-		tempData = {}
 		dataDictionary = {}
 		dataDictionary = (request.POST).dict()
 		requestType = dataDictionary.get("request")
@@ -53,9 +52,7 @@ def uploadData(request):
 			userCreated = registerUser(dataDictionary)
 			data = userCreated
 		elif "login" == requestType:
-			tempData.update(loginUser(dataDictionary))
-			tempData.update(getSessionsByEmailD(dataDictionary))
-			data = tempData
+			data = loginUser(dataDictionary)
 		else:
 			print ("ERROR: file should have been rejected by frontend already")
 
@@ -157,12 +154,6 @@ def getSessionsByEmail(request):
 	user = User.objects.filter(email=email).first()
 	sessionsQuerySet = Session.objects.filter(user=user)
 	return serializers.serialize('json', list(sessionsQuerySet))
-
-def getSessionsByEmailD(request):
-	email = str(request['email'])
-	user = User.objects.filter(email=email).first()
-	sessionsQuerySet = Session.objects.filter(user=user)
-	return {"session": serializers.serialize('json', list(sessionsQuerySet))}
 
 def registerUser(request):
 	registerUsername = request['email']
