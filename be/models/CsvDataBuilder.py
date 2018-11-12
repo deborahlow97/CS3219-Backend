@@ -194,100 +194,10 @@ class CsvDataBuilder:
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("review.HasHeader")))
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", authorDict, reviewDict)
         parsedResult = {}
-
-        nameArr = []
-        reviewScoreArr = []
-        affiliationArr = []
-        countryArr = []
-        for Info in combinedLines:
-            
-            nameArr.append(str(Info[int(combinedDict.get("author.First Name"))]) + " " + str(Info[int(combinedDict.get("author.Last Name"))]))
-            affiliationArr.append(str(Info[int(combinedDict.get("author.Organization"))]))
-            countryArr.append(str(Info[int(combinedDict.get("author.Country"))]))
-            try:
-                reviewScoreArr.append(int(Info[int(combinedDict.get("review.Overall Evaluation Score"))]))
-            except ValueError as e:
-                return {"error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
-
-        authorScoreMap = {}
-        countryScoreMap = {}
-        organizationScoreMap ={}
-        for Info in combinedLines:
-            name = str(Info[int(combinedDict.get("author.First Name"))] + " " + Info[int(combinedDict.get("author.Last Name"))])
-            try:
-                score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
-            except ValueError as e:
-                return {"error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
-
-            country = str(Info[int(combinedDict.get("author.Country"))])
-            affiliation = str(Info[int(combinedDict.get("author.Organization"))])
-
-            if name not in authorScoreMap:
-                authorScoreMap[name] = [score]
-            else:
-                authorScoreMap[name].append(score)
-
-            if country not in countryScoreMap:
-                countryScoreMap[country] = [score]
-            else:
-                countryScoreMap[country].append(score)
-
-            if affiliation not in organizationScoreMap:
-                organizationScoreMap[affiliation] = [score]
-            else:
-                organizationScoreMap[affiliation].append(score)
-
-        #getting average of each author
-        for key,value in authorScoreMap.iteritems():
-            authorScoreMap[key] = sum(value)/float(len(value))
-
-        sorted(authorScoreMap, key=authorScoreMap.get, reverse=True)
-        authorScoreList = sorted(authorScoreMap.iteritems(), key=lambda (k,v): (v,k), reverse=True)
-
-        authorScoreMapTop10 = Counter(authorScoreMap)
-        authorScoreMapTop10 = authorScoreMapTop10.most_common(10)
-
-        #getting average of each country
-        for key,value in countryScoreMap.iteritems():
-            countryScoreMap[key] = sum(value)/float(len(value))
-
-        sorted(countryScoreMap, key=countryScoreMap.get, reverse=True)
-        countryScoreMapTop10 = Counter(countryScoreMap)
-        countryScoreMapTop10 = countryScoreMapTop10.most_common(10)
-
-        #getting average of each organization
-        for key,value in organizationScoreMap.iteritems():
-            organizationScoreMap[key] = sum(value)/float(len(value))
-
-        sorted(organizationScoreMap, key=organizationScoreMap.get, reverse=True)
-        organizationScoreMapTop10 = Counter(organizationScoreMap)
-        organizationScoreMapTop10 = organizationScoreMapTop10.most_common(10)
-
-        distinctNumScores = []
-
-        endIndex = len(authorScoreList)
-        for idx in range(len(authorScoreList)):
-            if (authorScoreList[idx][1] not in distinctNumScores):
-                distinctNumScores.append(authorScoreList[idx][1])
-            if (len(distinctNumScores) > 10):
-                #top 10
-                endIndex = idx-1
-                break
-        authorScoreList = authorScoreList[:endIndex]
-
-        infoAndScore = zip(reviewScoreArr, nameArr, affiliationArr, countryArr)[:endIndex]
-        infoAndScore.sort(reverse=True)
-
-        parsedResult['topAuthorsAR'] =  {'authors': [ele[0] for ele in authorScoreList],
-        'score': [ele[1] for ele in authorScoreList]}       #topAuthorsScore
-        parsedResult['affiliationDistributionAR'] = {'organization': [ele[2] for ele in infoAndScore],
-        'score': [ele[0] for ele in infoAndScore]}
-        parsedResult['countryDistributionAR'] = {'country': [ele[3] for ele in infoAndScore],                
-        'score': [ele[0] for ele in infoAndScore], 'author': [ele[1] for ele in infoAndScore]} 
-        parsedResult['topCountriesAR'] = {'countries': [ele[0] for ele in countryScoreMapTop10],
-        'score': [round(ele[1],3) for ele in countryScoreMapTop10]}
-        parsedResult['topAffiliationsAR'] = {'organization': [ele[0] for ele in organizationScoreMapTop10],
-        'score': [round(ele[1],3) for ele in organizationScoreMapTop10]}
+        parsedResult.update(getTopAuthorsInfoAR(combinedLines, combinedDict))
+        parsedResult.update(getTopCountriesAR(combinedLines, combinedDict))
+        parsedResult.update(getTopAffiliationsAR(combinedLines, combinedDict))
+        parsedResult.update(getTopCountriesAR(combinedLines, combinedDict))
 
         return parsedResult
 
@@ -309,7 +219,6 @@ class CsvDataBuilder:
         for ele in combinedLines:
             if str(ele[int(combinedDict.get("submission.Decision"))]) == 'accept':
                 acceptedCountriesList.append(ele[int(combinedDict.get("author.Country"))])
-        # topCountriesList = dict(Counter(acceptedCountriesList).most_common(10))
         topCountriesList = dict(Counter(acceptedCountriesList))
         topCountriesList = sorted(topCountriesList.iteritems(), key=lambda (k,v): (v,k), reverse=True)
         distinctNumDecisions = []

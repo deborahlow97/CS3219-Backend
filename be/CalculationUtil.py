@@ -6,6 +6,12 @@ from collections import Counter
 from be.models.CsvExceptions import *
 from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime, appendHasErrorField
 
+# class CalculationUtil:
+
+#     def __init__( self, data, dict ) :
+#         self.data = data
+#         self.dict = dict
+
 def getTopAuthors(authorData, authorDict):
     result = {}
     authorMap = {}
@@ -18,17 +24,7 @@ def getTopAuthors(authorData, authorDict):
             authorMap[name] = currCount
 
     topAuthorList = sorted(authorMap.iteritems(), key=lambda (k,v): (v,k), reverse=True)
-
-    distinctNumTopAuthors = []
-    endIndex = len(topAuthorList)
-    for idx in range(len(topAuthorList)):
-        print topAuthorList[idx][1]
-        if (topAuthorList[idx][1] not in distinctNumTopAuthors):
-            distinctNumTopAuthors.append(topAuthorList[idx][1])
-        if (len(distinctNumTopAuthors) > 10):
-            endIndex = idx-1
-            break
-
+    endIndex = getEndIndexForTop10(topAuthorList)
     topAuthorList = topAuthorList[:endIndex]
 
     result['topAuthors'] = {'labels': [ele[0] for ele in topAuthorList], 'data': [ele[1] for ele in topAuthorList]}
@@ -46,14 +42,7 @@ def getTopCountries(authorData, authorDict):
             countryMap[countries] = currCount
 
     topCountryList = sorted(countryMap.iteritems(), key=lambda (k,v): (v,k), reverse=True)
-    distinctNumTopCountries = []
-    endIndex = len(topCountryList)
-    for idx in range(len(topCountryList)):
-        if (topCountryList[idx][1] not in distinctNumTopCountries):
-            distinctNumTopCountries.append(topCountryList[idx][1])
-        if (len(distinctNumTopCountries) > 10):
-            endIndex = idx-1
-            break
+    endIndex = getEndIndexForTop10(topCountryList)
     topCountryList = topCountryList[:endIndex]
     result['topCountries'] = {'labels': [ele[0] for ele in topCountryList], 'data': [ele[1] for ele in topCountryList]}
     return result
@@ -70,15 +59,7 @@ def getTopAffiliations(authorData, authorDict):
             affiliationMap[affiliations] = currCount
 
     topAffiliationsList = sorted(affiliationMap.iteritems(), key=lambda (k,v): (v,k), reverse=True)
-    distinctNumTopAffiliations = []
-    endIndex = len(topAffiliationsList)
-    for idx in range(len(topAffiliationsList)):
-        print topAffiliationsList[idx][1]
-        if (topAffiliationsList[idx][1] not in distinctNumTopAffiliations):
-            distinctNumTopAffiliations.append(topAffiliationsList[idx][1])
-        if (len(distinctNumTopAffiliations) > 10):
-            endIndex = idx-1
-            break
+    endIndex = getEndIndexForTop10(topAffiliationsList)
     topAffiliationsList = topAffiliationsList[:endIndex]
     result['topCountries'] = {'labels': [ele[0] for ele in topAffiliationsList], 'data': [ele[1] for ele in topAffiliationsList]}
     return result
@@ -249,3 +230,113 @@ def getAcceptanceRateByTrack(submissionData, submissionDict):
 
 	result['acceptanceRateByTrack'] = acceptanceRateByTrack
 	return result
+
+def getTopAuthorsInfoAR(authorReviewData, combinedDict):
+    result = {}
+    authorScoreMap = {}
+    for Info in authorReviewData:
+        name = str(Info[int(combinedDict.get("author.First Name"))] + " " + Info[int(combinedDict.get("author.Last Name"))])
+        try:
+            score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
+        except ValueError as e:
+            return {"error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
+        if name not in authorScoreMap:
+            authorScoreMap[name] = [score]
+        else:
+            authorScoreMap[name].append(score)
+    #getting average of each author
+    for key,value in authorScoreMap.iteritems():
+        authorScoreMap[key] = sum(value)/float(len(value))
+
+    authorScoreList = sorted(authorScoreMap.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+    endIndex = getEndIndexForTop10(authorScoreList)
+    authorScoreList = authorScoreList[:endIndex]
+
+    nameArr = []
+    reviewScoreArr = []
+    affiliationArr = []
+    countryArr = []
+    for Info in authorReviewData:
+        nameArr.append(str(Info[int(combinedDict.get("author.First Name"))]) + " " + str(Info[int(combinedDict.get("author.Last Name"))]))
+        affiliationArr.append(str(Info[int(combinedDict.get("author.Organization"))]))
+        countryArr.append(str(Info[int(combinedDict.get("author.Country"))]))
+        try:
+            reviewScoreArr.append(int(Info[int(combinedDict.get("review.Overall Evaluation Score"))]))
+        except ValueError as e:
+            return {"error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
+
+    infoAndScore = zip(reviewScoreArr, nameArr, affiliationArr, countryArr)[:endIndex]
+    infoAndScore.sort(reverse=True)
+
+    result['affiliationDistributionAR'] = {'organization': [ele[2] for ele in infoAndScore],
+    'score': [ele[0] for ele in infoAndScore]}
+    result['countryDistributionAR'] = {'country': [ele[3] for ele in infoAndScore],                
+    'score': [ele[0] for ele in infoAndScore], 'author': [ele[1] for ele in infoAndScore]} 
+    result['topAuthorsAR'] =  {'authors': [ele[0] for ele in authorScoreList],'score': [ele[1] for ele in authorScoreList]}
+    return result
+
+def getTopCountriesAR(authorReviewData, combinedDict):
+    result = {}
+    countryScoreMap = {}
+    countryScoreList = []
+    for Info in authorReviewData:
+        try:
+            score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
+        except ValueError as e:
+            return {"error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
+        country = str(Info[int(combinedDict.get("author.Country"))])
+
+        if country not in countryScoreMap:
+            countryScoreMap[country] = [score]
+        else:
+            countryScoreMap[country].append(score)
+
+    #getting average of each country
+    for key,value in countryScoreMap.iteritems():
+        countryScoreMap[key] = sum(value)/float(len(value))
+
+    countryScoreList = sorted(countryScoreMap.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+
+    endIndex = getEndIndexForTop10(countryScoreList)
+    countryScoreList = countryScoreList[:endIndex]
+    result['topCountriesAR'] = {'countries': [ele[0] for ele in countryScoreList], 'score': [round(ele[1],3) for ele in countryScoreList]}
+    return result
+
+def getTopAffiliationsAR(authorReviewData, combinedDict):
+    result = {}
+    affiliationScoreMap = {}
+    affiliationScoreList = []
+    for Info in authorReviewData:
+        try:
+            score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
+        except ValueError as e:
+            return {"error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
+        affiliation = str(Info[int(combinedDict.get("author.Organization"))])
+
+        if affiliation not in affiliationScoreMap:
+            affiliationScoreMap[affiliation] = [score]
+        else:
+            affiliationScoreMap[affiliation].append(score)
+
+    #getting average of each country
+    for key,value in affiliationScoreMap.iteritems():
+        affiliationScoreMap[key] = sum(value)/float(len(value))
+
+    affiliationScoreMap = sorted(affiliationScoreMap.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+    endIndex = getEndIndexForTop10(affiliationScoreList)
+    affiliationScoreList = affiliationScoreList[:endIndex]
+    result['topAffiliationsAR'] = {'organization': [ele[0] for ele in affiliationScoreList], 'score': [round(ele[1],3) for ele in affiliationScoreList]}
+    return result
+
+##################    UTILS    ####################
+
+def getEndIndexForTop10(dataList):
+    distinctNum = []
+    endIndex = len(dataList)
+    for idx in range(len(dataList)):
+        if (dataList[idx][1] not in distinctNum):
+            distinctNum.append(dataList[idx][1])
+        if (len(distinctNum) > 10):
+            endIndex = idx-1
+            break
+    return endIndex
