@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login
 from django.core import serializers
 
 import json
-import ConferenceType
+import Constants
 
 from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData
 from be.models.CsvDataBuilder import CsvDataBuilder
@@ -54,6 +54,7 @@ def uploadData(request):
 			data = userCreated
 		elif "login" == requestType:
 			data = loginUser(dataDictionary)
+			data.update(getSession(dataDictionary))
 		else:
 			print ("ERROR: file should have been rejected by frontend already")
 
@@ -91,26 +92,26 @@ def uploadCSVFiles(request):
 		if "author.csv" in fileName:
 			csvFiles['author'] = csvFile
 			csvDataBuilder.addCsvData("author.csv", dataDictionary, {'author': csvFile})
-			hasFiles[ConferenceType.AUTHOR_ID] = True
+			hasFiles[Constants.AUTHOR_ID] = True
 		elif "review.csv" in fileName:
 			csvFiles['review'] = csvFile
 			csvDataBuilder.addCsvData("review.csv", dataDictionary, {'review': csvFile})
-			hasFiles[ConferenceType.REVIEW_ID] = True
+			hasFiles[Constants.REVIEW_ID] = True
 		elif "submission.csv" in fileName:
 			csvFiles['submission'] = csvFile
 			csvDataBuilder.addCsvData("submission.csv", dataDictionary, {'submission': csvFile})
-			hasFiles[ConferenceType.SUBMISSION_ID] = True
+			hasFiles[Constants.SUBMISSION_ID] = True
 		else:
 			print ("ERROR: file should have been rejected by frontend already")
 	
 	# Combined visualisations
-	if (hasFiles[ConferenceType.AUTHOR_ID] and hasFiles[ConferenceType.REVIEW_ID]): # author + review
+	if (hasFiles[Constants.AUTHOR_ID] and hasFiles[Constants.REVIEW_ID]): # author + review
 		csvDataBuilder.addCsvData("author.review", dataDictionary, csvFiles)
-	if (hasFiles[ConferenceType.AUTHOR_ID] and hasFiles[ConferenceType.SUBMISSION_ID]): # author + submission
+	if (hasFiles[Constants.AUTHOR_ID] and hasFiles[Constants.SUBMISSION_ID]): # author + submission
 		csvDataBuilder.addCsvData("author.submission", dataDictionary, csvFiles)
-	if (hasFiles[ConferenceType.REVIEW_ID] and hasFiles[ConferenceType.SUBMISSION_ID]): # review + submission
+	if (hasFiles[Constants.REVIEW_ID] and hasFiles[Constants.SUBMISSION_ID]): # review + submission
 		csvDataBuilder.addCsvData("review.submission", dataDictionary, csvFiles)
-	if (hasFiles[ConferenceType.AUTHOR_ID] and hasFiles[ConferenceType.REVIEW_ID] and hasFiles[ConferenceType.SUBMISSION_ID]): # author + review + submission
+	if (hasFiles[Constants.AUTHOR_ID] and hasFiles[Constants.REVIEW_ID] and hasFiles[Constants.SUBMISSION_ID]): # author + review + submission
 		csvDataBuilder.addCsvData("author.review.submission", dataDictionary, csvFiles)
 		
 	for i in range(csvDataBuilder.size):

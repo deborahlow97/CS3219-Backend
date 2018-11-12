@@ -1,9 +1,10 @@
 import csv
 import codecs
 import re
-from polls import ConferenceType
+from polls import Constants
 from collections import Counter
 from be.models.CsvExceptions import *
+from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime, appendHasErrorField
 
 def getTopAuthors(authorData, authorDict):
     result = {}
@@ -12,7 +13,7 @@ def getTopAuthors(authorData, authorDict):
         authorList.append(
             {'name': str(authorInfo[int(authorDict.get("author.First Name"))]) + " " + str(authorInfo[int(authorDict.get("author.Last Name"))])})
 
-    authors = [ele['name'] for ele in authorList if ele] # adding in the if ele in case of empty strings; same applies below
+    authors = [ele['name'] for ele in authorList if ele]
     topAuthors = Counter(authors).most_common(10)
     result['topAuthors'] = {'labels': [ele[0] for ele in topAuthors], 'data': [ele[1] for ele in topAuthors]}
     return result
@@ -46,7 +47,7 @@ def getReviewTimeSeries(reviewData, reviewDict):
         reviewTime = [str(ele[int(reviewDict.get("review.Time"))]) for ele in reviewData]
         reviewDate = [str(ele[int(reviewDict.get("review.Date"))]) for ele in reviewData]
 
-        timeRegex = re.compile(ConferenceType.TIME_REGEX)
+        timeRegex = re.compile(Constants.TIME_REGEX)
         try:
             for time in reviewTime:
                 if not timeRegex.match(time):
@@ -54,7 +55,7 @@ def getReviewTimeSeries(reviewData, reviewDict):
         except TimeDataError as tde:
             return tde.message
 
-        dateRegex = re.compile(ConferenceType.DATE_REGEX)
+        dateRegex = re.compile(Constants.DATE_REGEX)
         try:
             for date in reviewDate:
                 if not dateRegex.match(date):
@@ -129,3 +130,72 @@ def getMeanEvScoreByExpertiseLevel(reviewData, reviewDict):
         result['meanEvaluationScore'] = {'expertise': expertise, 'avgScore': expertiseScore }
         return result
 
+def getSubmissionTimeSeries(submissionData, submissionDict):
+	result = {}
+	submissionTimes = [parseSubmissionTime(str(ele[int(submissionDict.get("submission.Time Submitted"))])) for ele in submissionData]
+	lastEditTimes = [parseSubmissionTime(str(ele[int(submissionDict.get("submission.Time Last Updated"))])) for ele in submissionData]
+	submissionTimes = Counter(submissionTimes)
+	lastEditTimes = Counter(lastEditTimes)
+	timeStamps = sorted([k for k in submissionTimes])
+	lastEditStamps = sorted([k for k in lastEditTimes])
+	submittedNumber = [0 for n in range(len(timeStamps))]
+	lastEditNumber = [0 for n in range(len(lastEditStamps))]
+	timeSeries = []
+	lastEditSeries = []
+	for index, timeStamp in enumerate(timeStamps):
+		if index == 0:
+			submittedNumber[index] = submissionTimes[timeStamp]
+		else:
+			submittedNumber[index] = submissionTimes[timeStamp] + submittedNumber[index - 1]
+
+		timeSeries.append({'x': timeStamp, 'y': submittedNumber[index]})
+
+	for index, lastEditStamp in enumerate(lastEditStamps):
+		if index == 0:
+			lastEditNumber[index] = lastEditTimes[lastEditStamp]
+		else:
+			lastEditNumber[index] = lastEditTimes[lastEditStamp] + lastEditNumber[index - 1]
+
+		lastEditSeries.append({'x': lastEditStamp, 'y': lastEditNumber[index]})
+
+	result['timeSeries'] = timeSeries
+	result['lastEditSeries'] = lastEditSeries
+	return result
+
+def getTopAcceptedAuthorsAndAcceptanceRate(submissionData, submissionDict):
+    result = {}
+    acceptedSubmission = [line for line in submissionData if str(line[int(submissionDict.get("submission.Decision"))]) == 'accept']
+    acceptanceRate = float(len(acceptedSubmission)) / len(submissionData)
+    acceptedAuthors = [str(ele[int(submissionDict.get("submission.Author(s)"))]).replace(" and ", ", ").split(", ") for ele in acceptedSubmission]
+    acceptedAuthors = [ele for item in acceptedAuthors for ele in item]
+    topAcceptedAuthors = Counter(acceptedAuthors).most_common(10)
+    topAcceptedAuthorsMap = {'names': [ele[0] for ele in topAcceptedAuthors], 'counts': [ele[1] for ele in topAcceptedAuthors]}
+    result['topAcceptedAuthors'] = topAcceptedAuthorsMap
+    result['acceptanceRate'] = acceptanceRate
+    return result
+
+def getWordCloudByTrack(submissionData, submissionDict):
+	result = {}
+	
+	tracks = set([str(ele[int(submissionDict.get("submission.Track Name"))]) for ele in submissionData])
+	paperGroupsByTrack = {track : [line for line in submissionData if str(line[int(submissionDict.get("submission.Track Name"))]) == track] for track in tracks}
+	keywordsGroupByTrack = {}
+	for track, papers in paperGroupsByTrack.iteritems():
+		keywords = [str(ele[int(submissionDict.get("submission.Keyword(s)"))]).lower().replace("\r", "").split("\n") for ele in papers]
+		keywords = [ele for item in keywords for ele in item]
+		keywordMap = [[ele[0], ele[1]] for ele in Counter(keywords).most_common(20)]
+		keywordsGroupByTrack[track] = keywordMap
+	result['keywordsByTrack'] = keywordsGroupByTrack
+	return result
+
+def getAcceptanceRateByTrack(submissionData, submissionDict):
+	result = {}
+	tracks = set([str(ele[int(submissionDict.get("submission.Track Name"))]) for ele in submissionData])
+	paperGroupsByTrack = {track : [line for line in submissionData if str(line[int(submissionDict.get("submission.Track Name"))]) == track] for track in tracks}
+	acceptanceRateByTrack = {}
+	for track, papers in paperGroupsByTrack.iteritems():
+		acceptedPapersPerTrack = [ele for ele in papers if str(ele[int(submissionDict.get("submission.Decision"))]) == 'accept']
+		acceptanceRateByTrack[track] = float(len(acceptedPapersPerTrack)) / len(papers)
+
+	result['acceptanceRateByTrack'] = acceptanceRateByTrack
+	return result

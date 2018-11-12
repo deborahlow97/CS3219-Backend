@@ -5,7 +5,7 @@ import codecs
 import re
 from be.CalculationUtil import *
 from CsvExceptions import *
-import polls.ConferenceType
+import polls.Constants
 from collections import Counter
 from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime, appendHasErrorField
 
