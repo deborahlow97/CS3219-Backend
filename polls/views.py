@@ -59,7 +59,7 @@ def uploadData(request):
 			print ("Now we got the csv file =)")
 
 		return HttpResponse(json.dumps(data))
-		# return HttpResponse("Got the CSV file.")
+
 	else:
 		print ("Not found the file! =(")
 		return HttpResponseNotFound('Page not found for CSV =(')

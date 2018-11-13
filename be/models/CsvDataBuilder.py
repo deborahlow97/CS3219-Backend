@@ -139,10 +139,10 @@ class CsvDataBuilder:
 
         parsedResult = {}
         lines = getLinesFromInputFile(inputFile, bool(authorDict.get("author.HasHeader")))
-
-        parsedResult.update(getTopAuthors(lines, authorDict))
-        parsedResult.update(getTopCountries(lines, authorDict))
-        parsedResult.update(getTopAffiliations(lines, authorDict))
+        calculationUtil = CalculationUtil()
+        parsedResult.update(calculationUtil.getTopAuthors(lines, authorDict))
+        parsedResult.update(calculationUtil.getTopCountries(lines, authorDict))
+        parsedResult.update(calculationUtil.getTopAffiliations(lines, authorDict))
         return parsedResult
 
     def getReviewInfo(self, index, dict = None):
@@ -154,10 +154,10 @@ class CsvDataBuilder:
 
         parsedResult = {}
         lines = getLinesFromInputFile(inputFile, bool(reviewDict.get("review.HasHeader")))
-
-        parsedResult.update(getReviewTimeSeries(lines, reviewDict))
-        parsedResult.update(getScoreDistribution(lines, reviewDict))
-        parsedResult.update(getMeanEvScoreByExpertiseLevel(lines, reviewDict))
+        calculationUtil = CalculationUtil()
+        parsedResult.update(calculationUtil.getReviewTimeSeries(lines, reviewDict))
+        parsedResult.update(calculationUtil.getScoreDistribution(lines, reviewDict))
+        parsedResult.update(calculationUtil.getMeanEvScoreByExpertiseLevel(lines, reviewDict))
 
         return parsedResult
         
@@ -170,10 +170,11 @@ class CsvDataBuilder:
 
         parsedResult = {}
         lines = getLinesFromInputFile(inputFile, bool(submissionDict.get("submission.HasHeader")))
-        parsedResult.update(getTopAuthorsByTrackAndAcceptanceRate(lines, submissionDict))
-        parsedResult.update(getWordCloudByTrack(lines, submissionDict))
-        parsedResult.update(getSubmissionTimeSeries(lines, submissionDict))
-        parsedResult.update(getAcceptanceRateByTrack(lines, submissionDict))
+        calculationUtil = CalculationUtil()
+        parsedResult.update(calculationUtil.getTopAuthorsByTrackAndAcceptanceRate(lines, submissionDict))
+        parsedResult.update(calculationUtil.getWordCloudByTrack(lines, submissionDict))
+        parsedResult.update(calculationUtil.getSubmissionTimeSeries(lines, submissionDict))
+        parsedResult.update(calculationUtil.getAcceptanceRateByTrack(lines, submissionDict))
         return parsedResult
 
     def getAuthorReviewInfo(self, index):
@@ -187,10 +188,11 @@ class CsvDataBuilder:
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("review.HasHeader")))
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", authorDict, reviewDict)
         parsedResult = {}
-        parsedResult.update(getTopAuthorsInfoAR(combinedLines, combinedDict))
-        parsedResult.update(getTopCountriesAR(combinedLines, combinedDict))
-        parsedResult.update(getTopAffiliationsAR(combinedLines, combinedDict))
-        parsedResult.update(getTopCountriesAR(combinedLines, combinedDict))
+        calculationUtil = CalculationUtil()
+        parsedResult.update(calculationUtil.getTopAuthorsInfoAR(combinedLines, combinedDict))
+        parsedResult.update(calculationUtil.getTopCountriesAR(combinedLines, combinedDict))
+        parsedResult.update(calculationUtil.getTopAffiliationsAR(combinedLines, combinedDict))
+        parsedResult.update(calculationUtil.getTopCountriesAR(combinedLines, combinedDict))
 
         return parsedResult
 
@@ -207,9 +209,9 @@ class CsvDataBuilder:
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
 
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "submission.Submission #", authorDict, submissionDict)
-            
-        parsedResult.update(getTopCountriesAS(combinedLines, combinedDict))
-        parsedResult.update(getTopAffiliationsAS(combinedLines, combinedDict))
+        calculationUtil = CalculationUtil()
+        parsedResult.update(calculationUtil.getTopCountriesAS(combinedLines, combinedDict))
+        parsedResult.update(calculationUtil.getTopAffiliationsAS(combinedLines, combinedDict))
         return parsedResult
 
     def getReviewSubmissionInfo(self, index):
@@ -223,7 +225,7 @@ class CsvDataBuilder:
         lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("review.HasHeader")))
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
         combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", reviewDict, submissionDict)
-
-        parsedResult.update(getExpertiseSR(combinedLines, combinedDict))
-        parsedResult.update(getAverageScoreSR(combinedLines, combinedDict))
+        calculationUtil = CalculationUtil()
+        parsedResult.update(calculationUtil.getExpertiseSR(combinedLines, combinedDict))
+        parsedResult.update(calculationUtil.getAverageScoreSR(combinedLines, combinedDict))
         return parsedResult
