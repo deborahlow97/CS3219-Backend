@@ -31,13 +31,10 @@ def test(request):
 # Note: csr: cross site request, adding this to enable request from localhost
 @csrf_exempt
 def uploadData(request):
-	print ("Inside the upload function!!")
 	if request.method == 'POST':
 		dataDictionary = {}
 		dataDictionary = (request.POST).dict()
 		requestType = dataDictionary.get("request")
-		print dataDictionary
-		print requestType
 
 		if request.FILES and "uploadSession" == requestType:
 			data = uploadCSVFiles(request)
@@ -77,11 +74,7 @@ def uploadCSVFiles(request):
 	csvDataBuilder = CsvDataBuilder()
 
 	for csvFile in csvFileList:
-		print (len(csvFile))
-		
 		fileName = csvFile.name
-		print fileName
-		
 		#datadict for column mapping
 		dataDictionary = {}
 		dataDictionary = (request.POST).dict()
@@ -115,8 +108,6 @@ def uploadCSVFiles(request):
 	for i in range(csvDataBuilder.size):
 		csvDataBuilder.setOrder(i)
 		csvDataBuilder.setInfo(i)
-		# print csvDataBuilder.csvDataList[i].order
-		#print csvDataBuilder.csvDataList[i].info
 	
 	rowContent = csvDataBuilder.formatRowContent()
 	return rowContent

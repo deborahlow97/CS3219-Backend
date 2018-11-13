@@ -36,13 +36,10 @@ class CsvDataBuilder:
         elif type == "submission.csv":
             order = self.getSubmissionOrder(index)
         elif type == "author.review":
-            print ("author + review")
             order = combineOrderDict(self.getAuthorOrder(index), self.getReviewOrder(index))
         elif type == "author.submission":
-            print ("author + submission")
             order = combineOrderDict(self.getAuthorOrder(index), self.getSubmissionOrder(index))
         elif type == "review.submission":
-            print ("submission + review")
             order = combineOrderDict(self.getReviewOrder(index), self.getSubmissionOrder(index))
         elif type == "author.review.submission":
             # Not doing
@@ -66,13 +63,10 @@ class CsvDataBuilder:
             info = self.getSubmissionInfo(index)
         elif type == "author.review":
             info = self.getAuthorReviewInfo(index)
-            print ("author + review")
         elif type == "author.submission":
             info = self.getAuthorSubmissionInfo(index)
-            print ("author + submission")
         elif type == "review.submission":
             info = self.getReviewSubmissionInfo(index)
-            print ("submission + review")
         elif type == "author.review.submission":
             # Not doing
             info = {}
@@ -88,7 +82,6 @@ class CsvDataBuilder:
         infoData = {}
         for i in range(self.size):
             csvData = self.csvDataList[i]
-            # print csvData.infoType
             if (".csv" in csvData.infoType):
                 infoType.append(csvData.infoType)
             infoData.update(csvData.info)

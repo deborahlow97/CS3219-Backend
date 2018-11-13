@@ -12,7 +12,6 @@ class MyUser:
 
     def registerUser(self):
         registerUsername = self.email
-        print registerUsername
         registerPassword = self.password
         isExist = self.authenticateUser(registerUsername, registerPassword)
         if isExist:
