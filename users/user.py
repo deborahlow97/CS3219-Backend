@@ -1,30 +1,42 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from users.models import Session, SessionManager
+from users import *
+from django.core import serializers
 
-# def createUser(data):
-#     email = "abc@gmail.com"
-#     pw="1234"
-#     user = User.objects.create_user(email, email, password)
-#     user.save()
+class MyUser:
 
-# def authenticateUser(_username):
-#     user = authenticate(username=_username, password='secret')
-#     if user is not None:
-#         return True
-#     else:
-#         return False
+    def __init__( self, email, password ):
+        self.email = email
+        self.password = password
 
+    def registerUser(self):
+        registerUsername = self.email
+        print registerUsername
+        registerPassword = self.password
+        isExist = self.authenticateUser(registerUsername, registerPassword)
+        if isExist:
+            return {"isSuccessful": False, "errorMessage": "There already exist a username under that email"}
+        else:
+            self.createUser(registerUsername, registerPassword)
+        return {"isSuccessful": True}
 
-# def loginUser(request):
-#     username = request.POST['username']
-#     password = request.POST['password']
-#     user = authenticate(request, username=username, password=password)
-#     if user is not None:
-#         login(request, user)
-#         # Redirect to a success page.
+    def loginUser(self):
+        loginUsername = self.email
+        loginPassword = self.password
+        isExist = self.authenticateUser(loginUsername, loginPassword)
+        if isExist:
+            return {"isSuccessful": True}
+        else:
+            return {"isSuccessful": False, "errorMessage": "Wrong username/password"}
 
-#     else:
-#         print("Invalid Login =(")
+    def createUser(self, username, password):
+        user = User.objects.create_user(username, username, password)
+        return user.get_username()
 
-# def registerUser(_username):
-#     if request.user.is_authenticated:
+    def authenticateUser(self, _username, _password):
+        user = authenticate(username=_username, password=_password)
+        if user is not None:
+            return True
+        else:
+            return False

@@ -18,6 +18,7 @@ from be.models.CsvDataBuilder import CsvDataBuilder
 from be.models.CsvData import CsvData
 from users.models import Session, SessionManager
 from users import *
+from users.user import MyUser
 
 # Note: a view is a func taking the HTTP request and returns sth accordingly
 
@@ -49,10 +50,11 @@ def uploadData(request):
 		elif "getAll" == requestType:
 			data = getSessionsByEmail(dataDictionary)
 		elif "register" == requestType:
-			userCreated = registerUser(dataDictionary)
-			data = userCreated
+			registerUser = MyUser(dataDictionary.get("email"), dataDictionary.get("password"))
+			data = registerUser.registerUser()
 		elif "login" == requestType:
-			data = loginUser(dataDictionary)
+			loginUser = MyUser(dataDictionary.get("email"), dataDictionary.get("password"))
+			data = loginUser.loginUser()
 		else:
 			print ("ERROR: file should have been rejected by frontend already")
 
@@ -154,34 +156,3 @@ def getSessionsByEmail(request):
 	user = User.objects.filter(email=email).first()
 	sessionsQuerySet = Session.objects.filter(user=user)
 	return serializers.serialize('json', list(sessionsQuerySet))
-
-def registerUser(request):
-	registerUsername = request['email']
-	print registerUsername
-	registerPassword = request['password']
-	isExist = authenticateUser(registerUsername, registerPassword)
-	if isExist:
-		return {"isSuccessful": False, "errorMessage": "There already exist a username under that email"}
-	else:
-		createUser(registerUsername, registerPassword)
-	return {"isSuccessful": True}
-
-def loginUser(request):
-	loginUsername = request['email']
-	loginPassword = request['password']
-	isExist = authenticateUser(loginUsername, loginPassword)
-	if isExist:
-		return {"isSuccessful": True}
-	else:
-		return {"isSuccessful": False, "errorMessage": "Wrong username/password"}
-
-def createUser(username, password):
-	user = User.objects.create_user(username, username, password)
-	return user.get_username()
-
-def authenticateUser(_username, _password):
-    user = authenticate(username=_username, password=_password)
-    if user is not None:
-        return True
-    else:
-        return False
