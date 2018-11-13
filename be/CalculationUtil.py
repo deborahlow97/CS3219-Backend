@@ -12,6 +12,7 @@ from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnK
 #         self.data = data
 #         self.dict = dict
 
+##################    AUTHOR INFO    ##################
 def getTopAuthors(authorData, authorDict):
     result = {}
     authorMap = {}
@@ -64,6 +65,7 @@ def getTopAffiliations(authorData, authorDict):
     result['topAffiliations'] = {'labels': [ele[0] for ele in topAffiliationsList], 'data': [ele[1] for ele in topAffiliationsList]}
     return result
 
+##################    REVIEW INFO    ##################
 def getReviewTimeSeries(reviewData, reviewDict):
         result = {}
         reviewTime = [str(ele[int(reviewDict.get("review.Time"))]) for ele in reviewData]
@@ -153,6 +155,7 @@ def getMeanEvScoreByExpertiseLevel(reviewData, reviewDict):
         result['meanEvaluationScore'] = {'expertise': expertise, 'avgScore': expertiseScore }
         return result
 
+##################    SUBMISSION INFO    ##################
 def getSubmissionTimeSeries(submissionData, submissionDict):
 	result = {}
 	submissionTimes = [parseSubmissionTime(str(ele[int(submissionDict.get("submission.Time Submitted"))])) for ele in submissionData]
@@ -235,6 +238,7 @@ def getAcceptanceRateByTrack(submissionData, submissionDict):
 	result['acceptanceRateByTrack'] = acceptanceRateByTrack
 	return result
 
+##################    AUTHOR REVIEW INFO    ##################
 def getTopAuthorsInfoAR(authorReviewData, combinedDict):
     result = {}
     authorScoreMap = {}
@@ -333,6 +337,7 @@ def getTopAffiliationsAR(authorReviewData, combinedDict):
     return result
 
 
+##################    AUTHOR SUBMISSION INFO    ##################
 def getTopCountriesAS(authorSubmissionData, combinedDict):
     result = {}
     acceptedCountriesList = []
@@ -341,8 +346,19 @@ def getTopCountriesAS(authorSubmissionData, combinedDict):
             acceptedCountriesList.append(ele[int(combinedDict.get("author.Country"))])
     topCountriesList = dict(Counter(acceptedCountriesList))
     topCountriesList = sorted(topCountriesList.iteritems(), key=lambda (k,v): (v,k), reverse=True)
-    endIndex = getEndIndexForTop10(topCountriesList)
+
+    distinctNumDecisions = []
+    endIndex = len(topCountriesList)
+    for i in range(len(topCountriesList)):
+        if (topCountriesList[i] not in distinctNumDecisions):
+            distinctNumDecisions.append(topCountriesList[i])
+        if (len(distinctNumDecisions) > 10):
+            #top 10
+            endIndex = i-1
+            break
+    
     topCountriesList = topCountriesList[:endIndex]
+    
     result['topCountriesAS'] = {'labels': [key for key, value in topCountriesList], 'data': [value for key, value in topCountriesList]}
     return result
 
@@ -351,6 +367,7 @@ def getTopAffiliationsAS(authorSubmissionData, combinedDict):
     decisionBasedOnTopAffiliations = []
     topAffiliationDataForTrack = []
     tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in authorSubmissionData]).keys())
+    
     for track in tracks:
         acceptedSubmissionsByAffiliationAndTrack = []
         for ele in authorSubmissionData:
@@ -358,14 +375,25 @@ def getTopAffiliationsAS(authorSubmissionData, combinedDict):
                 acceptedSubmissionsByAffiliationAndTrack.append(ele[int(combinedDict.get("author.Organization"))])
         topAffiliationsList = dict(Counter(acceptedSubmissionsByAffiliationAndTrack))
         topAffiliationsList = sorted(topAffiliationsList.iteritems(), key=lambda (k,v): (v,k), reverse=True)
-        endIndex = getEndIndexForTop10(topAffiliationsList)
+        
+        distinctNumDecisions = []
+        endIndex = len(topAffiliationsList)
+        for i in range(len(topAffiliationsList)):
+            if (topAffiliationsList[i] not in distinctNumDecisions):
+                distinctNumDecisions.append(topAffiliationsList[i])
+            if (len(distinctNumDecisions) > 10):
+                endIndex = i-1
+                break
+
         topAffiliationsList = topAffiliationsList[:endIndex]
         topAffiliationDataForTrack.append([key for key, value in topAffiliationsList])
         topAffiliationDataForTrack.append([value for key, value in topAffiliationsList])
         decisionBasedOnTopAffiliations.append(topAffiliationDataForTrack)
+
     result['topAffiliationsAS'] = {'labels':tracks, 'data': decisionBasedOnTopAffiliations}
     return result
 
+##################    SUBMISSION REVIEW INFO    ##################
 def getExpertiseSR(submissionReviewData, combinedDict):
     result = {}
     tracks = list(Counter([str(ele[int(combinedDict.get("submission.Track Name"))]) for ele in submissionReviewData]).keys())
@@ -393,7 +421,7 @@ def getAverageScoreSR(submissionReviewData, combinedDict):
     result['averageScoreSR'] = {'labels': tracks, 'data': list(meanScoreByTrack.values())}
     return result
     
-##################    UTILS    ####################
+##################    UTILS    ##################
 
 def getEndIndexForTop10(dataList):
     distinctNum = []
@@ -405,6 +433,7 @@ def getEndIndexForTop10(dataList):
             endIndex = idx-1
             break
     return endIndex
+    
 
 
 
