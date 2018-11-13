@@ -18,7 +18,7 @@ from be.models.CsvDataBuilder import CsvDataBuilder
 from be.models.CsvData import CsvData
 from users.models import Session, SessionManager
 from users import *
-# Create your views here.
+
 # Note: a view is a func taking the HTTP request and returns sth accordingly
 
 def index(request):
@@ -173,7 +173,7 @@ def loginUser(request):
 	if isExist:
 		return {"isSuccessful": True}
 	else:
-		return {"isSuccessful": False, "errorMessage": "There is no existing user with that username"}
+		return {"isSuccessful": False, "errorMessage": "Wrong username/password"}
 
 def createUser(username, password):
 	user = User.objects.create_user(username, username, password)
@@ -185,7 +185,3 @@ def authenticateUser(_username, _password):
         return True
     else:
         return False
-
-# def loginUserWithData(request):
-# 	data = {}
-# 	data.update
