@@ -156,14 +156,3 @@ def getSessionsByEmail(request):
 	user = User.objects.filter(email=email).first()
 	sessionsQuerySet = Session.objects.filter(user=user)
 	return serializers.serialize('json', list(sessionsQuerySet))
-
-def registerUser(request):
-	registerUsername = request['email']
-	print registerUsername
-	registerPassword = request['password']
-	isExist = authenticateUser(registerUsername, registerPassword)
-	if isExist:
-		return {"isSuccessful": False, "errorMessage": "There already exist a username under that email"}
-	else:
-		createUser(registerUsername, registerPassword)
-	return {"isSuccessful": True}
