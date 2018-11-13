@@ -5,7 +5,7 @@ from polls import Constants
 from collections import Counter
 from be.models.CsvExceptions import *
 from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime, appendHasErrorField
-
+from users import user
 # class CalculationUtil:
 
 #     def __init__( self, data, dict ) :
