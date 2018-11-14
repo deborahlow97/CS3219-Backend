@@ -1,8 +1,9 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.core import serializers
 from users.models import Session, SessionManager
 from users import *
-from django.core import serializers
+from polls.Constants import *
 
 class MyUser:
 
@@ -13,11 +14,10 @@ class MyUser:
     def registerUser(self):
         registerUsername = self.email
         registerPassword = self.password
-        isExist = self.authenticateUser(registerUsername, registerPassword)
-        if isExist:
-            return {"isSuccessful": False, "errorMessage": "There already exist a username under that email"}
-        else:
+        try:
             self.createUser(registerUsername, registerPassword)
+        except:
+            return {"isSuccessful": False, "errorMessage": "There already exist a username under that email"}
         return {"isSuccessful": True}
 
     def loginUser(self):

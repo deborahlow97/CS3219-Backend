@@ -274,7 +274,7 @@ class CalculationUtil:
                 try:
                     score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
                 except ValueError as e:
-                    return {"error": REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
+                    return {ERROR: REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
                 if name not in authorScoreMap:
                     authorScoreMap[name] = [score]
                 else:
@@ -298,7 +298,7 @@ class CalculationUtil:
                 try:
                     reviewScoreArr.append(int(Info[int(combinedDict.get("review.Overall Evaluation Score"))]))
                 except ValueError as e:
-                    return {"error": REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
+                    return {ERROR: REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
 
             infoAndScore = zip(reviewScoreArr, nameArr, affiliationArr, countryArr)[:endIndex]
             infoAndScore.sort(reverse=True)
@@ -321,7 +321,7 @@ class CalculationUtil:
                 try:
                     score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
                 except ValueError as e:
-                    return {"error": REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
+                    return {ERROR: REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
                 country = str(Info[int(combinedDict.get("author.Country"))])
 
                 if country not in countryScoreMap:
@@ -351,7 +351,7 @@ class CalculationUtil:
                 try:
                     score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
                 except ValueError as e:
-                    return {"error": REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
+                    return {ERROR: REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
                 affiliation = str(Info[int(combinedDict.get("author.Organization"))])
 
                 if affiliation not in affiliationScoreMap:
