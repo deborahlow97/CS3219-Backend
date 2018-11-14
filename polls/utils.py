@@ -58,10 +58,7 @@ def parseCSVFile(inputFile):
 
 	Returns: list of lists (inner list represent each row)
 	"""
-
 	csvFile = inputFile
-	print inputFile
-
 	csvFile.open()
 	reader = csv.reader(codecs.EncodedFile(csvFile, "utf-8"), delimiter=',', dialect='excel')
 	rowResults = [row for row in reader]
@@ -92,7 +89,6 @@ def parseCSVFileFromDjangoFile(inputFile):
 	parsedResult = {}
 	fileData = inputFile.read().decode("utf-8")
 	lines = fileData.split("\n")
-	#print lines[0]
 	headerRow = lines[0]
 	secondRow = lines[1]
 			
