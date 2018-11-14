@@ -36,7 +36,7 @@ class CsvDataBuilder:
         elif type == REVIEW_SUBMISSION:
             order = combineOrderDict(self.getReviewOrder(), self.getSubmissionOrder())
         elif type == AUTHOR_REVIEW_SUBMISSION:
-            print ""
+            print ("author + review + submission")            
         else:
             print ("ERROR: No such type")
         return order
@@ -61,7 +61,6 @@ class CsvDataBuilder:
         elif type == REVIEW_SUBMISSION:
             info = self.getReviewSubmissionInfo()
         elif type == AUTHOR_REVIEW_SUBMISSION:
-            info = {}
             print ("author + review + submission")            
         else:
             print ("ERROR: No such info")
