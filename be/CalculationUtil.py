@@ -26,7 +26,7 @@ class CalculationUtil:
 
             result['topAuthors'] = {'labels': [ele[0] for ele in topAuthorList], 'data': [ele[1] for ele in topAuthorList]}
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
 
     def getTopCountries(self, authorData, authorDict):
@@ -46,7 +46,7 @@ class CalculationUtil:
             topCountryList = topCountryList[:endIndex]
             result['topCountries'] = {'labels': [ele[0] for ele in topCountryList], 'data': [ele[1] for ele in topCountryList]}
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
 
     def getTopAffiliations(self, authorData, authorDict):
@@ -66,7 +66,7 @@ class CalculationUtil:
             topAffiliationsList = topAffiliationsList[:endIndex]
             result['topAffiliations'] = {'labels': [ele[0] for ele in topAffiliationsList], 'data': [ele[1] for ele in topAffiliationsList]}
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
 
     ##################    REVIEW INFO    ##################
@@ -80,7 +80,7 @@ class CalculationUtil:
             try:
                 for time in reviewTime:
                     if not timeRegex.match(time):
-                        raise TimeDataError( {"error": TIME_FORMAT_ERROR_MSG })
+                        raise TimeDataError( {ERROR: TIME_FORMAT_ERROR_MSG })
             except TimeDataError as tde:
                 return tde.message
 
@@ -88,7 +88,7 @@ class CalculationUtil:
             try:
                 for date in reviewDate:
                     if not dateRegex.match(date):
-                        raise DateDataError( {"error": DATE_FORMAT_ERROR_MSG })
+                        raise DateDataError( {ERROR: DATE_FORMAT_ERROR_MSG })
             except DateDataError as dde:
                 return dde.message
 
@@ -106,7 +106,7 @@ class CalculationUtil:
                 reviewTimeSeries.append({'x': lastReviewStamps, 'y': reviewedNumber[index]})
             result['reviewTimeSeries'] = reviewTimeSeries
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
 
         return result
 
@@ -130,7 +130,7 @@ class CalculationUtil:
 
             result['scoreDistribution'] = {'labels': scoreDistributionLabels, 'counts': scoreDistributionCounts}
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
 
     def getMeanEvScoreByExpertiseLevel(self, reviewData, reviewDict):
@@ -144,12 +144,12 @@ class CalculationUtil:
                 try:
                     expertiseLevel = int(info[int(reviewDict.get("review.Field #"))])
                 except (ValueError, TypeError) as e:
-                    return {"Error": REVIEW_FIELD_NO_ERROR_MSG}
+                    return {ERROR: REVIEW_FIELD_NO_ERROR_MSG}
                 
                 try:
                     score = int(info[int(reviewDict.get("review.Overall Evaluation Score"))])
                 except (ValueError, TypeError) as e:
-                    return {"Error": REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
+                    return {ERROR: REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
                 
                 if expertiseLevel not in expertiseScoreMap:
                     expertiseScoreMap[expertiseLevel] = [score]
@@ -166,7 +166,7 @@ class CalculationUtil:
 
             result['meanEvaluationScore'] = {'expertise': expertise, 'avgScore': expertiseScore }
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         
         return result
 
@@ -203,7 +203,7 @@ class CalculationUtil:
             result['timeSeries'] = timeSeries
             result['lastEditSeries'] = lastEditSeries
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
 
     def getTopAuthorsByTrackAndAcceptanceRate(self, submissionData, submissionDict):
@@ -230,7 +230,7 @@ class CalculationUtil:
             result['topAuthorsByTrack'] = topAuthorsByTrack
             result['acceptanceRate'] = acceptanceRate
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
 
     def getWordCloudByTrack(self, submissionData, submissionDict):
@@ -246,7 +246,7 @@ class CalculationUtil:
                 keywordsGroupByTrack[track] = keywordMap
             result['keywordsByTrack'] = keywordsGroupByTrack
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
 
     def getAcceptanceRateByTrack(self, submissionData, submissionDict):
@@ -261,7 +261,7 @@ class CalculationUtil:
 
             result['acceptanceRateByTrack'] = acceptanceRateByTrack
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
 
     ##################    AUTHOR REVIEW INFO    ##################
@@ -309,7 +309,7 @@ class CalculationUtil:
             'score': [ele[0] for ele in infoAndScore], 'author': [ele[1] for ele in infoAndScore]} 
             result['topAuthorsAR'] =  {'authors': [ele[0] for ele in authorScoreList],'score': [ele[1] for ele in authorScoreList]}
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
 
     def getTopCountriesAR(self, authorReviewData, combinedDict):
@@ -339,7 +339,7 @@ class CalculationUtil:
             countryScoreList = countryScoreList[:endIndex]
             result['topCountriesAR'] = {'countries': [ele[0] for ele in countryScoreList], 'score': [round(ele[1],3) for ele in countryScoreList]}
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
 
     def getTopAffiliationsAR(self, authorReviewData, combinedDict):
@@ -369,7 +369,7 @@ class CalculationUtil:
             result['topAffiliationsAR'] = {'organization': [ele[0] for ele in affiliationScoreList], 'score': [round(ele[1],3) for ele in affiliationScoreList]}
         
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
 
     ##################    AUTHOR SUBMISSION INFO    ##################
@@ -397,7 +397,7 @@ class CalculationUtil:
             
             result['topCountriesAS'] = {'labels': [key for key, value in topCountriesList], 'data': [value for key, value in topCountriesList]}
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
 
     def getTopAffiliationsAS(self, authorSubmissionData, combinedDict):
@@ -431,7 +431,7 @@ class CalculationUtil:
 
             result['topAffiliationsAS'] = {'labels':tracks, 'data': decisionBasedOnTopAffiliations}
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
 
     ##################    SUBMISSION REVIEW INFO    ##################
@@ -448,7 +448,7 @@ class CalculationUtil:
                 expertiseByTrack[track] = dict(Counter(dataListForCurrentTrack))
             result['expertiseSR'] = {'labels': tracks, 'data': list(expertiseByTrack.values())}
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
 
     def getAverageScoreSR(self, submissionReviewData, combinedDict):
@@ -465,7 +465,7 @@ class CalculationUtil:
 
             result['averageScoreSR'] = {'labels': tracks, 'data': list(meanScoreByTrack.values())}
         except:
-            return {"Error": ERROR_MSG}
+            return {ERROR: ERROR_MSG}
         return result
         
     ##################    UTILS    ##################

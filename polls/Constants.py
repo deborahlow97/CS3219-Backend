@@ -41,4 +41,4 @@ ERROR_MSG = "An error has occurred"
 DATE_REGEX = r"^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$"
 TIME_REGEX = "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
 DATE_AND_TIME_REGEX = r"^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])\s+([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
-#format: yyyy-mm-dd hh-mm
+#format: yyyy-mm-dd hh:mm

@@ -1,7 +1,7 @@
 import csv
 import codecs
 import re
-import Constants
+from Constants import *
 from be.models.CsvExceptions import *
 
 from django.http import QueryDict
@@ -14,8 +14,8 @@ def isNumber(inputStr):
 		return False
 
 def appendHasErrorField(info):
-	if "error" not in info:
-		info.update({"error": ""})
+	if ERROR not in info:
+		info.update({ERROR: "" })
 	return info
 
 def getLinesFromInputFile(inputFile, hasHeader):
@@ -68,10 +68,10 @@ def parseCSVFile(inputFile):
 	return rowResults
 
 def parseSubmissionTime(timeStr):
-	dateAndTimeRegex = re.compile(Constants.DATE_AND_TIME_REGEX)
+	dateAndTimeRegex = re.compile(DATE_AND_TIME_REGEX)
 	try:
 		if not dateAndTimeRegex.match(timeStr):
-			raise DateAndTimeDataError({"Error": DATE_AND_TIME_ERROR_MSG})
+			raise DateAndTimeDataError({ERROR: DATE_AND_TIME_ERROR_MSG})
 	except DateAndTimeDataError as datde:
 		return datde
 
