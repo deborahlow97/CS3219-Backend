@@ -13,7 +13,7 @@ from django.core import serializers
 import json
 import Constants
 
-from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData
+from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData, formatRowContent
 from be.models.CsvDataBuilder import CsvDataBuilder
 from be.models.CsvData import CsvData
 from users.models import Session, SessionManager
@@ -71,7 +71,8 @@ def uploadCSVFiles(request):
 	csvFiles = {}
 	csvFileList = request.FILES.getlist('file')
 
-	csvDataBuilder = CsvDataBuilder()
+	# csvDataBuilder = CsvDataBuilder()
+	csvDataList = []
 
 	for csvFile in csvFileList:
 		fileName = csvFile.name
@@ -82,34 +83,42 @@ def uploadCSVFiles(request):
 
 		if "author.csv" in fileName:
 			csvFiles['author'] = csvFile
-			csvDataBuilder.addCsvData("author.csv", dataDictionary, {'author': csvFile})
+			csvData = CsvData("author.csv", dataDictionary, {'author': csvFile})
 			hasFiles[Constants.AUTHOR_ID] = True
 		elif "review.csv" in fileName:
 			csvFiles['review'] = csvFile
-			csvDataBuilder.addCsvData("review.csv", dataDictionary, {'review': csvFile})
+			csvData = CsvData("review.csv", dataDictionary, {'review': csvFile})
 			hasFiles[Constants.REVIEW_ID] = True
 		elif "submission.csv" in fileName:
 			csvFiles['submission'] = csvFile
-			csvDataBuilder.addCsvData("submission.csv", dataDictionary, {'submission': csvFile})
+			csvData = CsvData("submission.csv", dataDictionary, {'submission': csvFile})
 			hasFiles[Constants.SUBMISSION_ID] = True
 		else:
 			print ("ERROR: file should have been rejected by frontend already")
+		
+		csvDataList.append(csvData)
 	
 	# Combined visualisations
 	if (hasFiles[Constants.AUTHOR_ID] and hasFiles[Constants.REVIEW_ID]): # author + review
-		csvDataBuilder.addCsvData("author.review", dataDictionary, csvFiles)
+		csvData = CsvData("author.review", dataDictionary, csvFiles)
+		csvDataList.append(csvData)
 	if (hasFiles[Constants.AUTHOR_ID] and hasFiles[Constants.SUBMISSION_ID]): # author + submission
-		csvDataBuilder.addCsvData("author.submission", dataDictionary, csvFiles)
+		csvData = CsvData("author.submission", dataDictionary, csvFiles)
+		csvDataList.append(csvData)
 	if (hasFiles[Constants.REVIEW_ID] and hasFiles[Constants.SUBMISSION_ID]): # review + submission
-		csvDataBuilder.addCsvData("review.submission", dataDictionary, csvFiles)
+		csvData = CsvData("review.submission", dataDictionary, csvFiles)
+		csvDataList.append(csvData)
 	if (hasFiles[Constants.AUTHOR_ID] and hasFiles[Constants.REVIEW_ID] and hasFiles[Constants.SUBMISSION_ID]): # author + review + submission
-		csvDataBuilder.addCsvData("author.review.submission", dataDictionary, csvFiles)
+		csvData = CsvData("author.review.submission", dataDictionary, csvFiles)
+		csvDataList.append(csvData)
 		
-	for i in range(csvDataBuilder.size):
-		csvDataBuilder.setOrder(i)
-		csvDataBuilder.setInfo(i)
+	for i in range(len(csvDataList)):
+		csvDataBuilder = CsvDataBuilder(csvDataList[i])
+		csvDataBuilder.setOrder()
+		csvDataBuilder.setInfo()
+		csvDataList[i] = csvDataBuilder.csvData
 	
-	rowContent = csvDataBuilder.formatRowContent()
+	rowContent = formatRowContent(csvDataList)
 	return rowContent
 
 def saveSession(request):

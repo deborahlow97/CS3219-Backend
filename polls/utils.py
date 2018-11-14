@@ -38,15 +38,6 @@ def combineOrderDict(dict1, dict2):
 		if (".HasHeader" not in key):
 			dict2[key] = dict2[key] + size
 	dict3.update(dict2)
-
-	# print "=============================================="
-	# print dict1
-	# print "=============================================="
-	# print dict2
-	# print "=============================================="
-	# print dict3
-	# print "=============================================="
-
 	return dict3
 	
 def combineLinesOnKey(lines1, lines2, key1, key2, dict1, dict2):
@@ -141,6 +132,21 @@ def setOfValidHeaders(typeOfFile):
 		return SubmissionHeaders
 	else:
 		return {}
+
+def formatRowContent(csvDataList):
+	rowContent = {}
+
+	infoType = []
+	infoData = {}
+	for i in range(len(csvDataList)):
+		csvData = csvDataList[i]
+		if (".csv" in csvData.infoType):
+			infoType.append(csvData.infoType)
+		infoData.update(csvData.info)
+
+	rowContent['infoType'] = infoType
+	rowContent['infoData'] = appendHasErrorField(infoData)
+	return rowContent
 
 if __name__ == "__main__":
 	parseCSVFile("review.csv")

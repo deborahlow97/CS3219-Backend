@@ -13,85 +13,66 @@ from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnK
 Represents a builder class to build csv data from an uploaded csv file
 '''
 class CsvDataBuilder:
-    def __init__(self):
-        self.csvDataList = []
-        self.size = 0
+    def __init__(self, csvData):
+        self.csvData = csvData
 
-    def addCsvData(self, infoType, dataDictionary, inputFiles):
-        csvData = CsvData(infoType, dataDictionary, inputFiles)
-        self.csvDataList.append(csvData)
-        self.size += 1
-
-    def setOrder(self, index):
-        order = self.getOrder(index)
-        self.csvDataList[index].setOrder(order)
+    # def addCsvData(self, infoType, dataDictionary, inputFiles):
+    #     csvData = CsvData(infoType, dataDictionary, inputFiles)
+    #     self.csvDataList.append(csvData)        
         
-    def getOrder(self, index):
+    def setOrder(self):
+        order = self.getOrder()
+        self.csvData.setOrder(order)
+
+    def getOrder(self):
         order = {}
-        type = self.csvDataList[index].infoType
+        type = self.csvData.infoType
         if type == "author.csv":
-            order = self.getAuthorOrder(index)
+            order = self.getAuthorOrder()
         elif type == "review.csv":
-            order = self.getReviewOrder(index)
+            order = self.getReviewOrder()
         elif type == "submission.csv":
-            order = self.getSubmissionOrder(index)
+            order = self.getSubmissionOrder()
         elif type == "author.review":
-            order = combineOrderDict(self.getAuthorOrder(index), self.getReviewOrder(index))
+            order = combineOrderDict(self.getAuthorOrder(), self.getReviewOrder())
         elif type == "author.submission":
-            order = combineOrderDict(self.getAuthorOrder(index), self.getSubmissionOrder(index))
+            order = combineOrderDict(self.getAuthorOrder(), self.getSubmissionOrder())
         elif type == "review.submission":
-            order = combineOrderDict(self.getReviewOrder(index), self.getSubmissionOrder(index))
+            order = combineOrderDict(self.getReviewOrder(), self.getSubmissionOrder())
         elif type == "author.review.submission":
-            # Not doing
             print ("author + review + submission")
         else:
             print ("ERROR: No such type")
         return order
+        
+    def setInfo(self):
+        info = self.getInfo()
+        self.csvData.setInfo(info)
 
-    def setInfo(self, index):
-        info = self.getInfo(index)
-        self.csvDataList[index].setInfo(info)
-
-    def getInfo(self, index):
+    def getInfo(self):
         info = {}
-        type = self.csvDataList[index].infoType
+        type = self.csvData.infoType
         if type == "author.csv":
-            info = self.getAuthorInfo(index)
+            info = self.getAuthorInfo()
         elif type == "review.csv":
-            info = self.getReviewInfo(index)
+            info = self.getReviewInfo()
         elif type == "submission.csv":
-            info = self.getSubmissionInfo(index)
+            info = self.getSubmissionInfo()
         elif type == "author.review":
-            info = self.getAuthorReviewInfo(index)
+            info = self.getAuthorReviewInfo()
         elif type == "author.submission":
-            info = self.getAuthorSubmissionInfo(index)
+            info = self.getAuthorSubmissionInfo()
         elif type == "review.submission":
-            info = self.getReviewSubmissionInfo(index)
+            info = self.getReviewSubmissionInfo()
         elif type == "author.review.submission":
-            # Not doing
             info = {}
             print ("author + review + submission")            
         else:
             print ("ERROR: No such info")
         return info
-            
-    def formatRowContent(self):
-        rowContent = {}
 
-        infoType = []
-        infoData = {}
-        for i in range(self.size):
-            csvData = self.csvDataList[i]
-            if (".csv" in csvData.infoType):
-                infoType.append(csvData.infoType)
-            infoData.update(csvData.info)
-
-        rowContent['infoType'] = infoType
-        rowContent['infoData'] = appendHasErrorField(infoData)
-        return rowContent
-
-    def getAuthorOrder(self, index):
-        dataDictionary = self.csvDataList[index].data
+    def getAuthorOrder(self):
+        dataDictionary = self.csvData.data
         authorDict = {}
 
         for key, value in dataDictionary.iteritems():
@@ -102,8 +83,8 @@ class CsvDataBuilder:
                 
         return authorDict
 
-    def getReviewOrder(self, index):
-        dataDictionary = self.csvDataList[index].data
+    def getReviewOrder(self):
+        dataDictionary = self.csvData.data
         reviewDict = {}
 
         for key, value in dataDictionary.iteritems():
@@ -114,8 +95,8 @@ class CsvDataBuilder:
 
         return reviewDict
 
-    def getSubmissionOrder(self, index):
-        dataDictionary = self.csvDataList[index].data
+    def getSubmissionOrder(self):
+        dataDictionary = self.csvData.data
         submissionDict = {}
 
         for key, value in dataDictionary.iteritems():
@@ -130,12 +111,9 @@ class CsvDataBuilder:
     '''
     ==================================== GET INFO METHODS =====================================
     '''
-    def getAuthorInfo(self, index, dict = None):
-        if (dict is None):
-            authorDict = self.csvDataList[index].order
-        else:
-            authorDict = dict
-        inputFile = self.csvDataList[index].csvFiles.get('author')
+    def getAuthorInfo(self):
+        authorDict = self.csvData.order
+        inputFile = self.csvData.csvFiles.get('author')
 
         parsedResult = {}
         lines = getLinesFromInputFile(inputFile, bool(authorDict.get("author.HasHeader")))
@@ -145,12 +123,9 @@ class CsvDataBuilder:
         parsedResult.update(calculationUtil.getTopAffiliations(lines, authorDict))
         return parsedResult
 
-    def getReviewInfo(self, index, dict = None):
-        if (dict is None):
-            reviewDict = self.csvDataList[index].order
-        else:
-            reviewDict = dict
-        inputFile = self.csvDataList[index].csvFiles.get('review')
+    def getReviewInfo(self):
+        reviewDict = self.csvData.order
+        inputFile = self.csvData.csvFiles.get('review')
 
         parsedResult = {}
         lines = getLinesFromInputFile(inputFile, bool(reviewDict.get("review.HasHeader")))
@@ -161,12 +136,9 @@ class CsvDataBuilder:
 
         return parsedResult
         
-    def getSubmissionInfo(self, index, dict = None):
-        if (dict is None):
-            submissionDict = self.csvDataList[index].order
-        else:
-            submissionDict = dict
-        inputFile = self.csvDataList[index].csvFiles.get('submission')
+    def getSubmissionInfo(self):
+        submissionDict = self.csvData.order
+        inputFile = self.csvData.csvFiles.get('submission')
 
         parsedResult = {}
         lines = getLinesFromInputFile(inputFile, bool(submissionDict.get("submission.HasHeader")))
@@ -177,12 +149,12 @@ class CsvDataBuilder:
         parsedResult.update(calculationUtil.getAcceptanceRateByTrack(lines, submissionDict))
         return parsedResult
 
-    def getAuthorReviewInfo(self, index):
-        authorDict = self.getAuthorOrder(index)
-        reviewDict = self.getReviewOrder(index)
-        combinedDict = self.csvDataList[index].order
-        inputFile1 = self.csvDataList[index].csvFiles.get('author')
-        inputFile2 = self.csvDataList[index].csvFiles.get('review')
+    def getAuthorReviewInfo(self):
+        authorDict = self.getAuthorOrder()
+        reviewDict = self.getReviewOrder()
+        combinedDict = self.csvData.order
+        inputFile1 = self.csvData.csvFiles.get('author')
+        inputFile2 = self.csvData.csvFiles.get('review')
 
         lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("author.HasHeader")))
         lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("review.HasHeader")))
@@ -196,13 +168,13 @@ class CsvDataBuilder:
 
         return parsedResult
 
-    def getAuthorSubmissionInfo(self, index):
-        authorDict = self.getAuthorOrder(index)
-        submissionDict = self.getSubmissionOrder(index)
-        combinedDict = self.csvDataList[index].order
+    def getAuthorSubmissionInfo(self):
+        authorDict = self.getAuthorOrder()
+        submissionDict = self.getSubmissionOrder()
+        combinedDict = self.csvData.order
 
-        inputFile1 = self.csvDataList[index].csvFiles.get('author')
-        inputFile2 = self.csvDataList[index].csvFiles.get('submission')
+        inputFile1 = self.csvData.csvFiles.get('author')
+        inputFile2 = self.csvData.csvFiles.get('submission')
 
         parsedResult = {}
         lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("author.HasHeader")))
@@ -214,12 +186,12 @@ class CsvDataBuilder:
         parsedResult.update(calculationUtil.getTopAffiliationsAS(combinedLines, combinedDict))
         return parsedResult
 
-    def getReviewSubmissionInfo(self, index):
-        reviewDict = self.getReviewOrder(index)
-        submissionDict = self.getSubmissionOrder(index)
-        combinedDict = self.csvDataList[index].order
-        inputFile1 = self.csvDataList[index].csvFiles.get('review')
-        inputFile2 = self.csvDataList[index].csvFiles.get('submission')
+    def getReviewSubmissionInfo(self):
+        reviewDict = self.getReviewOrder()
+        submissionDict = self.getSubmissionOrder()
+        combinedDict = self.csvData.order
+        inputFile1 = self.csvData.csvFiles.get('review')
+        inputFile2 = self.csvData.csvFiles.get('submission')
 
         parsedResult = {}
         lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("review.HasHeader")))
