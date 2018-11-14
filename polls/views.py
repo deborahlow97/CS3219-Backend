@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login
 from django.core import serializers
 
 import json
-import Constants
+from Constants import *
 
 from utils import parseCSVFileFromDjangoFile, isNumber, returnTestChartData, formatRowContent
 from be.models.CsvDataBuilder import CsvDataBuilder
@@ -34,7 +34,7 @@ def uploadData(request):
 	if request.method == 'POST':
 		dataDictionary = {}
 		dataDictionary = (request.POST).dict()
-		requestType = dataDictionary.get("request")
+		requestType = dataDictionary.get(REQUEST)
 
 		if request.FILES and "uploadSession" == requestType:
 			data = uploadCSVFiles(request)
@@ -47,13 +47,13 @@ def uploadData(request):
 		elif "getAll" == requestType:
 			data = getSessionsByEmail(dataDictionary)
 		elif "register" == requestType:
-			registerUser = MyUser(dataDictionary.get("email"), dataDictionary.get("password"))
+			registerUser = MyUser(dataDictionary.get(EMAIL), dataDictionary.get(PASSWORD))
 			data = registerUser.registerUser()
 		elif "login" == requestType:
-			loginUser = MyUser(dataDictionary.get("email"), dataDictionary.get("password"))
+			loginUser = MyUser(dataDictionary.get(EMAIL), dataDictionary.get(PASSWORD))
 			data = loginUser.loginUser()
 		else:
-			print ("ERROR: file should have been rejected by frontend already")
+			print (INCORRECT_REQUEST_ERROR_MSG)
 
 		if request.POST:
 			print ("Now we got the csv file =)")
@@ -80,35 +80,35 @@ def uploadCSVFiles(request):
 		dataDictionary = (request.POST).dict()
 		rowContent = ""
 
-		if "author.csv" in fileName:
-			csvFiles['author'] = csvFile
-			csvData = CsvData("author.csv", dataDictionary, {'author': csvFile})
-			hasFiles[Constants.AUTHOR_ID] = True
-		elif "review.csv" in fileName:
-			csvFiles['review'] = csvFile
-			csvData = CsvData("review.csv", dataDictionary, {'review': csvFile})
-			hasFiles[Constants.REVIEW_ID] = True
-		elif "submission.csv" in fileName:
-			csvFiles['submission'] = csvFile
-			csvData = CsvData("submission.csv", dataDictionary, {'submission': csvFile})
-			hasFiles[Constants.SUBMISSION_ID] = True
+		if AUTHOR_CSV in fileName:
+			csvFiles[AUTHOR] = csvFile
+			csvData = CsvData(AUTHOR_CSV, dataDictionary, {AUTHOR: csvFile})
+			hasFiles[AUTHOR_ID] = True
+		elif REVIEW_CSV in fileName:
+			csvFiles[REVIEW] = csvFile
+			csvData = CsvData(REVIEW_CSV, dataDictionary, {REVIEW: csvFile})
+			hasFiles[REVIEW_ID] = True
+		elif SUBMISSION_CSV in fileName:
+			csvFiles[SUBMISSION] = csvFile
+			csvData = CsvData(SUBMISSION_CSV, dataDictionary, {SUBMISSION: csvFile})
+			hasFiles[SUBMISSION_ID] = True
 		else:
 			print ("ERROR: file should have been rejected by frontend already")
 		
 		csvDataList.append(csvData)
 	
 	# Combined visualisations
-	if (hasFiles[Constants.AUTHOR_ID] and hasFiles[Constants.REVIEW_ID]): # author + review
-		csvData = CsvData("author.review", dataDictionary, csvFiles)
+	if (hasFiles[AUTHOR_ID] and hasFiles[REVIEW_ID]): # author + review
+		csvData = CsvData(AUTHOR_REVIEW, dataDictionary, csvFiles)
 		csvDataList.append(csvData)
-	if (hasFiles[Constants.AUTHOR_ID] and hasFiles[Constants.SUBMISSION_ID]): # author + submission
-		csvData = CsvData("author.submission", dataDictionary, csvFiles)
+	if (hasFiles[AUTHOR_ID] and hasFiles[SUBMISSION_ID]): # author + submission
+		csvData = CsvData(AUTHOR_SUBMISSION, dataDictionary, csvFiles)
 		csvDataList.append(csvData)
-	if (hasFiles[Constants.REVIEW_ID] and hasFiles[Constants.SUBMISSION_ID]): # review + submission
-		csvData = CsvData("review.submission", dataDictionary, csvFiles)
+	if (hasFiles[REVIEW_ID] and hasFiles[SUBMISSION_ID]): # review + submission
+		csvData = CsvData(REVIEW_SUBMISSION, dataDictionary, csvFiles)
 		csvDataList.append(csvData)
-	if (hasFiles[Constants.AUTHOR_ID] and hasFiles[Constants.REVIEW_ID] and hasFiles[Constants.SUBMISSION_ID]): # author + review + submission
-		csvData = CsvData("author.review.submission", dataDictionary, csvFiles)
+	if (hasFiles[AUTHOR_ID] and hasFiles[REVIEW_ID] and hasFiles[SUBMISSION_ID]): # author + review + submission
+		csvData = CsvData(AUTHOR_REVIEW_SUBMISSION, dataDictionary, csvFiles)
 		csvDataList.append(csvData)
 		
 	for i in range(len(csvDataList)):
@@ -121,37 +121,37 @@ def uploadCSVFiles(request):
 	return rowContent
 
 def saveSession(request):
-	email = str(request['email'])
+	email = str(request[EMAIL])
 	user = User.objects.filter(email=email).first()
-	name = str(request['name'])
-	date = str(request['date'])
-	time = str(request['time'])
+	name = str(request[NAME])
+	date = str(request[DATE])
+	time = str(request[TIME])
 	files = str(request['files'])
 	data = request['data']
 	session = Session.objects.create_session(user, name, date, time, files, data)
 	return session.name
 
 def deleteSession(request):
-	email = str(request['email'])
+	email = str(request[EMAIL])
 	user = User.objects.filter(email=email).first()
-	name = str(request['name'])
-	date = str(request['date'])
-	time = str(request['time'])
+	name = str(request[NAME])
+	date = str(request[DATE])
+	time = str(request[TIME])
 	session = Session.objects.filter(user=user, name=name, date=date, time=time).first()
 	session.delete()
 	return session.name
 
 def getSession(request):
-	email = str(request['email'])
+	email = str(request[EMAIL])
 	user = User.objects.filter(email=email).first()
-	name = str(request['name'])
-	date = str(request['date'])
-	time = str(request['time'])
+	name = str(request[NAME])
+	date = str(request[DATE])
+	time = str(request[TIME])
 	session = Session.objects.filter(user=user, name=name, date=date, time=time).first()
 	return session.data
 
 def getSessionsByEmail(request):
-	email = str(request['email'])
+	email = str(request[EMAIL])
 	user = User.objects.filter(email=email).first()
 	sessionsQuerySet = Session.objects.filter(user=user)
 	return serializers.serialize('json', list(sessionsQuerySet))

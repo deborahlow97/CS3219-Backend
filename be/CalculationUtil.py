@@ -1,11 +1,10 @@
 import csv
 import codecs
 import re
-from polls import Constants
+from polls.Constants import *
 from collections import Counter
 from be.models.CsvExceptions import *
-from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime, appendHasErrorField
-from users import user
+from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnKey, parseCSVFile, isNumber, parseSubmissionTime, appendHasErrorField
 
 class CalculationUtil:
     ##################    AUTHOR INFO    ##################
@@ -67,19 +66,19 @@ class CalculationUtil:
             reviewTime = [str(ele[int(reviewDict.get("review.Time"))]) for ele in reviewData]
             reviewDate = [str(ele[int(reviewDict.get("review.Date"))]) for ele in reviewData]
 
-            timeRegex = re.compile(Constants.TIME_REGEX)
+            timeRegex = re.compile(TIME_REGEX)
             try:
                 for time in reviewTime:
                     if not timeRegex.match(time):
-                        raise TimeDataError( {"error": "Oops! There seems to be an error related to the information in review - time. Do note that only HH:MM format is accepted."})
+                        raise TimeDataError( {"error": TIME_FORMAT_ERROR_MSG })
             except TimeDataError as tde:
                 return tde.message
 
-            dateRegex = re.compile(Constants.DATE_REGEX)
+            dateRegex = re.compile(DATE_REGEX)
             try:
                 for date in reviewDate:
                     if not dateRegex.match(date):
-                        raise DateDataError( {"error": "Oops! There seems to be an error related to the information in review - date. Do note that only dd/mm/yyyy or d/m/yyyy format is accepted."})
+                        raise DateDataError( {"error": DATE_FORMAT_ERROR_MSG })
             except DateDataError as dde:
                 return dde.message
 
@@ -128,12 +127,12 @@ class CalculationUtil:
                 try:
                     expertiseLevel = int(info[int(reviewDict.get("review.Field #"))])
                 except (ValueError, TypeError) as e:
-                    return {"Error": "Oops! Value Error occurred. There seems to be an error related to the information in review - field #. Do make sure that only numbers are accepted as field #."}
+                    return {"Error": REVIEW_FIELD_NO_ERROR_MSG}
                 
                 try:
                     score = int(info[int(reviewDict.get("review.Overall Evaluation Score"))])
                 except (ValueError, TypeError) as e:
-                    return {"Error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score. Do make sure that only numbers are accepted as overall evaluation scores."}
+                    return {"Error": REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
                 
                 if expertiseLevel not in expertiseScoreMap:
                     expertiseScoreMap[expertiseLevel] = [score]
@@ -243,7 +242,7 @@ class CalculationUtil:
             try:
                 score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
             except ValueError as e:
-                return {"error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
+                return {"error": REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
             if name not in authorScoreMap:
                 authorScoreMap[name] = [score]
             else:
@@ -267,7 +266,7 @@ class CalculationUtil:
             try:
                 reviewScoreArr.append(int(Info[int(combinedDict.get("review.Overall Evaluation Score"))]))
             except ValueError as e:
-                return {"error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
+                return {"error": REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
 
         infoAndScore = zip(reviewScoreArr, nameArr, affiliationArr, countryArr)[:endIndex]
         infoAndScore.sort(reverse=True)
@@ -287,7 +286,7 @@ class CalculationUtil:
             try:
                 score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
             except ValueError as e:
-                return {"error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
+                return {"error": REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
             country = str(Info[int(combinedDict.get("author.Country"))])
 
             if country not in countryScoreMap:
@@ -314,7 +313,7 @@ class CalculationUtil:
             try:
                 score = int(Info[int(combinedDict.get("review.Overall Evaluation Score"))])
             except ValueError as e:
-                return {"error": "Oops! Value Error occurred. There seems to be an error related to the information in review - overall evaluation score"}
+                return {"error": REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG}
             affiliation = str(Info[int(combinedDict.get("author.Organization"))])
 
             if affiliation not in affiliationScoreMap:
@@ -331,7 +330,6 @@ class CalculationUtil:
         affiliationScoreList = affiliationScoreList[:endIndex]
         result['topAffiliationsAR'] = {'organization': [ele[0] for ele in affiliationScoreList], 'score': [round(ele[1],3) for ele in affiliationScoreList]}
         return result
-
 
     ##################    AUTHOR SUBMISSION INFO    ##################
     def getTopCountriesAS(self, authorSubmissionData, combinedDict):

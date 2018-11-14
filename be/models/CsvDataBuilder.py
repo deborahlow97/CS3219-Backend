@@ -5,9 +5,9 @@ import codecs
 import re
 from be.CalculationUtil import *
 from CsvExceptions import *
-import polls.Constants
+from polls.Constants import *
 from collections import Counter
-from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnKey, parseCSVFile, parseCSVFileInverted, isNumber, parseSubmissionTime, appendHasErrorField
+from polls.utils import combineOrderDict, getLinesFromInputFile, combineLinesOnKey, parseCSVFile, isNumber, parseSubmissionTime, appendHasErrorField
 
 '''
 Represents a builder class to build csv data from an uploaded csv file
@@ -16,10 +16,6 @@ class CsvDataBuilder:
     def __init__(self, csvData):
         self.csvData = csvData
 
-    # def addCsvData(self, infoType, dataDictionary, inputFiles):
-    #     csvData = CsvData(infoType, dataDictionary, inputFiles)
-    #     self.csvDataList.append(csvData)        
-        
     def setOrder(self):
         order = self.getOrder()
         self.csvData.setOrder(order)
@@ -27,20 +23,20 @@ class CsvDataBuilder:
     def getOrder(self):
         order = {}
         type = self.csvData.infoType
-        if type == "author.csv":
+        if type == AUTHOR_CSV:
             order = self.getAuthorOrder()
-        elif type == "review.csv":
+        elif type == REVIEW_CSV:
             order = self.getReviewOrder()
-        elif type == "submission.csv":
+        elif type == SUBMISSION_CSV:
             order = self.getSubmissionOrder()
-        elif type == "author.review":
+        elif type == AUTHOR_REVIEW:
             order = combineOrderDict(self.getAuthorOrder(), self.getReviewOrder())
-        elif type == "author.submission":
+        elif type == AUTHOR_SUBMISSION:
             order = combineOrderDict(self.getAuthorOrder(), self.getSubmissionOrder())
-        elif type == "review.submission":
+        elif type == REVIEW_SUBMISSION:
             order = combineOrderDict(self.getReviewOrder(), self.getSubmissionOrder())
-        elif type == "author.review.submission":
-            print ("author + review + submission")
+        elif type == AUTHOR_REVIEW_SUBMISSION:
+            print ""
         else:
             print ("ERROR: No such type")
         return order
@@ -52,19 +48,19 @@ class CsvDataBuilder:
     def getInfo(self):
         info = {}
         type = self.csvData.infoType
-        if type == "author.csv":
+        if type == AUTHOR_CSV:
             info = self.getAuthorInfo()
-        elif type == "review.csv":
+        elif type == REVIEW_CSV:
             info = self.getReviewInfo()
-        elif type == "submission.csv":
+        elif type == SUBMISSION_CSV:
             info = self.getSubmissionInfo()
-        elif type == "author.review":
+        elif type == AUTHOR_REVIEW:
             info = self.getAuthorReviewInfo()
-        elif type == "author.submission":
+        elif type == AUTHOR_SUBMISSION:
             info = self.getAuthorSubmissionInfo()
-        elif type == "review.submission":
+        elif type == REVIEW_SUBMISSION:
             info = self.getReviewSubmissionInfo()
-        elif type == "author.review.submission":
+        elif type == AUTHOR_REVIEW_SUBMISSION:
             info = {}
             print ("author + review + submission")            
         else:
@@ -76,7 +72,7 @@ class CsvDataBuilder:
         authorDict = {}
 
         for key, value in dataDictionary.iteritems():
-            if "author.HasHeader" in key:
+            if AUTHOR_HAS_HEADER in key:
                 authorDict.update({str(key): bool(value)})
             elif "author." in key:
                 authorDict.update({str(key): int(value)})
@@ -88,7 +84,7 @@ class CsvDataBuilder:
         reviewDict = {}
 
         for key, value in dataDictionary.iteritems():
-            if "review.HasHeader" in key:
+            if REVIEW_HAS_HEADER in key:
                 reviewDict.update({str(key): bool(value)})
             elif "review." in key:
                 reviewDict.update({str(key): int(value)})
@@ -100,7 +96,7 @@ class CsvDataBuilder:
         submissionDict = {}
 
         for key, value in dataDictionary.iteritems():
-            if "submission.HasHeader" in key:
+            if SUBMISSION_HAS_HEADER in key:
                 submissionDict.update({str(key): bool(value)})
             elif "submission." in key:
 
@@ -113,10 +109,10 @@ class CsvDataBuilder:
     '''
     def getAuthorInfo(self):
         authorDict = self.csvData.order
-        inputFile = self.csvData.csvFiles.get('author')
+        inputFile = self.csvData.csvFiles.get(AUTHOR)
 
         parsedResult = {}
-        lines = getLinesFromInputFile(inputFile, bool(authorDict.get("author.HasHeader")))
+        lines = getLinesFromInputFile(inputFile, bool(authorDict.get(AUTHOR_HAS_HEADER)))
         calculationUtil = CalculationUtil()
         parsedResult.update(calculationUtil.getTopAuthors(lines, authorDict))
         parsedResult.update(calculationUtil.getTopCountries(lines, authorDict))
@@ -125,10 +121,10 @@ class CsvDataBuilder:
 
     def getReviewInfo(self):
         reviewDict = self.csvData.order
-        inputFile = self.csvData.csvFiles.get('review')
+        inputFile = self.csvData.csvFiles.get(REVIEW)
 
         parsedResult = {}
-        lines = getLinesFromInputFile(inputFile, bool(reviewDict.get("review.HasHeader")))
+        lines = getLinesFromInputFile(inputFile, bool(reviewDict.get(REVIEW_HAS_HEADER)))
         calculationUtil = CalculationUtil()
         parsedResult.update(calculationUtil.getReviewTimeSeries(lines, reviewDict))
         parsedResult.update(calculationUtil.getScoreDistribution(lines, reviewDict))
@@ -138,10 +134,10 @@ class CsvDataBuilder:
         
     def getSubmissionInfo(self):
         submissionDict = self.csvData.order
-        inputFile = self.csvData.csvFiles.get('submission')
+        inputFile = self.csvData.csvFiles.get(SUBMISSION)
 
         parsedResult = {}
-        lines = getLinesFromInputFile(inputFile, bool(submissionDict.get("submission.HasHeader")))
+        lines = getLinesFromInputFile(inputFile, bool(submissionDict.get(SUBMISSION_HAS_HEADER)))
         calculationUtil = CalculationUtil()
         parsedResult.update(calculationUtil.getTopAuthorsByTrackAndAcceptanceRate(lines, submissionDict))
         parsedResult.update(calculationUtil.getWordCloudByTrack(lines, submissionDict))
@@ -153,11 +149,11 @@ class CsvDataBuilder:
         authorDict = self.getAuthorOrder()
         reviewDict = self.getReviewOrder()
         combinedDict = self.csvData.order
-        inputFile1 = self.csvData.csvFiles.get('author')
-        inputFile2 = self.csvData.csvFiles.get('review')
+        inputFile1 = self.csvData.csvFiles.get(AUTHOR)
+        inputFile2 = self.csvData.csvFiles.get(REVIEW)
 
-        lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("author.HasHeader")))
-        lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("review.HasHeader")))
+        lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get(AUTHOR_HAS_HEADER)))
+        lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get(REVIEW_HAS_HEADER)))
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "review.Submission #", authorDict, reviewDict)
         parsedResult = {}
         calculationUtil = CalculationUtil()
@@ -173,12 +169,12 @@ class CsvDataBuilder:
         submissionDict = self.getSubmissionOrder()
         combinedDict = self.csvData.order
 
-        inputFile1 = self.csvData.csvFiles.get('author')
-        inputFile2 = self.csvData.csvFiles.get('submission')
+        inputFile1 = self.csvData.csvFiles.get(AUTHOR)
+        inputFile2 = self.csvData.csvFiles.get(SUBMISSION)
 
         parsedResult = {}
-        lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("author.HasHeader")))
-        lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
+        lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get(AUTHOR_HAS_HEADER)))
+        lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get(SUBMISSION_HAS_HEADER)))
 
         combinedLines = combineLinesOnKey(lines1, lines2, "author.Submission #", "submission.Submission #", authorDict, submissionDict)
         calculationUtil = CalculationUtil()
@@ -190,12 +186,12 @@ class CsvDataBuilder:
         reviewDict = self.getReviewOrder()
         submissionDict = self.getSubmissionOrder()
         combinedDict = self.csvData.order
-        inputFile1 = self.csvData.csvFiles.get('review')
-        inputFile2 = self.csvData.csvFiles.get('submission')
+        inputFile1 = self.csvData.csvFiles.get(REVIEW)
+        inputFile2 = self.csvData.csvFiles.get(SUBMISSION)
 
         parsedResult = {}
-        lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get("review.HasHeader")))
-        lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get("submission.HasHeader")))
+        lines1 = getLinesFromInputFile(inputFile1, bool(combinedDict.get(REVIEW_HAS_HEADER)))
+        lines2 = getLinesFromInputFile(inputFile2, bool(combinedDict.get(SUBMISSION_HAS_HEADER)))
         combinedLines = combineLinesOnKey(lines1, lines2, "review.Submission #", "submission.Submission #", reviewDict, submissionDict)
         calculationUtil = CalculationUtil()
         parsedResult.update(calculationUtil.getExpertiseSR(combinedLines, combinedDict))
