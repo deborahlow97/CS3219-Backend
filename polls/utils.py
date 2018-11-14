@@ -73,7 +73,7 @@ def parseSubmissionTime(timeStr):
 		if not dateAndTimeRegex.match(timeStr):
 			raise DateAndTimeDataError({ERROR: DATE_AND_TIME_ERROR_MSG})
 	except DateAndTimeDataError as datde:
-		return datde
+		return {ERROR: DATE_AND_TIME_ERROR_MSG}
 
 	date = timeStr.split("\\s+")[0]
 	return date
