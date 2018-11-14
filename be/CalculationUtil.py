@@ -363,7 +363,7 @@ class CalculationUtil:
             for key,value in affiliationScoreMap.iteritems():
                 affiliationScoreMap[key] = sum(value)/float(len(value))
 
-            affiliationScoreMap = sorted(affiliationScoreMap.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+            affiliationScoreList = sorted(affiliationScoreMap.iteritems(), key=lambda (k,v): (v,k), reverse=True)
             endIndex = self.getEndIndexForTop10(affiliationScoreList)
             affiliationScoreList = affiliationScoreList[:endIndex]
             result['topAffiliationsAR'] = {'organization': [ele[0] for ele in affiliationScoreList], 'score': [round(ele[1],3) for ele in affiliationScoreList]}
