@@ -71,7 +71,6 @@ def uploadCSVFiles(request):
 	csvFiles = {}
 	csvFileList = request.FILES.getlist('file')
 
-	# csvDataBuilder = CsvDataBuilder()
 	csvDataList = []
 
 	for csvFile in csvFileList:
