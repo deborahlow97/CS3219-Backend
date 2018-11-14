@@ -35,7 +35,8 @@ REVIEW_OVERALL_EVAL_SCORE_ERROR_MSG  = "Oops! Value Error occurred. There seems 
 DATE_FORMAT_ERROR_MSG = "Oops! There seems to be an error related to the information in review - date. Do note that only yyyy-mm-dd format is accepted."
 TIME_FORMAT_ERROR_MSG = "Oops! There seems to be an error related to the information in review - time. Do note that only HH:MM format is accepted."
 REVIEW_FIELD_NO_ERROR_MSG = "Oops! Value Error occurred. There seems to be an error related to the information in review - field #. Do make sure that only numbers are accepted as field #."
-
+DATE_AND_TIME_ERROR_MSG = "Oops! There seems to be an error related to the information in submission - time submitted or time last updated. Do note that only yyyy-mm-dd HH:MM format is accepted."
+ERROR_MSG = "An error has occurred"
 #DATE_REGEX = r"(^(0?[1-9]|[12]\d|3[01])[\/](0?[1-9]|1[0-2])[\/](19|20)\d{2}$)"
 DATE_REGEX = r"^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$"
 TIME_REGEX = "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"

@@ -71,7 +71,7 @@ def parseSubmissionTime(timeStr):
 	dateAndTimeRegex = re.compile(Constants.DATE_AND_TIME_REGEX)
 	try:
 		if not dateAndTimeRegex.match(timeStr):
-			raise DateAndTimeDataError({"Error": "Oops! There seems to be an error related to the information in submission - time submitted or time last updated. Do note that only yyyy-mm-dd HH:MM format is accepted."})
+			raise DateAndTimeDataError({"Error": DATE_AND_TIME_ERROR_MSG})
 	except DateAndTimeDataError as datde:
 		return datde
 
